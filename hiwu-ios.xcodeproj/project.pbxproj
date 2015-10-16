@@ -807,6 +807,7 @@
 				A5CEE64A1BD0DB3C00AAF122 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A5CEE64B1BD0DB3C00AAF122 /* Build configuration list for PBXNativeTarget "hiwu-iosTests" */ = {
 			isa = XCConfigurationList;
@@ -815,6 +816,7 @@
 				A5CEE64D1BD0DB3C00AAF122 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A5CEE64E1BD0DB3C00AAF122 /* Build configuration list for PBXNativeTarget "hiwu-iosUITests" */ = {
 			isa = XCConfigurationList;
@@ -823,6 +825,7 @@
 				A5CEE6501BD0DB3C00AAF122 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
