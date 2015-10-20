@@ -7,14 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A59354C31BD5C4FD0044E7B3 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59354C21BD5C4FD0044E7B3 /* LaunchScreen.swift */; settings = {ASSET_TAGS = (); }; };
+		A59354D31BD5C7D20044E7B3 /* Navigation1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59354D21BD5C7D20044E7B3 /* Navigation1.swift */; settings = {ASSET_TAGS = (); }; };
+		A59354E21BD5F25B0044E7B3 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A59354E11BD5F25B0044E7B3 /* Launch Screen.storyboard */; settings = {ASSET_TAGS = (); }; };
+		A593550B1BD669080044E7B3 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593550A1BD669080044E7B3 /* LoginVC.swift */; settings = {ASSET_TAGS = (); }; };
+		A593550D1BD66EA90044E7B3 /* TodayGalleryCT.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593550C1BD66EA90044E7B3 /* TodayGalleryCT.swift */; settings = {ASSET_TAGS = (); }; };
 		A5CEE6241BD0DB3C00AAF122 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CEE6231BD0DB3C00AAF122 /* AppDelegate.swift */; };
 		A5CEE6261BD0DB3C00AAF122 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CEE6251BD0DB3C00AAF122 /* ViewController.swift */; };
 		A5CEE6291BD0DB3C00AAF122 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CEE6271BD0DB3C00AAF122 /* Main.storyboard */; };
 		A5CEE62B1BD0DB3C00AAF122 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CEE62A1BD0DB3C00AAF122 /* Assets.xcassets */; };
-		A5CEE62E1BD0DB3C00AAF122 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CEE62C1BD0DB3C00AAF122 /* LaunchScreen.storyboard */; };
 		A5CEE6871BD0DC3000AAF122 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5CEE67E1BD0DC2000AAF122 /* SwiftyJSON.framework */; };
 		A5CEE6881BD0DC3000AAF122 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5CEE67E1BD0DC2000AAF122 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A5CEE68C1BD0DC3900AAF122 /* SweetAlert.app in Resources */ = {isa = PBXBuildFile; fileRef = A5CEE6741BD0DC1B00AAF122 /* SweetAlert.app */; };
 		A5CEE68F1BD0DC4500AAF122 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5CEE66C1BD0DC1600AAF122 /* Kingfisher.framework */; };
 		A5CEE6901BD0DC4500AAF122 /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5CEE66C1BD0DC1600AAF122 /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A5CEE6931BD0DC4D00AAF122 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5CEE65A1BD0DC0E00AAF122 /* Alamofire.framework */; };
@@ -92,13 +95,6 @@
 			remoteGlobalIDString = D1ED2D3F1AD2D09F00CFC3EB;
 			remoteInfo = KingfisherTests;
 		};
-		A5CEE6731BD0DC1B00AAF122 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5CEE66F1BD0DC1B00AAF122 /* SweetAlert.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9B4CD1081A06E55200B65DE0;
-			remoteInfo = SweetAlert;
-		};
 		A5CEE67D1BD0DC2000AAF122 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A5CEE6751BD0DC2000AAF122 /* SwiftyJSON.xcodeproj */;
@@ -141,13 +137,6 @@
 			remoteGlobalIDString = 2E4FEFDA19575BE100351305;
 			remoteInfo = "SwiftyJSON iOS";
 		};
-		A5CEE68D1BD0DC3900AAF122 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5CEE66F1BD0DC1B00AAF122 /* SweetAlert.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9B4CD1071A06E55200B65DE0;
-			remoteInfo = SweetAlert;
-		};
 		A5CEE6911BD0DC4500AAF122 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A5CEE6631BD0DC1600AAF122 /* Kingfisher.xcodeproj */;
@@ -181,18 +170,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A59354C21BD5C4FD0044E7B3 /* LaunchScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LaunchScreen.swift; path = ViewController/LaunchScreen.swift; sourceTree = "<group>"; };
+		A59354D21BD5C7D20044E7B3 /* Navigation1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Navigation1.swift; path = ViewController/Navigation1.swift; sourceTree = "<group>"; };
+		A59354E11BD5F25B0044E7B3 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		A593550A1BD669080044E7B3 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginVC.swift; path = ViewController/LoginVC.swift; sourceTree = "<group>"; };
+		A593550C1BD66EA90044E7B3 /* TodayGalleryCT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TodayGalleryCT.swift; path = LayoutTools/TodayGalleryCT.swift; sourceTree = "<group>"; };
 		A5CEE6201BD0DB3C00AAF122 /* hiwu-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hiwu-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CEE6231BD0DB3C00AAF122 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CEE6251BD0DB3C00AAF122 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A5CEE6281BD0DB3C00AAF122 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A5CEE62A1BD0DB3C00AAF122 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A5CEE62D1BD0DB3C00AAF122 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5CEE62F1BD0DB3C00AAF122 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5CEE6341BD0DB3C00AAF122 /* hiwu-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "hiwu-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CEE63F1BD0DB3C00AAF122 /* hiwu-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "hiwu-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CEE6511BD0DC0E00AAF122 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Libs/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		A5CEE6631BD0DC1600AAF122 /* Kingfisher.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Kingfisher.xcodeproj; path = Libs/Kingfisher/Kingfisher.xcodeproj; sourceTree = "<group>"; };
-		A5CEE66F1BD0DC1B00AAF122 /* SweetAlert.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SweetAlert.xcodeproj; path = Libs/SweetAlert/SweetAlert.xcodeproj; sourceTree = "<group>"; };
 		A5CEE6751BD0DC2000AAF122 /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = "Libs/SwiftyJSON-master 3/SwiftyJSON.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -224,11 +216,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A59354CE1BD5C5320044E7B3 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				A5CEE6231BD0DB3C00AAF122 /* AppDelegate.swift */,
+				A59354E11BD5F25B0044E7B3 /* Launch Screen.storyboard */,
+				A5CEE62A1BD0DB3C00AAF122 /* Assets.xcassets */,
+			);
+			name = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		A593550E1BD66EB00044E7B3 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A59354C21BD5C4FD0044E7B3 /* LaunchScreen.swift */,
+				A59354D21BD5C7D20044E7B3 /* Navigation1.swift */,
+				A593550A1BD669080044E7B3 /* LoginVC.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A593550F1BD66EC00044E7B3 /* LayoutTools */ = {
+			isa = PBXGroup;
+			children = (
+				A593550C1BD66EA90044E7B3 /* TodayGalleryCT.swift */,
+			);
+			name = LayoutTools;
+			sourceTree = "<group>";
+		};
 		A5CEE6171BD0DB3C00AAF122 = {
 			isa = PBXGroup;
 			children = (
 				A5CEE6751BD0DC2000AAF122 /* SwiftyJSON.xcodeproj */,
-				A5CEE66F1BD0DC1B00AAF122 /* SweetAlert.xcodeproj */,
 				A5CEE6631BD0DC1600AAF122 /* Kingfisher.xcodeproj */,
 				A5CEE6511BD0DC0E00AAF122 /* Alamofire.xcodeproj */,
 				A5CEE6221BD0DB3C00AAF122 /* hiwu-ios */,
@@ -249,11 +268,11 @@
 		A5CEE6221BD0DB3C00AAF122 /* hiwu-ios */ = {
 			isa = PBXGroup;
 			children = (
-				A5CEE6231BD0DB3C00AAF122 /* AppDelegate.swift */,
+				A593550F1BD66EC00044E7B3 /* LayoutTools */,
+				A593550E1BD66EB00044E7B3 /* ViewControllers */,
 				A5CEE6251BD0DB3C00AAF122 /* ViewController.swift */,
 				A5CEE6271BD0DB3C00AAF122 /* Main.storyboard */,
-				A5CEE62A1BD0DB3C00AAF122 /* Assets.xcassets */,
-				A5CEE62C1BD0DB3C00AAF122 /* LaunchScreen.storyboard */,
+				A59354CE1BD5C5320044E7B3 /* SupportingFiles */,
 				A5CEE62F1BD0DB3C00AAF122 /* Info.plist */,
 			);
 			path = "hiwu-ios";
@@ -277,14 +296,6 @@
 				A5CEE66A1BD0DC1600AAF122 /* Kingfisher-Demo.app */,
 				A5CEE66C1BD0DC1600AAF122 /* Kingfisher.framework */,
 				A5CEE66E1BD0DC1600AAF122 /* KingfisherTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		A5CEE6701BD0DC1B00AAF122 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A5CEE6741BD0DC1B00AAF122 /* SweetAlert.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -317,7 +328,6 @@
 			);
 			dependencies = (
 				A5CEE68A1BD0DC3000AAF122 /* PBXTargetDependency */,
-				A5CEE68E1BD0DC3900AAF122 /* PBXTargetDependency */,
 				A5CEE6921BD0DC4500AAF122 /* PBXTargetDependency */,
 				A5CEE6961BD0DC4D00AAF122 /* PBXTargetDependency */,
 			);
@@ -406,10 +416,6 @@
 					ProjectRef = A5CEE6631BD0DC1600AAF122 /* Kingfisher.xcodeproj */;
 				},
 				{
-					ProductGroup = A5CEE6701BD0DC1B00AAF122 /* Products */;
-					ProjectRef = A5CEE66F1BD0DC1B00AAF122 /* SweetAlert.xcodeproj */;
-				},
-				{
 					ProductGroup = A5CEE6761BD0DC2000AAF122 /* Products */;
 					ProjectRef = A5CEE6751BD0DC2000AAF122 /* SwiftyJSON.xcodeproj */;
 				},
@@ -480,13 +486,6 @@
 			remoteRef = A5CEE66D1BD0DC1600AAF122 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A5CEE6741BD0DC1B00AAF122 /* SweetAlert.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = SweetAlert.app;
-			remoteRef = A5CEE6731BD0DC1B00AAF122 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		A5CEE67E1BD0DC2000AAF122 /* SwiftyJSON.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -529,8 +528,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5CEE62E1BD0DB3C00AAF122 /* LaunchScreen.storyboard in Resources */,
-				A5CEE68C1BD0DC3900AAF122 /* SweetAlert.app in Resources */,
+				A59354E21BD5F25B0044E7B3 /* Launch Screen.storyboard in Resources */,
 				A5CEE62B1BD0DB3C00AAF122 /* Assets.xcassets in Resources */,
 				A5CEE6291BD0DB3C00AAF122 /* Main.storyboard in Resources */,
 			);
@@ -558,7 +556,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5CEE6261BD0DB3C00AAF122 /* ViewController.swift in Sources */,
+				A593550D1BD66EA90044E7B3 /* TodayGalleryCT.swift in Sources */,
+				A59354D31BD5C7D20044E7B3 /* Navigation1.swift in Sources */,
 				A5CEE6241BD0DB3C00AAF122 /* AppDelegate.swift in Sources */,
+				A59354C31BD5C4FD0044E7B3 /* LaunchScreen.swift in Sources */,
+				A593550B1BD669080044E7B3 /* LoginVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,11 +596,6 @@
 			name = "SwiftyJSON iOS";
 			targetProxy = A5CEE6891BD0DC3000AAF122 /* PBXContainerItemProxy */;
 		};
-		A5CEE68E1BD0DC3900AAF122 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SweetAlert;
-			targetProxy = A5CEE68D1BD0DC3900AAF122 /* PBXContainerItemProxy */;
-		};
 		A5CEE6921BD0DC4500AAF122 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Kingfisher;
@@ -618,14 +615,6 @@
 				A5CEE6281BD0DB3C00AAF122 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		A5CEE62C1BD0DB3C00AAF122 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A5CEE62D1BD0DB3C00AAF122 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
