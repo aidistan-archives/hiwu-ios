@@ -11,4 +11,6 @@ import Foundation
 class ApiManager{
     static var simpleLogin = "http://hiwu.ren:3010/api/HiwuUsers/simpleLogin?"
     static var getTodayPublicView = "http://hiwu.ren:3010/api/Today/publicView?access_token="
+    static var getSelfGallery1_2 = "http://hiwu.ren:3010/api/HiwuUsers/"
+    static var getSelfGallery2_2 = "/galleries?access_token="
 }

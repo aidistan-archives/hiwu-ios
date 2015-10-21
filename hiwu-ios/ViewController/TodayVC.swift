@@ -15,17 +15,23 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        print("stack")
+        print(self.navigationController?.viewControllers)
     }
+    
     @IBAction func clear(sender: UIButton) {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setDouble(0, forKey: "deadline")
     }
+    
     @IBAction func enterToSelfMuseum(sender: UIButton) {
         let nowDate = NSDate(timeIntervalSinceNow: 0)
         let defaults = NSUserDefaults.standardUserDefaults()
         let deadline = defaults.doubleForKey("deadline")
         let freshline = defaults.doubleForKey("freshline")
+        print("deadline")
+        print(deadline)
+        print(freshline)
         if((deadline == 0)||(freshline == 0||nowDate.timeIntervalSince1970 > deadline)){
             self.navigationController!.performSegueWithIdentifier("ToLoginSegue", sender: self)
             NSLog("Invalid")
@@ -37,11 +43,10 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
                 print("i'm here")
             
             }else{
-            self.navigationController!.performSegueWithIdentifier("ToSelfMuseumSegue", sender: self)
+    self.navigationController!.performSegueWithIdentifier("ToSelfMuseumSegue", sender: self)
                 
             }
             }
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return 1
     }

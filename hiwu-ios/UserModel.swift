@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class UserModel: AnyObject{
-    var hiwuToken:String?
-    var userId:Int?
+    var hiwuToken:String = ""
+    var userId:Int = 0
+    var userName = ""
+    var selfMuseum :JSON?
     init(){
-        hiwuToken = ""
         
     }
     

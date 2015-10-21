@@ -7,17 +7,44 @@
 //
 
 import UIKit
+import SwiftyJSON
 
-class LoginVC: UIViewController {
-
+class LoginVC: UIViewController,LoginProtocol {
+    let tmpContactor = ContactWithServer()
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var registerButton: UIButton!
     @IBAction func loginButton(sender: UIButton) {
-        ContactWithServer.getTokenWithPassword(usernameText.text!, password: passwordText.text!)}
+        
+        self.tmpContactor.loginSuccess = self
+        self.tmpContactor.getTokenWithPassword(usernameText.text!, password: passwordText.text!)
+       
+    }
+    
+    func skipToNextAfterSuccess() {
+        self.navigationController?.popViewControllerAnimated(false)
+        self.navigationController?.performSegueWithIdentifier("ToSelfMuseumSegue", sender: self)
+
+    }
+    
+    func loginFailed() {
+        print("loginFailed")
+    }
+    
+    func didGetSelfMuseum(){
+        self.skipToNextAfterSuccess()
+    }
+    
+    func getSelfMuseumFailed(){
+        print("getSelfMuseumFailed")
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("stack")
+        print(self.navigationController?.viewControllers)
         registerButton.layer.cornerRadius = registerButton.frame.height/2
         
 
