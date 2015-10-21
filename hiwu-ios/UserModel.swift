@@ -10,6 +10,7 @@ import UIKit
 
 class UserModel: AnyObject{
     var hiwuToken:String?
+    var userId:Int?
     init(){
         hiwuToken = ""
         

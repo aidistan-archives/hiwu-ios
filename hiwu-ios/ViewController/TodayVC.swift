@@ -17,16 +17,20 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    @IBAction func clear(sender: UIButton) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setDouble(0, forKey: "deadline")
+    }
     @IBAction func enterToSelfMuseum(sender: UIButton) {
         let nowDate = NSDate(timeIntervalSinceNow: 0)
         let defaults = NSUserDefaults.standardUserDefaults()
-        let deadline = defaults.integerForKey("deadline")
-        let freshline = defaults.integerForKey("freshline")
-        if((deadline == 0)||(freshline == 0||nowDate.timeIntervalSince1970 > Double(deadline))){
+        let deadline = defaults.doubleForKey("deadline")
+        let freshline = defaults.doubleForKey("freshline")
+        if((deadline == 0)||(freshline == 0||nowDate.timeIntervalSince1970 > deadline)){
             self.navigationController!.performSegueWithIdentifier("ToLoginSegue", sender: self)
             NSLog("Invalid")
             
-        }else if(nowDate.timeIntervalSince1970 > Double(freshline)){
+        }else if(nowDate.timeIntervalSince1970 > freshline){
                 debugPrint("not fresh")
                 self.navigationController!.performSegueWithIdentifier("ToSelfMuseumSegue", sender: self)
                 ContactWithServer.getNewTokenWithDefaults()

@@ -15,6 +15,7 @@
 		A59355111BD672480044E7B3 /* TodayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59355101BD672480044E7B3 /* TodayVC.swift */; settings = {ASSET_TAGS = (); }; };
 		A59355181BD782100044E7B3 /* ContactWithServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59355171BD782100044E7B3 /* ContactWithServer.swift */; settings = {ASSET_TAGS = (); }; };
 		A59355251BD7854B0044E7B3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59355241BD7854B0044E7B3 /* UserModel.swift */; settings = {ASSET_TAGS = (); }; };
+		A593552D1BD7983F0044E7B3 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593552C1BD7983F0044E7B3 /* ApiManager.swift */; settings = {ASSET_TAGS = (); }; };
 		A5CEE6241BD0DB3C00AAF122 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CEE6231BD0DB3C00AAF122 /* AppDelegate.swift */; };
 		A5CEE6261BD0DB3C00AAF122 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CEE6251BD0DB3C00AAF122 /* ViewController.swift */; };
 		A5CEE6291BD0DB3C00AAF122 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CEE6271BD0DB3C00AAF122 /* Main.storyboard */; };
@@ -181,6 +182,7 @@
 		A59355101BD672480044E7B3 /* TodayVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TodayVC.swift; path = ViewController/TodayVC.swift; sourceTree = "<group>"; };
 		A59355171BD782100044E7B3 /* ContactWithServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactWithServer.swift; path = LayoutTools/ContactWithServer.swift; sourceTree = "<group>"; };
 		A59355241BD7854B0044E7B3 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		A593552C1BD7983F0044E7B3 /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		A5CEE6201BD0DB3C00AAF122 /* hiwu-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hiwu-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CEE6231BD0DB3C00AAF122 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CEE6251BD0DB3C00AAF122 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				A59355241BD7854B0044E7B3 /* UserModel.swift */,
+				A593552C1BD7983F0044E7B3 /* ApiManager.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -574,6 +577,7 @@
 			files = (
 				A59355111BD672480044E7B3 /* TodayVC.swift in Sources */,
 				A59355181BD782100044E7B3 /* ContactWithServer.swift in Sources */,
+				A593552D1BD7983F0044E7B3 /* ApiManager.swift in Sources */,
 				A5CEE6261BD0DB3C00AAF122 /* ViewController.swift in Sources */,
 				A593550D1BD66EA90044E7B3 /* TodayGalleryCT.swift in Sources */,
 				A59354D31BD5C7D20044E7B3 /* Navigation1.swift in Sources */,

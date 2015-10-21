@@ -10,8 +10,16 @@ import UIKit
 
 class LoginVC: UIViewController {
 
+    @IBOutlet weak var usernameText: UITextField!
+    @IBOutlet weak var passwordText: UITextField!
+    @IBOutlet weak var registerButton: UIButton!
+    @IBAction func loginButton(sender: UIButton) {
+        ContactWithServer.getTokenWithPassword(usernameText.text!, password: passwordText.text!)}
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerButton.layer.cornerRadius = registerButton.frame.height/2
+        
 
         // Do any additional setup after loading the view.
     }
@@ -20,6 +28,8 @@ class LoginVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+
     
 
 }

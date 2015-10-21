@@ -2,6 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jsr-Dn-NqJ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Navigation1-->
@@ -56,7 +58,7 @@
         <!--View Controller-->
         <scene sceneID="eJw-a1-BHI">
             <objects>
-                <viewController storyboardIdentifier="SelfMuseum" id="cfU-wy-JLm" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelfMuseum" id="cfU-wy-JLm" customClass="ViewController" customModule="hiwu_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BQo-Yp-VSg"/>
                         <viewControllerLayoutGuide type="bottom" id="R3o-TH-z11"/>
@@ -199,31 +201,44 @@
                             </button>
                         </barButtonItem>
                         <textField key="titleView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="今日博物展" textAlignment="center" minimumFontSize="17" disabledBackground="title" id="ILq-B1-EnF">
-                            <rect key="frame" x="236.5" y="7" width="127" height="30"/>
+                            <rect key="frame" x="230" y="7" width="127" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <barButtonItem key="rightBarButtonItem" id="eiL-B0-9k7">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="sKu-gK-QWe">
-                                <rect key="frame" x="504" y="7" width="76" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="我的博物馆">
-                                            <attributes>
-                                                <font key="NSFont" size="13" name="HelveticaNeue"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                                <connections>
-                                    <action selector="enterToSelfMuseum:" destination="zL7-lz-cGh" eventType="touchUpInside" id="N0w-li-kGF"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem id="eiL-B0-9k7">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="sKu-gK-QWe">
+                                    <rect key="frame" x="504" y="7" width="76" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <animations/>
+                                    <state key="normal">
+                                        <attributedString key="attributedTitle">
+                                            <fragment content="我的博物馆">
+                                                <attributes>
+                                                    <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                    </state>
+                                    <connections>
+                                        <action selector="enterToSelfMuseum:" destination="zL7-lz-cGh" eventType="touchUpInside" id="N0w-li-kGF"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem title="clear" style="plain" id="rc1-sh-SgD">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ji2-cA-WlR">
+                                    <rect key="frame" x="363" y="7" width="133" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <animations/>
+                                    <state key="normal" title="clear"/>
+                                    <connections>
+                                        <action selector="clear:" destination="zL7-lz-cGh" eventType="touchUpInside" id="Oe4-sY-kZx"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="naviItem" destination="bmT-uA-VWS" id="uOw-sB-DMo"/>
@@ -245,12 +260,94 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="chunranbeijing" placeholder="     请输入用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HIz-lo-kHh">
+                                <rect key="frame" x="58" y="144" width="483" height="50"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="e9Y-hI-opK"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="     请输入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4ts-IF-Fu7">
+                                <rect key="frame" x="58" y="245" width="483" height="50"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="mkG-fW-LBn"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qdh-tX-VKY">
+                                <rect key="frame" x="58" y="338" width="483" height="50"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.97231942415237427" green="0.85254782438278198" blue="0.29427963495254517" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="yed-27-lit"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="确认登录">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dqc-nR-sWE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vgf-Ry-p3v">
+                                <rect key="frame" x="481" y="303" width="60" height="30"/>
+                                <animations/>
+                                <state key="normal" title="忘记密码">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JeN-em-OPZ">
+                                <rect key="frame" x="58" y="550" width="83" height="30"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="注册账号">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Qdh-tX-VKY" firstAttribute="centerX" secondItem="HIz-lo-kHh" secondAttribute="centerX" id="419-dh-znR"/>
+                            <constraint firstItem="Qdh-tX-VKY" firstAttribute="top" secondItem="4ts-IF-Fu7" secondAttribute="bottom" constant="43" id="AAS-5t-Cux"/>
+                            <constraint firstItem="Qdh-tX-VKY" firstAttribute="leading" secondItem="HIz-lo-kHh" secondAttribute="leading" id="CWO-yM-P03"/>
+                            <constraint firstItem="HIz-lo-kHh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="80" id="Jeu-m9-gf8"/>
+                            <constraint firstItem="HIz-lo-kHh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="38" id="KEi-nx-c9J"/>
+                            <constraint firstItem="Qdh-tX-VKY" firstAttribute="top" secondItem="Vgf-Ry-p3v" secondAttribute="bottom" constant="5" id="W5a-lu-KPI"/>
+                            <constraint firstItem="4ts-IF-Fu7" firstAttribute="top" secondItem="HIz-lo-kHh" secondAttribute="bottom" constant="51" id="Xr3-Uf-qer"/>
+                            <constraint firstItem="4ts-IF-Fu7" firstAttribute="leading" secondItem="HIz-lo-kHh" secondAttribute="leading" id="dG7-u7-37W"/>
+                            <constraint firstItem="4ts-IF-Fu7" firstAttribute="centerX" secondItem="HIz-lo-kHh" secondAttribute="centerX" id="tDE-QA-vfh"/>
+                            <constraint firstItem="HIz-lo-kHh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tKb-iN-yZM"/>
+                            <constraint firstItem="Vgf-Ry-p3v" firstAttribute="trailing" secondItem="Qdh-tX-VKY" secondAttribute="trailing" id="v6H-Mv-i7C"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="P8V-ix-7FR">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="20u-TV-mXi">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="个人博物馆" textAlignment="center" minimumFontSize="17" background="title" id="ec4-Fb-f9S">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
                     </navigationItem>
+                    <connections>
+                        <outlet property="passwordText" destination="4ts-IF-Fu7" id="opr-sc-UMG"/>
+                        <outlet property="registerButton" destination="JeN-em-OPZ" id="RhK-xp-zxD"/>
+                        <outlet property="usernameText" destination="HIz-lo-kHh" id="WiV-Ru-r5D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
