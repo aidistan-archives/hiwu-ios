@@ -7,8 +7,10 @@
 //
 
 import UIKit
+var globalHiwuUser = UserModel()
 
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?

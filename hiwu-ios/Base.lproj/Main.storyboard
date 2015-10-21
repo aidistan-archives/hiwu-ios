@@ -7,7 +7,7 @@
         <!--Navigation1-->
         <scene sceneID="sch-YB-5qE">
             <objects>
-                <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" hidesBarsOnSwipe="YES" id="Jsr-Dn-NqJ" customClass="Navigation1" customModule="hiwu_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jsr-Dn-NqJ" customClass="Navigation1" customModule="hiwu_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Aap-gG-jr5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -19,13 +19,58 @@
                         <animations/>
                     </toolbar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" id="rBw-QH-mpn"/>
                         <segue destination="zL7-lz-cGh" kind="relationship" relationship="rootViewController" id="heg-TT-utJ"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="ToLoginSegue" id="yLb-Og-emw"/>
+                        <segue destination="cfU-wy-JLm" kind="show" identifier="ToSelfMuseumSegue" id="HQ5-ak-QsV"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iOp-Ez-aqM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-403" y="391"/>
+            <point key="canvasLocation" x="-422" y="391"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Fop-pH-Rw6">
+            <objects>
+                <viewController id="R41-T9-jGS" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5vP-a0-ydC"/>
+                        <viewControllerLayoutGuide type="bottom" id="DOt-eX-d3B"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9Wb-hk-Is3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iTF-Ah-OhQ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                            </imageView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DLc-Ro-LN7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-279" y="1270"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="eJw-a1-BHI">
+            <objects>
+                <viewController storyboardIdentifier="SelfMuseum" id="cfU-wy-JLm" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BQo-Yp-VSg"/>
+                        <viewControllerLayoutGuide type="bottom" id="R3o-TH-z11"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cYH-3z-jlV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yLU-p9-CAf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="935" y="-265"/>
         </scene>
         <!--TodayVC-->
         <scene sceneID="xRI-Rc-maj">
@@ -174,21 +219,25 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="enterToSelfMuseum:" destination="zL7-lz-cGh" eventType="touchUpInside" id="N0w-li-kGF"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="naviItem" destination="bmT-uA-VWS" id="uOw-sB-DMo"/>
                         <outlet property="todayGalleryDisplay" destination="4Wh-af-b9M" id="n6V-9J-TxN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ujq-cB-nBf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="363" y="926"/>
+            <point key="canvasLocation" x="216" y="391"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LoginVC" title="LoginVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="hiwu_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" title="LoginVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="LoginVC" customModule="hiwu_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -205,7 +254,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="363" y="265"/>
+            <point key="canvasLocation" x="935" y="391"/>
         </scene>
     </scenes>
     <resources>
