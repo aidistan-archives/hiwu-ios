@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginProtocol {
     
     @IBOutlet weak var naviItem: UINavigationItem!
     @IBOutlet weak var todayGalleryDisplay: UITableView!
@@ -25,6 +25,8 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     }
     
     @IBAction func enterToSelfMuseum(sender: UIButton) {
+        let contactor = ContactWithServer()
+        contactor.loginSuccess = self
         let nowDate = NSDate(timeIntervalSinceNow: 0)
         let defaults = NSUserDefaults.standardUserDefaults()
         let deadline = defaults.doubleForKey("deadline")
@@ -43,10 +45,10 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
                 print("i'm here")
             
             }else{
-    self.navigationController!.performSegueWithIdentifier("ToSelfMuseumSegue", sender: self)
-                
+                contactor.getUserInfoFirst()
             }
             }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return 1
     }
@@ -54,6 +56,18 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         return UITableViewCell()
+    }
+    
+    func skipToNextAfterSuccess(){}
+    
+    func loginFailed(){}
+    
+    func didGetSelfMuseum(){
+        self.navigationController!.performSegueWithIdentifier("ToSelfMuseumSegue", sender: self)
+    }
+    
+    func getSelfMuseumFailed(){
+    print(getSelfMuseumFailed)
     }
 
 }

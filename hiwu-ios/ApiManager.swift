@@ -9,8 +9,8 @@
 import Foundation
 
 class ApiManager{
-    static var simpleLogin = "http://hiwu.ren:3010/api/HiwuUsers/simpleLogin?"
-    static var getTodayPublicView = "http://hiwu.ren:3010/api/Today/publicView?access_token="
-    static var getSelfGallery1_2 = "http://hiwu.ren:3010/api/HiwuUsers/"
-    static var getSelfGallery2_2 = "/galleries?access_token="
+    static let simpleLogin = "http://hiwu.ren:3010/api/HiwuUsers/simpleLogin?"
+    static let getTodayPublicView = "http://hiwu.ren:3010/api/Today/publicView?access_token="
+    static let getAllSelfGallery1_2 = "http://hiwu.ren:3010/api/HiwuUsers/"
+    static let getAllSelfGallery2_2 = "?filter=%7B%22include%22%3A%7B%22galleries%22%3A%7B%22items%22%3A%5B%22photos%22%5D%7D%7D%7D&access_token="
 }

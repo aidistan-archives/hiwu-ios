@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import SwiftyJSON
+
+var globalHiwuUser = UserModel()
 
 class Navigation1: UINavigationController {
-
+    let defaults = NSUserDefaults.standardUserDefaults()
     override func viewDidLoad() {
+        
         super.viewDidLoad()
     }
 

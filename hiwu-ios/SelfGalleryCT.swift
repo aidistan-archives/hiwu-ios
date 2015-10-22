@@ -16,14 +16,16 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
     var myTableCell:UITableViewCell?
     var location = 0
     var tmpImage = UIImageView()
-    var todayGallery:JSON?
-    var reuseIdentifier = ""
+    var selfGallery:JSON?
     var imageStringToResize = ""
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        let num = self.todayGallery![self.location]["items"].count
-        if(num <= 9){
-            return num
+        
+        let nums = globalHiwuUser.selfMuseum!["galleries"][self.location]["items"].count as Int
+        print(nums)
+        print("num")
+        if(nums <= 9){
+            return nums
         }else{
             return 9
         }
@@ -33,13 +35,14 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
         //取collectionview的可重复使用cell
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("TodayItemCell", forIndexPath: indexPath)
+        let items = globalHiwuUser.selfMuseum!["galleries"][self.location]["items"]
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SelfItemCell", forIndexPath: indexPath)
         //取imageview
         let imgaes:UIImageView = cell.viewWithTag(2) as! UIImageView
         //“photos”里面不只一个图片,这里作为博物馆展示，只展示第一张
-        let urlString = (self.todayGallery!)[self.location]["items"][indexPath.row]["photos"][0]["url"].string!
-        
-        //TODO:优化进行改进，先进行缓存
+        let urlString = (items)[indexPath.row]["photos"][0]["url"].string!
+        print(urlString)
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         //设置imgaeview图片
         imgaes.kf_setImageWithURL(NSURL(string: urlString)!)
         tmpImage.image = imgaes.image
@@ -51,22 +54,13 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
     
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView{
-        let cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "TodayGalleryHeader", forIndexPath: indexPath)
-        //设置拥有者头像
-        let galleryOwnerAvatar =  cell.viewWithTag(1) as! UIImageView
-        galleryOwnerAvatar.layer.cornerRadius = galleryOwnerAvatar.frame.size.width/2
-        
-        let avatarUrlString = (self.todayGallery!)[self.location]["hiwuUser"]["avatar"].string!
-        galleryOwnerAvatar.kf_setImageWithURL(NSURL(string: avatarUrlString)!)
+        let cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "SelfGalleryTitle", forIndexPath: indexPath)
         
         //设置长廊的名字标签
-        let galleryNameLabel = cell.viewWithTag(2) as! UILabel
-        galleryNameLabel.text = (self.todayGallery!)[self.location]["name"].string
-        
-        let galleryDiscriptionLabel = cell.viewWithTag(3) as! UILabel
-        galleryDiscriptionLabel.text = (self.todayGallery!)[self.location]["description"].string
-        let galleryItemNumLabel = cell.viewWithTag(4)as! UILabel
-        galleryItemNumLabel.text = String((self.todayGallery!)[self.location]["items"].count)
+        let galleryNameLabel = cell.viewWithTag(1) as! UILabel
+        galleryNameLabel.text = (globalHiwuUser.selfMuseum!)[self.location]["name"].string
+        let galleryItemNumLabel = cell.viewWithTag(2)as! UILabel
+        galleryItemNumLabel.text = String((globalHiwuUser.selfMuseum!)[self.location]["galleries"]["items"].count)
         return cell
     }
     

@@ -13,6 +13,7 @@ import SwiftyJSON
 
 class ContactWithServer{
     var loginSuccess:LoginProtocol?
+    let defaults = NSUserDefaults.standardUserDefaults()
     
     static func getNewTokenWithDefaults(){
         NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: nil, userInfo: nil, repeats: false)
@@ -31,13 +32,12 @@ class ContactWithServer{
                         globalHiwuUser.hiwuToken = (userInfo["id"]).string!
                         globalHiwuUser.userId = (userInfo["userId"]).int!
                         globalHiwuUser.userName = username
-                        let defaluts =  NSUserDefaults.standardUserDefaults()
-                        defaluts.setValue((userInfo["id"]).string!, forKey: "token")
-                        defaluts.setValue(username, forKey: "userName")
-                        defaluts.setDouble(NSDate(timeIntervalSinceNow: (userInfo["ttl"]).double!).timeIntervalSince1970, forKey: "deadline")
-                        defaluts.setDouble(NSDate(timeIntervalSinceNow: (userInfo["ttl"]).double!/2).timeIntervalSince1970, forKey: "freshline")
-                        defaluts.setInteger((userInfo["userId"]).int!, forKey: "userId")
-                        defaluts.synchronize()
+                        self.defaults.setValue((userInfo["id"]).string!, forKey: "token")
+                        self.defaults.setValue(username, forKey: "userName")
+                        self.defaults.setDouble(NSDate(timeIntervalSinceNow: (userInfo["ttl"]).double!).timeIntervalSince1970, forKey: "deadline")
+                        self.defaults.setDouble(NSDate(timeIntervalSinceNow: (userInfo["ttl"]).double!/2).timeIntervalSince1970, forKey: "freshline")
+                        self.defaults.setInteger((userInfo["userId"]).int!, forKey: "userId")
+                        self.defaults.synchronize()
                         self.getSelfMuseum()
                     }
                 }else{
@@ -51,18 +51,37 @@ class ContactWithServer{
             }
         }
     
+    func getUserInfoFirst(){
+        globalHiwuUser.userId = self.defaults.integerForKey("userId")
+        globalHiwuUser.hiwuToken = self.defaults.valueForKey("token") as! String
+        globalHiwuUser.userName = self.defaults.valueForKey("userName")as! String
+            print("getUserInfoFirst")
+        self.getSelfMuseum()
+    }
+    
     func getSelfMuseum(){
-        let url = ApiManager.getSelfGallery1_2 + String(globalHiwuUser.userId) + ApiManager.getSelfGallery2_2
+        let url = ApiManager.getAllSelfGallery1_2 + String(globalHiwuUser.userId) + ApiManager.getAllSelfGallery2_2 + globalHiwuUser.hiwuToken
         Alamofire.request(.GET, NSURL(string: url)!).responseJSON{
         response in
+            print(response.result.value)
+            print(response.request)
             if(response.result.value != nil){
                 globalHiwuUser.selfMuseum = JSON(response.result.value!)
+                let tmpData:NSData = NSKeyedArchiver.archivedDataWithRootObject(response.result.value!)
+                self.defaults.setObject(tmpData, forKey: "selfMuseum")
+                self.defaults.synchronize()
                 self.loginSuccess?.didGetSelfMuseum()
+                
             }else{
-                self.loginSuccess?.getSelfMuseumFailed()
+                if(self.defaults.valueForKey("selfMuseum") != nil){
+                    globalHiwuUser.selfMuseum = JSON(NSKeyedUnarchiver.unarchiveObjectWithData(self.defaults.objectForKey("selfMuseum") as! NSData)!)
+                     self.loginSuccess?.didGetSelfMuseum()
+                    
+                }else{
+                    self.loginSuccess?.getSelfMuseumFailed()
+                }
             }
         }
     }
-    
-
+       
 }

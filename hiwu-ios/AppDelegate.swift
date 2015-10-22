@@ -7,7 +7,6 @@
 //
 
 import UIKit
-var globalHiwuUser = UserModel()
 
 @UIApplicationMain
 

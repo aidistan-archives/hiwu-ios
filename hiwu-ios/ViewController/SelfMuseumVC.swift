@@ -6,48 +6,66 @@
 //  Copyright © 2015年 Shanghai Hiwu Information Technology Co., Ltd. All rights reserved.
 //
 
-import  UIKit
+import UIKit
+import SwiftyJSON
+import Kingfisher
 
 class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
+    let defaults = NSUserDefaults.standardUserDefaults()
     @IBOutlet weak var selfGalleryDisplay: UITableView!
     var tableCellLocation = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        self.selfGallaryNums = self.selfGallaryNames!.count
+        print(self.selfGalleryDisplay)
         selfGalleryDisplay.delegate = self
         selfGalleryDisplay.dataSource = self
         selfGalleryDisplay.reloadData()
-        if(globalHiwuUser.userName == ""){
-            if(NSUserDefaults.standardUserDefaults().valueForKey("userName") != nil){
-                    globalHiwuUser.userName = NSUserDefaults.standardUserDefaults().valueForKey("userName") as! String}
-            else{
-                globalHiwuUser.userName = "Unknown"
-            }
-        }
+
+        
         let backGesture = UISwipeGestureRecognizer(target: self, action: "backButton:")
         backGesture.direction = UISwipeGestureRecognizerDirection.Right
         self.view.addGestureRecognizer(backGesture)
-
-        //TODO 每次启动是否需要进行头像更新，怎么避免不必要的流量消耗，并能及时和服务器上的头像保持一致
-        //TODO 获取博物馆数目，博物馆名字，藏品数目，缩略图等信息
         
     }
 
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return globalHiwuUser.selfMuseum!.count
+        print("museum count")
+        debugPrint(globalHiwuUser.selfMuseum!["galleries"].count)
+        return globalHiwuUser.selfMuseum!["galleries"].count + 1
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
+        if(indexPath.row == 0){
+            return 80
+        }else{
+            return 350
+        }
+    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         self.tableCellLocation = indexPath.row - 1
         if(indexPath.row == 0){
-            return tableView.dequeueReusableCellWithIdentifier("SelfTitle")! as UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("SelfTitle")! as UITableViewCell
+            let userAvatar = cell.viewWithTag(1) as! UIImageView
+            let userNickname = cell.viewWithTag(2) as! UILabel
+            let galleryNum = cell.viewWithTag(3) as! UILabel
+            let itemNum = cell.viewWithTag(4) as! UILabel
+            let selfMuseum = globalHiwuUser.selfMuseum
+            userAvatar.kf_setImageWithURL(NSURL(string: selfMuseum!["avatar"].string!)!)
+            userNickname.text = selfMuseum!["nickname"].string!
+            galleryNum.text = String(selfMuseum!["galleries"].count)
+            var sum = 0
+            for(var i=0;i<selfMuseum!["galleries"].count;i++ ){
+                sum += selfMuseum!["galleries"][i]["items"].count
+            }
+            itemNum.text = String(sum)
+            return cell
         }else{
+            
             let cell = tableView.dequeueReusableCellWithIdentifier("SelfGalleryCell")! as UITableViewCell
-            let collection = (cell.viewWithTag(4)) as! SelfGalleryCT
-            collection.location =  indexPath.row
-            collection.reuseIdentifier = "SelfGalleryTitle"
+            let collection = (cell.viewWithTag(4)) as! SelfGalleryCT as SelfGalleryCT
+            collection.location =  indexPath.row - 1
             collection.delegate = collection
             collection.dataSource = collection
             collection.reloadData()
