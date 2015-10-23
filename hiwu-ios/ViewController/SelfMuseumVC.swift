@@ -20,12 +20,6 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         selfGalleryDisplay.delegate = self
         selfGalleryDisplay.dataSource = self
         selfGalleryDisplay.reloadData()
-
-        
-        let backGesture = UISwipeGestureRecognizer(target: self, action: "backButton:")
-        backGesture.direction = UISwipeGestureRecognizerDirection.Right
-        self.view.addGestureRecognizer(backGesture)
-        
     }
 
     
@@ -37,9 +31,10 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
         if(indexPath.row == 0){
-            return 80
+            return 100
         }else{
-            return 350
+            return 400
+            
         }
     }
     
@@ -66,6 +61,7 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             let cell = tableView.dequeueReusableCellWithIdentifier("SelfGalleryCell")! as UITableViewCell
             let collection = (cell.viewWithTag(4)) as! SelfGalleryCT as SelfGalleryCT
             collection.location =  indexPath.row - 1
+            collection.superVC = self
             collection.delegate = collection
             collection.dataSource = collection
             collection.reloadData()

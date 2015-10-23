@@ -15,7 +15,8 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
     var superVC:UIViewController?
     var myTableCell:UITableViewCell?
     var location = 0
-    var tmpImage = UIImageView()
+    var site = 0
+    var tmpImage = ""
     var selfGallery:JSON?
     var imageStringToResize = ""
     
@@ -37,6 +38,9 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
         //取collectionview的可重复使用cell
         let items = globalHiwuUser.selfMuseum!["galleries"][self.location]["items"]
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SelfItemCell", forIndexPath: indexPath)
+        
+        print("cell")
+        print(cell)
         //取imageview
         let imgaes:UIImageView = cell.viewWithTag(2) as! UIImageView
         //“photos”里面不只一个图片,这里作为博物馆展示，只展示第一张
@@ -45,8 +49,8 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         //设置imgaeview图片
         imgaes.kf_setImageWithURL(NSURL(string: urlString)!)
-        tmpImage.image = imgaes.image
-        //点击放大手势
+        tmpImage = urlString
+        //点击放大手势  实现了，但是小哦过比较捉急
         let gesture = UITapGestureRecognizer(target: self, action: "display:")
         cell.addGestureRecognizer(gesture)
         return cell
@@ -55,20 +59,21 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView{
         let cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "SelfGalleryTitle", forIndexPath: indexPath)
-        
-        //设置长廊的名字标签
         let galleryNameLabel = cell.viewWithTag(1) as! UILabel
-        galleryNameLabel.text = (globalHiwuUser.selfMuseum!)[self.location]["name"].string
+        galleryNameLabel.text = (globalHiwuUser.selfMuseum!)["galleries"][self.location]["name"].string
         let galleryItemNumLabel = cell.viewWithTag(2)as! UILabel
-        galleryItemNumLabel.text = String((globalHiwuUser.selfMuseum!)[self.location]["galleries"]["items"].count)
+        galleryItemNumLabel.text = String((globalHiwuUser.selfMuseum!)["galleries"][self.location]["items"].count)
         return cell
     }
     
-    func display(){
-        let alert1 = UIAlertController(title: "", message: "\n\n\n\n\n\n\n\n", preferredStyle: UIAlertControllerStyle.Alert)
-        alert1.addAction(UIAlertAction(title: "close", style: UIAlertActionStyle.Default, handler: nil))
-        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        image.image = self.tmpImage.image
+    func display(sender:UITapGestureRecognizer){
+        print("tap")
+        print(sender.view?.viewWithTag(2))
+        let imager = sender.view?.viewWithTag(2) as! UIImageView
+        let alert1 = UIAlertController(title: "", message: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        alert1.addAction(UIAlertAction(title: "close", style: UIAlertActionStyle.Cancel, handler: nil))
+        let image = UIImageView(frame: CGRect(x: 10, y: 10, width: 340, height: 460))
+        image.image = imager.image
         alert1.view.addSubview(image)
         self.superVC?.navigationController?.presentViewController(alert1, animated: true, completion: nil)
     }

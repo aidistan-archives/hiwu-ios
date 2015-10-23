@@ -34,6 +34,7 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginP
         print("deadline")
         print(deadline)
         print(freshline)
+        NSTimer(timeInterval: 4, target: self, selector: "timeOut", userInfo: nil, repeats: false)
         if((deadline == 0)||(freshline == 0||nowDate.timeIntervalSince1970 > deadline)){
             self.navigationController!.performSegueWithIdentifier("ToLoginSegue", sender: self)
             NSLog("Invalid")
@@ -47,7 +48,14 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginP
             }else{
                 contactor.getUserInfoFirst()
             }
+        
             }
+    
+    func timeOut(){
+        let alert1 = UIAlertController(title: "timeout", message: "请检查网络", preferredStyle: UIAlertControllerStyle.Alert)
+        alert1.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.navigationController?.presentViewController(alert1, animated: true, completion: nil)
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return 1
