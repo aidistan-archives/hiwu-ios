@@ -10,6 +10,8 @@ import UIKit
 import SwiftyJSON
 
 class LoginVC: UIViewController,LoginProtocol {
+    
+    let superVC = UIViewController()
     let tmpContactor = ContactWithServer()
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
@@ -21,10 +23,13 @@ class LoginVC: UIViewController,LoginProtocol {
        
     }
     
+    
     func skipToNextAfterSuccess() {
-        self.navigationController?.popViewControllerAnimated(false)
-        self.navigationController?.performSegueWithIdentifier("ToSelfMuseumSegue", sender: self)
-
+        //self.navigationController?.popViewControllerAnimated(false)
+        self.dismissViewControllerAnimated(false, completion: nil)
+//        self.navigationController?.performSegueWithIdentifier("ToSelfMuseumSegue", sender: self)
+        print("hello")
+        print(self.navigationController?.viewControllers)
     }
     
     func loginFailed() {

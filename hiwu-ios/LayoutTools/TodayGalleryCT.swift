@@ -41,7 +41,6 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
         let gesture = UITapGestureRecognizer(target: self, action: "display:")
         gesture.view?.tag = indexPath.row
         cell.addGestureRecognizer(gesture)
-        print(collectionView.frame.size.width)
         return cell
     }
     
@@ -49,7 +48,7 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView{
         let cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "TodayGalleryTitle", forIndexPath: indexPath)
         let galleryImage = cell.viewWithTag(1) as! UIImageView
-        print(globalHiwuUser.todayMuseum![self.location]["hiwuUser"]["avatar"].string!)
+        galleryImage.layer.cornerRadius = galleryImage.frame.size.width/2
         galleryImage.kf_setImageWithURL(NSURL(string: globalHiwuUser.todayMuseum![self.location]["hiwuUser"]["avatar"].string!)!)
         let galleryNameLabel = cell.viewWithTag(2) as! UILabel
         galleryNameLabel.text = globalHiwuUser.todayMuseum![self.location]["name"].string!

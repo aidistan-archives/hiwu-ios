@@ -20,6 +20,9 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginP
         todayGalleryDisplay.reloadData()
     }
     
+    func back(){
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     @IBAction func clear(sender: UIButton) {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setDouble(0, forKey: "deadline")

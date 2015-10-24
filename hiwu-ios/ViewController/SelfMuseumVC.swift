@@ -20,12 +20,17 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         selfGalleryDisplay.delegate = self
         selfGalleryDisplay.dataSource = self
         selfGalleryDisplay.reloadData()
+        let gesture = UISwipeGestureRecognizer(target: self, action: "back")
+        gesture.direction = UISwipeGestureRecognizerDirection.Right
+        self.view.addGestureRecognizer(gesture)
+    }
+    
+    func back(){
+        self.navigationController?.popViewControllerAnimated(true)
     }
 
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        print("museum count")
-        debugPrint(globalHiwuUser.selfMuseum!["galleries"].count)
         return globalHiwuUser.selfMuseum!["galleries"].count + 1
     }
     
@@ -48,6 +53,7 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             let itemNum = cell.viewWithTag(4) as! UILabel
             let selfMuseum = globalHiwuUser.selfMuseum
             userAvatar.kf_setImageWithURL(NSURL(string: selfMuseum!["avatar"].string!)!)
+            userAvatar.layer.cornerRadius = userAvatar.frame.height/2
             userNickname.text = selfMuseum!["nickname"].string!
             galleryNum.text = String(selfMuseum!["galleries"].count)
             var sum = 0
