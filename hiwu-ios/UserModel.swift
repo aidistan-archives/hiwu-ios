@@ -14,6 +14,7 @@ class UserModel: AnyObject{
     var userId:Int = 0
     var userName = ""
     var selfMuseum :JSON?
+    var todayMuseum :JSON?
     init(){
         
     }

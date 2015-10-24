@@ -8,13 +8,23 @@
 
 import UIKit
 
-class LaunchScreen: UIViewController {
+class LaunchScreen: UIViewController,ReadyProtocol {
 
     @IBOutlet weak var launchImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let contactor = ContactWithServer()
+        contactor.prepareReady = self
+        contactor.getTodayInfo()
 
+    }
+    
+    func getReady(){
+        self.navigationController?.presentViewController((self.storyboard?.instantiateViewControllerWithIdentifier("MainNavigation"))!, animated: true, completion: nil)
+    }
+    
+    func failedToReady() {
+        print("failed")
     }
 
     override func didReceiveMemoryWarning() {

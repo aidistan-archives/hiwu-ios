@@ -59,7 +59,7 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         }else{
             
             let cell = tableView.dequeueReusableCellWithIdentifier("SelfGalleryCell")! as UITableViewCell
-            let collection = (cell.viewWithTag(4)) as! SelfGalleryCT as SelfGalleryCT
+            let collection = (cell.viewWithTag(4)) as! SelfGalleryCT
             collection.location =  indexPath.row - 1
             collection.superVC = self
             collection.delegate = collection

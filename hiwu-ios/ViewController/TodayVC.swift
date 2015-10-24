@@ -15,8 +15,9 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginP
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("stack")
-        print(self.navigationController?.viewControllers)
+        todayGalleryDisplay.dataSource = self
+        todayGalleryDisplay.delegate = self
+        todayGalleryDisplay.reloadData()
     }
     
     @IBAction func clear(sender: UIButton) {
@@ -34,7 +35,6 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginP
         print("deadline")
         print(deadline)
         print(freshline)
-        NSTimer(timeInterval: 4, target: self, selector: "timeOut", userInfo: nil, repeats: false)
         if((deadline == 0)||(freshline == 0||nowDate.timeIntervalSince1970 > deadline)){
             self.navigationController!.performSegueWithIdentifier("ToLoginSegue", sender: self)
             NSLog("Invalid")
@@ -58,12 +58,35 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginP
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 1
+        return globalHiwuUser.todayMuseum!.count+1
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
+        if(indexPath.row == 0){
+            return 50
+        }else{
+            return 400
+        }
     }
 
-
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        return UITableViewCell()
+        if (indexPath.row == 0){
+            let cell = tableView.dequeueReusableCellWithIdentifier("TodayTitle")! as UITableViewCell
+            return cell
+            
+        }else{
+            print(tableView.frame.size.width)
+            let cell = tableView.dequeueReusableCellWithIdentifier("TodayGalleryCell")! as UITableViewCell
+            let collection = cell.viewWithTag(1) as! TodayGalleryCT
+            collection.location = indexPath.row-1
+            collection.superVC = self
+            collection.delegate = collection
+            collection.dataSource = collection
+            collection.reloadData()
+            return cell
+            
+        }
+        
     }
     
     func skipToNextAfterSuccess(){}

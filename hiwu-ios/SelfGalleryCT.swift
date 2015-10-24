@@ -13,12 +13,7 @@ import Kingfisher
 
 class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionViewDelegate {
     var superVC:UIViewController?
-    var myTableCell:UITableViewCell?
     var location = 0
-    var site = 0
-    var tmpImage = ""
-    var selfGallery:JSON?
-    var imageStringToResize = ""
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         
@@ -49,7 +44,6 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         //设置imgaeview图片
         imgaes.kf_setImageWithURL(NSURL(string: urlString)!)
-        tmpImage = urlString
         //点击放大手势  实现了，但是小哦过比较捉急
         let gesture = UITapGestureRecognizer(target: self, action: "display:")
         cell.addGestureRecognizer(gesture)
@@ -66,13 +60,15 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
         return cell
     }
     
+    
     func display(sender:UITapGestureRecognizer){
         print("tap")
         print(sender.view?.viewWithTag(2))
         let imager = sender.view?.viewWithTag(2) as! UIImageView
-        let alert1 = UIAlertController(title: "", message: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let alert1 = UIAlertController(title: "", message: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", preferredStyle: UIAlertControllerStyle.ActionSheet)
         alert1.addAction(UIAlertAction(title: "close", style: UIAlertActionStyle.Cancel, handler: nil))
-        let image = UIImageView(frame: CGRect(x: 10, y: 10, width: 340, height: 460))
+        let image = UIImageView(frame: CGRect(x: 8, y: 10, width: 340, height: 460))
+        image.contentMode = UIViewContentMode.ScaleAspectFit
         image.image = imager.image
         alert1.view.addSubview(image)
         self.superVC?.navigationController?.presentViewController(alert1, animated: true, completion: nil)

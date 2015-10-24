@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A59354C31BD5C4FD0044E7B3 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59354C21BD5C4FD0044E7B3 /* LaunchScreen.swift */; };
-		A59354D31BD5C7D20044E7B3 /* Navigation1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59354D21BD5C7D20044E7B3 /* Navigation1.swift */; };
-		A59354E21BD5F25B0044E7B3 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A59354E11BD5F25B0044E7B3 /* Launch Screen.storyboard */; };
 		A593550B1BD669080044E7B3 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593550A1BD669080044E7B3 /* LoginVC.swift */; };
 		A593550D1BD66EA90044E7B3 /* TodayGalleryCT.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593550C1BD66EA90044E7B3 /* TodayGalleryCT.swift */; };
 		A59355111BD672480044E7B3 /* TodayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59355101BD672480044E7B3 /* TodayVC.swift */; };
@@ -19,6 +17,7 @@
 		A593553F1BD7B1440044E7B3 /* SelfMuseumVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593553E1BD7B1440044E7B3 /* SelfMuseumVC.swift */; };
 		A593554B1BD7D1370044E7B3 /* SelfGalleryCT.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593554A1BD7D1370044E7B3 /* SelfGalleryCT.swift */; };
 		A593554D1BD7E5EE0044E7B3 /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593554C1BD7E5EE0044E7B3 /* LoginProtocol.swift */; };
+		A59676151BDB6FD900D3CB54 /* Ready.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59676141BDB6FD900D3CB54 /* Ready.swift */; };
 		A5CEE6241BD0DB3C00AAF122 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CEE6231BD0DB3C00AAF122 /* AppDelegate.swift */; };
 		A5CEE6261BD0DB3C00AAF122 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CEE6251BD0DB3C00AAF122 /* ViewController.swift */; };
 		A5CEE6291BD0DB3C00AAF122 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CEE6271BD0DB3C00AAF122 /* Main.storyboard */; };
@@ -178,8 +177,6 @@
 
 /* Begin PBXFileReference section */
 		A59354C21BD5C4FD0044E7B3 /* LaunchScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LaunchScreen.swift; path = ViewController/LaunchScreen.swift; sourceTree = "<group>"; };
-		A59354D21BD5C7D20044E7B3 /* Navigation1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Navigation1.swift; path = ViewController/Navigation1.swift; sourceTree = "<group>"; };
-		A59354E11BD5F25B0044E7B3 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		A593550A1BD669080044E7B3 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginVC.swift; path = ViewController/LoginVC.swift; sourceTree = "<group>"; };
 		A593550C1BD66EA90044E7B3 /* TodayGalleryCT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TodayGalleryCT.swift; path = LayoutTools/TodayGalleryCT.swift; sourceTree = "<group>"; };
 		A59355101BD672480044E7B3 /* TodayVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TodayVC.swift; path = ViewController/TodayVC.swift; sourceTree = "<group>"; };
@@ -189,6 +186,7 @@
 		A593553E1BD7B1440044E7B3 /* SelfMuseumVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelfMuseumVC.swift; path = ViewController/SelfMuseumVC.swift; sourceTree = "<group>"; };
 		A593554A1BD7D1370044E7B3 /* SelfGalleryCT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfGalleryCT.swift; sourceTree = "<group>"; };
 		A593554C1BD7E5EE0044E7B3 /* LoginProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginProtocol.swift; sourceTree = "<group>"; };
+		A59676141BDB6FD900D3CB54 /* Ready.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ready.swift; sourceTree = "<group>"; };
 		A5CEE6201BD0DB3C00AAF122 /* hiwu-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hiwu-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CEE6231BD0DB3C00AAF122 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CEE6251BD0DB3C00AAF122 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -234,7 +232,6 @@
 			isa = PBXGroup;
 			children = (
 				A5CEE6231BD0DB3C00AAF122 /* AppDelegate.swift */,
-				A59354E11BD5F25B0044E7B3 /* Launch Screen.storyboard */,
 				A5CEE62A1BD0DB3C00AAF122 /* Assets.xcassets */,
 			);
 			name = SupportingFiles;
@@ -246,7 +243,6 @@
 				A59354C21BD5C4FD0044E7B3 /* LaunchScreen.swift */,
 				A593553E1BD7B1440044E7B3 /* SelfMuseumVC.swift */,
 				A59355101BD672480044E7B3 /* TodayVC.swift */,
-				A59354D21BD5C7D20044E7B3 /* Navigation1.swift */,
 				A593550A1BD669080044E7B3 /* LoginVC.swift */,
 			);
 			name = ViewControllers;
@@ -276,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				A593554C1BD7E5EE0044E7B3 /* LoginProtocol.swift */,
+				A59676141BDB6FD900D3CB54 /* Ready.swift */,
 			);
 			name = Protocol;
 			sourceTree = "<group>";
@@ -565,7 +562,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A59354E21BD5F25B0044E7B3 /* Launch Screen.storyboard in Resources */,
 				A5CEE62B1BD0DB3C00AAF122 /* Assets.xcassets in Resources */,
 				A5CEE6291BD0DB3C00AAF122 /* Main.storyboard in Resources */,
 			);
@@ -599,7 +595,7 @@
 				A593552D1BD7983F0044E7B3 /* ApiManager.swift in Sources */,
 				A5CEE6261BD0DB3C00AAF122 /* ViewController.swift in Sources */,
 				A593550D1BD66EA90044E7B3 /* TodayGalleryCT.swift in Sources */,
-				A59354D31BD5C7D20044E7B3 /* Navigation1.swift in Sources */,
+				A59676151BDB6FD900D3CB54 /* Ready.swift in Sources */,
 				A593554B1BD7D1370044E7B3 /* SelfGalleryCT.swift in Sources */,
 				A5CEE6241BD0DB3C00AAF122 /* AppDelegate.swift in Sources */,
 				A59354C31BD5C4FD0044E7B3 /* LaunchScreen.swift in Sources */,
