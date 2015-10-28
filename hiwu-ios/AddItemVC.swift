@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import Kingfisher
 
-class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextViewDelegate,UITextFieldDelegate{
     @IBOutlet weak var itemImage: UIImageView!
     
     @IBAction func timeSelect(sender: UIButton) {
@@ -64,6 +64,11 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
         super.viewDidLoad()
         let gesture = UITapGestureRecognizer(target: self, action: "takePicture:")
         itemImage.addGestureRecognizer(gesture)
+        self.itemDescription.delegate = self
+        self.itemName.delegate = self
+        let gest = UITapGestureRecognizer(target: self, action: "endTheEditingOfTextView")
+        gest.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(gest)
         
     }
     
@@ -100,7 +105,7 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
         print("selected")
         print(info)
-        self.itemImage.image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        self.itemImage.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         picker.dismissViewControllerAnimated(true, completion: nil)
         
     }
@@ -108,7 +113,57 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
         picker.dismissViewControllerAnimated(true, completion: nil)
         
     }
+    
+    func textViewDidBeginEditing(textView: UITextView){
+        let location = textView.frame
+        let size = self.view.frame
+        print(location)
+        print(size)
+        let offset = size.height - location.maxY - 300
+        if(offset<0){
+            
+            var newFrame = self.view.frame
+            newFrame.origin.y = offset
+            self.view.frame = newFrame
+        }
+        if(textView.text == "在这里添加物品描述"){
+            textView.text = ""
+        }
+    
+    }
+    
+    func textViewDidEndEditing(textView: UITextView){
+        if(textView.text == ""){
+            textView.text = "在这里添加物品描述"
+        }
+        textView.resignFirstResponder()
+        self.view.frame.origin.y = 0
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField){
+        let location = textField.frame
+        let size = self.view.frame
+        print(location)
+        print(size)
+        let offset = size.height - location.maxY - 300
+        if(offset<0){
+            
+            var newFrame = self.view.frame
+            newFrame.origin.y = offset
+            self.view.frame = newFrame
+        }
 
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField){
+        textField.resignFirstResponder()
+        self.view.frame.origin.y = 0
+    }
+    
+    func endTheEditingOfTextView(){
+        self.itemDescription.endEditing(true)
+        self.itemName.endEditing(true)
+    }
 
     
     

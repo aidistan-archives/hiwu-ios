@@ -10,7 +10,6 @@ import UIKit
 
 class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginProtocol {
     
-    @IBOutlet weak var naviItem: UINavigationItem!
     @IBOutlet weak var todayGalleryDisplay: UITableView!
 
     override func viewDidLoad() {
