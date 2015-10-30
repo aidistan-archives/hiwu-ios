@@ -23,6 +23,7 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         let gesture = UISwipeGestureRecognizer(target: self, action: "back")
         gesture.direction = UISwipeGestureRecognizerDirection.Right
         self.view.addGestureRecognizer(gesture)
+        print(globalHiwuUser.selfMuseum)
     }
     
     func back(){

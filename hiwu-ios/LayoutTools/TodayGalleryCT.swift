@@ -56,7 +56,17 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
         gallerDescription.text = globalHiwuUser.todayMuseum![self.location]["description"].string!
         let galleryItemNumLabel = cell.viewWithTag(4) as! UILabel
         galleryItemNumLabel.text = String(globalHiwuUser.todayMuseum![self.location]["items"].count)
+        let gesture = UITapGestureRecognizer(target: self, action: "getGalleryDetail:")
+        cell.addGestureRecognizer(gesture)
         return cell
+    }
+    
+    func getGalleryDetail(sender:AnyObject){
+        let galleryDetail = self.superVC?.storyboard?.instantiateViewControllerWithIdentifier("GalleryDetailVC") as! GalleryDetailVC
+        print("today")
+        print(globalHiwuUser.todayMuseum![self.location]["items"].count)
+        galleryDetail.setInfo(globalHiwuUser.todayMuseum![self.location], userAvatar: globalHiwuUser.todayMuseum![self.location]["hiwuUser"]["avatar"].string!, userName: globalHiwuUser.todayMuseum![self.location]["hiwuUser"]["nickname"].string!)
+        self.superVC?.showViewController(galleryDetail, sender: self)
     }
     
     

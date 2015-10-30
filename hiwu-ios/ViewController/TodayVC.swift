@@ -86,8 +86,8 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginP
             collection.delegate = collection
             collection.dataSource = collection
             collection.reloadData()
+
             return cell
-            
         }
         
     }

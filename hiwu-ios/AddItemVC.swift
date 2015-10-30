@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import Kingfisher
+import SwiftyJSON
 
 class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextViewDelegate,UITextFieldDelegate{
     @IBOutlet weak var itemImage: UIImageView!
@@ -19,9 +20,9 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
     @IBAction func locationSelect(sender: UIButton) {
     }
 
-    @IBOutlet weak var time: UILabel!
-    @IBOutlet weak var city: UILabel!
+    @IBOutlet weak var time: UITextField!
 
+    @IBOutlet weak var city: UITextField!
     
     
     
@@ -80,7 +81,12 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
         let gest = UITapGestureRecognizer(target: self, action: "endTheEditingOfTextView")
         gest.cancelsTouchesInView = false
         self.view.addGestureRecognizer(gest)
-        
+        self.time.delegate = self
+        self.city.delegate = self
+        print("Today")
+        print(globalHiwuUser.todayMuseum)
+        print("self")
+        print(globalHiwuUser.selfMuseum)
     }
     
     
@@ -151,7 +157,7 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
             textView.text = "在这里添加物品描述"
         }
         textView.resignFirstResponder()
-        UIView.animateWithDuration(0.1, animations: {void in
+        UIView.animateWithDuration(0.2, animations: {void in
             self.view.frame.origin.y = 0
         })
         
@@ -172,7 +178,7 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
     
     func textFieldDidEndEditing(textField: UITextField){
         textField.resignFirstResponder()
-        UIView.animateWithDuration(0, animations: {void in
+        UIView.animateWithDuration(0.3, animations: {void in
             self.view.frame.origin.y = 0
         })
     }
@@ -180,6 +186,8 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
     func endTheEditingOfTextView(){
         self.itemDescription.endEditing(true)
         self.itemName.endEditing(true)
+        self.city.endEditing(true)
+        self.time.endEditing(true)
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
