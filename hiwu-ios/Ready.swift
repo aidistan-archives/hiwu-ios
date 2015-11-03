@@ -8,6 +8,8 @@
 
 import Foundation
 public protocol ReadyProtocol{
+    func getUserInfoReady()
+    func getUserInfoFailed()
     func getReady()
     func failedToReady()
     

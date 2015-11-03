@@ -18,8 +18,6 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         
         let nums = globalHiwuUser.selfMuseum!["galleries"][self.location]["items"].count as Int
-        print(nums)
-        print("num")
         if(nums <= 9){
             return nums
         }else{
@@ -33,15 +31,10 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
         //取collectionview的可重复使用cell
         let items = globalHiwuUser.selfMuseum!["galleries"][self.location]["items"]
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SelfItemCell", forIndexPath: indexPath)
-        
-        print("cell")
-        print(cell)
         //取imageview
         let imgaes:UIImageView = cell.viewWithTag(2) as! UIImageView
         //“photos”里面不只一个图片,这里作为博物馆展示，只展示第一张
         let urlString = (items)[indexPath.row]["photos"][0]["url"].string!
-        print(urlString)
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         //设置imgaeview图片
         imgaes.kf_setImageWithURL(NSURL(string: urlString)!)
         //点击放大手势  实现了，但是小哦过比较捉急
@@ -62,8 +55,6 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
     
     
     func display(sender:UITapGestureRecognizer){
-        print("tap")
-        print(sender.view?.viewWithTag(2))
         let imager = sender.view?.viewWithTag(2) as! UIImageView
         let alert1 = UIAlertController(title: "", message: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", preferredStyle: UIAlertControllerStyle.ActionSheet)
         alert1.addAction(UIAlertAction(title: "close", style: UIAlertActionStyle.Cancel, handler: nil))

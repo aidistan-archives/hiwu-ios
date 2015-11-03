@@ -8,7 +8,8 @@
 
 import UIKit
 
-class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginProtocol {
+class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginProtocol,ReadyProtocol {
+    var contactor:ContactWithServer?
     
     @IBOutlet weak var todayGalleryDisplay: UITableView!
 
@@ -17,6 +18,7 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginP
         todayGalleryDisplay.dataSource = self
         todayGalleryDisplay.delegate = self
         todayGalleryDisplay.reloadData()
+        print(globalHiwuUser.todayMuseum)
     }
     
     func back(){
@@ -28,18 +30,17 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginP
     }
     
     @IBAction func enterToSelfMuseum(sender: UIButton) {
-        let contactor = ContactWithServer()
-        contactor.loginSuccess = self
+        self.contactor = ContactWithServer()
+        self.contactor!.loginSuccess = self
+        self.contactor!.prepareReady = self
         let nowDate = NSDate(timeIntervalSinceNow: 0)
         let defaults = NSUserDefaults.standardUserDefaults()
         let deadline = defaults.doubleForKey("deadline")
         let freshline = defaults.doubleForKey("freshline")
-        print("deadline")
-        print(deadline)
-        print(freshline)
         if((deadline == 0)||(freshline == 0||nowDate.timeIntervalSince1970 > deadline)){
-            self.navigationController!.performSegueWithIdentifier("ToLoginSegue", sender: self)
-            NSLog("Invalid")
+            let login = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as! LoginVC
+            login.superVC = self
+            self.navigationController?.pushViewController(login, animated: true)
             
         }else if(nowDate.timeIntervalSince1970 > freshline){
                 debugPrint("not fresh")
@@ -48,7 +49,7 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginP
                 print("i'm here")
             
             }else{
-                contactor.getUserInfoFirst()
+                self.contactor?.getUserInfoFirst()
             }
         
             }
@@ -86,13 +87,15 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginP
             collection.delegate = collection
             collection.dataSource = collection
             collection.reloadData()
-
             return cell
         }
         
     }
     
-    func skipToNextAfterSuccess(){}
+    func skipToNextAfterSuccess(){
+        
+    
+    }
     
     func loginFailed(){}
     
@@ -103,5 +106,15 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginP
     func getSelfMuseumFailed(){
     print(getSelfMuseumFailed)
     }
+    func getUserInfoReady(){
+        self.contactor?.getSelfMuseum()
+    }
+    func getUserInfoFailed(){}
+    func getReady(){
+//        let selfMuseum = self.storyboard?.instantiateViewControllerWithIdentifier("SelfMuseum") as! SelfMuseumVC
+//        self.navigationController?.pushViewController(selfMuseum, animated: true)
+    
+    }
+    func failedToReady(){}
 
 }

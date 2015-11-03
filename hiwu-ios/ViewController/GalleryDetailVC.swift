@@ -81,10 +81,16 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
             itemCity.text = gallery!["items"][indexPath.row-1]["city"].string
             let itemOwner = cell.viewWithTag(6) as! UILabel
             itemOwner.text = self.userName!
+            let gesture = UITapGestureRecognizer(target: self, action: "getItemDetail")
+            cell.addGestureRecognizer(gesture)
             return cell
         }
     }
-
+    
+    func getItemDetail(sender:UITapGestureRecognizer){
+        
+        
+    }
     
 
 }

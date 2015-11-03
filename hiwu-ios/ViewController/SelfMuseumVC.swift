@@ -16,14 +16,12 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var tableCellLocation = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(self.selfGalleryDisplay)
         selfGalleryDisplay.delegate = self
         selfGalleryDisplay.dataSource = self
         selfGalleryDisplay.reloadData()
         let gesture = UISwipeGestureRecognizer(target: self, action: "back")
         gesture.direction = UISwipeGestureRecognizerDirection.Right
         self.view.addGestureRecognizer(gesture)
-        print(globalHiwuUser.selfMuseum)
     }
     
     func back(){

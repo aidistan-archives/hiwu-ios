@@ -32,11 +32,12 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
         let items = globalHiwuUser.todayMuseum![self.location]["items"]
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("TodayItemCell", forIndexPath: indexPath)
         //取imageview
-        let imgaes:UIImageView = cell.viewWithTag(6) as! UIImageView
+        let images:UIImageView = cell.viewWithTag(6) as! UIImageView
         //“photos”里面不只一个图片,这里作为博物馆展示，只展示第一张
         let urlString = (items)[indexPath.row]["photos"][0]["url"].string!
         //设置imgaeview图片
-        imgaes.kf_setImageWithURL(NSURL(string: urlString)!)
+        images.kf_setImageWithURL(NSURL(string: urlString)!)
+//        images.image = UIImage(named: "add")
         //点击放大手势  实现了，但是小哦过比较捉急
         let gesture = UITapGestureRecognizer(target: self, action: "display:")
         gesture.view?.tag = indexPath.row
