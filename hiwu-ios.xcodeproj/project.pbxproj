@@ -17,9 +17,12 @@
 		A593552D1BD7983F0044E7B3 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593552C1BD7983F0044E7B3 /* ApiManager.swift */; };
 		A593553F1BD7B1440044E7B3 /* SelfMuseumVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593553E1BD7B1440044E7B3 /* SelfMuseumVC.swift */; };
 		A593554B1BD7D1370044E7B3 /* SelfGalleryCT.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593554A1BD7D1370044E7B3 /* SelfGalleryCT.swift */; };
-		A593554D1BD7E5EE0044E7B3 /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593554C1BD7E5EE0044E7B3 /* LoginProtocol.swift */; };
-		A59676151BDB6FD900D3CB54 /* Ready.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59676141BDB6FD900D3CB54 /* Ready.swift */; };
 		A5BFFD141BE4D2A100D5A866 /* ItemDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD131BE4D2A100D5A866 /* ItemDetailVC.swift */; };
+		A5BFFD571BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD551BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift */; };
+		A5BFFD581BE8E7C800D5A866 /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD561BE8E7C800D5A866 /* LoginProtocol.swift */; };
+		A5BFFD5A1BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD591BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift */; };
+		A5BFFD5C1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD5B1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift */; };
+		A5BFFD5E1BE8EA9600D5A866 /* GetItemInfoReadyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD5D1BE8EA9600D5A866 /* GetItemInfoReadyProtocol.swift */; };
 		A5CEE6241BD0DB3C00AAF122 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CEE6231BD0DB3C00AAF122 /* AppDelegate.swift */; };
 		A5CEE6261BD0DB3C00AAF122 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CEE6251BD0DB3C00AAF122 /* ViewController.swift */; };
 		A5CEE6291BD0DB3C00AAF122 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CEE6271BD0DB3C00AAF122 /* Main.storyboard */; };
@@ -189,9 +192,12 @@
 		A593552C1BD7983F0044E7B3 /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		A593553E1BD7B1440044E7B3 /* SelfMuseumVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelfMuseumVC.swift; path = ViewController/SelfMuseumVC.swift; sourceTree = "<group>"; };
 		A593554A1BD7D1370044E7B3 /* SelfGalleryCT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfGalleryCT.swift; sourceTree = "<group>"; };
-		A593554C1BD7E5EE0044E7B3 /* LoginProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginProtocol.swift; sourceTree = "<group>"; };
-		A59676141BDB6FD900D3CB54 /* Ready.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ready.swift; sourceTree = "<group>"; };
 		A5BFFD131BE4D2A100D5A866 /* ItemDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemDetailVC.swift; path = ViewController/ItemDetailVC.swift; sourceTree = "<group>"; };
+		A5BFFD551BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetUserInfoReadyProtocol.swift; path = LayoutTools/GetUserInfoReadyProtocol.swift; sourceTree = "<group>"; };
+		A5BFFD561BE8E7C800D5A866 /* LoginProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginProtocol.swift; path = LayoutTools/LoginProtocol.swift; sourceTree = "<group>"; };
+		A5BFFD591BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetTodayInfoReadyProtocol.swift; path = LayoutTools/GetTodayInfoReadyProtocol.swift; sourceTree = "<group>"; };
+		A5BFFD5B1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetSelfMuseumReadyProtocol.swift; sourceTree = "<group>"; };
+		A5BFFD5D1BE8EA9600D5A866 /* GetItemInfoReadyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetItemInfoReadyProtocol.swift; sourceTree = "<group>"; };
 		A5CEE6201BD0DB3C00AAF122 /* hiwu-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hiwu-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CEE6231BD0DB3C00AAF122 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CEE6251BD0DB3C00AAF122 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -280,8 +286,11 @@
 		A593554E1BD7E9F20044E7B3 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				A593554C1BD7E5EE0044E7B3 /* LoginProtocol.swift */,
-				A59676141BDB6FD900D3CB54 /* Ready.swift */,
+				A5BFFD551BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift */,
+				A5BFFD561BE8E7C800D5A866 /* LoginProtocol.swift */,
+				A5BFFD591BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift */,
+				A5BFFD5B1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift */,
+				A5BFFD5D1BE8EA9600D5A866 /* GetItemInfoReadyProtocol.swift */,
 			);
 			name = Protocol;
 			sourceTree = "<group>";
@@ -598,19 +607,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				A59355111BD672480044E7B3 /* TodayVC.swift in Sources */,
+				A5BFFD5E1BE8EA9600D5A866 /* GetItemInfoReadyProtocol.swift in Sources */,
 				A59355181BD782100044E7B3 /* ContactWithServer.swift in Sources */,
-				A593554D1BD7E5EE0044E7B3 /* LoginProtocol.swift in Sources */,
 				A593553F1BD7B1440044E7B3 /* SelfMuseumVC.swift in Sources */,
 				A593552D1BD7983F0044E7B3 /* ApiManager.swift in Sources */,
 				A5CEE6261BD0DB3C00AAF122 /* ViewController.swift in Sources */,
 				A593550D1BD66EA90044E7B3 /* TodayGalleryCT.swift in Sources */,
-				A59676151BDB6FD900D3CB54 /* Ready.swift in Sources */,
 				A5BFFD141BE4D2A100D5A866 /* ItemDetailVC.swift in Sources */,
+				A5BFFD571BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift in Sources */,
 				A593554B1BD7D1370044E7B3 /* SelfGalleryCT.swift in Sources */,
+				A5BFFD581BE8E7C800D5A866 /* LoginProtocol.swift in Sources */,
 				A5CEE6241BD0DB3C00AAF122 /* AppDelegate.swift in Sources */,
 				A59354C31BD5C4FD0044E7B3 /* LaunchScreen.swift in Sources */,
+				A5BFFD5C1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift in Sources */,
 				A5EB70AD1BE38AD20075D559 /* GalleryDetailVC.swift in Sources */,
 				A59355251BD7854B0044E7B3 /* UserModel.swift in Sources */,
+				A5BFFD5A1BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift in Sources */,
 				A593550B1BD669080044E7B3 /* LoginVC.swift in Sources */,
 				A5132BBE1BDBB5EA00B4C3DB /* AddItemVC.swift in Sources */,
 			);

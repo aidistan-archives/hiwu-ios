@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginProtocol,ReadyProtocol {
+class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginProtocol,GetUserInfoReadyProtocol,GetSelfMuseumReadyProtocol {
     var contactor:ContactWithServer?
     
     @IBOutlet weak var todayGalleryDisplay: UITableView!
@@ -18,7 +18,6 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginP
         todayGalleryDisplay.dataSource = self
         todayGalleryDisplay.delegate = self
         todayGalleryDisplay.reloadData()
-        print(globalHiwuUser.todayMuseum)
     }
     
     func back(){
@@ -32,7 +31,7 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginP
     @IBAction func enterToSelfMuseum(sender: UIButton) {
         self.contactor = ContactWithServer()
         self.contactor!.loginSuccess = self
-        self.contactor!.prepareReady = self
+        self.contactor!.selfMuseumReady = self
         let nowDate = NSDate(timeIntervalSinceNow: 0)
         let defaults = NSUserDefaults.standardUserDefaults()
         let deadline = defaults.doubleForKey("deadline")
@@ -79,7 +78,6 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginP
             return cell
             
         }else{
-            print(tableView.frame.size.width)
             let cell = tableView.dequeueReusableCellWithIdentifier("TodayGalleryCell")! as UITableViewCell
             let collection = cell.viewWithTag(1) as! TodayGalleryCT
             collection.location = indexPath.row-1
@@ -104,17 +102,16 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginP
     }
     
     func getSelfMuseumFailed(){
-    print(getSelfMuseumFailed)
     }
     func getUserInfoReady(){
         self.contactor?.getSelfMuseum()
     }
     func getUserInfoFailed(){}
-    func getReady(){
-//        let selfMuseum = self.storyboard?.instantiateViewControllerWithIdentifier("SelfMuseum") as! SelfMuseumVC
-//        self.navigationController?.pushViewController(selfMuseum, animated: true)
-    
+    func getSelfMuseunReady() {
+        
     }
-    func failedToReady(){}
+    func getSelfMuseunFailed() {
+        
+    }
 
 }

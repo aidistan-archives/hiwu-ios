@@ -13,7 +13,10 @@ import SwiftyJSON
 
 class ContactWithServer{
     var loginSuccess:LoginProtocol?
-    var prepareReady:ReadyProtocol?
+    var userInfoReady:GetUserInfoReadyProtocol?
+    var selfMuseumReady:GetSelfMuseumReadyProtocol?
+    var todayInfoReady:GetTodayInfoReadyProtocol?
+    var itemInfoReady:GetItemInfoReadyProtocol?
     let defaults = NSUserDefaults.standardUserDefaults()
     
     static func getNewTokenWithDefaults(){
@@ -24,6 +27,8 @@ class ContactWithServer{
         Alamofire.request(.POST, ApiManager.simpleLogin + "username=" + username).responseJSON{response in
             if(response.result.isSuccess)
             {
+                print("gettoken")
+                print(response.request)
                 if(response.result.error == nil){
                     let userInfo = JSON(response.result.value!)
                     if(userInfo != nil){
@@ -50,10 +55,15 @@ class ContactWithServer{
     
     func getUserInfoFirst(){
         globalHiwuUser.userId = self.defaults.integerForKey("userId")
-        globalHiwuUser.hiwuToken = self.defaults.valueForKey("token") as! String
-        globalHiwuUser.userName = self.defaults.valueForKey("userName")as! String
-        self.prepareReady?.getUserInfoReady()
-        print("get userinfo ready")
+        let tmpToken = self.defaults.valueForKey("token") as? String
+        
+        let tmpUserName = self.defaults.valueForKey("userName") as? String
+        self.userInfoReady?.getUserInfoReady()
+        if(tmpToken != nil && tmpUserName != nil){
+            globalHiwuUser.hiwuToken = tmpToken!
+            globalHiwuUser.userName = tmpUserName!
+        }
+        userInfoReady?.getUserInfoReady()
         
     }
     
@@ -62,18 +72,20 @@ class ContactWithServer{
         Alamofire.request(.GET, NSURL(string: url)!).responseJSON{
         response in
             if(response.result.value != nil){
+                print("get selfMuseum")
+                print(response.request)
                 globalHiwuUser.selfMuseum = JSON(response.result.value!)
                 let tmpData:NSData = NSKeyedArchiver.archivedDataWithRootObject(response.result.value!)
                 self.defaults.setObject(tmpData, forKey: "selfMuseum")
                 self.defaults.synchronize()
                 self.loginSuccess?.didGetSelfMuseum()
-                self.prepareReady?.getReady()
+                self.selfMuseumReady?.getSelfMuseunReady()
                 
             }else{
                 if(self.defaults.valueForKey("selfMuseum") != nil){
                     globalHiwuUser.selfMuseum = JSON(NSKeyedUnarchiver.unarchiveObjectWithData(self.defaults.objectForKey("selfMuseum") as! NSData)!)
                      self.loginSuccess?.didGetSelfMuseum()
-                    self.prepareReady?.getReady()
+                    self.selfMuseumReady?.getSelfMuseunReady()
                     
                 }else{
                     self.loginSuccess?.getSelfMuseumFailed()
@@ -86,24 +98,46 @@ class ContactWithServer{
         let url = ApiManager.getTodayPublicView
         Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
             if(response.result.value != nil){
+                print("getTodayInfo")
                 print(response.request)
                 globalHiwuUser.todayMuseum = JSON(response.result.value!)
                 let tmpData:NSData = NSKeyedArchiver.archivedDataWithRootObject(response.result.value!)
                 self.defaults.setObject(tmpData, forKey: "todayMuseum")
-                print(globalHiwuUser.todayMuseum)
                 self.defaults.synchronize()
-                self.prepareReady?.getReady()
+                self.todayInfoReady?.getTodayReady()
             }else{
                 if(self.defaults.valueForKey("todayMuseum") != nil){
                     globalHiwuUser.todayMuseum = JSON(NSKeyedUnarchiver.unarchiveObjectWithData(self.defaults.objectForKey("todayMuseum") as! NSData)!)
-                    self.prepareReady?.getReady()
+                    self.todayInfoReady?.getTodayReady()
                     
                 }else{
-                    self.prepareReady?.failedToReady()
+                    self.todayInfoReady?.getTodayFailed()
                 }
             }
         
         }
+        
+    }
+    
+    func getItemInfo(itemId: Int){
+        let url = ApiManager.getItemPublic1 + String(itemId) + ApiManager.getItemPublic2
+        Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
+            if(response.result.value != nil){
+                print("get item info")
+                print(response.request)
+                globalHiwuUser.item = JSON(response.result.value!)
+                self.itemInfoReady?.getItemInfoReady()
+            }else{
+                if(self.defaults.valueForKey("todayMuseum") != nil){
+                    print("in default")
+                    
+                }else{
+                    print("none")
+                }
+            }
+        }
+        NSThread.sleepForTimeInterval(4)
+        print("failed")
         
     }
        

@@ -13,4 +13,6 @@ class ApiManager{
     static let getTodayPublicView = "http://hiwu.ren:3010/api/Today/publicView"
     static let getAllSelfGallery1_2 = "http://hiwu.ren:3010/api/HiwuUsers/"
     static let getAllSelfGallery2_2 = "?filter=%7B%22include%22%3A%7B%22galleries%22%3A%7B%22items%22%3A%5B%22photos%22%5D%7D%7D%7D&access_token="
+    static let getItemPublic1 = "http://hiwu.ren:3010/api/Items/"
+    static let getItemPublic2 = "/publicView?access_token="
 }

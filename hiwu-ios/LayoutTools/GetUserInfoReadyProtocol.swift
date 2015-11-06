@@ -7,11 +7,7 @@
 //
 
 import Foundation
-public protocol ReadyProtocol{
+public protocol GetUserInfoReadyProtocol{
     func getUserInfoReady()
     func getUserInfoFailed()
-    func getReady()
-    func failedToReady()
-    
-
 }

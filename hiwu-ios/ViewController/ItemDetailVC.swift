@@ -12,15 +12,18 @@ import Kingfisher
 
 class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
+    @IBOutlet weak var itemDetailList: UITableView!
     var item:JSON?
-    var userAvatar:String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        itemDetailList.dataSource = self
+        itemDetailList.delegate = self
+        itemDetailList.reloadData()
         
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 5
+        return 3 + self.item!["comments"].count
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         switch indexPath.row{
@@ -33,20 +36,31 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
                 let itemCity = cell?.viewWithTag(3) as! UILabel
                 itemCity.text = self.item!["city"].string
                 let itemOwner = cell?.viewWithTag(4) as! UIImageView
-                itemOwner.kf_setImageWithURL(NSURL(string:self.userAvatar!)!)
+                let userAvatar = self.item!["hiwuUser"]["avatar"].string!
+                itemOwner.kf_setImageWithURL(NSURL(string:userAvatar)!)
             return cell!
             case 1:
                 let cell = tableView.dequeueReusableCellWithIdentifier("ItemDescription")
                 let itemName = cell?.viewWithTag(1) as! UILabel
                 itemName.text = self.item!["name"].string
-                let itemDescription = cell?.viewWithTag(2) as! UITextView
+                let itemDescription = cell?.viewWithTag(2) as! UILabel
                 itemDescription.text = self.item!["description"].string
                 return cell!
             case 2:
                 let cell = tableView.dequeueReusableCellWithIdentifier("Like")
+                let addLike = cell?.viewWithTag(1) as! UIButton
+                let likeLabel = cell?.viewWithTag(2) as! UILabel
+                let addComment = cell?.viewWithTag(3) as! UIButton
+                let commentLabel = cell?.viewWithTag(4) as! UILabel
+                likeLabel.text = String(self.item!["likes"].int!) + "人喜欢"
+                commentLabel.text = String(self.item!["comments"].count) + "人评论"
                 return cell!
             default :
                 let cell = tableView.dequeueReusableCellWithIdentifier("Comments")
+                let userName = cell?.viewWithTag(1) as! UILabel
+                let comment = cell?.viewWithTag(2) as! UILabel
+                userName.text = self.item!["nickname"].string! + "："
+                comment.text = self.item!["comments"][indexPath.row - 3].string!
                 return cell!
         }
     }

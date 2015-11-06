@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 import Kingfisher
 
-class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelegate{
+class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelegate,GetItemInfoReadyProtocol{
     
     var gallery:JSON?
     var userAvatar:String?
@@ -81,16 +81,28 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
             itemCity.text = gallery!["items"][indexPath.row-1]["city"].string
             let itemOwner = cell.viewWithTag(6) as! UILabel
             itemOwner.text = self.userName!
-            let gesture = UITapGestureRecognizer(target: self, action: "getItemDetail")
+            let gesture = UITapGestureRecognizer(target: self, action: "getItemDetail:")
+            cell.tag = self.gallery!["items"][indexPath.row-1]["id"].int!
+            print(cell.tag)
             cell.addGestureRecognizer(gesture)
             return cell
         }
     }
     
     func getItemDetail(sender:UITapGestureRecognizer){
-        
-        
+        let contactor = ContactWithServer()
+        contactor.itemInfoReady = self
+        contactor.getItemInfo(sender.view!.tag)
     }
     
+    func getItemInfoReady() {
+        let itemDetail = self.storyboard?.instantiateViewControllerWithIdentifier("ItemDetailVC") as! ItemDetailVC
+        itemDetail.item = globalHiwuUser.item
+        self.navigationController?.pushViewController(itemDetail, animated: true)
+    }
+    
+    func getItemInfoFailed() {
+        
+    }
 
 }
