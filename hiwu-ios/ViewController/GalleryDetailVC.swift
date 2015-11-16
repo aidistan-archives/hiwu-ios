@@ -68,22 +68,22 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
             return cell
             
         }else{
-            let cell = tableView.dequeueReusableCellWithIdentifier("ItemTitle")! as UITableViewCell
-            let itemPic = cell.viewWithTag(1) as! UIImageView
+            let cell = tableView.dequeueReusableCellWithIdentifier("ItemTitle")!
+            let itemId = cell.viewWithTag(2) as! UILabel
+            itemId.text = String(gallery!["items"][indexPath.row-1]["id"])
+            let itemPic = cell.viewWithTag(10) as! UIImageView
             itemPic.kf_setImageWithURL(NSURL(string: self.gallery!["items"][indexPath.row-1]["photos"][0]["url"].string!)!)
-            let itemName = cell.viewWithTag(2) as! UILabel
+            let itemName = cell.viewWithTag(20) as! UILabel
             itemName.text = gallery!["items"][indexPath.row-1]["name"].string
-            let itemDescription = cell.viewWithTag(3) as! UILabel
+            let itemDescription = cell.viewWithTag(30) as! UILabel
             itemDescription.text = gallery!["items"][indexPath.row-1]["description"].string
-            let itemTime = cell.viewWithTag(4) as! UILabel
+            let itemTime = cell.viewWithTag(40) as! UILabel
             itemTime.text = String(gallery!["items"][indexPath.row-1]["date_y"].int!)
-            let itemCity = cell.viewWithTag(5) as! UILabel
+            let itemCity = cell.viewWithTag(50) as! UILabel
             itemCity.text = gallery!["items"][indexPath.row-1]["city"].string
-            let itemOwner = cell.viewWithTag(6) as! UILabel
+            let itemOwner = cell.viewWithTag(60) as! UILabel
             itemOwner.text = self.userName!
             let gesture = UITapGestureRecognizer(target: self, action: "getItemDetail:")
-            cell.tag = self.gallery!["items"][indexPath.row-1]["id"].int!
-            print(cell.tag)
             cell.addGestureRecognizer(gesture)
             return cell
         }
@@ -92,7 +92,9 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     func getItemDetail(sender:UITapGestureRecognizer){
         let contactor = ContactWithServer()
         contactor.itemInfoReady = self
-        contactor.getItemInfo(sender.view!.tag)
+        let itemIdLabel = sender.view?.viewWithTag(2) as! UILabel
+        let itemId = Int(itemIdLabel.text!)
+        contactor.getItemInfo(itemId!)
     }
     
     func getItemInfoReady() {

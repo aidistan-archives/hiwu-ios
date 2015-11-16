@@ -50,13 +50,14 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
         let cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "TodayGalleryTitle", forIndexPath: indexPath)
         let galleryImage = cell.viewWithTag(1) as! UIImageView
         galleryImage.layer.cornerRadius = galleryImage.frame.size.width/2
-        galleryImage.kf_setImageWithURL(NSURL(string: globalHiwuUser.todayMuseum![self.location]["hiwuUser"]["avatar"].string!)!)
+        print(globalHiwuUser.todayMuseum![self.location])
+        galleryImage.kf_setImageWithURL(NSURL(string: globalHiwuUser.todayMuseum![self.location]["gallery"]["hiwuUser"]["avatar"].string!)!)
         let galleryNameLabel = cell.viewWithTag(2) as! UILabel
-        galleryNameLabel.text = globalHiwuUser.todayMuseum![self.location]["name"].string!
+        galleryNameLabel.text = globalHiwuUser.todayMuseum![self.location]["gallery"]["name"].string!
         let gallerDescription = cell.viewWithTag(3) as! UILabel
-        gallerDescription.text = globalHiwuUser.todayMuseum![self.location]["description"].string!
+        gallerDescription.text = globalHiwuUser.todayMuseum![self.location]["gallery"]["description"].string!
         let galleryItemNumLabel = cell.viewWithTag(4) as! UILabel
-        galleryItemNumLabel.text = String(globalHiwuUser.todayMuseum![self.location]["items"].count)
+        galleryItemNumLabel.text = String(globalHiwuUser.todayMuseum![self.location]["gallery"]["items"].count)
         let gesture = UITapGestureRecognizer(target: self, action: "getGalleryDetail:")
         cell.addGestureRecognizer(gesture)
         return cell
@@ -65,8 +66,8 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
     func getGalleryDetail(sender:AnyObject){
         let galleryDetail = self.superVC?.storyboard?.instantiateViewControllerWithIdentifier("GalleryDetailVC") as! GalleryDetailVC
         print("today")
-        print(globalHiwuUser.todayMuseum![self.location]["items"].count)
-        galleryDetail.setInfo(globalHiwuUser.todayMuseum![self.location], userAvatar: globalHiwuUser.todayMuseum![self.location]["hiwuUser"]["avatar"].string!, userName: globalHiwuUser.todayMuseum![self.location]["hiwuUser"]["nickname"].string!)
+        print(globalHiwuUser.todayMuseum![self.location]["gallery"]["items"].count)
+        galleryDetail.setInfo(globalHiwuUser.todayMuseum![self.location], userAvatar: globalHiwuUser.todayMuseum![self.location]["gallery"]["hiwuUser"]["avatar"].string!, userName: globalHiwuUser.todayMuseum![self.location]["gallery"]["hiwuUser"]["nickname"].string!)
         self.superVC?.showViewController(galleryDetail, sender: self)
     }
     
