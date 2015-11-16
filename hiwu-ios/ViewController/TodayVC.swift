@@ -8,15 +8,18 @@
 
 import UIKit
 
-class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginProtocol,GetUserInfoReadyProtocol,GetSelfMuseumReadyProtocol {
+class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,LoginProtocol,GetUserInfoReadyProtocol,GetSelfMuseumReadyProtocol {
     var contactor:ContactWithServer?
+    var isLoading = false
     
+    @IBOutlet weak var refreshing: UIActivityIndicatorView!
     @IBOutlet weak var todayGalleryDisplay: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         todayGalleryDisplay.dataSource = self
         todayGalleryDisplay.delegate = self
+        
         todayGalleryDisplay.reloadData()
     }
     
@@ -89,6 +92,27 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,LoginP
         }
         
     }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if(((-scrollView.contentOffset.y > 100))&&(self.isLoading == false)){
+            self.isLoading = true
+            self.refreshing.startAnimating()
+            let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+            dispatch_async(queue,{() in
+                sleep(2)
+                let mainQueue = dispatch_get_main_queue()
+                dispatch_async(mainQueue, {
+                    self.isLoading = false
+                    self.refreshing.stopAnimating()
+                
+                })
+                print("sender")
+                print(self)
+            })
+        }
+        
+    }
+
     
     func skipToNextAfterSuccess(){
         
