@@ -17,6 +17,15 @@ class LaunchScreen: UIViewController,GetUserInfoReadyProtocol,GetTodayInfoReadyP
         self.contactor!.todayInfoReady = self
         self.contactor!.userInfoReady = self
         self.contactor!.getUserInfoFirst()
+        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+        dispatch_async(queue, {
+            sleep(5)
+            if(globalHiwuUser.todayMuseum == nil){
+            let alert = UIAlertController(title: "无法获取初始化信息", message: "请检查你的网络", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "知道了", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            }
+        })
     }
     
     func getTodayReady() {
@@ -24,11 +33,8 @@ class LaunchScreen: UIViewController,GetUserInfoReadyProtocol,GetTodayInfoReadyP
             self.presentViewController((self.storyboard?.instantiateViewControllerWithIdentifier("MainNavigation"))!, animated: true, completion: nil)
             print("get ready")
         }
-            
         else{
-            let alert = UIAlertController(title: "无法获取初始化信息", message: "请检查你的网络", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "知道了", style: UIAlertActionStyle.Default, handler: nil))
-            self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+          
         }
     }
     

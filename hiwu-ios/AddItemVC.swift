@@ -24,8 +24,6 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
 
     @IBOutlet weak var city: UITextField!
     
-    
-    
     func takePicture(sender: UITapGestureRecognizer) {
         print("takepicture")
         let alert = UIAlertController(title: "选择照片来源", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
@@ -70,6 +68,8 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
     @IBOutlet weak var isPublic: UISwitch!
     
     @IBAction func ok(sender: UIButton) {
+        
+        
     }
     
     override func viewDidLoad() {

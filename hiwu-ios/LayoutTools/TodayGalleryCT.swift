@@ -67,7 +67,7 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
         let galleryDetail = self.superVC?.storyboard?.instantiateViewControllerWithIdentifier("GalleryDetailVC") as! GalleryDetailVC
         print("today")
         print(globalHiwuUser.todayMuseum![self.location]["gallery"]["items"].count)
-        galleryDetail.setInfo(globalHiwuUser.todayMuseum![self.location], userAvatar: globalHiwuUser.todayMuseum![self.location]["gallery"]["hiwuUser"]["avatar"].string!, userName: globalHiwuUser.todayMuseum![self.location]["gallery"]["hiwuUser"]["nickname"].string!)
+        galleryDetail.setInfo(globalHiwuUser.todayMuseum![self.location]["gallery"], userAvatar: globalHiwuUser.todayMuseum![self.location]["gallery"]["hiwuUser"]["avatar"].string!, userName: globalHiwuUser.todayMuseum![self.location]["gallery"]["hiwuUser"]["nickname"].string!)
         self.superVC?.showViewController(galleryDetail, sender: self)
     }
     
