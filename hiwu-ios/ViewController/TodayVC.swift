@@ -17,10 +17,14 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        todayGalleryDisplay.estimatedRowHeight = 60
+//        todayGalleryDisplay.rowHeight = UITableViewAutomaticDimension
         todayGalleryDisplay.dataSource = self
         todayGalleryDisplay.delegate = self
-        
         todayGalleryDisplay.reloadData()
+    }
+    override  func viewWillAppear(animated: Bool) {
+        self.todayGalleryDisplay.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
     }
     
     func back(){
@@ -65,13 +69,11 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return globalHiwuUser.todayMuseum!.count+1
     }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if(indexPath.row == 0){
-            return 50
+            return 70
         }else{
             return 450
-            
         }
     }
 
@@ -94,6 +96,8 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        print("sender")
+        print(scrollView.contentOffset.y)
         if(((-scrollView.contentOffset.y > 100))&&(self.isLoading == false)){
             self.isLoading = true
             self.refreshing.startAnimating()
@@ -103,11 +107,10 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
                 let mainQueue = dispatch_get_main_queue()
                 dispatch_async(mainQueue, {
                     self.isLoading = false
+                    scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
                     self.refreshing.stopAnimating()
                 
                 })
-                print("sender")
-                print(self)
             })
         }
         

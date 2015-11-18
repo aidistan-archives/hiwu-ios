@@ -96,10 +96,12 @@ class ContactWithServer{
     
     func getTodayInfo(){
         let url = ApiManager.getTodayPublicView
+        print("get today info")
+        print(NSDate(timeIntervalSinceNow: 0))
         Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
             if(response.result.value != nil){
-                print("getTodayInfo")
-                print(response.request)
+                print("get item info")
+                print(NSDate(timeIntervalSinceNow: 0))
                 globalHiwuUser.todayMuseum = JSON(response.result.value!)
                 let tmpData:NSData = NSKeyedArchiver.archivedDataWithRootObject(response.result.value!)
                 self.defaults.setObject(tmpData, forKey: "todayMuseum")
@@ -121,23 +123,22 @@ class ContactWithServer{
     
     func getItemInfo(itemId: Int){
         let url = ApiManager.getItemPublic1 + String(itemId) + ApiManager.getItemPublic2
+        print("get item info")
+        print(NSDate(timeIntervalSinceNow: 0))
         Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
             if(response.result.value != nil){
                 print("get item info")
-                print(response.request)
+                print(NSDate(timeIntervalSinceNow: 0))
                 globalHiwuUser.item = JSON(response.result.value!)
+                
+                let tmpData:NSData = NSKeyedArchiver.archivedDataWithRootObject(response.result.value!)
+                self.defaults.setObject(tmpData, forKey: "item_" + String(itemId))
+                self.defaults.synchronize()
                 self.itemInfoReady?.getItemInfoReady()
             }else{
-                if(self.defaults.valueForKey("todayMuseum") != nil){
-                    print("in default")
-                    
-                }else{
-                    print("none")
-                }
+                
             }
         }
-        NSThread.sleepForTimeInterval(4)
-        print("failed")
         
     }
        

@@ -108,6 +108,8 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
         let camera = UIImagePickerController()
         camera.delegate = self
         camera.sourceType = UIImagePickerControllerSourceType.Camera
+        camera.showsCameraControls = true
+        camera.allowsEditing = true
         self.presentViewController(camera, animated: true, completion: nil)
     
     }
@@ -116,13 +118,14 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
         let camera = UIImagePickerController()
         camera.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         camera.delegate = self
+        camera.allowsEditing = true
         self.presentViewController(camera, animated: true, completion: nil)
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
         print("selected")
         print(info)
-        self.itemImage.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        self.itemImage.image = info[UIImagePickerControllerEditedImage] as? UIImage
         picker.dismissViewControllerAnimated(true, completion: nil)
         
     }

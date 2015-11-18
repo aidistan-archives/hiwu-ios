@@ -15,6 +15,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     var gallery:JSON?
     var userAvatar:String?
     var userName:String?
+    let defaults = NSUserDefaults.standardUserDefaults()
     
     @IBOutlet weak var galleryDetails: UITableView!
     
@@ -58,6 +59,10 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
             let ownerAvatar = cell.viewWithTag(1) as! UIImageView
             if(self.userAvatar != nil){
             ownerAvatar.kf_setImageWithURL(NSURL(string: self.userAvatar!)!)
+                ownerAvatar.layer.cornerRadius = ownerAvatar.frame.size.width/2
+                ownerAvatar.clipsToBounds = true
+                print("ownerAvatar.layer.cornerRadius")
+                print(ownerAvatar.layer.cornerRadius)
             }
             let galleryName = cell.viewWithTag(2) as! UITextField
             galleryName.text = self.gallery!["name"].string
@@ -89,17 +94,34 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         }
     }
     
+    
     func getItemDetail(sender:UITapGestureRecognizer){
         let contactor = ContactWithServer()
         contactor.itemInfoReady = self
         let itemIdLabel = sender.view?.viewWithTag(2) as! UILabel
         let itemId = Int(itemIdLabel.text!)
-        contactor.getItemInfo(itemId!)
+        print("prepare")
+        print(NSDate(timeIntervalSinceNow: 0))
+        let itemIdTextLabel = sender.view?.viewWithTag(2) as! UILabel
+        if(self.defaults.objectForKey("item_" + itemIdTextLabel.text!) != nil){
+                    globalHiwuUser.item = JSON(NSKeyedUnarchiver.unarchiveObjectWithData(self.defaults.objectForKey("item_" + itemIdTextLabel.text!) as! NSData)!)
+            let itemDetail = self.storyboard?.instantiateViewControllerWithIdentifier("ItemDetailVC") as! ItemDetailVC
+            itemDetail.item = globalHiwuUser.item
+            print("prepare for jump")
+            print(NSDate(timeIntervalSinceNow: 0))
+            self.navigationController?.pushViewController(itemDetail, animated: true)
+            
+        }else{
+            print("ask server")
+            contactor.getItemInfo(itemId!)
+        }
     }
     
     func getItemInfoReady() {
+        print(NSDate(timeIntervalSinceNow: 0))
         let itemDetail = self.storyboard?.instantiateViewControllerWithIdentifier("ItemDetailVC") as! ItemDetailVC
         itemDetail.item = globalHiwuUser.item
+        print(NSDate(timeIntervalSinceNow: 0))
         self.navigationController?.pushViewController(itemDetail, animated: true)
     }
     

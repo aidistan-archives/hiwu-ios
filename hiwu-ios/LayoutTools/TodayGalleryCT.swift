@@ -17,7 +17,7 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         
-        let nums = globalHiwuUser.todayMuseum![self.location]["items"].count as Int
+        let nums = globalHiwuUser.todayMuseum![self.location]["gallery"]["items"].count as Int
         if(nums <= 9){
             return nums
         }else{
@@ -29,7 +29,7 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
         //取collectionview的可重复使用cell
-        let items = globalHiwuUser.todayMuseum![self.location]["items"]
+        let items = globalHiwuUser.todayMuseum![self.location]["gallery"]["items"]
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("TodayItemCell", forIndexPath: indexPath)
         //取imageview
         let images:UIImageView = cell.viewWithTag(6) as! UIImageView
@@ -50,7 +50,7 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
         let cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "TodayGalleryTitle", forIndexPath: indexPath)
         let galleryImage = cell.viewWithTag(1) as! UIImageView
         galleryImage.layer.cornerRadius = galleryImage.frame.size.width/2
-        print(globalHiwuUser.todayMuseum![self.location])
+        galleryImage.clipsToBounds = true
         galleryImage.kf_setImageWithURL(NSURL(string: globalHiwuUser.todayMuseum![self.location]["gallery"]["hiwuUser"]["avatar"].string!)!)
         let galleryNameLabel = cell.viewWithTag(2) as! UILabel
         galleryNameLabel.text = globalHiwuUser.todayMuseum![self.location]["gallery"]["name"].string!

@@ -34,6 +34,7 @@
 		A5CEE6931BD0DC4D00AAF122 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5CEE65A1BD0DC0E00AAF122 /* Alamofire.framework */; };
 		A5CEE6941BD0DC4D00AAF122 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5CEE65A1BD0DC0E00AAF122 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A5EB70AD1BE38AD20075D559 /* GalleryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB70AC1BE38AD20075D559 /* GalleryDetailVC.swift */; };
+		A5FD50A41BFC63F80009A346 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5FD50A31BFC63F80009A346 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,6 +211,7 @@
 		A5CEE6631BD0DC1600AAF122 /* Kingfisher.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Kingfisher.xcodeproj; path = Libs/Kingfisher/Kingfisher.xcodeproj; sourceTree = "<group>"; };
 		A5CEE6751BD0DC2000AAF122 /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = "Libs/SwiftyJSON-master 3/SwiftyJSON.xcodeproj"; sourceTree = "<group>"; };
 		A5EB70AC1BE38AD20075D559 /* GalleryDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GalleryDetailVC.swift; path = ViewController/GalleryDetailVC.swift; sourceTree = "<group>"; };
+		A5FD50A31BFC63F80009A346 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -326,6 +328,7 @@
 				A5CEE6271BD0DB3C00AAF122 /* Main.storyboard */,
 				A59354CE1BD5C5320044E7B3 /* SupportingFiles */,
 				A5CEE62F1BD0DB3C00AAF122 /* Info.plist */,
+				A5FD50A31BFC63F80009A346 /* Launch Screen.storyboard */,
 			);
 			path = "hiwu-ios";
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5FD50A41BFC63F80009A346 /* Launch Screen.storyboard in Resources */,
 				A5CEE62B1BD0DB3C00AAF122 /* Assets.xcassets in Resources */,
 				A5CEE6291BD0DB3C00AAF122 /* Main.storyboard in Resources */,
 			);
