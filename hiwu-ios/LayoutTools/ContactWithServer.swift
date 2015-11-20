@@ -141,5 +141,46 @@ class ContactWithServer{
         }
         
     }
-       
-}
+    
+    func postItem(galleryId:Int,itemName:String,itemDescription:String,year:Int,city:String,dataUrl:NSURL,isPublic:Bool){
+        let postItemUrl = ApiManager.postItem1 + String(galleryId) + ApiManager.postItem2 + globalHiwuUser.hiwuToken
+        Alamofire.request(.POST, postItemUrl, parameters: [
+            "name": itemName,
+            "description": itemDescription,
+            "date_y": year,
+            "date_m": 0,
+            "date_d": 0,
+            "city": city,
+            "public": isPublic
+            ]).responseJSON{response in
+            if(response.result.value != nil){
+                self.postPhotoToItem(JSON(response.result.value!)["id"].int!, dataUrl: dataUrl)
+                print(response.result.value)
+            }
+        }
+        
+    }
+    
+    func postPhotoToItem(itemId:Int,dataUrl:NSURL){
+        let postPhotoUrl = ApiManager.postItemPhoto1 + String(itemId) + ApiManager.postItemPhoto2 + globalHiwuUser.hiwuToken
+        print(dataUrl)
+        Alamofire.upload(.POST, postPhotoUrl,multipartFormData: { multipartFormData in
+            multipartFormData.appendBodyPart(fileURL: dataUrl, name: "file")
+            }, encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .Success(let upload, _, _):
+                    upload.responseJSON { response in
+                        print("cun")
+                        debugPrint(response.result.error)
+                    }
+                case .Failure(let encodingError):
+                    print("error")
+                    print(encodingError)
+                }
+        })
+        }
+
+    
+    }
+    
+

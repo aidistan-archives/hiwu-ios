@@ -19,6 +19,9 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     
     @IBOutlet weak var galleryDetails: UITableView!
     
+    @IBAction func back(sender: UIButton) {
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +80,11 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
             let itemId = cell.viewWithTag(2) as! UILabel
             itemId.text = String(gallery!["items"][indexPath.row-1]["id"])
             let itemPic = cell.viewWithTag(10) as! UIImageView
-            itemPic.kf_setImageWithURL(NSURL(string: self.gallery!["items"][indexPath.row-1]["photos"][0]["url"].string!)!)
+            if(self.gallery!["items"][indexPath.row-1]["photos"][0]["url"].string != nil){
+                itemPic.kf_setImageWithURL(NSURL(string: self.gallery!["items"][indexPath.row-1]["photos"][0]["url"].string!)!)}else{
+                itemPic.image = UIImage(named: "add")
+            }
+            
             let itemName = cell.viewWithTag(20) as! UILabel
             itemName.text = gallery!["items"][indexPath.row-1]["name"].string
             let itemDescription = cell.viewWithTag(30) as! UILabel

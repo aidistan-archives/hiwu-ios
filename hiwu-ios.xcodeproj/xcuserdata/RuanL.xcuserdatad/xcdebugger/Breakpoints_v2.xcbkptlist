@@ -24,7 +24,7 @@
                   moduleName = "hiwu-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/RuanL/Desktop/IOS_learning/hiwu-ios/hiwu-ios/ViewController/TodayVC.swift"
-                  timestampString = "469455244.366267"
+                  timestampString = "469702241.873051"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -39,7 +39,7 @@
                   moduleName = "hiwu-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/RuanL/Desktop/IOS_learning/hiwu-ios/hiwu-ios/ViewController/TodayVC.swift"
-                  timestampString = "469455244.367058"
+                  timestampString = "469702241.873566"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -69,60 +69,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "hiwu-ios/LayoutTools/ContactWithServer.swift"
-            timestampString = "469515309.489459"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "getItemInfo(_:)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "hiwu_ios.ContactWithServer.getItemInfo (hiwu_ios.ContactWithServer)(Swift.Int) -&gt; ()"
-                  moduleName = "hiwu-ios"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/RuanL/Desktop/IOS_learning/hiwu-ios/hiwu-ios/LayoutTools/ContactWithServer.swift"
-                  timestampString = "469455244.403185"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "124"
-                  endingLineNumber = "124"
-                  offsetFromSymbolStart = "292">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "hiwu_ios.ContactWithServer.(getItemInfo (hiwu_ios.ContactWithServer) -&gt; (Swift.Int) -&gt; ()).(closure #1)"
-                  moduleName = "hiwu-ios"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/RuanL/Desktop/IOS_learning/hiwu-ios/hiwu-ios/LayoutTools/ContactWithServer.swift"
-                  timestampString = "469455244.403434"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "125"
-                  endingLineNumber = "125"
-                  offsetFromSymbolStart = "68">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "hiwu-ios/ViewController/GalleryDetailVC.swift"
-            timestampString = "469521934.869474"
+            timestampString = "469713305.867829"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>

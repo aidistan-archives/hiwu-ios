@@ -16,6 +16,12 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     @IBOutlet weak var itemDetailList: UITableView!
     var item:JSON?
 
+    @IBAction func back(sender: UIButton) {
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
+    @IBAction func ensureComment(sender: UIButton) {
+    }
+    @IBOutlet weak var ensureCommentButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addComment.delegate = self
@@ -73,6 +79,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
         self.addComment.becomeFirstResponder()
         UIView.animateWithDuration(0.6, animations: {void in
             self.addComment.hidden = false
+            self.ensureCommentButton.hidden = false
             self.itemDetailList.userInteractionEnabled = false
             self.itemDetailList.alpha = 0.4
             self.view.backgroundColor = UIColor.blackColor()
@@ -101,6 +108,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
             self.itemDetailList.alpha = 1
             self.itemDetailList.userInteractionEnabled = true
             self.addComment.hidden = true
+            self.ensureCommentButton.hidden = true
             self.view.backgroundColor = UIColor.whiteColor()
         })
 

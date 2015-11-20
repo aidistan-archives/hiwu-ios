@@ -22,6 +22,7 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
         todayGalleryDisplay.dataSource = self
         todayGalleryDisplay.delegate = self
         todayGalleryDisplay.reloadData()
+        
     }
     override  func viewWillAppear(animated: Bool) {
         self.todayGalleryDisplay.setContentOffset(CGPoint(x: 0, y: 0), animated: false)

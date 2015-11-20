@@ -10,8 +10,10 @@ import UIKit
 import AVFoundation
 import Kingfisher
 import SwiftyJSON
+import Alamofire
 
 class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextViewDelegate,UITextFieldDelegate{
+    var galleryId = 0
     @IBOutlet weak var itemImage: UIImageView!
     
     @IBAction func timeSelect(sender: UIButton) {
@@ -40,7 +42,6 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
     
     @IBOutlet weak var museumName: UIButton!
     @IBAction func museumSelector(sender: UIButton) {
-        
         let alert = UIAlertController(title: "选择博物馆", message: "\n\n\n\n\n\n\n\n\n", preferredStyle: UIAlertControllerStyle.ActionSheet)
         alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: nil))
         alert.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil))
@@ -68,12 +69,23 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
     @IBOutlet weak var isPublic: UISwitch!
     
     @IBAction func ok(sender: UIButton) {
-        
-        
+        if((galleryId == 0)||(itemName.text == ""||itemDescription.text == ""||city.text == ""||time.text == "")){
+            let alert = UIAlertController(title: "错误", message: "请将信息补全", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "知道了", style: UIAlertActionStyle.Cancel, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }else{
+        let contactor = ContactWithServer()
+        let jpgUrl = NSHomeDirectory().stringByAppendingString("/tmp/").stringByAppendingString("tmp.jpg")
+//            stringByAppendingString("/Documents/"+String(itemName.text!) + ".jpg")
+            UIImageJPEGRepresentation(itemImage.image!, 1.0)?.writeToFile(jpgUrl, atomically: false)
+            contactor.postItem(galleryId, itemName: itemName.text!, itemDescription: itemDescription.text, year: Int(self.time.text!)!, city: self.city.text!, dataUrl: NSURL(fileURLWithPath: jpgUrl), isPublic: isPublic.on)
+            
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        galleryId = globalHiwuUser.selfMuseum!["galleries"][0]["id"].int!
         let gesture = UITapGestureRecognizer(target: self, action: "takePicture:")
         itemImage.addGestureRecognizer(gesture)
         self.itemDescription.delegate = self
@@ -83,10 +95,6 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
         self.view.addGestureRecognizer(gest)
         self.time.delegate = self
         self.city.delegate = self
-        print("Today")
-        print(globalHiwuUser.todayMuseum)
-        print("self")
-        print(globalHiwuUser.selfMuseum)
     }
     
     
@@ -123,8 +131,6 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
-        print("selected")
-        print(info)
         self.itemImage.image = info[UIImagePickerControllerEditedImage] as? UIImage
         picker.dismissViewControllerAnimated(true, completion: nil)
         
@@ -163,7 +169,6 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
         UIView.animateWithDuration(0.2, animations: {void in
             self.view.frame.origin.y = 0
         })
-        
     }
     
     func textFieldDidBeginEditing(textField: UITextField){
@@ -176,7 +181,6 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
                 newFrame.origin.y = offset
                 self.view.frame = newFrame})
         }
-
     }
     
     func textFieldDidEndEditing(textField: UITextField){
@@ -194,9 +198,8 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
-        print(row)
-        print(component)
-    
+        galleryId = globalHiwuUser.selfMuseum!["galleries"][row]["id"].int!
+        print(galleryId)
     }
 
     
