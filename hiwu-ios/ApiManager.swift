@@ -19,4 +19,6 @@ class ApiManager{
     static let postItem2 = "/items?access_token="
     static let postItemPhoto1 = "http://hiwu.ren:3010/api/Items/"
     static let postItemPhoto2 = "/photos?access_token="
+    static let deleteItem1 = "http://hiwu.ren:3010/api/Items/"
+    static let deleteItem2 = "?access_token="
 }

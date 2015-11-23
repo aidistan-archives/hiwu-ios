@@ -17,7 +17,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     var item:JSON?
 
     @IBAction func back(sender: UIButton) {
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        self.navigationController?.popViewControllerAnimated(true)
     }
     @IBAction func ensureComment(sender: UIButton) {
     }
@@ -45,7 +45,12 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
             case 0:
                 let cell = tableView.dequeueReusableCellWithIdentifier("ItemImage")
                 let itemImage = cell?.viewWithTag(1) as! UIImageView
-                itemImage.kf_setImageWithURL(NSURL(string: self.item!["photos"][0]["url"].string!)!)
+                print(self.item!["photos"][0]["url"].string)
+                if(self.item!["photos"][0]["url"].string! == ""){
+                    itemImage.image = UIImage(named: "add")
+                }else{
+                    itemImage.kf_setImageWithURL(NSURL(string: self.item!["photos"][0]["url"].string!)!)
+                }
                 let itemTime = cell?.viewWithTag(2) as! UILabel
                 itemTime.text = String(self.item!["date_y"].int!)
                 let itemCity = cell?.viewWithTag(3) as! UILabel

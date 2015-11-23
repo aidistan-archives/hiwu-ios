@@ -10,12 +10,14 @@ import UIKit
 import SwiftyJSON
 import Kingfisher
 
-class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelegate,GetItemInfoReadyProtocol{
+class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelegate,GetItemInfoReadyProtocol,GetSelfMuseumReadyProtocol{
     
     var gallery:JSON?
     var userAvatar:String?
     var userName:String?
     let defaults = NSUserDefaults.standardUserDefaults()
+    let contactor = ContactWithServer()
+    var location = -1
     
     @IBOutlet weak var galleryDetails: UITableView!
     
@@ -28,6 +30,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         self.galleryDetails.delegate = self
         self.galleryDetails.dataSource = self
         self.galleryDetails.reloadData()
+        print(gallery)
 
     }
 
@@ -101,6 +104,16 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         }
     }
     
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        contactor.superGalleryDetailVC = self
+//        contactor.deleteItem(self.gallery!["items"][indexPath.row-1]["id"].int!)
+        print("delete")
+    }
+    
+    func didDeleteItem(){
+        
+        
+    }
     
     func getItemDetail(sender:UITapGestureRecognizer){
         let contactor = ContactWithServer()
@@ -133,6 +146,13 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     }
     
     func getItemInfoFailed() {
+        
+    }
+    
+    func getSelfMuseunReady() {
+    }
+    
+    func getSelfMuseunFailed() {
         
     }
 

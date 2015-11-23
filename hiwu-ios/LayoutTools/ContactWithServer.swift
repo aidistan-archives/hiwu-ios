@@ -12,6 +12,7 @@ import Alamofire
 import SwiftyJSON
 
 class ContactWithServer{
+    var superGalleryDetailVC:GalleryDetailVC?
     var loginSuccess:LoginProtocol?
     var userInfoReady:GetUserInfoReadyProtocol?
     var selfMuseumReady:GetSelfMuseumReadyProtocol?
@@ -179,8 +180,16 @@ class ContactWithServer{
                 }
         })
         }
+    func deleteItem(itemId:Int){
+        let deleteUrl = ApiManager.deleteItem1 + String(itemId) + ApiManager.deleteItem2 + globalHiwuUser.hiwuToken
+        Alamofire.request(.DELETE, NSURL(string: deleteUrl)!).responseJSON{response in
+            self.getSelfMuseum()
+        }
+        
+    }
 
     
-    }
+}
+
     
 

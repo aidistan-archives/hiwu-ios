@@ -50,6 +50,8 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
         galleryNameLabel.text = (globalHiwuUser.selfMuseum!)["galleries"][self.location]["name"].string
         let galleryItemNumLabel = cell.viewWithTag(2)as! UILabel
         galleryItemNumLabel.text = String((globalHiwuUser.selfMuseum!)["galleries"][self.location]["items"].count)
+        let gesture = UITapGestureRecognizer(target: self, action: "getGalleryDetail:")
+        cell.addGestureRecognizer(gesture)
         return cell
     }
     
@@ -63,6 +65,14 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
         image.image = imager.image
         alert1.view.addSubview(image)
         self.superVC?.navigationController?.presentViewController(alert1, animated: true, completion: nil)
+    }
+    
+    func getGalleryDetail(sender:AnyObject){
+        let galleryDetail = self.superVC?.storyboard?.instantiateViewControllerWithIdentifier("GalleryDetailVC") as! GalleryDetailVC
+        print(globalHiwuUser.selfMuseum)
+        galleryDetail.setInfo(globalHiwuUser.selfMuseum!["galleries"][self.location], userAvatar: globalHiwuUser.selfMuseum!["avatar"].string!, userName: globalHiwuUser.selfMuseum!["nickname"].string!)
+        galleryDetail.location = self.location
+        self.superVC?.showViewController(galleryDetail, sender: self)
     }
     
     

@@ -62,7 +62,6 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             itemNum.text = String(sum)
             return cell
         }else{
-            
             let cell = tableView.dequeueReusableCellWithIdentifier("SelfGalleryCell")! as UITableViewCell
             let collection = (cell.viewWithTag(4)) as! SelfGalleryCT
             collection.location =  indexPath.row - 1

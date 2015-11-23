@@ -24,7 +24,7 @@
                   moduleName = "hiwu-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/RuanL/Desktop/IOS_learning/hiwu-ios/hiwu-ios/ViewController/TodayVC.swift"
-                  timestampString = "469702241.873051"
+                  timestampString = "469975092.837671"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -39,7 +39,7 @@
                   moduleName = "hiwu-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/RuanL/Desktop/IOS_learning/hiwu-ios/hiwu-ios/ViewController/TodayVC.swift"
-                  timestampString = "469702241.873566"
+                  timestampString = "469975092.837902"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -69,29 +69,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "hiwu-ios/ViewController/GalleryDetailVC.swift"
-            timestampString = "469713305.867829"
+            filePath = "hiwu-ios/ViewController/ItemDetailVC.swift"
+            timestampString = "469975091.809547"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "hiwu-ios/LayoutTools/TodayGalleryCT.swift"
-            timestampString = "469522259.900959"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "collectionView(_:viewForSupplementaryElementOfKind:atIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

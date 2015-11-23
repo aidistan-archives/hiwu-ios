@@ -1216,26 +1216,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="390.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="kdf-Ta-Ttb">
-                                                    <rect key="frame" x="8" y="8" width="584" height="584.5"/>
-                                                    <animations/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="584" id="CqC-Fq-SCK"/>
-                                                        <constraint firstAttribute="width" secondItem="kdf-Ta-Ttb" secondAttribute="height" multiplier="1:1" id="GHe-z9-Pfr"/>
-                                                        <constraint firstAttribute="height" constant="560" id="OT7-Z6-3ZT"/>
-                                                        <constraint firstAttribute="width" constant="560" id="PAb-TS-VoN"/>
-                                                        <constraint firstAttribute="height" constant="584" id="jAp-zh-BEH"/>
-                                                        <constraint firstAttribute="width" constant="584" id="y5d-QK-WvT"/>
-                                                    </constraints>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="CqC-Fq-SCK"/>
-                                                            <exclude reference="OT7-Z6-3ZT"/>
-                                                            <exclude reference="PAb-TS-VoN"/>
-                                                            <exclude reference="jAp-zh-BEH"/>
-                                                        </mask>
-                                                    </variation>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFL-YO-A8F">
                                                     <rect key="frame" x="26" y="550" width="35" height="21"/>
                                                     <animations/>
@@ -1276,6 +1256,26 @@
                                                     <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <size key="shadowOffset" width="1" height="1"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="kdf-Ta-Ttb">
+                                                    <rect key="frame" x="8" y="8" width="584" height="584.5"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="584" id="CqC-Fq-SCK"/>
+                                                        <constraint firstAttribute="width" secondItem="kdf-Ta-Ttb" secondAttribute="height" multiplier="1:1" id="GHe-z9-Pfr"/>
+                                                        <constraint firstAttribute="height" constant="560" id="OT7-Z6-3ZT"/>
+                                                        <constraint firstAttribute="width" constant="560" id="PAb-TS-VoN"/>
+                                                        <constraint firstAttribute="height" constant="584" id="jAp-zh-BEH"/>
+                                                        <constraint firstAttribute="width" constant="584" id="y5d-QK-WvT"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="CqC-Fq-SCK"/>
+                                                            <exclude reference="OT7-Z6-3ZT"/>
+                                                            <exclude reference="PAb-TS-VoN"/>
+                                                            <exclude reference="jAp-zh-BEH"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
                                             </subviews>
                                             <animations/>
                                             <constraints>
