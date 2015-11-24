@@ -166,7 +166,7 @@ class ContactWithServer{
         let postPhotoUrl = ApiManager.postItemPhoto1 + String(itemId) + ApiManager.postItemPhoto2 + globalHiwuUser.hiwuToken
         print(dataUrl)
         Alamofire.upload(.POST, postPhotoUrl,multipartFormData: { multipartFormData in
-            multipartFormData.appendBodyPart(fileURL: dataUrl, name: "file")
+            multipartFormData.appendBodyPart(fileURL: dataUrl, name: "data")
             }, encodingCompletion: { encodingResult in
                 switch encodingResult {
                 case .Success(let upload, _, _):
