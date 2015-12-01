@@ -53,6 +53,7 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             let selfMuseum = globalHiwuUser.selfMuseum
             userAvatar.kf_setImageWithURL(NSURL(string: selfMuseum!["avatar"].string!)!)
             userAvatar.layer.cornerRadius = userAvatar.frame.height/2
+            userAvatar.clipsToBounds = true
             userNickname.text = selfMuseum!["nickname"].string!
             galleryNum.text = String(selfMuseum!["galleries"].count)
             var sum = 0

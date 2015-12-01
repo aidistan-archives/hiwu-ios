@@ -22,6 +22,9 @@ class LoginVC: UIViewController,LoginProtocol {
         self.tmpContactor.getTokenWithPassword(usernameText.text!, password: passwordText.text!)
        
     }
+    @IBAction func weixin(sender: UIButton) {
+        
+    }
     
     
     func skipToNextAfterSuccess() {

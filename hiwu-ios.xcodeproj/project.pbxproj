@@ -10,6 +10,12 @@
 		A5132BBE1BDBB5EA00B4C3DB /* AddItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5132BBD1BDBB5EA00B4C3DB /* AddItemVC.swift */; };
 		A552326A1C0467AB00A0AA2A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A552325D1C04679D00A0AA2A /* Alamofire.framework */; };
 		A552326B1C0467AB00A0AA2A /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A552325D1C04679D00A0AA2A /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A552326F1C0470FE00A0AA2A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A552326E1C0470FE00A0AA2A /* CoreTelephony.framework */; };
+		A55232751C04717C00A0AA2A /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A55232711C04717C00A0AA2A /* libWeChatSDK.a */; };
+		A55232771C04729200A0AA2A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55232761C04729200A0AA2A /* SystemConfiguration.framework */; };
+		A55232791C0472D000A0AA2A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A55232781C0472D000A0AA2A /* libz.tbd */; };
+		A552327B1C0472F300A0AA2A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A552327A1C0472F300A0AA2A /* libsqlite3.tbd */; };
+		A552327E1C0475AE00A0AA2A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A552327D1C0475AE00A0AA2A /* libc++.tbd */; };
 		A59354C31BD5C4FD0044E7B3 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59354C21BD5C4FD0044E7B3 /* LaunchScreen.swift */; };
 		A593550B1BD669080044E7B3 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593550A1BD669080044E7B3 /* LoginVC.swift */; };
 		A593550D1BD66EA90044E7B3 /* TodayGalleryCT.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593550C1BD66EA90044E7B3 /* TodayGalleryCT.swift */; };
@@ -199,6 +205,16 @@
 /* Begin PBXFileReference section */
 		A5132BBD1BDBB5EA00B4C3DB /* AddItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemVC.swift; sourceTree = "<group>"; };
 		A55232521C04679C00A0AA2A /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Libs/Alamofire-3.1.3/Alamofire.xcodeproj"; sourceTree = "<group>"; };
+		A552326E1C0470FE00A0AA2A /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		A55232711C04717C00A0AA2A /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libWeChatSDK.a; path = Libs/SDK1.6.2/libWeChatSDK.a; sourceTree = SOURCE_ROOT; };
+		A55232721C04717C00A0AA2A /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WechatAuthSDK.h; path = Libs/SDK1.6.2/WechatAuthSDK.h; sourceTree = SOURCE_ROOT; };
+		A55232731C04717C00A0AA2A /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXApi.h; path = Libs/SDK1.6.2/WXApi.h; sourceTree = SOURCE_ROOT; };
+		A55232741C04717C00A0AA2A /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXApiObject.h; path = Libs/SDK1.6.2/WXApiObject.h; sourceTree = SOURCE_ROOT; };
+		A55232761C04729200A0AA2A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A55232781C0472D000A0AA2A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		A552327A1C0472F300A0AA2A /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		A552327C1C04731E00A0AA2A /* WechatDemo_Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WechatDemo_Bridging_Header.h; sourceTree = "<group>"; };
+		A552327D1C0475AE00A0AA2A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		A59354C21BD5C4FD0044E7B3 /* LaunchScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LaunchScreen.swift; path = ViewController/LaunchScreen.swift; sourceTree = "<group>"; };
 		A593550A1BD669080044E7B3 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginVC.swift; path = ViewController/LoginVC.swift; sourceTree = "<group>"; };
 		A593550C1BD66EA90044E7B3 /* TodayGalleryCT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TodayGalleryCT.swift; path = LayoutTools/TodayGalleryCT.swift; sourceTree = "<group>"; };
@@ -233,9 +249,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A552327E1C0475AE00A0AA2A /* libc++.tbd in Frameworks */,
+				A552327B1C0472F300A0AA2A /* libsqlite3.tbd in Frameworks */,
+				A55232791C0472D000A0AA2A /* libz.tbd in Frameworks */,
+				A55232771C04729200A0AA2A /* SystemConfiguration.framework in Frameworks */,
+				A552326F1C0470FE00A0AA2A /* CoreTelephony.framework in Frameworks */,
 				A5CEE68F1BD0DC4500AAF122 /* Kingfisher.framework in Frameworks */,
 				A552326A1C0467AB00A0AA2A /* Alamofire.framework in Frameworks */,
 				A5CEE6871BD0DC3000AAF122 /* SwiftyJSON.framework in Frameworks */,
+				A55232751C04717C00A0AA2A /* libWeChatSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +290,18 @@
 				A55232691C04679D00A0AA2A /* Alamofire.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A55232701C04716800A0AA2A /* weixin */ = {
+			isa = PBXGroup;
+			children = (
+				A55232711C04717C00A0AA2A /* libWeChatSDK.a */,
+				A55232721C04717C00A0AA2A /* WechatAuthSDK.h */,
+				A55232731C04717C00A0AA2A /* WXApi.h */,
+				A55232741C04717C00A0AA2A /* WXApiObject.h */,
+				A552327C1C04731E00A0AA2A /* WechatDemo_Bridging_Header.h */,
+			);
+			name = weixin;
 			sourceTree = "<group>";
 		};
 		A59354CE1BD5C5320044E7B3 /* SupportingFiles */ = {
@@ -328,6 +362,11 @@
 		A5CEE6171BD0DB3C00AAF122 = {
 			isa = PBXGroup;
 			children = (
+				A552327D1C0475AE00A0AA2A /* libc++.tbd */,
+				A552327A1C0472F300A0AA2A /* libsqlite3.tbd */,
+				A55232781C0472D000A0AA2A /* libz.tbd */,
+				A55232761C04729200A0AA2A /* SystemConfiguration.framework */,
+				A552326E1C0470FE00A0AA2A /* CoreTelephony.framework */,
 				A55232521C04679C00A0AA2A /* Alamofire.xcodeproj */,
 				A5CEE6751BD0DC2000AAF122 /* SwiftyJSON.xcodeproj */,
 				A5CEE6631BD0DC1600AAF122 /* Kingfisher.xcodeproj */,
@@ -349,6 +388,7 @@
 		A5CEE6221BD0DB3C00AAF122 /* hiwu-ios */ = {
 			isa = PBXGroup;
 			children = (
+				A55232701C04716800A0AA2A /* weixin */,
 				A59355231BD785330044E7B3 /* Models */,
 				A593550F1BD66EC00044E7B3 /* LayoutTools */,
 				A593550E1BD66EB00044E7B3 /* ViewControllers */,
@@ -809,8 +849,13 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "hiwu-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Libs/SDK1.6.2",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ren.hiwu.hiwu-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "hiwu-ios/WechatDemo_Bridging_Header.h";
 			};
 			name = Debug;
 		};
@@ -822,8 +867,13 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "hiwu-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Libs/SDK1.6.2",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ren.hiwu.hiwu-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "hiwu-ios/WechatDemo_Bridging_Header.h";
 			};
 			name = Release;
 		};

@@ -67,8 +67,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
             ownerAvatar.kf_setImageWithURL(NSURL(string: self.userAvatar!)!)
                 ownerAvatar.layer.cornerRadius = ownerAvatar.frame.size.width/2
                 ownerAvatar.clipsToBounds = true
-                print("ownerAvatar.layer.cornerRadius")
-                print(ownerAvatar.layer.cornerRadius)
             }
             let galleryName = cell.viewWithTag(2) as! UITextField
             galleryName.text = self.gallery!["name"].string
