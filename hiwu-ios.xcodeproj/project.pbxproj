@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A5132BBE1BDBB5EA00B4C3DB /* AddItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5132BBD1BDBB5EA00B4C3DB /* AddItemVC.swift */; };
+		A534BE951C0EC9FF00770171 /* GuidePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534BE941C0EC9FF00770171 /* GuidePage.swift */; };
+		A534BE971C0F23CD00770171 /* AddGalleryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534BE961C0F23CD00770171 /* AddGalleryVC.swift */; };
 		A552326A1C0467AB00A0AA2A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A552325D1C04679D00A0AA2A /* Alamofire.framework */; };
 		A552326B1C0467AB00A0AA2A /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A552325D1C04679D00A0AA2A /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A552326F1C0470FE00A0AA2A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A552326E1C0470FE00A0AA2A /* CoreTelephony.framework */; };
@@ -40,7 +42,6 @@
 		A5CEE68F1BD0DC4500AAF122 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5CEE66C1BD0DC1600AAF122 /* Kingfisher.framework */; };
 		A5CEE6901BD0DC4500AAF122 /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5CEE66C1BD0DC1600AAF122 /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A5EB70AD1BE38AD20075D559 /* GalleryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB70AC1BE38AD20075D559 /* GalleryDetailVC.swift */; };
-		A5FD50A41BFC63F80009A346 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5FD50A31BFC63F80009A346 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -204,6 +205,8 @@
 
 /* Begin PBXFileReference section */
 		A5132BBD1BDBB5EA00B4C3DB /* AddItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemVC.swift; sourceTree = "<group>"; };
+		A534BE941C0EC9FF00770171 /* GuidePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GuidePage.swift; path = ViewController/GuidePage.swift; sourceTree = "<group>"; };
+		A534BE961C0F23CD00770171 /* AddGalleryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddGalleryVC.swift; path = ViewController/AddGalleryVC.swift; sourceTree = "<group>"; };
 		A55232521C04679C00A0AA2A /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Libs/Alamofire-3.1.3/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		A552326E1C0470FE00A0AA2A /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		A55232711C04717C00A0AA2A /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libWeChatSDK.a; path = Libs/SDK1.6.2/libWeChatSDK.a; sourceTree = SOURCE_ROOT; };
@@ -241,7 +244,6 @@
 		A5CEE6631BD0DC1600AAF122 /* Kingfisher.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Kingfisher.xcodeproj; path = Libs/Kingfisher/Kingfisher.xcodeproj; sourceTree = "<group>"; };
 		A5CEE6751BD0DC2000AAF122 /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = "Libs/SwiftyJSON-master 3/SwiftyJSON.xcodeproj"; sourceTree = "<group>"; };
 		A5EB70AC1BE38AD20075D559 /* GalleryDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GalleryDetailVC.swift; path = ViewController/GalleryDetailVC.swift; sourceTree = "<group>"; };
-		A5FD50A31BFC63F80009A346 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -323,6 +325,8 @@
 				A5132BBD1BDBB5EA00B4C3DB /* AddItemVC.swift */,
 				A59355101BD672480044E7B3 /* TodayVC.swift */,
 				A593550A1BD669080044E7B3 /* LoginVC.swift */,
+				A534BE941C0EC9FF00770171 /* GuidePage.swift */,
+				A534BE961C0F23CD00770171 /* AddGalleryVC.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -396,7 +400,6 @@
 				A5CEE6271BD0DB3C00AAF122 /* Main.storyboard */,
 				A59354CE1BD5C5320044E7B3 /* SupportingFiles */,
 				A5CEE62F1BD0DB3C00AAF122 /* Info.plist */,
-				A5FD50A31BFC63F80009A346 /* Launch Screen.storyboard */,
 			);
 			path = "hiwu-ios";
 			sourceTree = "<group>";
@@ -653,7 +656,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5FD50A41BFC63F80009A346 /* Launch Screen.storyboard in Resources */,
 				A5CEE62B1BD0DB3C00AAF122 /* Assets.xcassets in Resources */,
 				A5CEE6291BD0DB3C00AAF122 /* Main.storyboard in Resources */,
 			);
@@ -689,7 +691,9 @@
 				A593550D1BD66EA90044E7B3 /* TodayGalleryCT.swift in Sources */,
 				A5BFFD141BE4D2A100D5A866 /* ItemDetailVC.swift in Sources */,
 				A5BFFD571BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift in Sources */,
+				A534BE951C0EC9FF00770171 /* GuidePage.swift in Sources */,
 				A593554B1BD7D1370044E7B3 /* SelfGalleryCT.swift in Sources */,
+				A534BE971C0F23CD00770171 /* AddGalleryVC.swift in Sources */,
 				A5BFFD581BE8E7C800D5A866 /* LoginProtocol.swift in Sources */,
 				A5CEE6241BD0DB3C00AAF122 /* AppDelegate.swift in Sources */,
 				A59354C31BD5C4FD0044E7B3 /* LaunchScreen.swift in Sources */,

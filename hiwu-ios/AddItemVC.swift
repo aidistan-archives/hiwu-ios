@@ -41,29 +41,6 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
     }
     
     @IBOutlet weak var museumName: UIButton!
-    @IBAction func museumSelector(sender: UIButton) {
-        let alert = UIAlertController(title: "选择博物馆", message: "\n\n\n\n\n\n\n\n\n", preferredStyle: UIAlertControllerStyle.ActionSheet)
-        alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: nil))
-        alert.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "添加博物馆", style: UIAlertActionStyle.Default, handler: {sender in
-            let alert1 = UIAlertController(title: "添加博物馆", message: "请输入博物馆的名字", preferredStyle: UIAlertControllerStyle.Alert)
-            alert1.addTextFieldWithConfigurationHandler(nil)
-            alert1.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil))
-            alert1.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: {(sender) in
-                self.museumName.setTitle(alert1.textFields![0].text, forState: UIControlState.Normal)
-                let x = globalHiwuUser.selfMuseum!["galleries"][0]
-                print(x)
-            }))
-            
-            self.navigationController?.presentViewController(alert1, animated: true, completion: nil)
-        }))
-        let picker = UIPickerView(frame: CGRect(x: 30, y: 40, width: 300, height: 150));
-        picker.backgroundColor = UIColor.brownColor()
-        picker.delegate = self
-        alert.view.addSubview(picker)
-        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
-        
-    }
     @IBOutlet weak var itemName: UITextField!
     @IBOutlet weak var itemDescription: UITextView!
     @IBOutlet weak var isPublic: UISwitch!

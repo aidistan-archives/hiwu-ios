@@ -53,9 +53,10 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
         galleryImage.clipsToBounds = true
         galleryImage.kf_setImageWithURL(NSURL(string: globalHiwuUser.todayMuseum![self.location]["gallery"]["hiwuUser"]["avatar"].string!)!)
         let galleryNameLabel = cell.viewWithTag(2) as! UILabel
-        galleryNameLabel.text = globalHiwuUser.todayMuseum![self.location]["gallery"]["name"].string!
-        let gallerDescription = cell.viewWithTag(3) as! UILabel
-        gallerDescription.text = globalHiwuUser.todayMuseum![self.location]["gallery"]["description"].string!
+        let nickName = globalHiwuUser.todayMuseum![self.location]["gallery"]["hiwuUser"]["nickname"].string!
+        galleryNameLabel.text = nickName + " ⎡" + globalHiwuUser.todayMuseum![self.location]["gallery"]["name"].string! + " ⎦"
+//        let gallerDescription = cell.viewWithTag(3) as! UILabel
+//        gallerDescription.text = globalHiwuUser.todayMuseum![self.location]["gallery"]["description"].string!
         let galleryItemNumLabel = cell.viewWithTag(4) as! UILabel
         galleryItemNumLabel.text = String(globalHiwuUser.todayMuseum![self.location]["gallery"]["items"].count)
         let gesture = UITapGestureRecognizer(target: self, action: "getGalleryDetail:")

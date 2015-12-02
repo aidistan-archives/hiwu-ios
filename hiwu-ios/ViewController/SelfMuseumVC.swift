@@ -41,6 +41,10 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             
         }
     }
+    @IBAction func addGallery(sender: UIButton) {
+        let addGallery = self.storyboard?.instantiateViewControllerWithIdentifier("AddGalleryVC") as! AddGalleryVC
+        self.navigationController?.pushViewController(addGallery, animated: true)
+    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         self.tableCellLocation = indexPath.row - 1
@@ -48,19 +52,18 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             let cell = tableView.dequeueReusableCellWithIdentifier("SelfTitle")! as UITableViewCell
             let userAvatar = cell.viewWithTag(1) as! UIImageView
             let userNickname = cell.viewWithTag(2) as! UILabel
-            let galleryNum = cell.viewWithTag(3) as! UILabel
-            let itemNum = cell.viewWithTag(4) as! UILabel
+            let museumInfo = cell.viewWithTag(3) as! UILabel
+
             let selfMuseum = globalHiwuUser.selfMuseum
             userAvatar.kf_setImageWithURL(NSURL(string: selfMuseum!["avatar"].string!)!)
             userAvatar.layer.cornerRadius = userAvatar.frame.height/2
             userAvatar.clipsToBounds = true
             userNickname.text = selfMuseum!["nickname"].string!
-            galleryNum.text = String(selfMuseum!["galleries"].count)
+            museumInfo.text = String(selfMuseum!["galleries"].count) + "长廊 |"
             var sum = 0
             for(var i=0;i<selfMuseum!["galleries"].count;i++ ){
                 sum += selfMuseum!["galleries"][i]["items"].count
             }
-            itemNum.text = String(sum)
             return cell
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier("SelfGalleryCell")! as UITableViewCell

@@ -18,23 +18,15 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
         print(cache.calculateDiskCacheSizeWithCompletionHandler{(size)->() in
             print(size)
             })
-//        AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: nil)
-//        
-//        let camera = UIImagePickerController()
-//        camera.sourceType  = UIImagePickerControllerSourceType.SavedPhotosAlbum
-//        let alert1 = UIAlertController(title: "false", message: "no camera", preferredStyle: UIAlertControllerStyle.Alert)
-//        alert1.addAction(UIAlertAction(title: "quxiao", style: UIAlertActionStyle.Cancel, handler: nil))
-//        //            self.presentViewController(alert1, animated: true, completion: nil)
-//        
-//        camera.delegate = self
-//        self.presentViewController(camera, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
     }
     func imagePickerControllerDidCancel(picker: UIImagePickerController){

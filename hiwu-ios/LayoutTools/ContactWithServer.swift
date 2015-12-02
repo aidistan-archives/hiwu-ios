@@ -187,6 +187,15 @@ class ContactWithServer{
         }
         
     }
+    
+    func postGallery(name:String!,despcription:String!,isPublic:Bool!,userId:Int!){
+        let url = ApiManager.postGallery1 + String(userId) + ApiManager.postGallery2 + globalHiwuUser.hiwuToken
+        Alamofire.request(.POST, url, parameters: ["name":name,"description":despcription,"public":isPublic]).responseJSON{response in
+            print(response.result.value!)
+        
+        }
+        
+    }
 
     
 }

@@ -68,31 +68,32 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return globalHiwuUser.todayMuseum!.count+1
+        return globalHiwuUser.todayMuseum!.count
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if(indexPath.row == 0){
-            return 70
-        }else{
-            return 450
-        }
+//        if(indexPath.row == 0){
+//            return 70
+//        }else{
+//            return 450
+//        }
+        return 450
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        if (indexPath.row == 0){
-            let cell = tableView.dequeueReusableCellWithIdentifier("TodayTitle")! as UITableViewCell
-            return cell
-            
-        }else{
+//        if (indexPath.row == 0){
+//            let cell = tableView.dequeueReusableCellWithIdentifier("TodayTitle")! as UITableViewCell
+//            return cell
+//            
+//        }else{
             let cell = tableView.dequeueReusableCellWithIdentifier("TodayGalleryCell")! as UITableViewCell
             let collection = cell.viewWithTag(1) as! TodayGalleryCT
-            collection.location = indexPath.row-1
+            collection.location = indexPath.row
             collection.superVC = self
             collection.delegate = collection
             collection.dataSource = collection
             collection.reloadData()
             return cell
-        }
+//        }
         
     }
     
@@ -134,7 +135,9 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     func getUserInfoReady(){
         self.contactor?.getSelfMuseum()
     }
-    func getUserInfoFailed(){}
+    func getUserInfoFailed(){
+        }
+    
     func getSelfMuseunReady() {
         
     }

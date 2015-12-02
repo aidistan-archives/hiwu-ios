@@ -59,6 +59,10 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         }
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         if(indexPath.row == 0){
             let cell = tableView.dequeueReusableCellWithIdentifier("GalleryTitle")! as UITableViewCell

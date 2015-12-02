@@ -28,11 +28,18 @@ class LaunchScreen: UIViewController,GetUserInfoReadyProtocol,GetTodayInfoReadyP
         })
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     func getTodayReady() {
         if(globalHiwuUser.todayMuseum != nil){
-            self.presentViewController((self.storyboard?.instantiateViewControllerWithIdentifier("MainNavigation"))!, animated: true, completion: nil)
-            print("get ready")
-        }
+            let main = self.storyboard?.instantiateViewControllerWithIdentifier("MainNavigation") as! UINavigationController
+            print("get ready in push")
+            self.presentViewController(main, animated: true, completion: {
+//                let today = self.storyboard?.instantiateViewControllerWithIdentifier("TodayVC") as! TodayVC
+//                main.pushViewController(today, animated: true)
+            })        }
         else{
           
         }
