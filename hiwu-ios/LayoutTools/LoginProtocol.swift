@@ -9,7 +9,6 @@
 //  登录回调函数，登陆成功后进行跳转，失败进行提示
 
 import Foundation
-import SwiftyJSON
 
 public protocol LoginProtocol{
 

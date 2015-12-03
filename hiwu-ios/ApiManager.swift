@@ -23,4 +23,6 @@ class ApiManager{
     static let deleteItem2 = "?access_token="
     static let postGallery1 = "http://hiwu.ren:3010/api/HiwuUsers/"
     static let postGallery2 = "/galleries?access_token="
+    static let getGalleryItems1 = "http://hiwu.ren:3010/api/Galleries/"
+    static let getGalleryItems2 = "?filter=%7B%22include%22%3A%7B%22items%22%3A%5B%22photos%22%5D%7D%7D&access_token="
 }

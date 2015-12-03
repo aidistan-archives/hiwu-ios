@@ -18,6 +18,7 @@ class ContactWithServer{
     var selfMuseumReady:GetSelfMuseumReadyProtocol?
     var todayInfoReady:GetTodayInfoReadyProtocol?
     var itemInfoReady:GetItemInfoReadyProtocol?
+    var ready:ReadyProtocol?
     let defaults = NSUserDefaults.standardUserDefaults()
     
     static func getNewTokenWithDefaults(){
@@ -155,7 +156,6 @@ class ContactWithServer{
             ]).responseJSON{response in
             if(response.result.value != nil){
                 self.postPhotoToItem(JSON(response.result.value!)["id"].int!, dataUrl: dataUrl)
-                print(response.result.value)
             }
         }
         
@@ -170,8 +170,9 @@ class ContactWithServer{
                 switch encodingResult {
                 case .Success(let upload, _, _):
                     upload.responseJSON { response in
-                        print("cun")
-                        debugPrint(response.result.error)
+                        if(response.result.error == nil){
+                            self.ready?.Ready()
+                        }
                     }
                 case .Failure(let encodingError):
                     print("error")
@@ -190,10 +191,25 @@ class ContactWithServer{
     func postGallery(name:String!,despcription:String!,isPublic:Bool!,userId:Int!){
         let url = ApiManager.postGallery1 + String(userId) + ApiManager.postGallery2 + globalHiwuUser.hiwuToken
         Alamofire.request(.POST, url, parameters: ["name":name,"description":despcription,"public":isPublic]).responseJSON{response in
-            print(response.result.value!)
-        
+            if(response.result.value != nil)
+            {
+                self.ready?.Ready()
+                
+            }
         }
         
+    }
+    
+    func getGalleryItems(id:Int,complete:(gallery:JSON?)->()?){
+        let url = ApiManager.getGalleryItems1 + String(id) + ApiManager.getGalleryItems2 + globalHiwuUser.hiwuToken
+        print(url)
+        Alamofire.request(.GET, url).responseJSON{response in
+            if(response.result.value != nil){
+                complete(gallery: JSON(response.result.value!))
+            }else{
+                complete(gallery: nil)
+            }
+        }
     }
 
     

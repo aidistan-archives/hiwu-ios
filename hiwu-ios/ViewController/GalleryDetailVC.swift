@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 import Kingfisher
 
-class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelegate,GetItemInfoReadyProtocol,GetSelfMuseumReadyProtocol{
+class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelegate,GetItemInfoReadyProtocol,GetSelfMuseumReadyProtocol,GetTodayInfoReadyProtocol{
     
     var isMine = false
     var gallery:JSON?
@@ -27,11 +27,16 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     }
     
     @IBAction func toAddItem(sender: UIButton) {
+        
+        let toAdd = self.storyboard?.instantiateViewControllerWithIdentifier("AddItemVC") as! AddItemVC
+        toAdd.galleryId = self.gallery!["id"].int!
+        self.navigationController?.pushViewController(toAdd, animated: true)
     }
     
     @IBOutlet weak var addItemButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("did load")
         self.galleryDetails.delegate = self
         self.galleryDetails.dataSource = self
         self.galleryDetails.reloadData()
@@ -40,7 +45,25 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         }else{
             self.addItemButton.hidden = true
         }
-
+        
+        self.galleryDetails.hidden = true
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        print("did appear")
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        print("will appear")
+        self.galleryDetails.hidden = true
+        self.contactor.todayInfoReady = self
+        self.contactor.selfMuseumReady = self
+        if(self.isMine == true){
+            self.contactor.getSelfMuseum()
+        }else{
+            self.contactor.getTodayInfo()
+        }
     }
     
     func setInfo(gallery:JSON,userAvatar:String?,userName:String){
@@ -49,7 +72,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         self.userName = userName
         
     }
-    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return self.gallery!["items"].count+1
@@ -152,14 +174,32 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     }
     
     func getItemInfoFailed() {
-        
     }
     
     func getSelfMuseunReady() {
+        let ga = idFinder.findFromGallery(self.gallery!["id"].int!, gallery: globalHiwuUser.selfMuseum!["galleries"])
+        if(ga != nil){
+            self.gallery = ga
+        }
+        self.galleryDetails.reloadData()
+        self.galleryDetails.hidden = false
     }
     
     func getSelfMuseunFailed() {
         
+    }
+    func getTodayFailed() {
+        
+    }
+    func getTodayReady() {
+        let ga = idFinder.findFromGallery(self.gallery!["id"].int!, gallery: globalHiwuUser.todayMuseum!["gallery"])
+        if(ga != nil){
+            self.gallery = ga
+        }
+        print("get today ready ga")
+        self.galleryDetails.reloadData()
+        self.galleryDetails.hidden = false
+       
     }
 
 }

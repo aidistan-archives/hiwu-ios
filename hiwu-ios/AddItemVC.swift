@@ -12,7 +12,7 @@ import Kingfisher
 import SwiftyJSON
 import Alamofire
 
-class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextViewDelegate,UITextFieldDelegate{
+class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextViewDelegate,UITextFieldDelegate,ReadyProtocol{
     var galleryId = 0
     @IBOutlet weak var itemImage: UIImageView!
     
@@ -25,6 +25,7 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
     @IBOutlet weak var time: UITextField!
 
     @IBOutlet weak var city: UITextField!
+    @IBOutlet weak var loading: UIActivityIndicatorView!
     
     func takePicture(sender: UITapGestureRecognizer) {
         print("takepicture")
@@ -52,10 +53,11 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
             self.presentViewController(alert, animated: true, completion: nil)
         }else{
         let contactor = ContactWithServer()
+            contactor.ready = self
         let jpgUrl = NSHomeDirectory().stringByAppendingString("/tmp/").stringByAppendingString("tmp.jpg")
-//            stringByAppendingString("/Documents/"+String(itemName.text!) + ".jpg")
             UIImageJPEGRepresentation(itemImage.image!, 1.0)?.writeToFile(jpgUrl, atomically: false)
-            contactor.postItem(galleryId, itemName: itemName.text!, itemDescription: itemDescription.text, year: Int(self.time.text!)!, city: self.city.text!, dataUrl: NSURL(fileURLWithPath: jpgUrl), isPublic: isPublic.on)
+            contactor.postItem(galleryId, itemName: itemName.text!, itemDescription: itemDescription.text, year: Int(self.time.text!)!, city: self.city.text!, dataUrl: NSURL(fileURLWithPath: jpgUrl), isPublic: !isPublic.on)
+            self.loading.startAnimating()
             
         }
     }
@@ -76,7 +78,6 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
         gestureBack.edges = UIRectEdge.Left
         self.view.addGestureRecognizer(gestureBack)
     }
-    
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int{
         return 1
@@ -189,7 +190,14 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
+    
+    func Ready() {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
 
+    func Failed() {
+        
+    }
 
     
     

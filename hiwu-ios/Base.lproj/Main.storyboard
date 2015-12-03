@@ -176,7 +176,7 @@
                                                     <rect key="frame" x="399" y="102" width="130" height="20.5"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -368,7 +368,7 @@
         <!--Add ItemVC-->
         <scene sceneID="72B-vg-qox">
             <objects>
-                <viewController id="gAa-Wn-61n" customClass="AddItemVC" customModule="hiwu_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddItemVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gAa-Wn-61n" customClass="AddItemVC" customModule="hiwu_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aGn-6P-Cco"/>
                         <viewControllerLayoutGuide type="bottom" id="Lty-L8-gWH"/>
@@ -467,10 +467,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9XD-To-vrm">
-                                <rect key="frame" x="526" y="54" width="51" height="31"/>
-                                <animations/>
-                            </switch>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="248" text="在这里添加物品描述" translatesAutoresizingMaskIntoConstraints="NO" id="uJb-IK-B9y">
                                 <rect key="frame" x="25" y="310" width="550" height="243"/>
                                 <animations/>
@@ -488,6 +484,14 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Zxk-Zs-5LV">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                                <animations/>
+                            </activityIndicatorView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9XD-To-vrm">
+                                <rect key="frame" x="526" y="54" width="51" height="31"/>
+                                <animations/>
+                            </switch>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -497,6 +501,8 @@
                             <constraint firstItem="4AI-ar-OO5" firstAttribute="trailing" secondItem="iPq-Br-zPp" secondAttribute="trailing" id="7R0-f5-FKD"/>
                             <constraint firstItem="9XD-To-vrm" firstAttribute="bottom" secondItem="W9k-tt-1Y5" secondAttribute="bottom" id="7cf-Ge-9AN"/>
                             <constraint firstItem="lH0-3U-hyA" firstAttribute="trailing" secondItem="iPq-Br-zPp" secondAttribute="trailing" id="Ah5-Rc-JYj"/>
+                            <constraint firstItem="Zxk-Zs-5LV" firstAttribute="centerX" secondItem="AtS-dg-MuB" secondAttribute="centerX" id="DAQ-zr-PEc"/>
+                            <constraint firstItem="Zxk-Zs-5LV" firstAttribute="centerY" secondItem="AtS-dg-MuB" secondAttribute="centerY" id="FIe-fJ-0Td"/>
                             <constraint firstItem="4AI-ar-OO5" firstAttribute="top" secondItem="bjk-xd-skq" secondAttribute="bottom" constant="16" id="Hbt-EK-pWZ"/>
                             <constraint firstItem="YwY-5J-h1K" firstAttribute="leading" secondItem="uJb-IK-B9y" secondAttribute="leading" id="J18-4I-ABl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YwY-5J-h1K" secondAttribute="trailing" constant="15" id="PoO-I1-CwL"/>
@@ -553,6 +559,7 @@
                         <outlet property="itemDescription" destination="uJb-IK-B9y" id="0bJ-oI-Js9"/>
                         <outlet property="itemImage" destination="iPq-Br-zPp" id="lYo-5O-AYe"/>
                         <outlet property="itemName" destination="lH0-3U-hyA" id="jmv-CN-niq"/>
+                        <outlet property="loading" destination="Zxk-Zs-5LV" id="QWf-4h-BgK"/>
                         <outlet property="time" destination="bjk-xd-skq" id="FCt-Hm-eph"/>
                     </connections>
                 </viewController>
@@ -1150,7 +1157,7 @@
                                     <constraint firstAttribute="height" constant="30" id="jLo-We-hp1"/>
                                 </constraints>
                                 <state key="normal" title="创建账号">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -1288,7 +1295,7 @@
                                     <constraint firstAttribute="height" constant="1" id="AvE-sN-x1R"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新建长廊" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GHx-li-Wqj">
@@ -1298,7 +1305,7 @@
                                     <constraint firstAttribute="width" constant="73" id="xEn-He-nTx"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="物品名称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Za-ml-RbU">
