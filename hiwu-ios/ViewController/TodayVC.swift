@@ -9,7 +9,8 @@
 import UIKit
 
 class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,LoginProtocol,GetUserInfoReadyProtocol,GetSelfMuseumReadyProtocol {
-    var contactor:ContactWithServer?
+    
+    var contactor = ContactWithServer()
     var isLoading = false
     
     @IBOutlet weak var refreshing: UIActivityIndicatorView!
@@ -22,7 +23,9 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
         todayGalleryDisplay.dataSource = self
         todayGalleryDisplay.delegate = self
         todayGalleryDisplay.reloadData()
-        
+        self.contactor.selfMuseumReady = self
+        self.contactor.userInfoReady = self
+        self.contactor.loginSuccess = self
     }
     override  func viewWillAppear(animated: Bool) {
         self.todayGalleryDisplay.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
@@ -37,9 +40,7 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     }
     
     @IBAction func enterToSelfMuseum(sender: UIButton) {
-        self.contactor = ContactWithServer()
-        self.contactor!.loginSuccess = self
-        self.contactor!.selfMuseumReady = self
+        print("enter to selfmuseum")
         let nowDate = NSDate(timeIntervalSinceNow: 0)
         let defaults = NSUserDefaults.standardUserDefaults()
         let deadline = defaults.doubleForKey("deadline")
@@ -56,10 +57,11 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
                 print("i'm here")
             
             }else{
-                self.contactor?.getUserInfoFirst()
+            self.contactor.getUserInfoFirst()
+            print("fresh")
             }
         
-            }
+    }
     
     func timeOut(){
         let alert1 = UIAlertController(title: "timeout", message: "请检查网络", preferredStyle: UIAlertControllerStyle.Alert)
@@ -127,22 +129,31 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     func loginFailed(){}
     
     func didGetSelfMuseum(){
-        self.navigationController!.performSegueWithIdentifier("ToSelfMuseumSegue", sender: self)
+        
     }
     
     func getSelfMuseumFailed(){
     }
+    
     func getUserInfoReady(){
-        self.contactor?.getSelfMuseum()
+        
+        print("ready in today in user info")
+        print(globalHiwuUser.hiwuToken)
+        self.contactor.getSelfMuseum()
     }
     func getUserInfoFailed(){
+        print("get user info failed")
         }
     
     func getSelfMuseunReady() {
+        print("get self museum ready in today")
+        let selfMuseum = self.storyboard?.instantiateViewControllerWithIdentifier("SelfMuseum") as! SelfMuseumVC
         
+        self.navigationController?.pushViewController(selfMuseum, animated: true)
     }
+    
     func getSelfMuseunFailed() {
-        
+        print("get self museum failed")
     }
 
 }

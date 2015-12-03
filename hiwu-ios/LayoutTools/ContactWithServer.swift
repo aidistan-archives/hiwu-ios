@@ -57,39 +57,39 @@ class ContactWithServer{
     func getUserInfoFirst(){
         globalHiwuUser.userId = self.defaults.integerForKey("userId")
         let tmpToken = self.defaults.valueForKey("token") as? String
-        
         let tmpUserName = self.defaults.valueForKey("userName") as? String
-        self.userInfoReady?.getUserInfoReady()
         if(tmpToken != nil && tmpUserName != nil){
             globalHiwuUser.hiwuToken = tmpToken!
             globalHiwuUser.userName = tmpUserName!
+            self.userInfoReady?.getUserInfoReady()
+            print("user Info First Ready in contactor")
         }
-        userInfoReady?.getUserInfoReady()
+        
         
     }
     
     func getSelfMuseum(){
         let url = ApiManager.getAllSelfGallery1_2 + String(globalHiwuUser.userId) + ApiManager.getAllSelfGallery2_2 + globalHiwuUser.hiwuToken
-        Alamofire.request(.GET, NSURL(string: url)!).responseJSON{
-        response in
+        Alamofire.request(.GET, url).responseJSON{response in
+            print("contact hiwu token")
+            print(globalHiwuUser.hiwuToken)
+            print(response .request?.URLString)
             if(response.result.value != nil){
                 print("get selfMuseum")
-                print(response.request)
                 globalHiwuUser.selfMuseum = JSON(response.result.value!)
                 let tmpData:NSData = NSKeyedArchiver.archivedDataWithRootObject(response.result.value!)
                 self.defaults.setObject(tmpData, forKey: "selfMuseum")
                 self.defaults.synchronize()
-                self.loginSuccess?.didGetSelfMuseum()
                 self.selfMuseumReady?.getSelfMuseunReady()
-                
+                self.loginSuccess?.didGetSelfMuseum()
+                print("selfMuseumReady network")
             }else{
                 if(self.defaults.valueForKey("selfMuseum") != nil){
                     globalHiwuUser.selfMuseum = JSON(NSKeyedUnarchiver.unarchiveObjectWithData(self.defaults.objectForKey("selfMuseum") as! NSData)!)
-                     self.loginSuccess?.didGetSelfMuseum()
                     self.selfMuseumReady?.getSelfMuseunReady()
-                    
+                    print("selfMuseumReady local")
+                    self.loginSuccess?.didGetSelfMuseum()
                 }else{
-                    self.loginSuccess?.getSelfMuseumFailed()
                 }
             }
         }
@@ -102,7 +102,6 @@ class ContactWithServer{
         Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
             if(response.result.value != nil){
                 print("get item info")
-                print(NSDate(timeIntervalSinceNow: 0))
                 globalHiwuUser.todayMuseum = JSON(response.result.value!)
                 let tmpData:NSData = NSKeyedArchiver.archivedDataWithRootObject(response.result.value!)
                 self.defaults.setObject(tmpData, forKey: "todayMuseum")

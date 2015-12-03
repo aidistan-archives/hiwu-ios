@@ -19,8 +19,8 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         selfGalleryDisplay.delegate = self
         selfGalleryDisplay.dataSource = self
         selfGalleryDisplay.reloadData()
-        let gesture = UISwipeGestureRecognizer(target: self, action: "back")
-        gesture.direction = UISwipeGestureRecognizerDirection.Right
+        let gesture = UIScreenEdgePanGestureRecognizer(target: self, action: "back")
+        gesture.edges = UIRectEdge.Left
         self.view.addGestureRecognizer(gesture)
     }
     
@@ -53,8 +53,9 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             let userAvatar = cell.viewWithTag(1) as! UIImageView
             let userNickname = cell.viewWithTag(2) as! UILabel
             let museumInfo = cell.viewWithTag(3) as! UILabel
-
             let selfMuseum = globalHiwuUser.selfMuseum
+            print(globalHiwuUser.hiwuToken)
+            print(selfMuseum)
             userAvatar.kf_setImageWithURL(NSURL(string: selfMuseum!["avatar"].string!)!)
             userAvatar.layer.cornerRadius = userAvatar.frame.height/2
             userAvatar.clipsToBounds = true

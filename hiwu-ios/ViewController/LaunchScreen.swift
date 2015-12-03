@@ -8,15 +8,14 @@
 
 import UIKit
 
-class LaunchScreen: UIViewController,GetUserInfoReadyProtocol,GetTodayInfoReadyProtocol{
+class LaunchScreen: UIViewController,GetTodayInfoReadyProtocol{
     
     var contactor:ContactWithServer?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.contactor = ContactWithServer()
         self.contactor!.todayInfoReady = self
-        self.contactor!.userInfoReady = self
-        self.contactor!.getUserInfoFirst()
+        self.contactor?.getTodayInfo()
         let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
         dispatch_async(queue, {
             sleep(5)
@@ -49,15 +48,6 @@ class LaunchScreen: UIViewController,GetUserInfoReadyProtocol,GetTodayInfoReadyP
         
     }
     
-    func getUserInfoFailed() {
-        
-    }
-    
-    func getUserInfoReady() {
-        print("getUserinfoready in launch")
-        self.contactor?.getTodayInfo()
-        
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
