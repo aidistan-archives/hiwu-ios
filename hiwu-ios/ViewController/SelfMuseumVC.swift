@@ -79,5 +79,8 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         }
             }
 
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
 
 }

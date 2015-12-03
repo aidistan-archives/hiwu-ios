@@ -20,6 +20,9 @@ class AddGalleryVC: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         self.view.addGestureRecognizer(gest)
         self.galleryDespcription.delegate = self
         self.galleryName.delegate = self
+        let gestureBack = UIScreenEdgePanGestureRecognizer(target: self, action: "back")
+        gestureBack.edges = UIRectEdge.Left
+        self.view.addGestureRecognizer(gestureBack)
     }
 
     @IBAction func addOk(sender: UIButton) {
@@ -85,6 +88,14 @@ class AddGalleryVC: UIViewController,UITextFieldDelegate,UITextViewDelegate {
     func endTheEditingOfTextView(){
         self.galleryName.endEditing(true)
         self.galleryDespcription.endEditing(true)
+    }
+    
+    func back(){
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
 
 }

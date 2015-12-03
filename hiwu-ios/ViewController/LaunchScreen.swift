@@ -31,6 +31,7 @@ class LaunchScreen: UIViewController,GetTodayInfoReadyProtocol{
         return true
     }
     
+    
     func getTodayReady() {
         if(globalHiwuUser.todayMuseum != nil){
             let main = self.storyboard?.instantiateViewControllerWithIdentifier("MainNavigation") as! UINavigationController

@@ -126,7 +126,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iOp-Ez-aqM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-561" y="-7"/>
+            <point key="canvasLocation" x="-497" y="-6"/>
         </scene>
         <!--SelfMuseum-->
         <scene sceneID="eJw-a1-BHI">
@@ -140,8 +140,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="130" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="hPo-Ic-qPh">
-                                <rect key="frame" x="0.0" y="20" width="600" height="600"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="130" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="hPo-Ic-qPh">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="620"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -762,6 +762,9 @@
                                     <constraint firstAttribute="width" constant="60" id="Dnn-wI-F8X"/>
                                 </constraints>
                                 <state key="normal" title="add" image="add"/>
+                                <connections>
+                                    <action selector="toAddItem:" destination="LeQ-TL-ZwP" eventType="touchUpInside" id="8n6-1r-ap7"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -797,6 +800,7 @@
                     </navigationItem>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="addItemButton" destination="eT7-VS-vbv" id="LJI-N5-zoj"/>
                         <outlet property="galleryDetails" destination="9cD-8b-MJv" id="QVr-TX-uao"/>
                     </connections>
                 </viewController>

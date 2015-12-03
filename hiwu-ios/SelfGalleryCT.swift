@@ -69,7 +69,7 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
     
     func getGalleryDetail(sender:AnyObject){
         let galleryDetail = self.superVC?.storyboard?.instantiateViewControllerWithIdentifier("GalleryDetailVC") as! GalleryDetailVC
-        print(globalHiwuUser.selfMuseum)
+        galleryDetail.isMine = true
         galleryDetail.setInfo(globalHiwuUser.selfMuseum!["galleries"][self.location], userAvatar: globalHiwuUser.selfMuseum!["avatar"].string!, userName: globalHiwuUser.selfMuseum!["nickname"].string!)
         galleryDetail.location = self.location
         self.superVC?.showViewController(galleryDetail, sender: self)

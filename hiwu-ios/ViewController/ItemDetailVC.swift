@@ -123,5 +123,9 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
         super.didReceiveMemoryWarning()
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
 
 }

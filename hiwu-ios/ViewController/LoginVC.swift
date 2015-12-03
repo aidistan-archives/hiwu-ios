@@ -63,6 +63,9 @@ class LoginVC: UIViewController,LoginProtocol {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
 
     
 

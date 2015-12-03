@@ -155,5 +155,9 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     func getSelfMuseunFailed() {
         print("get self museum failed")
     }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
 
 }

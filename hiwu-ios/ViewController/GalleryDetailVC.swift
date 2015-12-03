@@ -12,6 +12,7 @@ import Kingfisher
 
 class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelegate,GetItemInfoReadyProtocol,GetSelfMuseumReadyProtocol{
     
+    var isMine = false
     var gallery:JSON?
     var userAvatar:String?
     var userName:String?
@@ -25,17 +26,20 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
+    @IBAction func toAddItem(sender: UIButton) {
+    }
+    
+    @IBOutlet weak var addItemButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.galleryDetails.delegate = self
         self.galleryDetails.dataSource = self
         self.galleryDetails.reloadData()
-        print(gallery)
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        if(isMine){
+            self.addItemButton.hidden = false
+        }else{
+            self.addItemButton.hidden = true
+        }
 
     }
     

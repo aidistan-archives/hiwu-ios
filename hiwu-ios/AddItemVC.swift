@@ -72,6 +72,9 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
         self.view.addGestureRecognizer(gest)
         self.time.delegate = self
         self.city.delegate = self
+        let gestureBack = UIScreenEdgePanGestureRecognizer(target: self, action: "back")
+        gestureBack.edges = UIRectEdge.Left
+        self.view.addGestureRecognizer(gestureBack)
     }
     
     
@@ -178,6 +181,15 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
         galleryId = globalHiwuUser.selfMuseum!["galleries"][row]["id"].int!
         print(galleryId)
     }
+    
+    func back(){
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+
 
     
     
