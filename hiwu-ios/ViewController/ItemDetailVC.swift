@@ -24,6 +24,8 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     @IBOutlet weak var ensureCommentButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("in item detail")
+        print(self.item)
         self.addComment.delegate = self
         self.itemDetailList.estimatedRowHeight = 60
         self.itemDetailList.rowHeight = UITableViewAutomaticDimension
@@ -45,7 +47,6 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
             case 0:
                 let cell = tableView.dequeueReusableCellWithIdentifier("ItemImage")
                 let itemImage = cell?.viewWithTag(1) as! UIImageView
-                print(self.item!["photos"][0]["url"].string)
                 if(self.item!["photos"][0]["url"].string! == ""){
                     itemImage.image = UIImage(named: "add")
                 }else{

@@ -12,7 +12,8 @@ import Kingfisher
 import SwiftyJSON
 import Alamofire
 
-class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextViewDelegate,UITextFieldDelegate,ReadyProtocol{
+class AddItemVC: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextViewDelegate,UITextFieldDelegate,ReadyProtocol{
+    var image:UIImage?
     var galleryId = 0
     @IBOutlet weak var itemImage: UIImageView!
     
@@ -64,6 +65,9 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if(self.image != nil){
+            self.itemImage.image = self.image
+        }
         galleryId = globalHiwuUser.selfMuseum!["galleries"][0]["id"].int!
         let gesture = UITapGestureRecognizer(target: self, action: "takePicture:")
         itemImage.addGestureRecognizer(gesture)
@@ -83,14 +87,6 @@ class AddItemVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UI
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
-        return globalHiwuUser.selfMuseum!["galleries"].count
-        
-    }
-    
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{
-        return globalHiwuUser.selfMuseum!["galleries"][row]["name"].string!
-    }
     
     func callCamera(){
         AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: nil)

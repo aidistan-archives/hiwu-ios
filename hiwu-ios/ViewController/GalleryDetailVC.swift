@@ -9,8 +9,9 @@
 import UIKit
 import SwiftyJSON
 import Kingfisher
+import AVFoundation
 
-class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelegate,GetItemInfoReadyProtocol,GetSelfMuseumReadyProtocol,GetTodayInfoReadyProtocol{
+class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,GetItemInfoReadyProtocol,GetSelfMuseumReadyProtocol,GetTodayInfoReadyProtocol{
     
     var isMine = false
     var gallery:JSON?
@@ -19,6 +20,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     let defaults = NSUserDefaults.standardUserDefaults()
     let contactor = ContactWithServer()
     var location = -1
+    var selfDelete = 0
     
     @IBOutlet weak var galleryDetails: UITableView!
     
@@ -26,11 +28,18 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
-    @IBAction func toAddItem(sender: UIButton) {
+    @IBAction func toAddItem(sender: UIButton)
+    {
         
-        let toAdd = self.storyboard?.instantiateViewControllerWithIdentifier("AddItemVC") as! AddItemVC
-        toAdd.galleryId = self.gallery!["id"].int!
-        self.navigationController?.pushViewController(toAdd, animated: true)
+        let alert = UIAlertController(title: "选择照片来源", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        alert.addAction(UIAlertAction(title: "从相机", style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction!) in
+            self.callCamera()
+        }))
+        alert.addAction(UIAlertAction(title: "从相册", style: UIAlertActionStyle.Default, handler: {(action: UIAlertAction!) in
+            self.callPhotoLibrary()
+        }))
+        alert.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     @IBOutlet weak var addItemButton: UIButton!
@@ -42,11 +51,11 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         self.galleryDetails.reloadData()
         if(isMine){
             self.addItemButton.hidden = false
+            
         }else{
+            self.galleryDetails.setEditing(false, animated: true)
             self.addItemButton.hidden = true
         }
-        
-        self.galleryDetails.hidden = true
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -54,13 +63,16 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     }
     
     override func viewWillAppear(animated: Bool) {
-        
-        print("will appear")
-        self.galleryDetails.hidden = true
         self.contactor.todayInfoReady = self
         self.contactor.selfMuseumReady = self
+        self.refresh()
+        print("will appear")
+
+    }
+    
+    func refresh(){
         if(self.isMine == true){
-            self.contactor.getSelfMuseum()
+            self.contactor.getSelfMuseum(nil)
         }else{
             self.contactor.getTodayInfo()
         }
@@ -132,15 +144,18 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         }
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        contactor.superGalleryDetailVC = self
-//        contactor.deleteItem(self.gallery!["items"][indexPath.row-1]["id"].int!)
-        print("delete")
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if(isMine){
+            return true
+        }else{
+            return false
+        }
     }
     
-    func didDeleteItem(){
-        
-        
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        contactor.superGalleryDetailVC = self
+        contactor.deleteItem(self.gallery!["items"][indexPath.row-1]["id"].int!,complete: nil)
+        print("delete")
     }
     
     func getItemDetail(sender:UITapGestureRecognizer){
@@ -150,26 +165,14 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         let itemId = Int(itemIdLabel.text!)
         print("prepare")
         print(NSDate(timeIntervalSinceNow: 0))
-        let itemIdTextLabel = sender.view?.viewWithTag(2) as! UILabel
-        if(self.defaults.objectForKey("item_" + itemIdTextLabel.text!) != nil){
-                    globalHiwuUser.item = JSON(NSKeyedUnarchiver.unarchiveObjectWithData(self.defaults.objectForKey("item_" + itemIdTextLabel.text!) as! NSData)!)
-            let itemDetail = self.storyboard?.instantiateViewControllerWithIdentifier("ItemDetailVC") as! ItemDetailVC
-            itemDetail.item = globalHiwuUser.item
-            print("prepare for jump")
-            print(NSDate(timeIntervalSinceNow: 0))
-            self.navigationController?.pushViewController(itemDetail, animated: true)
-            
-        }else{
-            print("ask server")
-            contactor.getItemInfo(itemId!)
-        }
+        print("ask server")
+        contactor.getItemInfo(itemId!)
     }
     
     func getItemInfoReady() {
         print(NSDate(timeIntervalSinceNow: 0))
         let itemDetail = self.storyboard?.instantiateViewControllerWithIdentifier("ItemDetailVC") as! ItemDetailVC
         itemDetail.item = globalHiwuUser.item
-        print(NSDate(timeIntervalSinceNow: 0))
         self.navigationController?.pushViewController(itemDetail, animated: true)
     }
     
@@ -182,7 +185,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
             self.gallery = ga
         }
         self.galleryDetails.reloadData()
-        self.galleryDetails.hidden = false
     }
     
     func getSelfMuseunFailed() {
@@ -199,7 +201,38 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         print("get today ready ga")
         self.galleryDetails.reloadData()
         self.galleryDetails.hidden = false
-       
     }
-
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
+        let toAdd = self.storyboard?.instantiateViewControllerWithIdentifier("AddItemVC") as! AddItemVC
+        toAdd.galleryId = self.gallery!["id"].int!
+        toAdd.image = info[UIImagePickerControllerEditedImage] as? UIImage
+        
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.pushViewController(toAdd, animated: true)
+    
+    }
+    func imagePickerControllerDidCancel(picker: UIImagePickerController){
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
+    func callCamera(){
+        AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: nil)
+        let camera = UIImagePickerController()
+        camera.delegate = self
+        camera.sourceType = UIImagePickerControllerSourceType.Camera
+        camera.showsCameraControls = true
+        camera.allowsEditing = true
+        self.presentViewController(camera, animated: true, completion: nil)
+        
+    }
+    
+    func callPhotoLibrary(){
+        let camera = UIImagePickerController()
+        camera.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        camera.delegate = self
+        camera.allowsEditing = true
+        self.presentViewController(camera, animated: true, completion: nil)
+    }
 }

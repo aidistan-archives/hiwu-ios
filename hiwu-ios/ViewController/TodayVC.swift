@@ -139,7 +139,7 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
         
         print("ready in today in user info")
         print(globalHiwuUser.hiwuToken)
-        self.contactor.getSelfMuseum()
+        self.contactor.getSelfMuseum(nil)
     }
     func getUserInfoFailed(){
         print("get user info failed")

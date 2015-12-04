@@ -377,8 +377,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IFX-3J-bf8">
-                                <rect key="frame" x="469" y="223" width="30" height="30"/>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IFX-3J-bf8">
+                                <rect key="frame" x="469" y="199" width="30" height="30"/>
                                 <animations/>
                                 <state key="normal" title="地点">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -387,8 +387,8 @@
                                     <action selector="locationSelect:" destination="gAa-Wn-61n" eventType="touchUpInside" id="pd6-Vg-kfV"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yu8-HS-Ycf">
-                                <rect key="frame" x="447.5" y="177" width="30" height="30"/>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yu8-HS-Ycf">
+                                <rect key="frame" x="447.5" y="153" width="30" height="30"/>
                                 <animations/>
                                 <state key="normal" title="年份">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -397,7 +397,7 @@
                                     <action selector="timeSelect:" destination="gAa-Wn-61n" eventType="touchUpInside" id="4RA-2j-pYR"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YwY-5J-h1K">
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YwY-5J-h1K">
                                 <rect key="frame" x="25" y="561" width="550" height="34"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.97254901959999995" green="0.85098039219999999" blue="0.16078431369999999" alpha="1" colorSpace="deviceRGB"/>
@@ -418,22 +418,8 @@
                                     <action selector="ok:" destination="gAa-Wn-61n" eventType="touchUpInside" id="0GV-YU-Hnh"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="物品名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lH0-3U-hyA">
-                                <rect key="frame" x="25" y="263" width="550" height="30"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="lH0-3U-hyA" secondAttribute="height" multiplier="55:3" id="7Zt-3Y-C6l"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="7Zt-3Y-C6l"/>
-                                    </mask>
-                                </variation>
-                            </textField>
-                            <imageView contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="comment" translatesAutoresizingMaskIntoConstraints="NO" id="iPq-Br-zPp">
-                                <rect key="frame" x="25" y="54" width="199" height="199"/>
+                            <imageView contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comment" translatesAutoresizingMaskIntoConstraints="NO" id="iPq-Br-zPp">
+                                <rect key="frame" x="25" y="30" width="199" height="199"/>
                                 <animations/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -447,8 +433,8 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2015" borderStyle="roundedRect" placeholder="201505" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bjk-xd-skq">
-                                <rect key="frame" x="504.5" y="177" width="70.5" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2015" borderStyle="roundedRect" placeholder="201505" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bjk-xd-skq">
+                                <rect key="frame" x="504.5" y="153" width="70.5" height="30"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="3lj-pS-GeO"/>
@@ -461,13 +447,13 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="北京" borderStyle="roundedRect" placeholder="北京" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4AI-ar-OO5">
-                                <rect key="frame" x="526" y="223" width="49" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="北京" borderStyle="roundedRect" placeholder="北京" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4AI-ar-OO5">
+                                <rect key="frame" x="526" y="199" width="49" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="248" text="在这里添加物品描述" translatesAutoresizingMaskIntoConstraints="NO" id="uJb-IK-B9y">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="247" misplaced="YES" text="在这里添加物品描述" translatesAutoresizingMaskIntoConstraints="NO" id="uJb-IK-B9y">
                                 <rect key="frame" x="25" y="310" width="550" height="243"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -476,9 +462,14 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="sWU-fR-Rz4"/>
+                                    </mask>
+                                </variation>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="仅自己可见" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W9k-tt-1Y5">
-                                <rect key="frame" x="416" y="64.5" width="85" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="仅自己可见" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W9k-tt-1Y5">
+                                <rect key="frame" x="416" y="40.5" width="85" height="20.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -488,20 +479,36 @@
                                 <rect key="frame" x="290" y="290" width="20" height="20"/>
                                 <animations/>
                             </activityIndicatorView>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9XD-To-vrm">
-                                <rect key="frame" x="526" y="54" width="51" height="31"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9XD-To-vrm">
+                                <rect key="frame" x="526" y="30" width="51" height="31"/>
                                 <animations/>
                             </switch>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="物品名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lH0-3U-hyA">
+                                <rect key="frame" x="25" y="239" width="550" height="54"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="lH0-3U-hyA" secondAttribute="height" multiplier="55:3" id="7Zt-3Y-C6l"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="7Zt-3Y-C6l"/>
+                                    </mask>
+                                </variation>
+                            </textField>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="lH0-3U-hyA" firstAttribute="top" secondItem="iPq-Br-zPp" secondAttribute="bottom" constant="10" id="1nM-NZ-mTO"/>
-                            <constraint firstItem="Lty-L8-gWH" firstAttribute="top" secondItem="lH0-3U-hyA" secondAttribute="bottom" constant="307" id="4SZ-Wi-Hvb"/>
+                            <constraint firstItem="Lty-L8-gWH" firstAttribute="top" secondItem="lH0-3U-hyA" secondAttribute="bottom" constant="307" id="2li-C6-zfw"/>
                             <constraint firstItem="4AI-ar-OO5" firstAttribute="trailing" secondItem="iPq-Br-zPp" secondAttribute="trailing" id="7R0-f5-FKD"/>
+                            <constraint firstItem="Lty-L8-gWH" firstAttribute="top" secondItem="YwY-5J-h1K" secondAttribute="bottom" constant="5" id="7WB-Af-hJi"/>
                             <constraint firstItem="9XD-To-vrm" firstAttribute="bottom" secondItem="W9k-tt-1Y5" secondAttribute="bottom" id="7cf-Ge-9AN"/>
                             <constraint firstItem="lH0-3U-hyA" firstAttribute="trailing" secondItem="iPq-Br-zPp" secondAttribute="trailing" id="Ah5-Rc-JYj"/>
                             <constraint firstItem="Zxk-Zs-5LV" firstAttribute="centerX" secondItem="AtS-dg-MuB" secondAttribute="centerX" id="DAQ-zr-PEc"/>
+                            <constraint firstItem="iPq-Br-zPp" firstAttribute="top" secondItem="aGn-6P-Cco" secondAttribute="bottom" constant="10" id="E7h-MW-OOw"/>
                             <constraint firstItem="Zxk-Zs-5LV" firstAttribute="centerY" secondItem="AtS-dg-MuB" secondAttribute="centerY" id="FIe-fJ-0Td"/>
                             <constraint firstItem="4AI-ar-OO5" firstAttribute="top" secondItem="bjk-xd-skq" secondAttribute="bottom" constant="16" id="Hbt-EK-pWZ"/>
                             <constraint firstItem="YwY-5J-h1K" firstAttribute="leading" secondItem="uJb-IK-B9y" secondAttribute="leading" id="J18-4I-ABl"/>
@@ -511,6 +518,7 @@
                             <constraint firstItem="bjk-xd-skq" firstAttribute="leading" secondItem="Yu8-HS-Ycf" secondAttribute="trailing" constant="27" id="ScC-I4-7Vb"/>
                             <constraint firstItem="uJb-IK-B9y" firstAttribute="top" secondItem="lH0-3U-hyA" secondAttribute="bottom" constant="17" id="TeZ-ps-b5p"/>
                             <constraint firstItem="4AI-ar-OO5" firstAttribute="trailing" secondItem="lH0-3U-hyA" secondAttribute="trailing" id="WWS-pK-Xse"/>
+                            <constraint firstItem="9XD-To-vrm" firstAttribute="top" secondItem="aGn-6P-Cco" secondAttribute="bottom" constant="10" id="XLH-7a-R6S"/>
                             <constraint firstItem="YwY-5J-h1K" firstAttribute="centerY" secondItem="9XD-To-vrm" secondAttribute="centerY" id="XbA-tB-bwu"/>
                             <constraint firstItem="lH0-3U-hyA" firstAttribute="leading" secondItem="uJb-IK-B9y" secondAttribute="leading" id="Y0l-be-Z6j"/>
                             <constraint firstItem="4AI-ar-OO5" firstAttribute="bottom" secondItem="IFX-3J-bf8" secondAttribute="bottom" id="YRS-eB-ttD"/>
@@ -522,13 +530,10 @@
                             <constraint firstItem="bjk-xd-skq" firstAttribute="trailing" secondItem="iPq-Br-zPp" secondAttribute="trailing" id="rKl-Nt-qeG"/>
                             <constraint firstItem="4AI-ar-OO5" firstAttribute="leading" secondItem="IFX-3J-bf8" secondAttribute="trailing" constant="27" id="s8K-gI-Ik0"/>
                             <constraint firstItem="lH0-3U-hyA" firstAttribute="leading" secondItem="iPq-Br-zPp" secondAttribute="leading" id="toZ-ob-0B4"/>
-                            <constraint firstItem="9XD-To-vrm" firstAttribute="top" secondItem="aGn-6P-Cco" secondAttribute="bottom" constant="10" id="v6B-pQ-vig"/>
                             <constraint firstItem="IFX-3J-bf8" firstAttribute="centerX" secondItem="Yu8-HS-Ycf" secondAttribute="centerX" id="vZo-v6-elq"/>
                             <constraint firstItem="YwY-5J-h1K" firstAttribute="centerX" secondItem="AtS-dg-MuB" secondAttribute="centerX" id="x6Z-U4-9ch"/>
                             <constraint firstItem="bjk-xd-skq" firstAttribute="trailing" secondItem="lH0-3U-hyA" secondAttribute="trailing" id="xEo-Ck-Zw1"/>
                             <constraint firstItem="lH0-3U-hyA" firstAttribute="centerX" secondItem="AtS-dg-MuB" secondAttribute="centerX" id="xGd-n0-3nj"/>
-                            <constraint firstItem="Lty-L8-gWH" firstAttribute="top" secondItem="YwY-5J-h1K" secondAttribute="bottom" constant="5" id="xLj-Y8-g73"/>
-                            <constraint firstItem="iPq-Br-zPp" firstAttribute="top" secondItem="aGn-6P-Cco" secondAttribute="bottom" constant="10" id="xq4-I9-ED6"/>
                             <constraint firstItem="YwY-5J-h1K" firstAttribute="top" secondItem="uJb-IK-B9y" secondAttribute="bottom" constant="8" id="zNy-HJ-ZMw"/>
                         </constraints>
                         <variation key="default">
@@ -540,6 +545,7 @@
                                 <exclude reference="XbA-tB-bwu"/>
                                 <exclude reference="7R0-f5-FKD"/>
                                 <exclude reference="YRS-eB-ttD"/>
+                                <exclude reference="2li-C6-zfw"/>
                             </mask>
                         </variation>
                     </view>
@@ -565,7 +571,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZDP-16-RQ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1715" y="105"/>
+            <point key="canvasLocation" x="1999" y="33"/>
         </scene>
         <!--GalleryDetail-->
         <scene sceneID="ZFz-mx-aRb">

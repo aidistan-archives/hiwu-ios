@@ -43,7 +43,7 @@ class ContactWithServer{
                         self.defaults.setDouble(NSDate(timeIntervalSinceNow: (userInfo["ttl"]).double!/2).timeIntervalSince1970, forKey: "freshline")
                         self.defaults.setInteger((userInfo["userId"]).int!, forKey: "userId")
                         self.defaults.synchronize()
-                        self.getSelfMuseum()
+                        self.getSelfMuseum(nil)
                     }
                 }else{
                     print("error")
@@ -69,7 +69,7 @@ class ContactWithServer{
         
     }
     
-    func getSelfMuseum(){
+    func getSelfMuseum(complete:()?){
         let url = ApiManager.getAllSelfGallery1_2 + String(globalHiwuUser.userId) + ApiManager.getAllSelfGallery2_2 + globalHiwuUser.hiwuToken
         Alamofire.request(.GET, url).responseJSON{response in
             print("contact hiwu token")
@@ -102,7 +102,6 @@ class ContactWithServer{
         print(NSDate(timeIntervalSinceNow: 0))
         Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
             if(response.result.value != nil){
-                print("get item info")
                 globalHiwuUser.todayMuseum = JSON(response.result.value!)
                 let tmpData:NSData = NSKeyedArchiver.archivedDataWithRootObject(response.result.value!)
                 self.defaults.setObject(tmpData, forKey: "todayMuseum")
@@ -123,18 +122,10 @@ class ContactWithServer{
     }
     
     func getItemInfo(itemId: Int){
-        let url = ApiManager.getItemPublic1 + String(itemId) + ApiManager.getItemPublic2
-        print("get item info")
-        print(NSDate(timeIntervalSinceNow: 0))
+        let url = ApiManager.getItem1 + String(itemId) + ApiManager.getItem2 + globalHiwuUser.hiwuToken
         Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
             if(response.result.value != nil){
-                print("get item info")
-                print(NSDate(timeIntervalSinceNow: 0))
                 globalHiwuUser.item = JSON(response.result.value!)
-                
-                let tmpData:NSData = NSKeyedArchiver.archivedDataWithRootObject(response.result.value!)
-                self.defaults.setObject(tmpData, forKey: "item_" + String(itemId))
-                self.defaults.synchronize()
                 self.itemInfoReady?.getItemInfoReady()
             }else{
                 
@@ -180,10 +171,12 @@ class ContactWithServer{
                 }
         })
         }
-    func deleteItem(itemId:Int){
+    func deleteItem(itemId:Int,complete:()?){
         let deleteUrl = ApiManager.deleteItem1 + String(itemId) + ApiManager.deleteItem2 + globalHiwuUser.hiwuToken
         Alamofire.request(.DELETE, NSURL(string: deleteUrl)!).responseJSON{response in
-            self.getSelfMuseum()
+            if(response.result.value != nil){
+                self.getSelfMuseum(complete)
+            }
         }
         
     }
