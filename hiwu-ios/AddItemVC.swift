@@ -56,8 +56,9 @@ class AddItemVC: UIViewController,UIImagePickerControllerDelegate,UINavigationCo
         let contactor = ContactWithServer()
             contactor.ready = self
         let jpgUrl = NSHomeDirectory().stringByAppendingString("/tmp/").stringByAppendingString("tmp.jpg")
-            UIImageJPEGRepresentation(itemImage.image!, 1.0)?.writeToFile(jpgUrl, atomically: false)
-            contactor.postItem(galleryId, itemName: itemName.text!, itemDescription: itemDescription.text, year: Int(self.time.text!)!, city: self.city.text!, dataUrl: NSURL(fileURLWithPath: jpgUrl), isPublic: !isPublic.on)
+            UIImageJPEGRepresentation(itemImage.image!, 0.9)?.writeToFile(jpgUrl, atomically: false)
+            print(self.galleryId)
+            contactor.postItem(self.galleryId, itemName: itemName.text!, itemDescription: itemDescription.text, year: Int(self.time.text!)!, city: self.city.text!, dataUrl: NSURL(fileURLWithPath: jpgUrl), isPublic: !isPublic.on)
             self.loading.startAnimating()
             
         }
@@ -68,7 +69,6 @@ class AddItemVC: UIViewController,UIImagePickerControllerDelegate,UINavigationCo
         if(self.image != nil){
             self.itemImage.image = self.image
         }
-        galleryId = globalHiwuUser.selfMuseum!["galleries"][0]["id"].int!
         let gesture = UITapGestureRecognizer(target: self, action: "takePicture:")
         itemImage.addGestureRecognizer(gesture)
         self.itemDescription.delegate = self

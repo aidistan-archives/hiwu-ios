@@ -76,6 +76,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         }else{
             self.contactor.getTodayInfo()
         }
+        self.galleryDetails.reloadData()
     }
     
     func setInfo(gallery:JSON,userAvatar:String?,userName:String){
@@ -166,7 +167,11 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         print("prepare")
         print(NSDate(timeIntervalSinceNow: 0))
         print("ask server")
-        contactor.getItemInfo(itemId!)
+        if(isMine){
+            contactor.getSelfItemInfo(itemId!)
+        }else{
+            contactor.getPublicItemInfo(itemId!)
+        }
     }
     
     func getItemInfoReady() {
@@ -206,6 +211,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
         let toAdd = self.storyboard?.instantiateViewControllerWithIdentifier("AddItemVC") as! AddItemVC
         toAdd.galleryId = self.gallery!["id"].int!
+        print(toAdd.galleryId)
         toAdd.image = info[UIImagePickerControllerEditedImage] as? UIImage
         
         picker.dismissViewControllerAnimated(true, completion: nil)
