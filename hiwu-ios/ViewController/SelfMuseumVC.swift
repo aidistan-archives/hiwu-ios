@@ -14,8 +14,12 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     let defaults = NSUserDefaults.standardUserDefaults()
     @IBOutlet weak var selfGalleryDisplay: UITableView!
     var tableCellLocation = 0
+    var itemSum = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+        for(var i=0 ;i < globalHiwuUser.selfMuseum!["galleries"].count;i++ ){
+            itemSum += globalHiwuUser.selfMuseum!["galleries"][i]["items"].count
+        }
         selfGalleryDisplay.delegate = self
         selfGalleryDisplay.dataSource = self
         selfGalleryDisplay.reloadData()
@@ -60,11 +64,9 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             userAvatar.layer.cornerRadius = userAvatar.frame.height/2
             userAvatar.clipsToBounds = true
             userNickname.text = selfMuseum!["nickname"].string!
-            museumInfo.text = String(selfMuseum!["galleries"].count) + "长廊 |"
-            var sum = 0
-            for(var i=0;i<selfMuseum!["galleries"].count;i++ ){
-                sum += selfMuseum!["galleries"][i]["items"].count
-            }
+            museumInfo.text = String(selfMuseum!["galleries"].count) + "  长廊 | " + String(self.itemSum) + " 物品  "
+            museumInfo.layer.cornerRadius = museumInfo.frame.height/2
+            museumInfo.clipsToBounds = true
             return cell
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier("SelfGalleryCell")! as UITableViewCell
