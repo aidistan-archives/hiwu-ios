@@ -21,6 +21,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     let contactor = ContactWithServer()
     var location = -1
     var selfDelete = 0
+    var scrollLocation = CGPoint(x: 0, y: 0)
     
     @IBOutlet weak var galleryDetails: UITableView!
     
@@ -63,11 +64,15 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     }
     
     override func viewWillAppear(animated: Bool) {
+        self.galleryDetails.setContentOffset(scrollLocation, animated: true)
         self.contactor.todayInfoReady = self
         self.contactor.selfMuseumReady = self
         self.refresh()
         print("will appear")
 
+    }
+    override func viewWillDisappear(animated: Bool) {
+        self.scrollLocation = self.galleryDetails.contentOffset
     }
     
     func refresh(){

@@ -40,7 +40,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 3
+        return 2 + self.item!["comments"].count
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         switch indexPath.row{
@@ -66,17 +66,12 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                 itemName.text = self.item!["name"].string
                 let itemDescription = cell?.viewWithTag(2) as! UILabel
                 itemDescription.text = self.item!["description"].string
-                let addComment = cell?.viewWithTag(5) as! UIImageView
+                let addComment = cell?.viewWithTag(5) as! UIButton
                 let gesture = UITapGestureRecognizer(target: self, action: "toAddComment:")
                 addComment.addGestureRecognizer(gesture)
                 return cell!
             default :
                 let cell = tableView.dequeueReusableCellWithIdentifier("Comments")
-//                    let cell = tableView.dequeueReusableCellWithIdentifier("Comments")
-//                let userName = cell?.viewWithTag(1) as! UILabel
-//                let comment = cell?.viewWithTag(2) as! UILabel
-//                userName.text = self.item!["nickname"].string! + "："
-//                comment.text = self.item!["comments"][indexPath.row - 3].string!
                 return cell!
         }
     }
