@@ -25,7 +25,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     @IBOutlet weak var galleryDetails: UITableView!
     
     @IBAction func back(sender: UIButton) {
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func toAddItem(sender: UIButton)
@@ -159,6 +159,10 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         print("delete")
     }
     
+    func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
+        return "删除"
+    }
+    
     func getItemDetail(sender:UITapGestureRecognizer){
         let contactor = ContactWithServer()
         contactor.itemInfoReady = self
@@ -218,6 +222,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         self.navigationController?.pushViewController(toAdd, animated: true)
     
     }
+    
     func imagePickerControllerDidCancel(picker: UIImagePickerController){
         picker.dismissViewControllerAnimated(true, completion: nil)
         
@@ -229,9 +234,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         camera.delegate = self
         camera.sourceType = UIImagePickerControllerSourceType.Camera
         camera.showsCameraControls = true
-        camera.allowsEditing = true
         self.presentViewController(camera, animated: true, completion: nil)
-        
     }
     
     func callPhotoLibrary(){

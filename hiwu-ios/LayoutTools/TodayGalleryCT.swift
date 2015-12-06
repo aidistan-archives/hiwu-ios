@@ -11,7 +11,7 @@ import SwiftyJSON
 import Kingfisher
 
 
-class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionViewDelegate {
+class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionViewDelegate,GetItemInfoReadyProtocol {
     var superVC:UIViewController?
     var location = 0
     
@@ -37,11 +37,6 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
         let urlString = (items)[indexPath.row]["photos"][0]["url"].string!
         //设置imgaeview图片
         images.kf_setImageWithURL(NSURL(string: urlString)!)
-//        images.image = UIImage(named: "add")
-        //点击放大手势  实现了，但是小哦过比较捉急
-        let gesture = UITapGestureRecognizer(target: self, action: "display:")
-        gesture.view?.tag = indexPath.row
-        cell.addGestureRecognizer(gesture)
         return cell
     }
     
@@ -55,8 +50,6 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
         let galleryNameLabel = cell.viewWithTag(2) as! UILabel
         let nickName = globalHiwuUser.todayMuseum![self.location]["gallery"]["hiwuUser"]["nickname"].string!
         galleryNameLabel.text = nickName + " ⎡" + globalHiwuUser.todayMuseum![self.location]["gallery"]["name"].string! + " ⎦"
-//        let gallerDescription = cell.viewWithTag(3) as! UILabel
-//        gallerDescription.text = globalHiwuUser.todayMuseum![self.location]["gallery"]["description"].string!
         let galleryItemNumLabel = cell.viewWithTag(4) as! UILabel
         galleryItemNumLabel.text = String(globalHiwuUser.todayMuseum![self.location]["gallery"]["items"].count)
         let gesture = UITapGestureRecognizer(target: self, action: "getGalleryDetail:")
@@ -70,17 +63,25 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
         self.superVC?.showViewController(galleryDetail, sender: self)
     }
     
-    
-    func display(sender:UITapGestureRecognizer){
-        let imager = sender.view?.viewWithTag(6) as! UIImageView
-        let alert1 = UIAlertController(title: "", message: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", preferredStyle: UIAlertControllerStyle.ActionSheet)
-        alert1.addAction(UIAlertAction(title: "close", style: UIAlertActionStyle.Cancel, handler: nil))
-        let image = UIImageView(frame: CGRect(x: 8, y: 10, width: 340, height: 460))
-        image.contentMode = UIViewContentMode.ScaleAspectFit
-        image.image = imager.image
-        alert1.view.addSubview(image)
-        self.superVC?.navigationController?.presentViewController(alert1, animated: true, completion: nil)
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let id = globalHiwuUser.todayMuseum![self.location]["gallery"]["items"][indexPath.row]["id"].int!
+        let contactor = ContactWithServer()
+        contactor.getPublicItemInfo(id)
+        contactor.itemInfoReady = self
+        
     }
+    
+    func getItemInfoReady() {
+        let itemDetail = superVC?.storyboard?.instantiateViewControllerWithIdentifier("ItemDetailVC") as! ItemDetailVC
+        itemDetail.item = globalHiwuUser.item
+        self.superVC?.navigationController?.pushViewController(itemDetail, animated: true)
+        
+    }
+    
+    func getItemInfoFailed() {
+        
+    }
+    
     
     
     

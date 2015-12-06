@@ -11,9 +11,10 @@ import SwiftyJSON
 import Kingfisher
 
 
-class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionViewDelegate {
+class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionViewDelegate,GetItemInfoReadyProtocol {
     var superVC:UIViewController?
     var location = 0
+    var gallery:JSON?
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         
@@ -37,9 +38,6 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
         let urlString = (items)[indexPath.row]["photos"][0]["url"].string!
         //设置imgaeview图片
         imgaes.kf_setImageWithURL(NSURL(string: urlString)!)
-        //点击放大手势  实现了，但是小哦过比较捉急
-        let gesture = UITapGestureRecognizer(target: self, action: "display:")
-        cell.addGestureRecognizer(gesture)
         return cell
     }
     
@@ -55,16 +53,12 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
         return cell
     }
     
-    
-    func display(sender:UITapGestureRecognizer){
-        let imager = sender.view?.viewWithTag(2) as! UIImageView
-        let alert1 = UIAlertController(title: "", message: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", preferredStyle: UIAlertControllerStyle.ActionSheet)
-        alert1.addAction(UIAlertAction(title: "close", style: UIAlertActionStyle.Cancel, handler: nil))
-        let image = UIImageView(frame: CGRect(x: 8, y: 10, width: 340, height: 460))
-        image.contentMode = UIViewContentMode.ScaleAspectFit
-        image.image = imager.image
-        alert1.view.addSubview(image)
-        self.superVC?.navigationController?.presentViewController(alert1, animated: true, completion: nil)
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let id = globalHiwuUser.selfMuseum!["galleries"][self.location]["items"][indexPath.row]["id"].int!
+        let contactor = ContactWithServer()
+        contactor.getSelfItemInfo(id)
+        contactor.itemInfoReady = self
+        
     }
     
     func getGalleryDetail(sender:AnyObject){
@@ -73,6 +67,16 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
         galleryDetail.setInfo(globalHiwuUser.selfMuseum!["galleries"][self.location], userAvatar: globalHiwuUser.selfMuseum!["avatar"].string!, userName: globalHiwuUser.selfMuseum!["nickname"].string!)
         galleryDetail.location = self.location
         self.superVC?.showViewController(galleryDetail, sender: self)
+    }
+    
+    func getItemInfoFailed() {
+        
+    }
+    
+    func getItemInfoReady() {
+        let itemDetail = superVC?.storyboard?.instantiateViewControllerWithIdentifier("ItemDetailVC") as! ItemDetailVC
+        itemDetail.item = globalHiwuUser.item
+        self.superVC?.navigationController?.pushViewController(itemDetail, animated: true)
     }
     
     
