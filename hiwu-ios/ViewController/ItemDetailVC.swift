@@ -24,6 +24,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     @IBOutlet weak var ensureCommentButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.fd_prefersNavigationBarHidden = true
         print("in item detail")
         print(self.item)
         self.addComment.delegate = self

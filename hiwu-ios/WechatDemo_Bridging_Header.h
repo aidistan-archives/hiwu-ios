@@ -11,5 +11,6 @@
 @import UIKit;   //这个一定要导入啊，不然....
 #import "WXApiObject.h"
 #import "WXApi.h"
+#import "UINavigationController+FDFullscreenPopGesture.h"
 
 #endif /* WechatDemo_Bridging_Header_h */

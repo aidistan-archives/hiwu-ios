@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A50620411C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = A50620401C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.m */; };
 		A5132BBE1BDBB5EA00B4C3DB /* AddItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5132BBD1BDBB5EA00B4C3DB /* AddItemVC.swift */; };
 		A51908A11C105F740018039A /* Ready.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51908A01C105F740018039A /* Ready.swift */; };
 		A51908AF1C106E4C0018039A /* idFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51908AE1C106E4C0018039A /* idFinder.swift */; };
@@ -206,6 +207,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A506203F1C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+FDFullscreenPopGesture.h"; path = "Libs/FDFullscreenPopGesture-master/FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h"; sourceTree = SOURCE_ROOT; };
+		A50620401C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+FDFullscreenPopGesture.m"; path = "Libs/FDFullscreenPopGesture-master/FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.m"; sourceTree = SOURCE_ROOT; };
 		A5132BBD1BDBB5EA00B4C3DB /* AddItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemVC.swift; sourceTree = "<group>"; };
 		A51908A01C105F740018039A /* Ready.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ready.swift; sourceTree = "<group>"; };
 		A51908AE1C106E4C0018039A /* idFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = idFinder.swift; sourceTree = "<group>"; };
@@ -284,6 +287,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A50620311C157B5000195DCF /* navigationTool */ = {
+			isa = PBXGroup;
+			children = (
+				A506203F1C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.h */,
+				A50620401C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.m */,
+			);
+			name = navigationTool;
+			sourceTree = "<group>";
+		};
 		A55232531C04679C00A0AA2A /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,6 +410,7 @@
 		A5CEE6221BD0DB3C00AAF122 /* hiwu-ios */ = {
 			isa = PBXGroup;
 			children = (
+				A50620311C157B5000195DCF /* navigationTool */,
 				A55232701C04716800A0AA2A /* weixin */,
 				A59355231BD785330044E7B3 /* Models */,
 				A593550F1BD66EC00044E7B3 /* LayoutTools */,
@@ -498,6 +511,7 @@
 		A5CEE6181BD0DB3C00AAF122 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Shanghai Hiwu Information Technology Co., Ltd.";
 				TargetAttributes = {
@@ -706,6 +720,7 @@
 				A5CEE6241BD0DB3C00AAF122 /* AppDelegate.swift in Sources */,
 				A59354C31BD5C4FD0044E7B3 /* LaunchScreen.swift in Sources */,
 				A5BFFD5C1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift in Sources */,
+				A50620411C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				A5EB70AD1BE38AD20075D559 /* GalleryDetailVC.swift in Sources */,
 				A59355251BD7854B0044E7B3 /* UserModel.swift in Sources */,
 				A5BFFD5A1BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift in Sources */,
@@ -857,6 +872,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "hiwu-ios/Info.plist";
@@ -867,7 +883,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ren.hiwu.hiwu-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "hiwu-ios/WechatDemo_Bridging_Header.h";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "hiwu-ios/WechatDemo_Bridging_Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -875,6 +893,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "hiwu-ios/Info.plist";
@@ -885,6 +904,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ren.hiwu.hiwu-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "hiwu-ios/WechatDemo_Bridging_Header.h";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "hiwu-ios/WechatDemo_Bridging_Header.h";
 			};
 			name = Release;
