@@ -75,7 +75,8 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
     
     func getItemInfoReady() {
         let itemDetail = superVC?.storyboard?.instantiateViewControllerWithIdentifier("ItemDetailVC") as! ItemDetailVC
-        itemDetail.item = globalHiwuUser.item
+        itemDetail.isMine = true
+        itemDetail.itemId = globalHiwuUser.item!["id"].int!
         self.superVC?.navigationController?.pushViewController(itemDetail, animated: true)
     }
     

@@ -18,8 +18,6 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        todayGalleryDisplay.estimatedRowHeight = 60
-//        todayGalleryDisplay.rowHeight = UITableViewAutomaticDimension
         todayGalleryDisplay.dataSource = self
         todayGalleryDisplay.delegate = self
         todayGalleryDisplay.reloadData()

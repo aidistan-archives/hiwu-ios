@@ -9,7 +9,6 @@
 import Foundation
 
 public protocol ReadyProtocol{
-    
     func Ready()
     func Failed()
     

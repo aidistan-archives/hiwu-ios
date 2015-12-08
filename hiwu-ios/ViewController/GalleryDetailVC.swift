@@ -173,9 +173,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         contactor.itemInfoReady = self
         let itemIdLabel = sender.view?.viewWithTag(2) as! UILabel
         let itemId = Int(itemIdLabel.text!)
-        print("prepare")
-        print(NSDate(timeIntervalSinceNow: 0))
-        print("ask server")
         if(isMine){
             contactor.getSelfItemInfo(itemId!)
         }else{
@@ -187,6 +184,8 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         print(NSDate(timeIntervalSinceNow: 0))
         let itemDetail = self.storyboard?.instantiateViewControllerWithIdentifier("ItemDetailVC") as! ItemDetailVC
         itemDetail.item = globalHiwuUser.item
+        itemDetail.isMine = self.isMine
+        itemDetail.itemId = globalHiwuUser.item!["id"].int!
         self.navigationController?.pushViewController(itemDetail, animated: true)
     }
     
@@ -212,7 +211,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         if(ga != nil){
             self.gallery = ga
         }
-        print("get today ready ga")
         self.galleryDetails.reloadData()
         self.galleryDetails.hidden = false
     }

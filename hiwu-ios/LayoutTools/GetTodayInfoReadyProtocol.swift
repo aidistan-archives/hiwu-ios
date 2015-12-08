@@ -9,9 +9,7 @@
 import Foundation
 
 public protocol GetTodayInfoReadyProtocol{
-    
     func getTodayReady()
     func getTodayFailed()
-    
 }
 

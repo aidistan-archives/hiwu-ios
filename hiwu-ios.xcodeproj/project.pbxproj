@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A50620411C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = A50620401C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.m */; };
+		A50620551C15C58A00195DCF /* PutLikeReadyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50620541C15C58A00195DCF /* PutLikeReadyProtocol.swift */; };
 		A5132BBE1BDBB5EA00B4C3DB /* AddItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5132BBD1BDBB5EA00B4C3DB /* AddItemVC.swift */; };
 		A51908A11C105F740018039A /* Ready.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51908A01C105F740018039A /* Ready.swift */; };
 		A51908AF1C106E4C0018039A /* idFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51908AE1C106E4C0018039A /* idFinder.swift */; };
@@ -209,6 +210,7 @@
 /* Begin PBXFileReference section */
 		A506203F1C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+FDFullscreenPopGesture.h"; path = "Libs/FDFullscreenPopGesture-master/FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h"; sourceTree = SOURCE_ROOT; };
 		A50620401C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+FDFullscreenPopGesture.m"; path = "Libs/FDFullscreenPopGesture-master/FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.m"; sourceTree = SOURCE_ROOT; };
+		A50620541C15C58A00195DCF /* PutLikeReadyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PutLikeReadyProtocol.swift; sourceTree = "<group>"; };
 		A5132BBD1BDBB5EA00B4C3DB /* AddItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemVC.swift; sourceTree = "<group>"; };
 		A51908A01C105F740018039A /* Ready.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ready.swift; sourceTree = "<group>"; };
 		A51908AE1C106E4C0018039A /* idFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = idFinder.swift; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 				A5BFFD5B1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift */,
 				A5BFFD5D1BE8EA9600D5A866 /* GetItemInfoReadyProtocol.swift */,
 				A51908A01C105F740018039A /* Ready.swift */,
+				A50620541C15C58A00195DCF /* PutLikeReadyProtocol.swift */,
 			);
 			name = Protocol;
 			sourceTree = "<group>";
@@ -715,6 +718,7 @@
 				A5BFFD571BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift in Sources */,
 				A534BE951C0EC9FF00770171 /* GuidePage.swift in Sources */,
 				A593554B1BD7D1370044E7B3 /* SelfGalleryCT.swift in Sources */,
+				A50620551C15C58A00195DCF /* PutLikeReadyProtocol.swift in Sources */,
 				A534BE971C0F23CD00770171 /* AddGalleryVC.swift in Sources */,
 				A5BFFD581BE8E7C800D5A866 /* LoginProtocol.swift in Sources */,
 				A5CEE6241BD0DB3C00AAF122 /* AppDelegate.swift in Sources */,

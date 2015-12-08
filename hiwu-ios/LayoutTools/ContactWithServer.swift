@@ -19,6 +19,7 @@ class ContactWithServer{
     var todayInfoReady:GetTodayInfoReadyProtocol?
     var itemInfoReady:GetItemInfoReadyProtocol?
     var ready:ReadyProtocol?
+    var putLikeReady:PutLikeReadyProtocol?
     let defaults = NSUserDefaults.standardUserDefaults()
     
     static func getNewTokenWithDefaults(){
@@ -65,7 +66,6 @@ class ContactWithServer{
             self.userInfoReady?.getUserInfoReady()
             print("user Info First Ready in contactor")
         }
-        
         
     }
     
@@ -128,20 +128,21 @@ class ContactWithServer{
                 globalHiwuUser.item = JSON(response.result.value!)
                 self.itemInfoReady?.getItemInfoReady()
             }else{
-                
+                self.itemInfoReady?.getItemInfoFailed()
             }
         }
         
     }
     
     func getPublicItemInfo(itemId: Int){
-        let url = ApiManager.getPublicItem1 + String(itemId) + ApiManager.getPublicItem2
+        let url = ApiManager.getPublicItem1 + String(itemId) + ApiManager.getPublicItem2 + globalHiwuUser.hiwuToken
+        print(url)
         Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
             if(response.result.value != nil){
                 globalHiwuUser.item = JSON(response.result.value!)
                 self.itemInfoReady?.getItemInfoReady()
             }else{
-                
+                 self.itemInfoReady?.getItemInfoFailed()
             }
         }
         
@@ -216,6 +217,56 @@ class ContactWithServer{
                 complete(gallery: JSON(response.result.value!))
             }else{
                 complete(gallery: nil)
+            }
+        }
+    }
+    
+    func putLike(userId: Int,itemId: Int){
+        let url = ApiManager.putLike1 + String(userId) + ApiManager.putLike2 + String(itemId) + ApiManager.putLike3 + globalHiwuUser.hiwuToken
+        print("put like")
+        print(url)
+        Alamofire.request(.PUT,url).responseJSON{response in
+            if(response.result.value != nil && response.result.error == nil){
+                print(response.result.value)
+                self.putLikeReady?.putLikeReady()
+            }else{
+                print(response.result.error)
+                self.putLikeReady?.putLikeFailed()
+            }
+        }
+    }
+    
+    func deleteLike(userId: Int,itemId: Int,beReady:()?,beFailed:()?){
+        let url = ApiManager.putLike1 + String(userId) + ApiManager.putLike2 + String(itemId) + ApiManager.putLike3 + globalHiwuUser.hiwuToken
+        Alamofire.request(.DELETE,url).responseJSON{response in
+            if(response.result.value != nil){
+                beReady
+            }else{
+                beFailed
+            }
+        }
+    }
+    
+    func postComment(toUserId:Int,itemId:Int,content:String){
+        let url = ApiManager.postComment1 + String(itemId) + ApiManager.postComment2 + globalHiwuUser.hiwuToken
+        Alamofire.request(.POST, url, parameters: ["content": content,
+            "toId": toUserId]).responseJSON{response in
+                if(response.result.value != nil){
+                    
+                }else{
+                   
+                }
+        }
+        
+    }
+    
+    func deleteComment(commentId:Int,beReady:()?,beFailed:()?){
+        let url = ApiManager.deleteComment1 + String(commentId) + ApiManager.deleteComment2 + globalHiwuUser.hiwuToken
+        Alamofire.request(.DELETE, url).responseJSON{response in
+            if(response.result.value != nil){
+                beReady
+            }else{
+                beFailed
             }
         }
     }

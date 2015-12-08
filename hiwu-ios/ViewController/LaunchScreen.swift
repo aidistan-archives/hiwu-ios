@@ -15,6 +15,7 @@ class LaunchScreen: UIViewController,GetTodayInfoReadyProtocol{
         super.viewDidLoad()
         self.contactor = ContactWithServer()
         self.contactor!.todayInfoReady = self
+        self.contactor?.getUserInfoFirst()
         self.contactor?.getTodayInfo()
         let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
         dispatch_async(queue, {
@@ -37,8 +38,6 @@ class LaunchScreen: UIViewController,GetTodayInfoReadyProtocol{
             let main = self.storyboard?.instantiateViewControllerWithIdentifier("MainNavigation") as! UINavigationController
             print("get ready in push")
             self.presentViewController(main, animated: true, completion: {
-//                let today = self.storyboard?.instantiateViewControllerWithIdentifier("TodayVC") as! TodayVC
-//                main.pushViewController(today, animated: true)
             })        }
         else{
           
