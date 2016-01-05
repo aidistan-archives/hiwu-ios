@@ -41,8 +41,6 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     @IBOutlet weak var ensureCommentButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("item")
-        print(self.item)
         self.getItemInfo()
         self.waiting.startAnimating()
         self.contactor.itemInfoReady = self
@@ -111,7 +109,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                 if(self.item!["comments"][indexPath.row-2]["toId"].int != nil){
                     toWhom = " 回复 " + String(self.item!["comments"][indexPath.row-2]["toId"].int!)
                 }
-                comment.text = String(self.item!["comments"][indexPath.row-2]["userId"]) + toWhom+" : " + self.item!["comments"][indexPath.row-2]["content"].string!
+                comment.text = self.item!["comments"][indexPath.row-2]["hiwuUser"]["nickname"].string! + toWhom + " : " + self.item!["comments"][indexPath.row-2]["content"].string!
                 return cell!
         }
     }
@@ -160,6 +158,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     
     func putLike(){
         contactor.putLike(globalHiwuUser.userId, itemId: self.itemId!)
+        self.getItemInfo()
     }
     
     func deleteLike(){
@@ -216,6 +215,9 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                     self.networkError()
                 }else{
                     self.addComment.text = ""
+                    self.getItemInfo()
+                    let y = self.itemDetailList.contentSize.height
+                    self.itemDetailList.setContentOffset(CGPoint(x: 0,y: y), animated: true)
                 }
             }
         }else{
@@ -226,6 +228,9 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                     self.networkError()
                 }else{
                     self.addComment.text = ""
+                    self.getItemInfo()
+                    let y = self.itemDetailList.contentSize.height - 500
+                    self.itemDetailList.setContentOffset(CGPoint(x: 0,y: y), animated: false)
                 }
             }
         }
