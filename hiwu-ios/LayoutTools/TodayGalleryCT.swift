@@ -65,17 +65,14 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let id = globalHiwuUser.todayMuseum![self.location]["gallery"]["items"][indexPath.row]["id"].int!
-        let contactor = ContactWithServer()
-        contactor.getPublicItemInfo(id)
-        contactor.itemInfoReady = self
-        
+        let itemDetail = superVC?.storyboard?.instantiateViewControllerWithIdentifier("ItemDetailVC") as! ItemDetailVC
+        itemDetail.isMine = false
+        itemDetail.itemId = id
+        self.superVC?.navigationController?.pushViewController(itemDetail, animated: true)
     }
     
     func getItemInfoReady() {
-        let itemDetail = superVC?.storyboard?.instantiateViewControllerWithIdentifier("ItemDetailVC") as! ItemDetailVC
-        itemDetail.isMine = false
-        itemDetail.itemId = globalHiwuUser.item!["id"].int!
-        self.superVC?.navigationController?.pushViewController(itemDetail, animated: true)
+
         
     }
     

@@ -140,6 +140,7 @@ class ContactWithServer{
         Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
             if(response.result.value != nil){
                 globalHiwuUser.item = JSON(response.result.value!)
+                print(globalHiwuUser.item)
                 self.itemInfoReady?.getItemInfoReady()
             }else{
                  self.itemInfoReady?.getItemInfoFailed()

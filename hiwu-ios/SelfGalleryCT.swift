@@ -11,7 +11,7 @@ import SwiftyJSON
 import Kingfisher
 
 
-class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionViewDelegate,GetItemInfoReadyProtocol {
+class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionViewDelegate {
     var superVC:UIViewController?
     var location = 0
     var gallery:JSON?
@@ -55,9 +55,10 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let id = globalHiwuUser.selfMuseum!["galleries"][self.location]["items"][indexPath.row]["id"].int!
-        let contactor = ContactWithServer()
-        contactor.getSelfItemInfo(id)
-        contactor.itemInfoReady = self
+        let itemDetail = superVC?.storyboard?.instantiateViewControllerWithIdentifier("ItemDetailVC") as! ItemDetailVC
+        itemDetail.isMine = true
+        itemDetail.itemId = id
+        self.superVC?.navigationController?.pushViewController(itemDetail, animated: true)
         
     }
     
@@ -69,16 +70,6 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
         self.superVC?.showViewController(galleryDetail, sender: self)
     }
     
-    func getItemInfoFailed() {
-        
-    }
-    
-    func getItemInfoReady() {
-        let itemDetail = superVC?.storyboard?.instantiateViewControllerWithIdentifier("ItemDetailVC") as! ItemDetailVC
-        itemDetail.isMine = true
-        itemDetail.itemId = globalHiwuUser.item!["id"].int!
-        self.superVC?.navigationController?.pushViewController(itemDetail, animated: true)
-    }
     
     
     

@@ -21,7 +21,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     var isMine:Bool?
     let contactor = ContactWithServer()
     var cells = 0
-    var toUserId = 0
+    var toUserId:Int?
     @IBOutlet weak var tipToAddComment: UILabel!
 
     @IBAction func back(sender: UIButton) {
@@ -41,7 +41,8 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     @IBOutlet weak var ensureCommentButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(self.isMine)
+        print("item")
+        print(self.item)
         self.getItemInfo()
         self.waiting.startAnimating()
         self.contactor.itemInfoReady = self
@@ -107,8 +108,8 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                 let cell = tableView.dequeueReusableCellWithIdentifier("Comments")
                 let comment = cell?.viewWithTag(2) as! UILabel
                 var toWhom = ""
-                if(self.item!["comments"][indexPath.row-2]["toId"].int! != 0){
-                    toWhom = "回复" + String(self.item!["comments"][indexPath.row-2]["toId"].int!)
+                if(self.item!["comments"][indexPath.row-2]["toId"].int != nil){
+                    toWhom = " 回复 " + String(self.item!["comments"][indexPath.row-2]["toId"].int!)
                 }
                 comment.text = String(self.item!["comments"][indexPath.row-2]["userId"]) + toWhom+" : " + self.item!["comments"][indexPath.row-2]["content"].string!
                 return cell!
@@ -205,10 +206,10 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
         self.networkError()
     }
     
-    func postComment(toUserId:Int,itemId:Int,content:String){
+    func postComment(toUserId:Int?,itemId:Int,content:String){
         let url = ApiManager.postComment1 + String(itemId) + ApiManager.postComment2 + globalHiwuUser.hiwuToken
-        Alamofire.request(.POST, url, parameters: ["content": content,
-            "toId": toUserId]).responseJSON{response in
+        if(toUserId != nil){
+            Alamofire.request(.POST, url, parameters: ["content": content,"toId": toUserId!]).responseJSON{response in
                 self.waiting.stopAnimating()
                 if(response.result.error != nil){
                     print(response.result.error)
@@ -216,7 +217,19 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                 }else{
                     self.addComment.text = ""
                 }
+            }
+        }else{
+            Alamofire.request(.POST, url, parameters: ["content": content]).responseJSON{response in
+                self.waiting.stopAnimating()
+                if(response.result.error != nil){
+                    print(response.result.error)
+                    self.networkError()
+                }else{
+                    self.addComment.text = ""
+                }
+            }
         }
+        
         
     }
     
