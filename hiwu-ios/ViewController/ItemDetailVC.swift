@@ -22,6 +22,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     let contactor = ContactWithServer()
     var cells = 0
     var toUserId:Int?
+    var isCommment = false
     @IBOutlet weak var tipToAddComment: UILabel!
 
     @IBAction func back(sender: UIButton) {
@@ -106,8 +107,8 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                 let cell = tableView.dequeueReusableCellWithIdentifier("Comments")
                 let comment = cell?.viewWithTag(2) as! UILabel
                 var toWhom = ""
-                if(self.item!["comments"][indexPath.row-2]["toId"].int != nil){
-                    toWhom = " 回复 " + String(self.item!["comments"][indexPath.row-2]["toId"].int!)
+                if(self.item!["comments"][indexPath.row-2]["toId"].int != nil && self.item!["comments"][indexPath.row-2]["toId"].int != 0){
+                    toWhom = " 回复 " + self.item!["comments"][indexPath.row-2]["toUser"]["nickname"].string!
                 }
                 comment.text = self.item!["comments"][indexPath.row-2]["hiwuUser"]["nickname"].string! + toWhom + " : " + self.item!["comments"][indexPath.row-2]["content"].string!
                 return cell!
@@ -183,6 +184,11 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
         cells = 2 + self.item!["comments"].count
         self.waiting.stopAnimating()
         self.itemDetailList.reloadData()
+        if(isCommment == true){
+            self.itemDetailList.scrollToRowAtIndexPath(NSIndexPath(forRow: self.cells - 1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+        }else{
+             self.itemDetailList.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+        }
     }
     func networkError(){
         self.waiting.stopAnimating()
@@ -207,6 +213,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     
     func postComment(toUserId:Int?,itemId:Int,content:String){
         let url = ApiManager.postComment1 + String(itemId) + ApiManager.postComment2 + globalHiwuUser.hiwuToken
+        self.tipToAddComment.text = "在这里添加评论"
         if(toUserId != nil){
             Alamofire.request(.POST, url, parameters: ["content": content,"toId": toUserId!]).responseJSON{response in
                 self.waiting.stopAnimating()
@@ -216,8 +223,8 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                 }else{
                     self.addComment.text = ""
                     self.getItemInfo()
-                    let y = self.itemDetailList.contentSize.height
-                    self.itemDetailList.setContentOffset(CGPoint(x: 0,y: y), animated: true)
+                    print(self.cells)
+                    self.isCommment = true
                 }
             }
         }else{
@@ -229,8 +236,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                 }else{
                     self.addComment.text = ""
                     self.getItemInfo()
-                    let y = self.itemDetailList.contentSize.height - 500
-                    self.itemDetailList.setContentOffset(CGPoint(x: 0,y: y), animated: false)
+                    self.itemDetailList.scrollToNearestSelectedRowAtScrollPosition(UITableViewScrollPosition.Bottom, animated: true)
                 }
             }
         }
@@ -239,6 +245,12 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if(indexPath.row >= 2){
+            self.toUserId = self.item!["comments"][indexPath.row - 2]["userId"].int!
+            self.tipToAddComment.text = "回复给" + self.item!["comments"][indexPath.row - 2]["hiwuUser"]["nickname"].string! + " :"
+            self.toAddComment()
+            self.itemDetailList.deselectRowAtIndexPath(indexPath, animated: true)
+        }
         
     }
 
