@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyJSON
 import Kingfisher
+import Alamofire
 
 class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     let defaults = NSUserDefaults.standardUserDefaults()
@@ -17,6 +18,8 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var itemSum = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("selfmuseum")
+        print(globalHiwuUser.selfMuseum)
         for(var i=0 ;i < globalHiwuUser.selfMuseum!["galleries"].count;i++ ){
             itemSum += globalHiwuUser.selfMuseum!["galleries"][i]["items"].count
         }
@@ -67,6 +70,8 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             museumInfo.text = String(selfMuseum!["galleries"].count) + "  长廊 | " + String(self.itemSum) + " 物品  "
             museumInfo.layer.cornerRadius = museumInfo.frame.height/2
             museumInfo.clipsToBounds = true
+            let setting = cell.viewWithTag(5) as! UIButton
+            setting.addTarget(self, action: "toSetting", forControlEvents: UIControlEvents.TouchUpInside)
             return cell
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier("SelfGalleryCell")! as UITableViewCell
@@ -84,5 +89,28 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
+    
+    func toSetting(){
+        print("to setting")
+        print(globalHiwuUser.userId)
+        let setting = self.storyboard?.instantiateViewControllerWithIdentifier("SettingVC") as! SettingVC
+        setting.userId = globalHiwuUser.userId
+        let url = ApiManager.getSelfUserInfo1 + String(setting.userId) + ApiManager.getSelfUserInfo2 + globalHiwuUser.hiwuToken
+        Alamofire.request(.GET, url).responseJSON{response in
+            if(response.result.error == nil){
+                if(response.result.value != nil){
+                    setting.userInfo = JSON(response.result.value!)
+                    self.navigationController?.pushViewController(setting, animated: true)
+                }
+            }else{
+                let alert = UIAlertController(title: "网络错误", message: String(response.result.error), preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
+            }
+        }
+        
+        
+    }
+    
+
 
 }

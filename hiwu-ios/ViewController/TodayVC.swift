@@ -51,7 +51,7 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
         }else if(nowDate.timeIntervalSince1970 > freshline){
                 debugPrint("not fresh")
                 self.navigationController!.performSegueWithIdentifier("ToSelfMuseumSegue", sender: self)
-                ContactWithServer.getNewTokenWithDefaults()
+                self.contactor.getNewTokenWithDefaults()
                 print("i'm here")
             
             }else{

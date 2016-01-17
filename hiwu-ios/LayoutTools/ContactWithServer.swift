@@ -22,8 +22,13 @@ class ContactWithServer{
     var putLikeReady:PutLikeReadyProtocol?
     let defaults = NSUserDefaults.standardUserDefaults()
     
-    static func getNewTokenWithDefaults(){
-        NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: nil, userInfo: nil, repeats: false)
+    func getNewTokenWithDefaults(){
+        let username = self.defaults.stringForKey("userName")
+        if(username != nil){
+            self.getTokenWithPassword(username!, password: "")
+        }else{
+            print("nil username")
+        }
     }
     
     func getTokenWithPassword(username:String,password:String){
@@ -126,6 +131,7 @@ class ContactWithServer{
         Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
             if(response.result.value != nil){
                 globalHiwuUser.item = JSON(response.result.value!)
+                print(globalHiwuUser.item)
                 self.itemInfoReady?.getItemInfoReady()
             }else{
                 self.itemInfoReady?.getItemInfoFailed()

@@ -97,7 +97,13 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                     likeButton.addTarget(self, action: "putLike", forControlEvents: UIControlEvents.TouchUpInside)
                 }
                 let likeNum = cell?.viewWithTag(4) as! UILabel
-                likeNum.text = String(self.item!["likes"].int!)
+                var likes = 0
+                if(self.item!["likes"].int != nil){
+                    likes = self.item!["likes"].int!
+                }else{
+                    likes = self.item!["likers"].count
+                }
+                likeNum.text = String(likes)
                 let addComment = cell?.viewWithTag(5) as! UIButton
                 addComment.addTarget(self, action: "toAddComment", forControlEvents: UIControlEvents.TouchUpInside)
                 let commentNum = cell?.viewWithTag(6) as! UILabel
@@ -169,8 +175,11 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     func getItemInfo(){
         self.waiting.startAnimating()
         if(isMine!){
+            print(self.itemId)
             contactor.getSelfItemInfo(self.itemId!)
+            
         }else{
+            print(self.itemId)
             contactor.getPublicItemInfo(self.itemId!)
         }
     }

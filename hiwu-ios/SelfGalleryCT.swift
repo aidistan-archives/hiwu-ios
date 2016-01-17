@@ -54,10 +54,13 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        print(globalHiwuUser.selfMuseum)
         let id = globalHiwuUser.selfMuseum!["galleries"][self.location]["items"][indexPath.row]["id"].int!
+        print(id)
         let itemDetail = superVC?.storyboard?.instantiateViewControllerWithIdentifier("ItemDetailVC") as! ItemDetailVC
         itemDetail.isMine = true
         itemDetail.itemId = id
+        
         self.superVC?.navigationController?.pushViewController(itemDetail, animated: true)
         
     }

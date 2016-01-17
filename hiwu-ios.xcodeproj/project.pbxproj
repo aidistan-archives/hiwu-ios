@@ -31,6 +31,8 @@
 		A593552D1BD7983F0044E7B3 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593552C1BD7983F0044E7B3 /* ApiManager.swift */; };
 		A593553F1BD7B1440044E7B3 /* SelfMuseumVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593553E1BD7B1440044E7B3 /* SelfMuseumVC.swift */; };
 		A593554B1BD7D1370044E7B3 /* SelfGalleryCT.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593554A1BD7D1370044E7B3 /* SelfGalleryCT.swift */; };
+		A5B33DCA1C4A432B00565972 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B33DC91C4A432B00565972 /* SettingVC.swift */; };
+		A5B33DDB1C4B63DC00565972 /* AllTodays.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B33DDA1C4B63DC00565972 /* AllTodays.swift */; };
 		A5BFFD141BE4D2A100D5A866 /* ItemDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD131BE4D2A100D5A866 /* ItemDetailVC.swift */; };
 		A5BFFD571BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD551BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift */; };
 		A5BFFD581BE8E7C800D5A866 /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD561BE8E7C800D5A866 /* LoginProtocol.swift */; };
@@ -236,6 +238,8 @@
 		A593552C1BD7983F0044E7B3 /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		A593553E1BD7B1440044E7B3 /* SelfMuseumVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelfMuseumVC.swift; path = ViewController/SelfMuseumVC.swift; sourceTree = "<group>"; };
 		A593554A1BD7D1370044E7B3 /* SelfGalleryCT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfGalleryCT.swift; sourceTree = "<group>"; };
+		A5B33DC91C4A432B00565972 /* SettingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingVC.swift; path = ViewController/SettingVC.swift; sourceTree = "<group>"; };
+		A5B33DDA1C4B63DC00565972 /* AllTodays.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AllTodays.swift; path = ViewController/AllTodays.swift; sourceTree = "<group>"; };
 		A5BFFD131BE4D2A100D5A866 /* ItemDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemDetailVC.swift; path = ViewController/ItemDetailVC.swift; sourceTree = "<group>"; };
 		A5BFFD551BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetUserInfoReadyProtocol.swift; path = LayoutTools/GetUserInfoReadyProtocol.swift; sourceTree = "<group>"; };
 		A5BFFD561BE8E7C800D5A866 /* LoginProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginProtocol.swift; path = LayoutTools/LoginProtocol.swift; sourceTree = "<group>"; };
@@ -337,6 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				A59354C21BD5C4FD0044E7B3 /* LaunchScreen.swift */,
+				A5B33DC91C4A432B00565972 /* SettingVC.swift */,
 				A5BFFD131BE4D2A100D5A866 /* ItemDetailVC.swift */,
 				A5EB70AC1BE38AD20075D559 /* GalleryDetailVC.swift */,
 				A593553E1BD7B1440044E7B3 /* SelfMuseumVC.swift */,
@@ -345,6 +350,7 @@
 				A593550A1BD669080044E7B3 /* LoginVC.swift */,
 				A534BE941C0EC9FF00770171 /* GuidePage.swift */,
 				A534BE961C0F23CD00770171 /* AddGalleryVC.swift */,
+				A5B33DDA1C4B63DC00565972 /* AllTodays.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -706,6 +712,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A59355111BD672480044E7B3 /* TodayVC.swift in Sources */,
+				A5B33DDB1C4B63DC00565972 /* AllTodays.swift in Sources */,
 				A5BFFD5E1BE8EA9600D5A866 /* GetItemInfoReadyProtocol.swift in Sources */,
 				A59355181BD782100044E7B3 /* ContactWithServer.swift in Sources */,
 				A593553F1BD7B1440044E7B3 /* SelfMuseumVC.swift in Sources */,
@@ -730,6 +737,7 @@
 				A5BFFD5A1BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift in Sources */,
 				A593550B1BD669080044E7B3 /* LoginVC.swift in Sources */,
 				A5132BBE1BDBB5EA00B4C3DB /* AddItemVC.swift in Sources */,
+				A5B33DCA1C4A432B00565972 /* SettingVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

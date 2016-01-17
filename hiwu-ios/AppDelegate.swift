@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 var globalHiwuUser = UserModel()
 
@@ -17,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        let cache = KingfisherManager.sharedManager.cache
+        cache.maxDiskCacheSize = 100 * 1024 * 1024
         WXApi.registerApp("wxe0b3b148c706525")
         if WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() {
             print("已经安装微信")
