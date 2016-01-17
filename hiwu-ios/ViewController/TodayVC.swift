@@ -16,8 +16,14 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     @IBOutlet weak var refreshing: UIActivityIndicatorView!
     @IBOutlet weak var todayGalleryDisplay: UITableView!
 
+    @IBAction func getAllTodays(sender: UIButton) {
+        let next = self.storyboard?.instantiateViewControllerWithIdentifier("AllTodaysVC") as! AllTodaysVC
+        next.today = globalHiwuUser.todayMuseum
+        self.navigationController?.pushViewController(next, animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(globalHiwuUser.todayMuseum![0]["date_m"].int!)
         todayGalleryDisplay.dataSource = self
         todayGalleryDisplay.delegate = self
         todayGalleryDisplay.reloadData()

@@ -36,7 +36,7 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
         //“photos”里面不只一个图片,这里作为博物馆展示，只展示第一张
         let urlString = (items)[indexPath.row]["photos"][0]["url"].string!
         //设置imgaeview图片
-        images.kf_setImageWithURL(NSURL(string: urlString)!)
+        images.kf_setImageWithURL(NSURL(string: urlString + "@!200x200")!)
         return cell
     }
     
@@ -46,7 +46,7 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
         let galleryImage = cell.viewWithTag(1) as! UIImageView
         galleryImage.layer.cornerRadius = galleryImage.frame.size.width/2
         galleryImage.clipsToBounds = true
-        galleryImage.kf_setImageWithURL(NSURL(string: globalHiwuUser.todayMuseum![self.location]["gallery"]["hiwuUser"]["avatar"].string!)!)
+        galleryImage.kf_setImageWithURL(NSURL(string: globalHiwuUser.todayMuseum![self.location]["gallery"]["hiwuUser"]["avatar"].string! + "@!200x200")!)
         let galleryNameLabel = cell.viewWithTag(2) as! UILabel
         let nickName = globalHiwuUser.todayMuseum![self.location]["gallery"]["hiwuUser"]["nickname"].string!
         galleryNameLabel.text = nickName + " ⎡" + globalHiwuUser.todayMuseum![self.location]["gallery"]["name"].string! + " ⎦"

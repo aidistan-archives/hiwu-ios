@@ -37,7 +37,7 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
         //“photos”里面不只一个图片,这里作为博物馆展示，只展示第一张
         let urlString = (items)[indexPath.row]["photos"][0]["url"].string!
         //设置imgaeview图片
-        imgaes.kf_setImageWithURL(NSURL(string: urlString)!)
+        imgaes.kf_setImageWithURL(NSURL(string: urlString + "@!200x200")!)
         return cell
     }
     

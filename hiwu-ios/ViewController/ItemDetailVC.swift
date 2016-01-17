@@ -103,6 +103,8 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                 }else{
                     likes = self.item!["likers"].count
                 }
+                print(likes)
+                print(self.item!["likers"])
                 likeNum.text = String(likes)
                 let addComment = cell?.viewWithTag(5) as! UIButton
                 addComment.addTarget(self, action: "toAddComment", forControlEvents: UIControlEvents.TouchUpInside)
