@@ -38,8 +38,6 @@ class AddGalleryVC: UIViewController,UITextFieldDelegate,UITextViewDelegate {
     func textViewDidBeginEditing(textView: UITextView){
         let location = textView.frame
         let size = self.view.frame
-        print(location)
-        print(size)
         let offset = size.height - location.maxY - 300
         if(offset<0){
             

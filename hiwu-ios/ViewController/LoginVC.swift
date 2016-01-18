@@ -51,7 +51,6 @@ class LoginVC: UIViewController,LoginProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("stack")
-        print(self.navigationController?.viewControllers)
         registerButton.layer.cornerRadius = registerButton.frame.height/2
         
 

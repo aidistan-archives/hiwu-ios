@@ -30,8 +30,9 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
         self.contactor.userInfoReady = self
         self.contactor.loginSuccess = self
     }
+    @IBOutlet weak var selfmuseum: UIButton!
     override  func viewWillAppear(animated: Bool) {
-//        self.todayGalleryDisplay.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+        self.selfmuseum.enabled = true
     }
     
     func back(){
@@ -39,6 +40,7 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     }
     
     @IBAction func enterToSelfMuseum(sender: UIButton) {
+        sender.enabled = false
         print("enter to selfmuseum")
         let nowDate = NSDate(timeIntervalSinceNow: 0)
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -82,7 +84,6 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
 //            return 450
 //        }
         let num = globalHiwuUser.todayMuseum![indexPath.row]["gallery"]["items"].count
-        print(num)
         if(num>=7){
             return 450
         }else if(num>=4 && num<=6){
@@ -114,7 +115,6 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         print("sender")
-        print(scrollView.contentOffset.y)
         if(((-scrollView.contentOffset.y > 100))&&(self.isLoading == false)){
             self.isLoading = true
             self.refreshing.startAnimating()

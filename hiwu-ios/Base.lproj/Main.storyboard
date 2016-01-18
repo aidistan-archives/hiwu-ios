@@ -826,8 +826,8 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="105" height="105"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView tag="6" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="ypr-Ne-eiK">
-                                                                        <rect key="frame" x="6" y="6" width="103" height="103"/>
+                                                                    <imageView tag="6" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="ypr-Ne-eiK">
+                                                                        <rect key="frame" x="6" y="6" width="93" height="93"/>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -983,6 +983,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="refreshing" destination="Nis-xV-AK0" id="Rmm-kf-8uV"/>
+                        <outlet property="selfmuseum" destination="sKu-gK-QWe" id="1r3-Z7-0Xg"/>
                         <outlet property="todayGalleryDisplay" destination="4Wh-af-b9M" id="n6V-9J-TxN"/>
                     </connections>
                 </viewController>

@@ -36,4 +36,6 @@ class ApiManager{
     static let postComment2 = "/comments?access_token="
     static let deleteComment1 = "http://hiwu.ren:3010/api/Comments/"
     static let deleteComment2 = "?access_token="
+    static let putAvatar1 = "http://hiwu.ren:3010/api/HiwuUsers/"
+    static let putAvatar2 = "/avatar?access_token="
 }

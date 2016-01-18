@@ -99,7 +99,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         if(indexPath.row == 0){
             let cell = tableView.dequeueReusableCellWithIdentifier("GalleryTitle")! as UITableViewCell
             let ownerAvatar = cell.viewWithTag(1) as! UIImageView
-            print(self.gallery)
             if(self.gallery!["hiwuUser"]["avatar"].string! != ""){
             ownerAvatar.kf_setImageWithURL(NSURL(string: self.gallery!["hiwuUser"]["avatar"].string!)!)
                 ownerAvatar.layer.cornerRadius = ownerAvatar.frame.size.width/2
@@ -167,7 +166,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     }
     
     func getItemInfoReady() {
-        print(NSDate(timeIntervalSinceNow: 0))
         let itemDetail = self.storyboard?.instantiateViewControllerWithIdentifier("ItemDetailVC") as! ItemDetailVC
         itemDetail.item = globalHiwuUser.item
         itemDetail.isMine = self.isMine
@@ -204,7 +202,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
         let toAdd = self.storyboard?.instantiateViewControllerWithIdentifier("AddItemVC") as! AddItemVC
         toAdd.galleryId = self.gallery!["id"].int!
-        print(toAdd.galleryId)
         toAdd.image = info[UIImagePickerControllerEditedImage] as? UIImage
         
         picker.dismissViewControllerAnimated(true, completion: nil)

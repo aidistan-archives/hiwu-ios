@@ -29,7 +29,6 @@ class AddItemVC: UIViewController,UIImagePickerControllerDelegate,UINavigationCo
     @IBOutlet weak var loading: UIActivityIndicatorView!
     
     func takePicture(sender: UITapGestureRecognizer) {
-        print("takepicture")
         let alert = UIAlertController(title: "选择照片来源", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
         alert.addAction(UIAlertAction(title: "从相机", style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction!) in
             self.callCamera()
@@ -57,7 +56,6 @@ class AddItemVC: UIViewController,UIImagePickerControllerDelegate,UINavigationCo
             contactor.ready = self
         let jpgUrl = NSHomeDirectory().stringByAppendingString("/tmp/").stringByAppendingString("tmp.jpg")
             UIImageJPEGRepresentation(itemImage.image!, 0.9)?.writeToFile(jpgUrl, atomically: false)
-            print(self.galleryId)
             contactor.postItem(self.galleryId, itemName: itemName.text!, itemDescription: itemDescription.text, year: Int(self.time.text!)!, city: self.city.text!, dataUrl: NSURL(fileURLWithPath: jpgUrl), isPublic: !isPublic.on)
             self.loading.startAnimating()
             
@@ -120,8 +118,6 @@ class AddItemVC: UIViewController,UIImagePickerControllerDelegate,UINavigationCo
     func textViewDidBeginEditing(textView: UITextView){
         let location = textView.frame
         let size = self.view.frame
-        print(location)
-        print(size)
         let offset = size.height - location.maxY - 300
         if(offset<0){
             
@@ -176,7 +172,6 @@ class AddItemVC: UIViewController,UIImagePickerControllerDelegate,UINavigationCo
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
         galleryId = globalHiwuUser.selfMuseum!["galleries"][row]["id"].int!
-        print(galleryId)
     }
     
     func back(){
@@ -188,6 +183,7 @@ class AddItemVC: UIViewController,UIImagePickerControllerDelegate,UINavigationCo
     }
     
     func Ready() {
+        
         self.navigationController?.popViewControllerAnimated(true)
     }
 

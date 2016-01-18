@@ -10,18 +10,21 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import Kingfisher
+import AVFoundation
 
 
-class SettingVC: UITableViewController {
+class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     var userId = globalHiwuUser.userId
     var userInfo:JSON?
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(self.userInfo)
     }
-
+    override func viewWillAppear(animated: Bool) {
+        self.getUserInfo()
+        self.tableView.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -49,7 +52,6 @@ class SettingVC: UITableViewController {
         let cell:UITableViewCell?
         switch indexPath.section{
         case 0:
-            print(indexPath.section)
             switch indexPath.row{
             case 0:
                 cell = tableView.dequeueReusableCellWithIdentifier("Avatar")
@@ -88,10 +90,13 @@ class SettingVC: UITableViewController {
     }
     
     func getUserInfo(){
+        self.refreshControl?.beginRefreshing()
         let url = ApiManager.getSelfUserInfo1 + String(self.userId) + ApiManager.getSelfUserInfo2 + globalHiwuUser.hiwuToken
         Alamofire.request(.GET, url).responseJSON{response in
             if(response.result.error == nil){
                 self.userInfo  = JSON(response.result.value!)
+                self.refreshControl?.endRefreshing()
+                self.tableView.reloadData()
             }else{
                 let alert = UIAlertController(title: "网络错误", message: String(response.result.error), preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
@@ -104,7 +109,7 @@ class SettingVC: UITableViewController {
         case 0:
             switch indexPath.row{
             case 0:
-                print("hello")
+                self.setImage()
             case 1:
                 print("call edit name")
             default:
@@ -146,6 +151,69 @@ class SettingVC: UITableViewController {
     
     override func prefersStatusBarHidden() -> Bool {
         return true
+    }
+    
+    func setImage(){
+        let alert = UIAlertController(title: "选择照片来源", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        alert.addAction(UIAlertAction(title: "从相机", style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction!) in
+            self.callCamera()
+        }))
+        alert.addAction(UIAlertAction(title: "从相册", style: UIAlertActionStyle.Default, handler: {(action: UIAlertAction!) in
+            self.callPhotoLibrary()
+        }))
+        alert.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    
+    func callCamera(){
+        AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: nil)
+        let camera = UIImagePickerController()
+        camera.delegate = self
+        camera.sourceType = UIImagePickerControllerSourceType.Camera
+        camera.showsCameraControls = true
+        camera.allowsEditing = true
+        self.presentViewController(camera, animated: true, completion: nil)
+        
+    }
+    
+    func callPhotoLibrary(){
+        let camera = UIImagePickerController()
+        camera.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        camera.delegate = self
+        camera.allowsEditing = true
+        self.presentViewController(camera, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
+        let tmpImage = info[UIImagePickerControllerEditedImage] as? UIImage
+        let jpgUrl = NSHomeDirectory().stringByAppendingString("/tmp/").stringByAppendingString("tmp.jpg")
+        UIImageJPEGRepresentation(tmpImage!, 0.7)?.writeToFile(jpgUrl, atomically: false)
+        self.updateAvatar(jpgUrl)
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    func imagePickerControllerDidCancel(picker: UIImagePickerController){
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    func updateAvatar(jpgUrl:String){
+        let url = ApiManager.putAvatar1 + String(globalHiwuUser.userId) + ApiManager.putAvatar2 + globalHiwuUser.hiwuToken
+        Alamofire.upload(.PUT, url,multipartFormData: { multipartFormData in
+            multipartFormData.appendBodyPart(fileURL: NSURL(fileURLWithPath: jpgUrl), name: "data")
+            }, encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .Success(let upload, _, _):
+                    upload.responseJSON { response in
+                        if(response.result.value != nil){
+                            self.getUserInfo()
+                            print(response.result.value)
+                        }
+                    }
+                case .Failure(let encodingError):
+                    print(encodingError)
+                }
+        })
     }
 
 }

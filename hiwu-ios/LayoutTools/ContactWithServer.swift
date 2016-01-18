@@ -35,8 +35,6 @@ class ContactWithServer{
         Alamofire.request(.POST, ApiManager.simpleLogin + "username=" + username).responseJSON{response in
             if(response.result.isSuccess)
             {
-                print("gettoken")
-                print(response.request)
                 if(response.result.error == nil){
                     let userInfo = JSON(response.result.value!)
                     if(userInfo != nil){
@@ -69,7 +67,6 @@ class ContactWithServer{
             globalHiwuUser.hiwuToken = tmpToken!
             globalHiwuUser.userName = tmpUserName!
             self.userInfoReady?.getUserInfoReady()
-            print("user Info First Ready in contactor")
         }
         
     }
@@ -77,18 +74,13 @@ class ContactWithServer{
     func getSelfMuseum(complete:()?){
         let url = ApiManager.getAllSelfGallery1_2 + String(globalHiwuUser.userId) + ApiManager.getAllSelfGallery2_2 + globalHiwuUser.hiwuToken
         Alamofire.request(.GET, url).responseJSON{response in
-            print("contact hiwu token")
-            print(globalHiwuUser.hiwuToken)
-            print(response .request?.URLString)
             if(response.result.value != nil){
-                print("get selfMuseum")
                 globalHiwuUser.selfMuseum = JSON(response.result.value!)
                 let tmpData:NSData = NSKeyedArchiver.archivedDataWithRootObject(response.result.value!)
                 self.defaults.setObject(tmpData, forKey: "selfMuseum")
                 self.defaults.synchronize()
                 self.selfMuseumReady?.getSelfMuseunReady()
                 self.loginSuccess?.didGetSelfMuseum()
-                print("selfMuseumReady network")
             }else{
                 if(self.defaults.valueForKey("selfMuseum") != nil){
                     globalHiwuUser.selfMuseum = JSON(NSKeyedUnarchiver.unarchiveObjectWithData(self.defaults.objectForKey("selfMuseum") as! NSData)!)
@@ -131,7 +123,6 @@ class ContactWithServer{
         Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
             if(response.result.value != nil){
                 globalHiwuUser.item = JSON(response.result.value!)
-                print(globalHiwuUser.item)
                 self.itemInfoReady?.getItemInfoReady()
             }else{
                 self.itemInfoReady?.getItemInfoFailed()
@@ -146,7 +137,6 @@ class ContactWithServer{
         Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
             if(response.result.value != nil){
                 globalHiwuUser.item = JSON(response.result.value!)
-                print(globalHiwuUser.item)
                 self.itemInfoReady?.getItemInfoReady()
             }else{
                  self.itemInfoReady?.getItemInfoFailed()
@@ -168,7 +158,6 @@ class ContactWithServer{
             ]).responseJSON{response in
             if(response.result.value != nil){
                 self.postPhotoToItem(JSON(response.result.value!)["id"].int!, dataUrl: dataUrl)
-                print(response.result.value)
             }
         }
         
@@ -176,7 +165,6 @@ class ContactWithServer{
     
     func postPhotoToItem(itemId:Int,dataUrl:NSURL){
         let postPhotoUrl = ApiManager.postItemPhoto1 + String(itemId) + ApiManager.postItemPhoto2 + globalHiwuUser.hiwuToken
-        print(dataUrl)
         Alamofire.upload(.POST, postPhotoUrl,multipartFormData: { multipartFormData in
             multipartFormData.appendBodyPart(fileURL: dataUrl, name: "data")
             }, encodingCompletion: { encodingResult in
@@ -184,12 +172,10 @@ class ContactWithServer{
                 case .Success(let upload, _, _):
                     upload.responseJSON { response in
                         if(response.result.value != nil){
-                            print(response.result.value)
                             self.ready?.Ready()
                         }
                     }
                 case .Failure(let encodingError):
-                    print("error")
                     print(encodingError)
                 }
         })
@@ -218,7 +204,6 @@ class ContactWithServer{
     
     func getGalleryItems(id:Int,complete:(gallery:JSON?)->()?){
         let url = ApiManager.getGalleryItems1 + String(id) + ApiManager.getGalleryItems2 + globalHiwuUser.hiwuToken
-        print(url)
         Alamofire.request(.GET, url).responseJSON{response in
             if(response.result.value != nil){
                 complete(gallery: JSON(response.result.value!))
@@ -231,10 +216,8 @@ class ContactWithServer{
     func putLike(userId: Int,itemId: Int){
         let url = ApiManager.putLike1 + String(userId) + ApiManager.putLike2 + String(itemId) + ApiManager.putLike3 + globalHiwuUser.hiwuToken
         print("put like")
-        print(url)
         Alamofire.request(.PUT,url).responseJSON{response in
             if(response.result.value != nil && response.result.error == nil){
-                print(response.result.value)
                 self.putLikeReady?.putLikeReady()
             }else{
                 print(response.result.error)

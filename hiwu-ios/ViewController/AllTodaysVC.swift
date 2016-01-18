@@ -87,9 +87,7 @@ class AllTodaysVC: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let tmpDate = titles[indexPath.section] as! String
         let index = (dates[tmpDate] as! NSMutableArray)[indexPath.row] as! Int
-        print(index)
         let tmpGallery = today![index]["gallery"]
-        print(tmpGallery)
         let cell = tableView.dequeueReusableCellWithIdentifier("TodayCell")
         let avatar = cell?.viewWithTag(1) as! UIImageView
         avatar.kf_setImageWithURL(NSURL(string: tmpGallery["hiwuUser"]["avatar"].string! + "@!200x200")!)
@@ -103,7 +101,6 @@ class AllTodaysVC: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let tmpDate = titles[indexPath.section] as! String
         let index = (dates[tmpDate] as! NSMutableArray)[indexPath.row] as! Int
-        print(index)
         let tmpGallery = today![index]["gallery"]
         let galleryDetail = self.storyboard?.instantiateViewControllerWithIdentifier("GalleryDetailVC") as! GalleryDetailVC
         galleryDetail.gallery = tmpGallery

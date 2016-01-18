@@ -68,8 +68,6 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             let museumInfo = cell.viewWithTag(3) as! UILabel
             let description = cell.viewWithTag(10) as! UILabel
             let selfMuseum = globalHiwuUser.selfMuseum
-            print(globalHiwuUser.hiwuToken)
-            print(selfMuseum)
             userAvatar.kf_setImageWithURL(NSURL(string: selfMuseum!["avatar"].string!)!)
             userAvatar.layer.cornerRadius = userAvatar.frame.height/2
             userAvatar.clipsToBounds = true
@@ -119,7 +117,6 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     func toSetting(){
         print("to setting")
-        print(globalHiwuUser.userId)
         let setting = self.storyboard?.instantiateViewControllerWithIdentifier("SettingVC") as! SettingVC
         setting.userId = globalHiwuUser.userId
         let url = ApiManager.getSelfUserInfo1 + String(setting.userId) + ApiManager.getSelfUserInfo2 + globalHiwuUser.hiwuToken

@@ -105,8 +105,6 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                 }else{
                     likes = self.item!["likers"].count
                 }
-                print(likes)
-                print(self.item!["likers"])
                 likeNum.text = String(likes)
                 let addComment = cell?.viewWithTag(5) as! UIButton
                 addComment.addTarget(self, action: "toAddComment", forControlEvents: UIControlEvents.TouchUpInside)
@@ -179,11 +177,9 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     func getItemInfo(){
         self.waiting.startAnimating()
         if(isMine!){
-            print(self.itemId)
             contactor.getSelfItemInfo(self.itemId!)
             
         }else{
-            print(self.itemId)
             contactor.getPublicItemInfo(self.itemId!)
         }
     }
@@ -236,7 +232,6 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                 }else{
                     self.addComment.text = ""
                     self.getItemInfo()
-                    print(self.cells)
                     self.isCommment = true
                 }
             }
