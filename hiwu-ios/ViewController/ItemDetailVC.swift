@@ -81,6 +81,8 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                 let itemOwner = cell?.viewWithTag(4) as! UIImageView
                 let userAvatar = self.item!["hiwuUser"]["avatar"].string!
                 itemOwner.kf_setImageWithURL(NSURL(string:userAvatar)!)
+                itemOwner.layer.cornerRadius = itemOwner.frame.size.width/2
+                itemOwner.clipsToBounds = true
             return cell!
             case 1:
                 let cell = tableView.dequeueReusableCellWithIdentifier("ItemDescription")
@@ -242,7 +244,6 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
             Alamofire.request(.POST, url, parameters: ["content": content]).responseJSON{response in
                 self.waiting.stopAnimating()
                 if(response.result.error != nil){
-                    print(response.result.error)
                     self.networkError()
                 }else{
                     self.addComment.text = ""

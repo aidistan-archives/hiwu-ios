@@ -18,7 +18,7 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
 
     @IBAction func getAllTodays(sender: UIButton) {
         let next = self.storyboard?.instantiateViewControllerWithIdentifier("AllTodaysVC") as! AllTodaysVC
-        next.today = globalHiwuUser.todayMuseum
+//        next.today = globalHiwuUser.todayMuseum
         self.navigationController?.pushViewController(next, animated: true)
     }
     override func viewDidLoad() {
@@ -32,15 +32,11 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
         self.contactor.loginSuccess = self
     }
     override  func viewWillAppear(animated: Bool) {
-        self.todayGalleryDisplay.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+//        self.todayGalleryDisplay.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
     }
     
     func back(){
         self.navigationController?.popViewControllerAnimated(true)
-    }
-    @IBAction func clear(sender: UIButton) {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setDouble(0, forKey: "deadline")
     }
     
     @IBAction func enterToSelfMuseum(sender: UIButton) {
@@ -74,7 +70,11 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return globalHiwuUser.todayMuseum!.count
+        if(globalHiwuUser.todayMuseum!.count <= 6){
+            return globalHiwuUser.todayMuseum!.count
+        }else{
+            return 6
+        }
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 //        if(indexPath.row == 0){
@@ -82,7 +82,17 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
 //        }else{
 //            return 450
 //        }
-        return 450
+        let num = globalHiwuUser.todayMuseum![indexPath.row]["gallery"]["items"].count
+        print(num)
+        if(num>=7){
+            return 450
+        }else if(num>=4 && num<=6){
+            return 380
+        }else if(num>=1 && num<=3 ){
+            return 320
+        }else{
+            return 160
+        }
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
@@ -121,7 +131,6 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
                 })
             })
         }
-        
     }
 
     

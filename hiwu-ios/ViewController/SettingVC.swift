@@ -53,19 +53,27 @@ class SettingVC: UITableViewController {
             switch indexPath.row{
             case 0:
                 cell = tableView.dequeueReusableCellWithIdentifier("Avatar")
-                print(cell)
                 let userAvatar = cell?.viewWithTag(1) as! UIImageView
-                userAvatar.kf_setImageWithURL(NSURL(string: self.userInfo!["avatar"].string!)!)
+                userAvatar.kf_setImageWithURL(NSURL(string: self.userInfo!["avatar"].string!)!, placeholderImage: UIImage(named: "iconfont-like"))    
                 userAvatar.layer.cornerRadius = userAvatar.frame.height/2
                 userAvatar.clipsToBounds = true
             case 1:
                 cell = tableView.dequeueReusableCellWithIdentifier("Name")
                 let name = cell?.viewWithTag(1) as! UILabel
-                name.text = self.userInfo!["nickname"].string!
+                if(self.userInfo!["nickname"].string! != ""){
+                    name.text = self.userInfo!["nickname"].string!
+                }else{
+                    name.text = "未命名"
+                }
+                
             default:
                 cell = tableView.dequeueReusableCellWithIdentifier("Description")
                 let description = cell?.viewWithTag(1) as! UILabel
-                description.text = self.userInfo!["description"].string!
+                if(self.userInfo!["description"].string! != ""){
+                    description.text = self.userInfo!["description"].string!
+                }else{
+                    description.text = "未添加描述"
+                }
             }
         case 1:
             cell = tableView.dequeueReusableCellWithIdentifier("Account")
@@ -107,7 +115,9 @@ class SettingVC: UITableViewController {
         case 2:
             print("call feed back")
         default:
-            print("call logout")
+            self.navigationController?.popToRootViewControllerAnimated(true)
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setDouble(0, forKey: "deadline")
             
         }
     }

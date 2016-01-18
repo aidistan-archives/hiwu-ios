@@ -25,10 +25,7 @@ class AllTodaysVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getDate()
-        tableView.reloadData()
-//        getTodayInfo()
-//        tableView.hidden = true
+        getTodayInfo()
     }
     
     func getDate(){
@@ -43,8 +40,6 @@ class AllTodaysVC: UITableViewController {
                 dates.setValue(museum, forKey: tmpDate)
             }
         }
-        print(dates)
-        print(titles)
         tableView.reloadData()
     }
     
@@ -83,7 +78,6 @@ class AllTodaysVC: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        print(titles)
         let string = (titles[section]) as! NSString
         let year = string.substringToIndex(4)
         let month = string.substringFromIndex(4)
@@ -100,56 +94,17 @@ class AllTodaysVC: UITableViewController {
         let avatar = cell?.viewWithTag(1) as! UIImageView
         avatar.kf_setImageWithURL(NSURL(string: tmpGallery["hiwuUser"]["avatar"].string! + "@!200x200")!)
         let name = cell?.viewWithTag(2) as! UILabel
-        name.text = tmpGallery["hiwuUser"]["nickname"].string!
+        name.text = tmpGallery["hiwuUser"]["nickname"].string! + " ⎡" + tmpGallery["name"].string! + " ⎦"
         let num = cell?.viewWithTag(3) as! UILabel
         num.text = String(tmpGallery["items"].count)
         return cell!
     }
 
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let tmpDate = titles[indexPath.section] as! String
+        let index = (dates[tmpDate] as! NSMutableArray)[indexPath.row] as! Int
+        print(index)
+        let tmpGallery = today![index]["gallery"]
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

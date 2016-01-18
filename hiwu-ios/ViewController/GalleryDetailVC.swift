@@ -25,10 +25,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     
     @IBOutlet weak var galleryDetails: UITableView!
     
-    @IBAction func back(sender: UIButton) {
-        self.navigationController?.popViewControllerAnimated(true)
-    }
-    
     @IBAction func toAddItem(sender: UIButton)
     {
         
@@ -161,7 +157,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         contactor.superGalleryDetailVC = self
         contactor.deleteItem(self.gallery!["items"][indexPath.row-1]["id"].int!,complete: nil)
-        print("delete")
     }
     
     func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {

@@ -16,25 +16,22 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var selfGalleryDisplay: UITableView!
     var tableCellLocation = 0
     var itemSum = 0
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("selfmuseum")
-        print(globalHiwuUser.selfMuseum)
-        for(var i=0 ;i < globalHiwuUser.selfMuseum!["galleries"].count;i++ ){
-            itemSum += globalHiwuUser.selfMuseum!["galleries"][i]["items"].count
-        }
         selfGalleryDisplay.delegate = self
         selfGalleryDisplay.dataSource = self
-        selfGalleryDisplay.reloadData()
-        let gesture = UIScreenEdgePanGestureRecognizer(target: self, action: "back")
-        gesture.edges = UIRectEdge.Left
-        self.view.addGestureRecognizer(gesture)
+        self.getSelfMuseum()
     }
     
     func back(){
         self.navigationController?.popViewControllerAnimated(true)
     }
 
+    override func viewWillAppear(animated: Bool) {
+        self.getSelfMuseum()
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return globalHiwuUser.selfMuseum!["galleries"].count + 1
@@ -44,10 +41,19 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         if(indexPath.row == 0){
             return 100
         }else{
-            return 400
-            
+            let num = globalHiwuUser.selfMuseum!["galleries"][indexPath.row-1]["items"].count
+            if(num>=7){
+                return 410
+            }else if(num>=4){
+                return 300
+            }else if(num>=1){
+                return 200
+            }else{
+                return 100
+            }
         }
     }
+    
     @IBAction func addGallery(sender: UIButton) {
         let addGallery = self.storyboard?.instantiateViewControllerWithIdentifier("AddGalleryVC") as! AddGalleryVC
         self.navigationController?.pushViewController(addGallery, animated: true)
@@ -84,7 +90,23 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             return cell
             
         }
-            }
+    }
+
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if(indexPath.row >= 1){
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
+        return "删除"
+    }
 
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -109,6 +131,28 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         }
         
         
+    }
+    
+    func getSelfMuseum(){
+        let url = ApiManager.getAllSelfGallery1_2 + String(globalHiwuUser.userId) + ApiManager.getAllSelfGallery2_2 + globalHiwuUser.hiwuToken
+        Alamofire.request(.GET, url).responseJSON{response in
+            if(response.result.value != nil){
+                globalHiwuUser.selfMuseum = JSON(response.result.value!)
+                for(var i=0 ;i < globalHiwuUser.selfMuseum!["galleries"].count;i++ ){
+                    self.itemSum += globalHiwuUser.selfMuseum!["galleries"][i]["items"].count
+                    self.selfGalleryDisplay.reloadData()
+                }
+            }else{
+                self.networkError()
+            }
+        }
+    }
+    
+    func networkError(){
+        let alert = UIAlertController(title: "请求失败", message: "请检查你的网络", preferredStyle: UIAlertControllerStyle.Alert)
+        let action = UIAlertAction(title: "知道了", style: UIAlertActionStyle.Default, handler: nil)
+        alert.addAction(action)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
 
