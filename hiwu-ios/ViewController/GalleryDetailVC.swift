@@ -15,12 +15,9 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     
     var isMine = false
     var gallery:JSON?
-    var userAvatar:String?
-    var userName:String?
     let defaults = NSUserDefaults.standardUserDefaults()
     let contactor = ContactWithServer()
     var location = -1
-    var selfDelete = 0
     var scrollLocation = CGPoint(x: 0, y: 0)
     
     @IBOutlet weak var galleryDetails: UITableView!
@@ -42,9 +39,11 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     @IBOutlet weak var addItemButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("did load")
+        self.navigationController?.navigationBarHidden = false
         self.galleryDetails.delegate = self
         self.galleryDetails.dataSource = self
+        self.galleryDetails.estimatedRowHeight = 140
+        self.galleryDetails.rowHeight = UITableViewAutomaticDimension
         self.galleryDetails.reloadData()
         if(isMine){
             self.addItemButton.hidden = false
@@ -60,7 +59,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.galleryDetails.setContentOffset(scrollLocation, animated: true)
         self.contactor.todayInfoReady = self
         self.contactor.selfMuseumReady = self
         self.refresh()
@@ -80,24 +78,18 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         self.galleryDetails.reloadData()
     }
     
-    func setInfo(gallery:JSON,userAvatar:String?,userName:String){
-        self.gallery = gallery
-        self.userAvatar = userAvatar
-        self.userName = userName
-        
-    }
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return self.gallery!["items"].count+1
     }
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if(indexPath.row == 0){
-            return 94
-        
-        }else{
-        return 140
-        }
-    }
+    
+//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        if(indexPath.row == 0){
+//            return 94
+//        
+//        }else{
+//        return 140
+//        }
+//    }
     
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -107,17 +99,16 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         if(indexPath.row == 0){
             let cell = tableView.dequeueReusableCellWithIdentifier("GalleryTitle")! as UITableViewCell
             let ownerAvatar = cell.viewWithTag(1) as! UIImageView
-            if(self.userAvatar != nil){
-            ownerAvatar.kf_setImageWithURL(NSURL(string: self.userAvatar!)!)
+            print(self.gallery)
+            if(self.gallery!["hiwuUser"]["avatar"].string! != ""){
+            ownerAvatar.kf_setImageWithURL(NSURL(string: self.gallery!["hiwuUser"]["avatar"].string!)!)
                 ownerAvatar.layer.cornerRadius = ownerAvatar.frame.size.width/2
                 ownerAvatar.clipsToBounds = true
             }
-            let galleryName = cell.viewWithTag(2) as! UITextField
-            galleryName.text = self.gallery!["name"].string
-            let galleryDescription = cell.viewWithTag(3) as! UITextField
+            let galleryName = cell.viewWithTag(2) as! UILabel
+            galleryName.text = self.gallery!["hiwuUser"]["nickname"].string! + " ⎡" + self.gallery!["name"].string! + " ⎦"
+            let galleryDescription = cell.viewWithTag(3) as! UILabel
             galleryDescription.text = self.gallery!["description"].string
-            let itemNum = cell.viewWithTag(4) as! UILabel
-            itemNum.text = String(self.gallery!["items"].count)
             return cell
             
         }else{
@@ -126,7 +117,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
             itemId.text = String(gallery!["items"][indexPath.row-1]["id"])
             let itemPic = cell.viewWithTag(10) as! UIImageView
             if(self.gallery!["items"][indexPath.row-1]["photos"][0]["url"].string != nil){
-                itemPic.kf_setImageWithURL(NSURL(string: self.gallery!["items"][indexPath.row-1]["photos"][0]["url"].string!)!)}else{
+                itemPic.kf_setImageWithURL(NSURL(string: self.gallery!["items"][indexPath.row-1]["photos"][0]["url"].string! + "@!200x200")!)}else{
                 itemPic.image = UIImage(named: "add")
             }
             
@@ -139,7 +130,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
             let itemCity = cell.viewWithTag(50) as! UILabel
             itemCity.text = gallery!["items"][indexPath.row-1]["city"].string
             let itemOwner = cell.viewWithTag(60) as! UILabel
-            itemOwner.text = self.userName!
+            itemOwner.text = self.gallery!["hiwuUser"]["nickname"].string!
             let gesture = UITapGestureRecognizer(target: self, action: "getItemDetail:")
             cell.addGestureRecognizer(gesture)
             return cell

@@ -23,7 +23,6 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(globalHiwuUser.todayMuseum![0]["date_m"].int!)
         todayGalleryDisplay.dataSource = self
         todayGalleryDisplay.delegate = self
         todayGalleryDisplay.reloadData()
@@ -150,8 +149,6 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     
     func getUserInfoReady(){
         
-        print("ready in today in user info")
-        print(globalHiwuUser.hiwuToken)
         self.contactor.getSelfMuseum(nil)
     }
     func getUserInfoFailed(){

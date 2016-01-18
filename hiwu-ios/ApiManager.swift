@@ -14,7 +14,7 @@ class ApiManager{
     static let getSelfUserInfo2 = "?access_token="
     static let getTodayPublicView = "http://hiwu.ren:3010/api/SelectedGalleries/publicView"
     static let getAllSelfGallery1_2 = "http://hiwu.ren:3010/api/HiwuUsers/"
-    static let getAllSelfGallery2_2 = "?filter=%7B%22include%22%3A%7B%22galleries%22%3A%7B%22items%22%3A%5B%22photos%22%2C%22comments%22%5D%7D%7D%7D&access_token="
+    static let getAllSelfGallery2_2 = "?filter=%7B%22include%22%3A%7B%22galleries%22%3A%5B%22hiwuUser%22%2C%7B%22items%22%3A%22photos%22%7D%5D%7D%7D&access_token="
     static let getSelfItem1 = "http://hiwu.ren:3010/api/Items/"
     static let getSelfItem2 = "?filter=%7B%22include%22%3A%5B%22photos%22%2C%22likers%22%2C%22hiwuUser%22%2C%7B%22comments%22%3A%22hiwuUser%22%7D%5D%7D&access_token="
     static let getPublicItem1 = "http://hiwu.ren:3010/api/Items/"

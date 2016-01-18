@@ -105,6 +105,15 @@ class AllTodaysVC: UITableViewController {
         let index = (dates[tmpDate] as! NSMutableArray)[indexPath.row] as! Int
         print(index)
         let tmpGallery = today![index]["gallery"]
+        let galleryDetail = self.storyboard?.instantiateViewControllerWithIdentifier("GalleryDetailVC") as! GalleryDetailVC
+        galleryDetail.gallery = tmpGallery
+        galleryDetail.isMine = false
+        self.navigationController?.pushViewController(galleryDetail, animated: true)
+        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
 
 }

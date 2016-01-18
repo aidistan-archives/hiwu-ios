@@ -59,7 +59,8 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
     
     func getGalleryDetail(sender:AnyObject){
         let galleryDetail = self.superVC?.storyboard?.instantiateViewControllerWithIdentifier("GalleryDetailVC") as! GalleryDetailVC
-        galleryDetail.setInfo(globalHiwuUser.todayMuseum![self.location]["gallery"], userAvatar: globalHiwuUser.todayMuseum![self.location]["gallery"]["hiwuUser"]["avatar"].string!, userName: globalHiwuUser.todayMuseum![self.location]["gallery"]["hiwuUser"]["nickname"].string!)
+        galleryDetail.gallery = globalHiwuUser.todayMuseum![self.location]["gallery"]
+        galleryDetail.isMine = false
         self.superVC?.showViewController(galleryDetail, sender: self)
     }
     

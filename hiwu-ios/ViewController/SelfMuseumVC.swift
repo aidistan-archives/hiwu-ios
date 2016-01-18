@@ -66,6 +66,7 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             let userAvatar = cell.viewWithTag(1) as! UIImageView
             let userNickname = cell.viewWithTag(2) as! UILabel
             let museumInfo = cell.viewWithTag(3) as! UILabel
+            let description = cell.viewWithTag(10) as! UILabel
             let selfMuseum = globalHiwuUser.selfMuseum
             print(globalHiwuUser.hiwuToken)
             print(selfMuseum)
@@ -73,11 +74,15 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             userAvatar.layer.cornerRadius = userAvatar.frame.height/2
             userAvatar.clipsToBounds = true
             userNickname.text = selfMuseum!["nickname"].string!
-            museumInfo.text = String(selfMuseum!["galleries"].count) + "  长廊 | " + String(self.itemSum) + " 物品  "
+            museumInfo.text = "  " + String(selfMuseum!["galleries"].count) + "  长廊 | " + String(self.itemSum) + " 物品  "
             museumInfo.layer.cornerRadius = museumInfo.frame.height/2
             museumInfo.clipsToBounds = true
             let setting = cell.viewWithTag(5) as! UIButton
             setting.addTarget(self, action: "toSetting", forControlEvents: UIControlEvents.TouchUpInside)
+            if(selfMuseum!["description"].string != nil){
+                description.text = selfMuseum!["description"].string!
+            }
+            
             return cell
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier("SelfGalleryCell")! as UITableViewCell
@@ -138,6 +143,7 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         Alamofire.request(.GET, url).responseJSON{response in
             if(response.result.value != nil){
                 globalHiwuUser.selfMuseum = JSON(response.result.value!)
+                self.itemSum = 0
                 for(var i=0 ;i < globalHiwuUser.selfMuseum!["galleries"].count;i++ ){
                     self.itemSum += globalHiwuUser.selfMuseum!["galleries"][i]["items"].count
                     self.selfGalleryDisplay.reloadData()

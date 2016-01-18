@@ -143,5 +143,9 @@ class SettingVC: UITableViewController {
         }
         
     }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
 
 }
