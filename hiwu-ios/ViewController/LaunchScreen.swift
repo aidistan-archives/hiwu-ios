@@ -36,6 +36,8 @@ class LaunchScreen: UIViewController,GetTodayInfoReadyProtocol{
     func getTodayReady() {
         if(globalHiwuUser.todayMuseum != nil){
             let main = self.storyboard?.instantiateViewControllerWithIdentifier("MainNavigation") as! UINavigationController
+            main.navigationBar.barTintColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.8)
+            main.navigationBar.bounds = CGRect(x: 0, y: 0, width: 600, height: 48)
             self.presentViewController(main, animated: true, completion: {
             })        }
         else{

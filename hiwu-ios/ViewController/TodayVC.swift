@@ -25,6 +25,8 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
         super.viewDidLoad()
         todayGalleryDisplay.dataSource = self
         todayGalleryDisplay.delegate = self
+        todayGalleryDisplay.estimatedRowHeight = 100
+        todayGalleryDisplay.rowHeight = UITableViewAutomaticDimension
         todayGalleryDisplay.reloadData()
         self.contactor.selfMuseumReady = self
         self.contactor.userInfoReady = self
@@ -85,7 +87,7 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
 //        }
         let num = globalHiwuUser.todayMuseum![indexPath.row]["gallery"]["items"].count
         if(num>=7){
-            return 450
+            return 440
         }else if(num>=4 && num<=6){
             return 380
         }else if(num>=1 && num<=3 ){
