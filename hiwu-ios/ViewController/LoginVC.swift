@@ -22,8 +22,14 @@ class LoginVC: UIViewController,LoginProtocol {
         self.tmpContactor.getTokenWithPassword(usernameText.text!, password: passwordText.text!)
        
     }
+    @IBOutlet weak var wxLoginButton: UIButton!
     @IBAction func weixin(sender: UIButton) {
-        
+        let req = SendAuthReq()
+        req.scope = "snsapi_userinfo";
+        req.state = "wechat_sdk_demo_test";
+        req.state = "123"
+        WXApi.sendReq(req);
+
     }
     
     
@@ -51,6 +57,9 @@ class LoginVC: UIViewController,LoginProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("stack")
+        if WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() {
+            self.wxLoginButton.hidden = false
+        }
         registerButton.layer.cornerRadius = registerButton.frame.height/2
         
 

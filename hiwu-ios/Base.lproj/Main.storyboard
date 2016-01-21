@@ -867,7 +867,7 @@
                                                             </variation>
                                                         </collectionViewCell>
                                                     </cells>
-                                                    <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="FvN-Ld-la8">
+                                                    <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TodayGalleryTitle" id="FvN-Ld-la8">
                                                         <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
@@ -1052,7 +1052,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JeN-em-OPZ">
-                                <rect key="frame" x="270" y="394" width="60" height="7"/>
+                                <rect key="frame" x="270" y="394" width="60" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="99" id="VNY-QG-MGa"/>
                                     <constraint firstAttribute="height" constant="30" id="jLo-We-hp1"/>
@@ -1083,20 +1083,12 @@
                                 </attributedString>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKd-vl-lb3">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKd-vl-lb3">
                                 <rect key="frame" x="213" y="483" width="60" height="30"/>
                                 <state key="normal" title="微信登陆"/>
                                 <connections>
                                     <action selector="weixin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dQh-D5-hIQ"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sax-Pp-has">
-                                <rect key="frame" x="40" y="52" width="26" height="26"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="26" id="BZb-Xl-P5R"/>
-                                    <constraint firstAttribute="height" constant="26" id="E88-de-W13"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="close"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1112,15 +1104,13 @@
                             <constraint firstAttribute="trailingMargin" secondItem="HIz-lo-kHh" secondAttribute="trailing" constant="20" id="Kvh-Ho-t7M"/>
                             <constraint firstItem="Qdh-tX-VKY" firstAttribute="leading" secondItem="HIz-lo-kHh" secondAttribute="leading" id="N44-Cg-LNY"/>
                             <constraint firstItem="JeN-em-OPZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="38" id="QW0-7O-9lh"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JeN-em-OPZ" secondAttribute="bottom" constant="199" id="SKI-dB-ZpH"/>
                             <constraint firstItem="Qdh-tX-VKY" firstAttribute="top" secondItem="Vgf-Ry-p3v" secondAttribute="bottom" constant="5" id="W5a-lu-KPI"/>
                             <constraint firstItem="Vgf-Ry-p3v" firstAttribute="trailing" secondItem="HIz-lo-kHh" secondAttribute="trailing" id="Xdk-ip-Ltq"/>
                             <constraint firstItem="4ts-IF-Fu7" firstAttribute="top" secondItem="HIz-lo-kHh" secondAttribute="bottom" constant="30" id="Xr3-Uf-qer"/>
-                            <constraint firstItem="Sax-Pp-has" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="Yhr-07-d6M"/>
-                            <constraint firstItem="HIz-lo-kHh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="blm-sG-HE0"/>
                             <constraint firstItem="4ts-IF-Fu7" firstAttribute="leading" secondItem="HIz-lo-kHh" secondAttribute="leading" id="dG7-u7-37W"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="uKd-vl-lb3" secondAttribute="bottom" constant="87" id="eEu-zw-WcJ"/>
-                            <constraint firstItem="Sax-Pp-has" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="fZ3-ko-ToM"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="uKd-vl-lb3" secondAttribute="bottom" constant="87" id="fMQ-YG-JkI"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JeN-em-OPZ" secondAttribute="bottom" constant="190" id="hdC-Kx-j8H"/>
+                            <constraint firstItem="HIz-lo-kHh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="rXK-qi-0si"/>
                             <constraint firstItem="4ts-IF-Fu7" firstAttribute="leading" secondItem="HIz-lo-kHh" secondAttribute="leading" id="tBt-PY-iVl"/>
                             <constraint firstItem="4ts-IF-Fu7" firstAttribute="centerX" secondItem="HIz-lo-kHh" secondAttribute="centerX" id="tDE-QA-vfh"/>
                             <constraint firstItem="HIz-lo-kHh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tKb-iN-yZM"/>
@@ -1153,6 +1143,7 @@
                         <outlet property="passwordText" destination="4ts-IF-Fu7" id="opr-sc-UMG"/>
                         <outlet property="registerButton" destination="JeN-em-OPZ" id="RhK-xp-zxD"/>
                         <outlet property="usernameText" destination="HIz-lo-kHh" id="WiV-Ru-r5D"/>
+                        <outlet property="wxLoginButton" destination="uKd-vl-lb3" id="ktx-8Q-eWk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -1914,7 +1905,6 @@
     <resources>
         <image name="add" width="112" height="112"/>
         <image name="back" width="24" height="40"/>
-        <image name="close" width="40" height="40"/>
         <image name="comment" width="24" height="24"/>
         <image name="display" width="40" height="40"/>
         <image name="iconfont-comment" width="32" height="32"/>

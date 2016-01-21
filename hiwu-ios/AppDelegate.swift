@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let cache = KingfisherManager.sharedManager.cache
         cache.maxDiskCacheSize = 100 * 1024 * 1024
-        WXApi.registerApp("wxe0b3b148c706525")
+        WXApi.registerApp("wxe0b3b148c7065252")
         if WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() {
             print("已经安装微信")
 //            let req = SendAuthReq()
@@ -57,27 +57,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-//    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
-//        
-//        
-//        return WXApi.handleOpenURL(url, delegate: self)
-//        
-//    }
-//    
-//    func onReq(req: BaseReq!) {
-//        print("onReq")
-//    }
-//    
-//    func onResp(resp: BaseResp!) {
-//        print("onResp")
-//    }
-//    
-//    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-//        
-//        return WXApi.handleOpenURL(url, delegate: self)
-//        
-//    }
-
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        
+        print(url)
+        return WXApi.handleOpenURL(url, delegate: self)
+        
+    }
+    
+    func onReq(req: BaseReq!) {
+        print("onReq")
+        print(req)
+    }
+    
+    func onResp(resp: BaseResp!) {
+        if resp.isKindOfClass(SendMessageToWXResp){//确保是对我们分享操作的回调
+            if resp.errCode == WXSuccess.rawValue{//分享成功
+                NSLog("分享成功")
+            }else{//分享失败
+                NSLog("分享失败，错误码：%d, 错误描述：%@", resp.errCode, resp.errStr)
+            }
+        }else if resp.isKindOfClass(SendAuthReq){
+            if resp.errCode == 0{//认证成功
+                
+            }else{//分享失败
+                NSLog("认证失败，错误码：%d, 错误描述：%@", resp.errCode, resp.errStr)
+            }
+        }
+    }
+    func application(app: UIApplication, openURL url: NSURL, sourceApplication: String?,annotation: AnyObject) -> Bool {
+        print(url)
+        return WXApi.handleOpenURL(url, delegate: self)
+    }
 
 }
 

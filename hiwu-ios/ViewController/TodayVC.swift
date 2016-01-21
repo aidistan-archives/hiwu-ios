@@ -18,7 +18,6 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
 
     @IBAction func getAllTodays(sender: UIButton) {
         let next = self.storyboard?.instantiateViewControllerWithIdentifier("AllTodaysVC") as! AllTodaysVC
-//        next.today = globalHiwuUser.todayMuseum
         self.navigationController?.pushViewController(next, animated: true)
     }
     override func viewDidLoad() {
