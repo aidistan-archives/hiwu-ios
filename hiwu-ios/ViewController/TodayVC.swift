@@ -73,44 +73,53 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         if(globalHiwuUser.todayMuseum!.count <= 6){
-            return globalHiwuUser.todayMuseum!.count
+            return globalHiwuUser.todayMuseum!.count + 1
         }else{
-            return 6
+            return 7
         }
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        if(indexPath.row == 0){
-//            return 70
-//        }else{
-//            return 450
-//        }
-        let num = globalHiwuUser.todayMuseum![indexPath.row]["gallery"]["items"].count
-        if(num>=7){
-            return 440
-        }else if(num>=4 && num<=6){
-            return 380
-        }else if(num>=1 && num<=3 ){
-            return 320
+        if(indexPath.row == 0){
+            return 70
         }else{
-            return 160
+            let num = globalHiwuUser.todayMuseum![indexPath.row]["gallery"]["items"].count
+            if(num>=7){
+                return 440
+            }else if(num>=4 && num<=6){
+                return 380
+            }else if(num>=1 && num<=3 ){
+                return 320
+            }else{
+                return 160
+            }
+
         }
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-//        if (indexPath.row == 0){
-//            let cell = tableView.dequeueReusableCellWithIdentifier("TodayTitle")! as UITableViewCell
-//            return cell
-//            
-//        }else{
+        if (indexPath.row == 0){
+            let cell = tableView.dequeueReusableCellWithIdentifier("TodayTitle")! as UITableViewCell
+            return cell
+            
+        }else{
             let cell = tableView.dequeueReusableCellWithIdentifier("TodayGalleryCell")! as UITableViewCell
             let collection = cell.viewWithTag(1) as! TodayGalleryCT
+            let width = tableView.frame.width
+            let layout = UICollectionViewFlowLayout()
+            layout.itemSize = CGSizeMake((width - 20)/3-1, (width - 20)/3-1)
+            layout.minimumLineSpacing = 1
+            layout.minimumInteritemSpacing = 1
+            layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+            layout.headerReferenceSize = CGSizeMake(width, width/6)
+            layout.footerReferenceSize = CGSizeMake(0, 0)
+            collection.collectionViewLayout = layout
             collection.location = indexPath.row
             collection.superVC = self
             collection.delegate = collection
             collection.dataSource = collection
             collection.reloadData()
             return cell
-//        }
+        }
         
     }
     

@@ -11,7 +11,7 @@ import SwiftyJSON
 import Kingfisher
 
 
-class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionViewDelegate,GetItemInfoReadyProtocol {
+class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionViewDelegate,GetItemInfoReadyProtocol{
     var superVC:UIViewController?
     var location = 0
     
@@ -31,11 +31,13 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
         //取collectionview的可重复使用cell
         let items = globalHiwuUser.todayMuseum![self.location]["gallery"]["items"]
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("TodayItemCell", forIndexPath: indexPath)
+        print(collectionViewLayout.layoutAttributesForItemAtIndexPath(indexPath))
         //取imageview
         let images:UIImageView = cell.viewWithTag(6) as! UIImageView
         //“photos”里面不只一个图片,这里作为博物馆展示，只展示第一张
         let urlString = (items)[indexPath.row]["photos"][0]["url"].string!
         //设置imgaeview图片
+        
         images.kf_setImageWithURL(NSURL(string: urlString + "@!200x200")!)
         return cell
     }
