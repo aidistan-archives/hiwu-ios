@@ -1772,7 +1772,7 @@
         <!--EditNameVC-->
         <scene sceneID="ZjE-5Q-LUh">
             <objects>
-                <viewController title="EditNameVC" id="P74-jF-jHV" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditNameVC" title="EditNameVC" id="P74-jF-jHV" customClass="EditNameVC" customModule="hiwu_ios" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Zel-Yt-aOo"/>
                         <viewControllerLayoutGuide type="bottom" id="JIb-ex-ELr"/>
@@ -1781,13 +1781,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S1O-Za-eyL">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S1O-Za-eyL">
                                 <rect key="frame" x="14" y="72" width="566" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="S1O-Za-eyL" firstAttribute="leading" secondItem="iXq-Kg-WnJ" secondAttribute="leadingMargin" constant="10" id="CMY-62-mO6"/>
+                            <constraint firstItem="S1O-Za-eyL" firstAttribute="centerX" secondItem="iXq-Kg-WnJ" secondAttribute="centerX" id="Q7J-kY-VD1"/>
+                            <constraint firstItem="S1O-Za-eyL" firstAttribute="centerY" secondItem="iXq-Kg-WnJ" secondAttribute="centerY" id="TKX-sa-g8K"/>
+                            <constraint firstItem="S1O-Za-eyL" firstAttribute="top" secondItem="Zel-Yt-aOo" secondAttribute="bottom" constant="10" id="llS-QY-iar"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="TKX-sa-g8K"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Title" id="fVS-hq-Zcb">
@@ -1823,7 +1834,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tBJ-cf-cx6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-149" y="975"/>
+            <point key="canvasLocation" x="86" y="955"/>
         </scene>
         <!--All TodaysVC-->
         <scene sceneID="aFz-78-UaO">
