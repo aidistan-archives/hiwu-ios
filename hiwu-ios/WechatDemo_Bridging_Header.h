@@ -12,7 +12,5 @@
 #import "WXApiObject.h"
 #import "WXApi.h"
 #import "UINavigationController+FDFullscreenPopGesture.h"
-#import "HPGrowingTextView.h"
-#import "HPTextViewInternal.h"
 
 #endif /* WechatDemo_Bridging_Header_h */

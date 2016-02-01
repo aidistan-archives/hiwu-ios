@@ -19,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let cache = KingfisherManager.sharedManager.cache
-        cache.maxDiskCacheSize = 100 * 1024 * 1024
+        cache.maxDiskCacheSize = 500 * 1024 * 1024
+        cache.maxCachePeriodInSecond = 3600*24*60
         WXApi.registerApp("wxe0b3b148c7065252")
         if WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() {
             print("已经安装微信")

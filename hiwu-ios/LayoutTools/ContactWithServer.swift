@@ -96,15 +96,15 @@ class ContactWithServer{
     func getTodayInfo(){
         let url = ApiManager.getTodayPublicView
         print("get today info")
-        print(NSDate(timeIntervalSinceNow: 0))
         Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
-            if(response.result.value != nil){
+            if(response.result.error == nil){
                 globalHiwuUser.todayMuseum = JSON(response.result.value!)
                 let tmpData:NSData = NSKeyedArchiver.archivedDataWithRootObject(response.result.value!)
                 self.defaults.setObject(tmpData, forKey: "todayMuseum")
                 self.defaults.synchronize()
                 self.todayInfoReady?.getTodayReady()
             }else{
+
                 if(self.defaults.valueForKey("todayMuseum") != nil){
                     globalHiwuUser.todayMuseum = JSON(NSKeyedUnarchiver.unarchiveObjectWithData(self.defaults.objectForKey("todayMuseum") as! NSData)!)
                     self.todayInfoReady?.getTodayReady()

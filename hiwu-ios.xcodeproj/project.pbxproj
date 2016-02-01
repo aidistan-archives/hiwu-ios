@@ -22,6 +22,7 @@
 		A55232791C0472D000A0AA2A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A55232781C0472D000A0AA2A /* libz.tbd */; };
 		A552327B1C0472F300A0AA2A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A552327A1C0472F300A0AA2A /* libsqlite3.tbd */; };
 		A552327E1C0475AE00A0AA2A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A552327D1C0475AE00A0AA2A /* libc++.tbd */; };
+		A55C94381C5DA9FD004367B0 /* EditNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55C94371C5DA9FD004367B0 /* EditNameVC.swift */; };
 		A59354C31BD5C4FD0044E7B3 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59354C21BD5C4FD0044E7B3 /* LaunchScreen.swift */; };
 		A593550B1BD669080044E7B3 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593550A1BD669080044E7B3 /* LoginVC.swift */; };
 		A593550D1BD66EA90044E7B3 /* TodayGalleryCT.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593550C1BD66EA90044E7B3 /* TodayGalleryCT.swift */; };
@@ -39,10 +40,6 @@
 		A5BFFD5A1BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD591BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift */; };
 		A5BFFD5C1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD5B1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift */; };
 		A5BFFD5E1BE8EA9600D5A866 /* GetItemInfoReadyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD5D1BE8EA9600D5A866 /* GetItemInfoReadyProtocol.swift */; };
-		A5C69DA51C5CDD9300C78294 /* TextFieldEffects.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5C69D911C5CDCD900C78294 /* TextFieldEffects.framework */; };
-		A5C69DAD1C5CEEAC00C78294 /* EditNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C69DAC1C5CEEAC00C78294 /* EditNameVC.swift */; };
-		A5C69DE21C5CFFDF00C78294 /* HPGrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C69DE11C5CFFDF00C78294 /* HPGrowingTextView.m */; };
-		A5C69DE51C5D00F000C78294 /* HPTextViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C69DE41C5D00F000C78294 /* HPTextViewInternal.m */; };
 		A5CEE6241BD0DB3C00AAF122 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CEE6231BD0DB3C00AAF122 /* AppDelegate.swift */; };
 		A5CEE6261BD0DB3C00AAF122 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CEE6251BD0DB3C00AAF122 /* ViewController.swift */; };
 		A5CEE6291BD0DB3C00AAF122 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CEE6271BD0DB3C00AAF122 /* Main.storyboard */; };
@@ -110,20 +107,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
 			remoteInfo = "Alamofire iOS";
-		};
-		A5C69D8E1C5CDCD900C78294 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5C69D7D1C5CDCD900C78294 /* TextFieldEffects.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4CBF766D1A71AF7700073B6A;
-			remoteInfo = TextFieldsDemo;
-		};
-		A5C69D901C5CDCD900C78294 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5C69D7D1C5CDCD900C78294 /* TextFieldEffects.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4CB3B6CE1AA8DEA7000AFA56;
-			remoteInfo = TextFieldEffects;
 		};
 		A5CEE6351BD0DB3C00AAF122 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -247,6 +230,7 @@
 		A552327A1C0472F300A0AA2A /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		A552327C1C04731E00A0AA2A /* WechatDemo_Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WechatDemo_Bridging_Header.h; sourceTree = "<group>"; };
 		A552327D1C0475AE00A0AA2A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		A55C94371C5DA9FD004367B0 /* EditNameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditNameVC.swift; path = ViewController/EditNameVC.swift; sourceTree = "<group>"; };
 		A59354C21BD5C4FD0044E7B3 /* LaunchScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LaunchScreen.swift; path = ViewController/LaunchScreen.swift; sourceTree = "<group>"; };
 		A593550A1BD669080044E7B3 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginVC.swift; path = ViewController/LoginVC.swift; sourceTree = "<group>"; };
 		A593550C1BD66EA90044E7B3 /* TodayGalleryCT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TodayGalleryCT.swift; path = LayoutTools/TodayGalleryCT.swift; sourceTree = "<group>"; };
@@ -264,12 +248,6 @@
 		A5BFFD591BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetTodayInfoReadyProtocol.swift; path = LayoutTools/GetTodayInfoReadyProtocol.swift; sourceTree = "<group>"; };
 		A5BFFD5B1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetSelfMuseumReadyProtocol.swift; sourceTree = "<group>"; };
 		A5BFFD5D1BE8EA9600D5A866 /* GetItemInfoReadyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetItemInfoReadyProtocol.swift; sourceTree = "<group>"; };
-		A5C69D7D1C5CDCD900C78294 /* TextFieldEffects.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TextFieldEffects.xcodeproj; path = Libs/TextFieldEffects/TextFieldEffects.xcodeproj; sourceTree = "<group>"; };
-		A5C69DAC1C5CEEAC00C78294 /* EditNameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNameVC.swift; sourceTree = "<group>"; };
-		A5C69DE01C5CFFDF00C78294 /* HPGrowingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPGrowingTextView.h; path = Libs/GrowingTextView/HPGrowingTextView.h; sourceTree = SOURCE_ROOT; };
-		A5C69DE11C5CFFDF00C78294 /* HPGrowingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPGrowingTextView.m; path = Libs/GrowingTextView/HPGrowingTextView.m; sourceTree = SOURCE_ROOT; };
-		A5C69DE31C5D00F000C78294 /* HPTextViewInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPTextViewInternal.h; path = Libs/GrowingTextView/HPTextViewInternal.h; sourceTree = SOURCE_ROOT; };
-		A5C69DE41C5D00F000C78294 /* HPTextViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPTextViewInternal.m; path = Libs/GrowingTextView/HPTextViewInternal.m; sourceTree = SOURCE_ROOT; };
 		A5CEE6201BD0DB3C00AAF122 /* hiwu-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hiwu-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CEE6231BD0DB3C00AAF122 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CEE6251BD0DB3C00AAF122 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -288,7 +266,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5C69DA51C5CDD9300C78294 /* TextFieldEffects.framework in Frameworks */,
 				A552327E1C0475AE00A0AA2A /* libc++.tbd in Frameworks */,
 				A552327B1C0472F300A0AA2A /* libsqlite3.tbd in Frameworks */,
 				A55232791C0472D000A0AA2A /* libz.tbd in Frameworks */,
@@ -376,7 +353,7 @@
 				A593550A1BD669080044E7B3 /* LoginVC.swift */,
 				A534BE941C0EC9FF00770171 /* GuidePage.swift */,
 				A534BE961C0F23CD00770171 /* AddGalleryVC.swift */,
-				A5C69DAC1C5CEEAC00C78294 /* EditNameVC.swift */,
+				A55C94371C5DA9FD004367B0 /* EditNameVC.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -416,30 +393,9 @@
 			name = Protocol;
 			sourceTree = "<group>";
 		};
-		A5C69D7E1C5CDCD900C78294 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A5C69D8F1C5CDCD900C78294 /* TextFieldsDemo.app */,
-				A5C69D911C5CDCD900C78294 /* TextFieldEffects.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		A5C69DDD1C5CFF2200C78294 /* GrowTextView */ = {
-			isa = PBXGroup;
-			children = (
-				A5C69DE31C5D00F000C78294 /* HPTextViewInternal.h */,
-				A5C69DE41C5D00F000C78294 /* HPTextViewInternal.m */,
-				A5C69DE01C5CFFDF00C78294 /* HPGrowingTextView.h */,
-				A5C69DE11C5CFFDF00C78294 /* HPGrowingTextView.m */,
-			);
-			name = GrowTextView;
-			sourceTree = "<group>";
-		};
 		A5CEE6171BD0DB3C00AAF122 = {
 			isa = PBXGroup;
 			children = (
-				A5C69D7D1C5CDCD900C78294 /* TextFieldEffects.xcodeproj */,
 				A552327D1C0475AE00A0AA2A /* libc++.tbd */,
 				A552327A1C0472F300A0AA2A /* libsqlite3.tbd */,
 				A55232781C0472D000A0AA2A /* libz.tbd */,
@@ -448,8 +404,8 @@
 				A55232521C04679C00A0AA2A /* Alamofire.xcodeproj */,
 				A5CEE6751BD0DC2000AAF122 /* SwiftyJSON.xcodeproj */,
 				A5CEE6631BD0DC1600AAF122 /* Kingfisher.xcodeproj */,
-				A5CEE6211BD0DB3C00AAF122 /* Products */,
 				A5CEE6221BD0DB3C00AAF122 /* hiwu-ios */,
+				A5CEE6211BD0DB3C00AAF122 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -466,7 +422,6 @@
 		A5CEE6221BD0DB3C00AAF122 /* hiwu-ios */ = {
 			isa = PBXGroup;
 			children = (
-				A5C69DDD1C5CFF2200C78294 /* GrowTextView */,
 				A50620311C157B5000195DCF /* navigationTool */,
 				A55232701C04716800A0AA2A /* weixin */,
 				A59355231BD785330044E7B3 /* Models */,
@@ -610,10 +565,6 @@
 					ProductGroup = A5CEE6761BD0DC2000AAF122 /* Products */;
 					ProjectRef = A5CEE6751BD0DC2000AAF122 /* SwiftyJSON.xcodeproj */;
 				},
-				{
-					ProductGroup = A5C69D7E1C5CDCD900C78294 /* Products */;
-					ProjectRef = A5C69D7D1C5CDCD900C78294 /* TextFieldEffects.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -672,20 +623,6 @@
 			fileType = wrapper.framework;
 			path = Alamofire.framework;
 			remoteRef = A55232681C04679D00A0AA2A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A5C69D8F1C5CDCD900C78294 /* TextFieldsDemo.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = TextFieldsDemo.app;
-			remoteRef = A5C69D8E1C5CDCD900C78294 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A5C69D911C5CDCD900C78294 /* TextFieldEffects.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = TextFieldEffects.framework;
-			remoteRef = A5C69D901C5CDCD900C78294 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		A5CEE66A1BD0DC1600AAF122 /* Kingfisher-Demo.app */ = {
@@ -800,11 +737,9 @@
 				A50620411C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				A5EB70AD1BE38AD20075D559 /* GalleryDetailVC.swift in Sources */,
 				A59355251BD7854B0044E7B3 /* UserModel.swift in Sources */,
-				A5C69DAD1C5CEEAC00C78294 /* EditNameVC.swift in Sources */,
-				A5C69DE51C5D00F000C78294 /* HPTextViewInternal.m in Sources */,
+				A55C94381C5DA9FD004367B0 /* EditNameVC.swift in Sources */,
 				A5BFFD5A1BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift in Sources */,
 				A593550B1BD669080044E7B3 /* LoginVC.swift in Sources */,
-				A5C69DE21C5CFFDF00C78294 /* HPGrowingTextView.m in Sources */,
 				A5132BBE1BDBB5EA00B4C3DB /* AddItemVC.swift in Sources */,
 				A5B33DCA1C4A432B00565972 /* SettingVC.swift in Sources */,
 			);
@@ -953,7 +888,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -975,7 +909,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;

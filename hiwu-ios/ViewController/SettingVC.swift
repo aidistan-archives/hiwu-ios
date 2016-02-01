@@ -111,7 +111,7 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
             case 0:
                 self.setImage()
             case 1:
-                self.editName()
+                self.toEditName()
             default:
                 print("call edit description")
             }
@@ -216,9 +216,10 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
         })
     }
     
-    func editName(){
+    func toEditName(){
         let editName = self.storyboard?.instantiateViewControllerWithIdentifier("EditNameVC") as! EditNameVC
-        self.navigationController?.pushViewController(editName, animated: true)
+        editName.name = self.userInfo!["nickname"].string!
+    self.navigationController?.pushViewController(editName, animated: true)
     }
 
 }
