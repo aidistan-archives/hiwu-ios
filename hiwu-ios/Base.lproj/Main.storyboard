@@ -100,7 +100,9 @@
                 <navigationController storyboardIdentifier="MainNavigation" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jsr-Dn-NqJ" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <nil key="simulatedStatusBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Aap-gG-jr5">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="Aap-gG-jr5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -120,7 +122,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iOp-Ez-aqM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-497" y="-6"/>
+            <point key="canvasLocation" x="-167" y="-25"/>
         </scene>
         <!--SelfMuseum-->
         <scene sceneID="eJw-a1-BHI">
@@ -1810,21 +1812,45 @@
                         <constraints>
                             <constraint firstItem="77H-Be-VOQ" firstAttribute="leading" secondItem="iXq-Kg-WnJ" secondAttribute="leadingMargin" constant="-20" id="8sA-oc-X1h"/>
                             <constraint firstAttribute="trailingMargin" secondItem="77H-Be-VOQ" secondAttribute="trailing" constant="-20" id="CqN-bH-OkB"/>
-                            <constraint firstItem="77H-Be-VOQ" firstAttribute="top" secondItem="Zel-Yt-aOo" secondAttribute="bottom" id="K4m-t2-q8P"/>
                             <constraint firstItem="77H-Be-VOQ" firstAttribute="centerX" secondItem="iXq-Kg-WnJ" secondAttribute="centerX" id="ReI-Zy-PE0"/>
+                            <constraint firstItem="77H-Be-VOQ" firstAttribute="top" secondItem="Zel-Yt-aOo" secondAttribute="bottom" id="WuN-nj-bHg"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="bcp-i0-OPI">
                         <nil key="title"/>
-                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="编辑昵称" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="Mxc-Li-Gbi">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="WCc-uG-Uhf">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WeW-qF-SCI">
+                                <rect key="frame" x="20" y="7" width="133" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="取消">
+                                    <color key="titleColor" red="0.98431372549999996" green="0.81176470590000005" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancel:" destination="P74-jF-jHV" eventType="touchUpInside" id="WpD-kA-9Ti"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="编辑昵称" textAlignment="center" minimumFontSize="17" id="Mxc-Li-Gbi">
                             <rect key="frame" x="180" y="7" width="240" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="textColor" red="0.98431372549999996" green="0.81176470590000005" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="m5e-e6-3Oe">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xI1-q7-EAL">
+                                <rect key="frame" x="447" y="7" width="133" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="完成">
+                                    <color key="titleColor" red="0.98431372549999996" green="0.81176470590000005" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="ok:" destination="P74-jF-jHV" eventType="touchUpInside" id="8FI-W7-yZH"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="nameInput" destination="S1O-Za-eyL" id="xq5-ol-PSZ"/>
@@ -1832,7 +1858,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ghm-VJ-clc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-20" y="881"/>
+            <point key="canvasLocation" x="-58" y="966"/>
         </scene>
         <!--EditDescriptionVC-->
         <scene sceneID="OqS-kT-V0w">

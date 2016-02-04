@@ -34,7 +34,7 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 4
+        return 3
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -77,9 +77,9 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
                     description.text = "未添加描述"
                 }
             }
+//        case 1:
+//            cell = tableView.dequeueReusableCellWithIdentifier("Account")
         case 1:
-            cell = tableView.dequeueReusableCellWithIdentifier("Account")
-        case 2:
             cell = tableView.dequeueReusableCellWithIdentifier("Feedback")
         default:
             cell = tableView.dequeueReusableCellWithIdentifier("Logout")
@@ -219,6 +219,7 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
     func toEditName(){
         let editName = self.storyboard?.instantiateViewControllerWithIdentifier("EditNameVC") as! EditNameVC
         editName.name = self.userInfo!["nickname"].string!
+        editName.userId = self.userInfo!["id"].int!
     self.navigationController?.pushViewController(editName, animated: true)
     }
 

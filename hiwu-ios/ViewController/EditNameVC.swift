@@ -8,15 +8,21 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class EditNameVC: UIViewController {
-
     var name = ""
     var userId = 0
     @IBOutlet weak var nameInput: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.nameInput.text = self.name
+    }
+    @IBAction func ok(sender: UIButton) {
+        self.putNickname()
+    }
+    @IBAction func cancel(sender: UIButton) {
+        self.navigationController?.popViewControllerAnimated(true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,8 +39,11 @@ class EditNameVC: UIViewController {
         let url = ApiManager.putNickname1 + String(self.userId) + ApiManager.putNickname2 + globalHiwuUser.hiwuToken
         
         Alamofire.request(.PUT, url, parameters: ["nickname":self.nameInput.text!,"id":self.userId]).responseJSON{response in
+            print(response.request)
             if(response.result.error == nil){
                 self.navigationController?.popViewControllerAnimated(true)
+                let result = JSON(response.result.value!)
+                print(result["error"])
             }
         }
     }

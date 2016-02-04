@@ -57,7 +57,6 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
                 self.navigationController!.performSegueWithIdentifier("ToSelfMuseumSegue", sender: self)
                 self.contactor.getNewTokenWithDefaults()
                 print("i'm here")
-            
             }else{
             self.contactor.getUserInfoFirst()
             print("fresh")

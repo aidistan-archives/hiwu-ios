@@ -34,6 +34,8 @@
 		A593554B1BD7D1370044E7B3 /* SelfGalleryCT.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593554A1BD7D1370044E7B3 /* SelfGalleryCT.swift */; };
 		A5B33DCA1C4A432B00565972 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B33DC91C4A432B00565972 /* SettingVC.swift */; };
 		A5B33DE91C4B7DE700565972 /* AllTodaysVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B33DE81C4B7DE700565972 /* AllTodaysVC.swift */; };
+		A5BEE4731C638A0400F5B610 /* EditDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BEE4721C638A0400F5B610 /* EditDescriptionVC.swift */; };
+		A5BEE4811C638A2400F5B610 /* FeedbackVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BEE4801C638A2400F5B610 /* FeedbackVC.swift */; };
 		A5BFFD141BE4D2A100D5A866 /* ItemDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD131BE4D2A100D5A866 /* ItemDetailVC.swift */; };
 		A5BFFD571BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD551BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift */; };
 		A5BFFD581BE8E7C800D5A866 /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD561BE8E7C800D5A866 /* LoginProtocol.swift */; };
@@ -242,6 +244,8 @@
 		A593554A1BD7D1370044E7B3 /* SelfGalleryCT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfGalleryCT.swift; sourceTree = "<group>"; };
 		A5B33DC91C4A432B00565972 /* SettingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingVC.swift; path = ViewController/SettingVC.swift; sourceTree = "<group>"; };
 		A5B33DE81C4B7DE700565972 /* AllTodaysVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AllTodaysVC.swift; path = ViewController/AllTodaysVC.swift; sourceTree = "<group>"; };
+		A5BEE4721C638A0400F5B610 /* EditDescriptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditDescriptionVC.swift; path = ViewController/EditDescriptionVC.swift; sourceTree = "<group>"; };
+		A5BEE4801C638A2400F5B610 /* FeedbackVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedbackVC.swift; path = ViewController/FeedbackVC.swift; sourceTree = "<group>"; };
 		A5BFFD131BE4D2A100D5A866 /* ItemDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemDetailVC.swift; path = ViewController/ItemDetailVC.swift; sourceTree = "<group>"; };
 		A5BFFD551BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetUserInfoReadyProtocol.swift; path = LayoutTools/GetUserInfoReadyProtocol.swift; sourceTree = "<group>"; };
 		A5BFFD561BE8E7C800D5A866 /* LoginProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginProtocol.swift; path = LayoutTools/LoginProtocol.swift; sourceTree = "<group>"; };
@@ -354,6 +358,8 @@
 				A534BE941C0EC9FF00770171 /* GuidePage.swift */,
 				A534BE961C0F23CD00770171 /* AddGalleryVC.swift */,
 				A55C94371C5DA9FD004367B0 /* EditNameVC.swift */,
+				A5BEE4721C638A0400F5B610 /* EditDescriptionVC.swift */,
+				A5BEE4801C638A2400F5B610 /* FeedbackVC.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -725,6 +731,7 @@
 				A593550D1BD66EA90044E7B3 /* TodayGalleryCT.swift in Sources */,
 				A5BFFD141BE4D2A100D5A866 /* ItemDetailVC.swift in Sources */,
 				A5BFFD571BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift in Sources */,
+				A5BEE4811C638A2400F5B610 /* FeedbackVC.swift in Sources */,
 				A534BE951C0EC9FF00770171 /* GuidePage.swift in Sources */,
 				A593554B1BD7D1370044E7B3 /* SelfGalleryCT.swift in Sources */,
 				A50620551C15C58A00195DCF /* PutLikeReadyProtocol.swift in Sources */,
@@ -733,6 +740,7 @@
 				A5CEE6241BD0DB3C00AAF122 /* AppDelegate.swift in Sources */,
 				A59354C31BD5C4FD0044E7B3 /* LaunchScreen.swift in Sources */,
 				A5BFFD5C1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift in Sources */,
+				A5BEE4731C638A0400F5B610 /* EditDescriptionVC.swift in Sources */,
 				A5B33DE91C4B7DE700565972 /* AllTodaysVC.swift in Sources */,
 				A50620411C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				A5EB70AD1BE38AD20075D559 /* GalleryDetailVC.swift in Sources */,
