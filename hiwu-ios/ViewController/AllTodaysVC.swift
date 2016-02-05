@@ -94,7 +94,7 @@ class AllTodaysVC: UITableViewController {
         let name = cell?.viewWithTag(2) as! UILabel
         name.text = tmpGallery["hiwuUser"]["nickname"].string! + " ⎡" + tmpGallery["name"].string! + " ⎦"
         let num = cell?.viewWithTag(3) as! UILabel
-        num.text = String(tmpGallery["items"].count)
+        num.text = String(tmpGallery["items"].count) + " 件"
         return cell!
     }
 

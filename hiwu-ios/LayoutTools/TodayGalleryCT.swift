@@ -53,7 +53,7 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
         let nickName = globalHiwuUser.todayMuseum![self.location]["gallery"]["hiwuUser"]["nickname"].string!
         galleryNameLabel.text = nickName + " ⎡" + globalHiwuUser.todayMuseum![self.location]["gallery"]["name"].string! + " ⎦"
         let galleryItemNumLabel = cell.viewWithTag(4) as! UILabel
-        galleryItemNumLabel.text = String(globalHiwuUser.todayMuseum![self.location]["gallery"]["items"].count)
+        galleryItemNumLabel.text = String(globalHiwuUser.todayMuseum![self.location]["gallery"]["items"].count) + " 件"
         let gesture = UITapGestureRecognizer(target: self, action: "getGalleryDetail:")
         cell.addGestureRecognizer(gesture)
         return cell

@@ -46,7 +46,7 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
         let galleryNameLabel = cell.viewWithTag(1) as! UILabel
         galleryNameLabel.text = (globalHiwuUser.selfMuseum!)["galleries"][self.location]["name"].string
         let galleryItemNumLabel = cell.viewWithTag(2)as! UILabel
-        galleryItemNumLabel.text = String((globalHiwuUser.selfMuseum!)["galleries"][self.location]["items"].count)
+        galleryItemNumLabel.text = String((globalHiwuUser.selfMuseum!)["galleries"][self.location]["items"].count) + " 件"
         let gesture = UITapGestureRecognizer(target: self, action: "getGalleryDetail:")
         cell.addGestureRecognizer(gesture)
         return cell

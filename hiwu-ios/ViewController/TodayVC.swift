@@ -79,7 +79,7 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if(indexPath.row == 0){
-            return 70
+            return 130
         }else{
             let num = globalHiwuUser.todayMuseum![indexPath.row]["gallery"]["items"].count
             if(num>=7){
@@ -98,6 +98,8 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         if (indexPath.row == 0){
             let cell = tableView.dequeueReusableCellWithIdentifier("TodayTitle")! as UITableViewCell
+            let museumSum = cell.viewWithTag(3) as! UITextField
+            museumSum.text = "共有 " + String(globalHiwuUser.todayMuseum!.count) + " 个精品博物馆"
             return cell
             
         }else{
