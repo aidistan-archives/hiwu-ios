@@ -35,6 +35,14 @@ class LoginVC: UIViewController,LoginProtocol {
 
     }
     
+    @IBAction func weiboLoginButton(sender: UIButton) {
+        globalHiwuUser.loginState = 2
+        let req = WBAuthorizeRequest()
+        req.scope = "all"
+        req.redirectURI = kRedirectURI
+        print(WeiboSDK.sendRequest(req))
+    }
+    
     
     func skipToNextAfterSuccess() {
         //self.navigationController?.popViewControllerAnimated(false)
@@ -62,15 +70,13 @@ class LoginVC: UIViewController,LoginProtocol {
         if WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() {
             self.wxLoginButton.hidden = false
         }
-        if WeiboSDK.isWeiboAppInstalled(){
-            
-        }
         registerButton.layer.cornerRadius = registerButton.frame.height/2
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "weixinSuccess", name: "weixinLoginOK", object: nil)
         
     }
     
     func weixinSuccess(){
+        globalHiwuUser.loginState = 0
         if(globalHiwuUser.wxcode != ""){
             let url = ApiManager.wxLogin1 + wxAPPID + ApiManager.wxLogin2 + globalHiwuUser.wxcode
             Alamofire.request(.POST, url).responseJSON{response in
@@ -91,6 +97,10 @@ class LoginVC: UIViewController,LoginProtocol {
                 }
             }
         }
+    }
+    
+    func weiboSuccess(){
+        globalHiwuUser.loginState = 0
     }
 
     override func didReceiveMemoryWarning() {
