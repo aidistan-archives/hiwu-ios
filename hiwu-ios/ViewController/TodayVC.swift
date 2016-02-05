@@ -83,7 +83,7 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
         }else{
             let num = globalHiwuUser.todayMuseum![indexPath.row]["gallery"]["items"].count
             if(num>=7){
-                return 440
+                return ((tableView.frame.width * 7/6) + 20)
             }else if(num>=4 && num<=6){
                 return 380
             }else if(num>=1 && num<=3 ){

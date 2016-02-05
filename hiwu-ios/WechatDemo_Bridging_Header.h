@@ -12,5 +12,8 @@
 #import "WXApiObject.h"
 #import "WXApi.h"
 #import "UINavigationController+FDFullscreenPopGesture.h"
+#import "BRPlaceholderTextView.h"
+#import "MBProgressHUD.h"
+#import "WeiboSDK.h"
 
 #endif /* WechatDemo_Bridging_Header_h */

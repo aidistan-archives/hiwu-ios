@@ -8,11 +8,13 @@
 
 import UIKit
 import SwiftyJSON
+import Alamofire
 
 class LoginVC: UIViewController,LoginProtocol {
     
     var superVC:UIViewController?
     let tmpContactor = ContactWithServer()
+    let defaults = NSUserDefaults.standardUserDefaults()
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var registerButton: UIButton!
@@ -24,9 +26,10 @@ class LoginVC: UIViewController,LoginProtocol {
     }
     @IBOutlet weak var wxLoginButton: UIButton!
     @IBAction func weixin(sender: UIButton) {
+        //微信的的登录状态码设为1，微博为2，默认为0
+        globalHiwuUser.loginState = 1
         let req = SendAuthReq()
         req.scope = "snsapi_userinfo";
-        req.state = "wechat_sdk_demo_test";
         req.state = "123"
         WXApi.sendReq(req);
 
@@ -56,14 +59,38 @@ class LoginVC: UIViewController,LoginProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("stack")
         if WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() {
             self.wxLoginButton.hidden = false
         }
+        if WeiboSDK.isWeiboAppInstalled(){
+            
+        }
         registerButton.layer.cornerRadius = registerButton.frame.height/2
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "weixinSuccess", name: "weixinLoginOK", object: nil)
         
+    }
+    
+    func weixinSuccess(){
+        if(globalHiwuUser.wxcode != ""){
+            let url = ApiManager.wxLogin1 + wxAPPID + ApiManager.wxLogin2 + globalHiwuUser.wxcode
+            Alamofire.request(.POST, url).responseJSON{response in
+                if(response.result.error == nil){
+                    if(response.result.value != nil){
+                        let userInfo = JSON(response.result.value!)
+                        if(userInfo["error"] == nil){
+                            globalHiwuUser.hiwuToken = userInfo["id"].string!
+                            self.defaults.setValue((userInfo["id"]).string!, forKey: "token")
+                            self.defaults.setDouble(NSDate(timeIntervalSinceNow: (userInfo["ttl"]).double!).timeIntervalSince1970, forKey: "deadline")
+                            self.defaults.setDouble(NSDate(timeIntervalSinceNow: (userInfo["ttl"]).double!/2).timeIntervalSince1970, forKey: "freshline")
+                            self.defaults.setInteger((userInfo["userId"]).int!, forKey: "userId")
+                            self.defaults.synchronize()
 
-        // Do any additional setup after loading the view.
+                            self.getSelfMuseum()
+                        }
+                    }
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,6 +100,26 @@ class LoginVC: UIViewController,LoginProtocol {
     
     override func prefersStatusBarHidden() -> Bool {
         return true
+    }
+    
+    func getSelfMuseum(){
+        let url = ApiManager.getAllSelfGallery1_2 + String(globalHiwuUser.userId) + ApiManager.getAllSelfGallery2_2 + globalHiwuUser.hiwuToken
+        Alamofire.request(.GET, url).responseJSON{response in
+            if(response.result.value != nil){
+                globalHiwuUser.selfMuseum = JSON(response.result.value!)
+                let tmpData:NSData = NSKeyedArchiver.archivedDataWithRootObject(response.result.value!)
+                self.defaults.setObject(tmpData, forKey: "selfMuseum")
+                self.defaults.synchronize()
+                self.skipToNextAfterSuccess()
+            }else{
+                if(self.defaults.valueForKey("selfMuseum") != nil){
+                    globalHiwuUser.selfMuseum = JSON(NSKeyedUnarchiver.unarchiveObjectWithData(self.defaults.objectForKey("selfMuseum") as! NSData)!)
+                    print("selfMuseumReady local")
+                    self.skipToNextAfterSuccess()
+                }else{
+                }
+            }
+        }
     }
 
     

@@ -36,6 +36,11 @@
 		A5B33DE91C4B7DE700565972 /* AllTodaysVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B33DE81C4B7DE700565972 /* AllTodaysVC.swift */; };
 		A5BEE4731C638A0400F5B610 /* EditDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BEE4721C638A0400F5B610 /* EditDescriptionVC.swift */; };
 		A5BEE4811C638A2400F5B610 /* FeedbackVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BEE4801C638A2400F5B610 /* FeedbackVC.swift */; };
+		A5BEE4861C63964900F5B610 /* BRPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BEE4851C63964900F5B610 /* BRPlaceholderTextView.m */; };
+		A5BEE4891C63B00C00F5B610 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BEE4881C63B00C00F5B610 /* MBProgressHUD.m */; };
+		A5BEE48B1C63B1FB00F5B610 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5BEE48A1C63B1FB00F5B610 /* CoreGraphics.framework */; };
+		A5BEE4A21C64C2AE00F5B610 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5BEE49F1C64C2AE00F5B610 /* libWeiboSDK.a */; };
+		A5BEE4A31C64C2AE00F5B610 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A5BEE4A01C64C2AE00F5B610 /* WeiboSDK.bundle */; };
 		A5BFFD141BE4D2A100D5A866 /* ItemDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD131BE4D2A100D5A866 /* ItemDetailVC.swift */; };
 		A5BFFD571BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD551BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift */; };
 		A5BFFD581BE8E7C800D5A866 /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD561BE8E7C800D5A866 /* LoginProtocol.swift */; };
@@ -246,6 +251,14 @@
 		A5B33DE81C4B7DE700565972 /* AllTodaysVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AllTodaysVC.swift; path = ViewController/AllTodaysVC.swift; sourceTree = "<group>"; };
 		A5BEE4721C638A0400F5B610 /* EditDescriptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditDescriptionVC.swift; path = ViewController/EditDescriptionVC.swift; sourceTree = "<group>"; };
 		A5BEE4801C638A2400F5B610 /* FeedbackVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedbackVC.swift; path = ViewController/FeedbackVC.swift; sourceTree = "<group>"; };
+		A5BEE4841C63964900F5B610 /* BRPlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BRPlaceholderTextView.h; path = ../Libs/textviewPlaceholder/BRPlaceholderTextView.h; sourceTree = "<group>"; };
+		A5BEE4851C63964900F5B610 /* BRPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BRPlaceholderTextView.m; path = ../Libs/textviewPlaceholder/BRPlaceholderTextView.m; sourceTree = "<group>"; };
+		A5BEE4871C63B00C00F5B610 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Libs/MBProgressHUD/MBProgressHUD.h; sourceTree = SOURCE_ROOT; };
+		A5BEE4881C63B00C00F5B610 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Libs/MBProgressHUD/MBProgressHUD.m; sourceTree = SOURCE_ROOT; };
+		A5BEE48A1C63B1FB00F5B610 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A5BEE49F1C64C2AE00F5B610 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
+		A5BEE4A01C64C2AE00F5B610 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
+		A5BEE4A11C64C2AE00F5B610 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
 		A5BFFD131BE4D2A100D5A866 /* ItemDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemDetailVC.swift; path = ViewController/ItemDetailVC.swift; sourceTree = "<group>"; };
 		A5BFFD551BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetUserInfoReadyProtocol.swift; path = LayoutTools/GetUserInfoReadyProtocol.swift; sourceTree = "<group>"; };
 		A5BFFD561BE8E7C800D5A866 /* LoginProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginProtocol.swift; path = LayoutTools/LoginProtocol.swift; sourceTree = "<group>"; };
@@ -270,6 +283,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5BEE48B1C63B1FB00F5B610 /* CoreGraphics.framework in Frameworks */,
+				A5BEE4A21C64C2AE00F5B610 /* libWeiboSDK.a in Frameworks */,
 				A552327E1C0475AE00A0AA2A /* libc++.tbd in Frameworks */,
 				A552327B1C0472F300A0AA2A /* libsqlite3.tbd in Frameworks */,
 				A55232791C0472D000A0AA2A /* libz.tbd in Frameworks */,
@@ -367,6 +382,10 @@
 		A593550F1BD66EC00044E7B3 /* LayoutTools */ = {
 			isa = PBXGroup;
 			children = (
+				A5BEE4871C63B00C00F5B610 /* MBProgressHUD.h */,
+				A5BEE4881C63B00C00F5B610 /* MBProgressHUD.m */,
+				A5BEE4841C63964900F5B610 /* BRPlaceholderTextView.h */,
+				A5BEE4851C63964900F5B610 /* BRPlaceholderTextView.m */,
 				A593554E1BD7E9F20044E7B3 /* Protocol */,
 				A593550C1BD66EA90044E7B3 /* TodayGalleryCT.swift */,
 				A593554A1BD7D1370044E7B3 /* SelfGalleryCT.swift */,
@@ -399,9 +418,21 @@
 			name = Protocol;
 			sourceTree = "<group>";
 		};
+		A5BEE49E1C64C2AE00F5B610 /* libWeiboSDK_X64 */ = {
+			isa = PBXGroup;
+			children = (
+				A5BEE49F1C64C2AE00F5B610 /* libWeiboSDK.a */,
+				A5BEE4A01C64C2AE00F5B610 /* WeiboSDK.bundle */,
+				A5BEE4A11C64C2AE00F5B610 /* WeiboSDK.h */,
+			);
+			name = libWeiboSDK_X64;
+			path = Libs/libWeiboSDK_X64;
+			sourceTree = SOURCE_ROOT;
+		};
 		A5CEE6171BD0DB3C00AAF122 = {
 			isa = PBXGroup;
 			children = (
+				A5BEE48A1C63B1FB00F5B610 /* CoreGraphics.framework */,
 				A552327D1C0475AE00A0AA2A /* libc++.tbd */,
 				A552327A1C0472F300A0AA2A /* libsqlite3.tbd */,
 				A55232781C0472D000A0AA2A /* libz.tbd */,
@@ -428,6 +459,7 @@
 		A5CEE6221BD0DB3C00AAF122 /* hiwu-ios */ = {
 			isa = PBXGroup;
 			children = (
+				A5BEE49E1C64C2AE00F5B610 /* libWeiboSDK_X64 */,
 				A50620311C157B5000195DCF /* navigationTool */,
 				A55232701C04716800A0AA2A /* weixin */,
 				A59355231BD785330044E7B3 /* Models */,
@@ -696,6 +728,7 @@
 			files = (
 				A5CEE62B1BD0DB3C00AAF122 /* Assets.xcassets in Resources */,
 				A5CEE6291BD0DB3C00AAF122 /* Main.storyboard in Resources */,
+				A5BEE4A31C64C2AE00F5B610 /* WeiboSDK.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,8 +765,10 @@
 				A5BFFD141BE4D2A100D5A866 /* ItemDetailVC.swift in Sources */,
 				A5BFFD571BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift in Sources */,
 				A5BEE4811C638A2400F5B610 /* FeedbackVC.swift in Sources */,
+				A5BEE4861C63964900F5B610 /* BRPlaceholderTextView.m in Sources */,
 				A534BE951C0EC9FF00770171 /* GuidePage.swift in Sources */,
 				A593554B1BD7D1370044E7B3 /* SelfGalleryCT.swift in Sources */,
+				A5BEE4891C63B00C00F5B610 /* MBProgressHUD.m in Sources */,
 				A50620551C15C58A00195DCF /* PutLikeReadyProtocol.swift in Sources */,
 				A534BE971C0F23CD00770171 /* AddGalleryVC.swift in Sources */,
 				A5BFFD581BE8E7C800D5A866 /* LoginProtocol.swift in Sources */,
@@ -904,7 +939,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Libs/SDK1.6.2",
+					"$(PROJECT_DIR)/Libs/libWeiboSDK_X64",
 				);
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "ren.hiwu.hiwu-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "hiwu-ios/WechatDemo_Bridging_Header.h";
@@ -925,7 +962,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Libs/SDK1.6.2",
+					"$(PROJECT_DIR)/Libs/libWeiboSDK_X64",
 				);
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "ren.hiwu.hiwu-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "hiwu-ios/WechatDemo_Bridging_Header.h";

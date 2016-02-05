@@ -31,6 +31,7 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     override func viewWillAppear(animated: Bool) {
         self.getSelfMuseum()
+        self.selfGalleryDisplay.reloadData()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{

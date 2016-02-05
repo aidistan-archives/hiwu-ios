@@ -46,7 +46,7 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView{
         let cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "TodayGalleryTitle", forIndexPath: indexPath)
         let galleryImage = cell.viewWithTag(1) as! UIImageView
-        galleryImage.layer.cornerRadius = galleryImage.frame.size.width/2
+        galleryImage.layer.cornerRadius = (cell.frame.height - 17)/2
         galleryImage.clipsToBounds = true
         galleryImage.kf_setImageWithURL(NSURL(string: globalHiwuUser.todayMuseum![self.location]["gallery"]["hiwuUser"]["avatar"].string! + "@!200x200")!)
         let galleryNameLabel = cell.viewWithTag(2) as! UILabel

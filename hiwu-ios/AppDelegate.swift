@@ -10,6 +10,7 @@ import UIKit
 import Kingfisher
 
 var globalHiwuUser = UserModel()
+var wxAPPID = "wxe0b3b148c7065252"
 
 @UIApplicationMain
 
@@ -21,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate {
         let cache = KingfisherManager.sharedManager.cache
         cache.maxDiskCacheSize = 500 * 1024 * 1024
         cache.maxCachePeriodInSecond = 3600*24*60
-        WXApi.registerApp("wxe0b3b148c7065252")
+        WXApi.registerApp(wxAPPID)
         if WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() {
             print("已经安装微信")
 //            let req = SendAuthReq()
@@ -71,22 +72,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate {
     }
     
     func onResp(resp: BaseResp!) {
+        
         if resp.isKindOfClass(SendMessageToWXResp){//确保是对我们分享操作的回调
             if resp.errCode == WXSuccess.rawValue{//分享成功
                 NSLog("分享成功")
             }else{//分享失败
                 NSLog("分享失败，错误码：%d, 错误描述：%@", resp.errCode, resp.errStr)
             }
-        }else if resp.isKindOfClass(SendAuthReq){
+        }else if resp.isKindOfClass(SendAuthResp){
+            let authResp = resp as! SendAuthResp
             if resp.errCode == 0{//认证成功
+                globalHiwuUser.wxcode = authResp.code
+                NSNotificationCenter.defaultCenter().postNotificationName("weixinLoginOK", object: self)
                 
-            }else{//分享失败
+            }else{
                 NSLog("认证失败，错误码：%d, 错误描述：%@", resp.errCode, resp.errStr)
             }
+        }else{
+    
         }
     }
     func application(app: UIApplication, openURL url: NSURL, sourceApplication: String?,annotation: AnyObject) -> Bool {
-        print(url)
         return WXApi.handleOpenURL(url, delegate: self)
     }
 

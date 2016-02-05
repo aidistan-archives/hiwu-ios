@@ -16,6 +16,9 @@ class UserModel: AnyObject{
     var selfMuseum :JSON?
     var todayMuseum :JSON?
     var item :JSON?
+    var loginState = 0
+    var wxcode = ""
+    var wbcode = ""
     init(){
         
     }

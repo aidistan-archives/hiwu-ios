@@ -23,6 +23,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     var cells = 0
     var toUserId:Int?
     var isCommment = false
+    var liked = false
     @IBOutlet weak var tipToAddComment: UILabel!
 
     @IBAction func back(sender: UIButton) {
@@ -39,6 +40,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
             self.waiting.startAnimating()
         }
     }
+    
     @IBOutlet weak var ensureCommentButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +58,8 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
         let gest = UITapGestureRecognizer(target: self, action: "endTheEditingOfTextView")
         gest.cancelsTouchesInView = false
         self.view.addGestureRecognizer(gest)
-        
+        print("item info")
+        print(self.item)
     }
     
     
@@ -91,13 +94,16 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                 let itemDescription = cell?.viewWithTag(2) as! UILabel
                 itemDescription.text = self.item!["description"].string
                 let likeButton = cell?.viewWithTag(3) as! UIButton
+                likeButton.imageView?.image = UIImage(named: "iconfont-liked")
+                likeButton.addTarget(self, action: "deleteLike", forControlEvents: UIControlEvents.TouchUpInside)
                 if(self.item!["liked"].boolValue){
-                    likeButton.imageView?.image = UIImage(named: "iconfont-liked")
+                    likeButton.setImage(UIImage(named: "iconfont-liked"), forState: UIControlState.Normal)
                     likeButton.addTarget(self, action: "deleteLike", forControlEvents: UIControlEvents.TouchUpInside)
                 }else{
-                    likeButton.imageView?.image = UIImage(named: "iconfont-like")
+                    likeButton.setImage(UIImage(named: "iconfont-like"), forState: UIControlState.Normal)
                     likeButton.addTarget(self, action: "putLike", forControlEvents: UIControlEvents.TouchUpInside)
                 }
+                
                 let likeNum = cell?.viewWithTag(4) as! UILabel
                 var likes = 0
                 if(self.item!["likes"].int != nil){
@@ -167,11 +173,10 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     
     func putLike(){
         contactor.putLike(globalHiwuUser.userId, itemId: self.itemId!)
-        self.getItemInfo()
     }
     
     func deleteLike(){
-        contactor.deleteLike(globalHiwuUser.userId, itemId: self.itemId!, beReady: self.getItemInfo(), beFailed:self.networkError())
+        contactor.deleteLike(globalHiwuUser.userId, itemId: self.itemId!, beReady: self.getItemInfo(), beFailed:nil)
     }
     
     func getItemInfo(){
@@ -193,11 +198,11 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
         cells = 2 + self.item!["comments"].count
         self.waiting.stopAnimating()
         self.itemDetailList.reloadData()
-        if(isCommment == true){
-            self.itemDetailList.scrollToRowAtIndexPath(NSIndexPath(forRow: self.cells - 1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
-        }else{
-             self.itemDetailList.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
-        }
+//        if(isCommment == true){
+//        self.itemDetailList.scrollToRowAtIndexPath(NSIndexPath(forRow: self.cells - 1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+//        }else{
+//             self.itemDetailList.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+//        }
     }
     func networkError(){
         self.waiting.stopAnimating()
@@ -211,13 +216,13 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
         self.getItemInfo()
     }
     func putLikeFailed(){
-        self.networkError()
+        self.getItemInfo()
     }
     func deleteLikeReady(){
         self.getItemInfo()
     }
     func deleteLikeFailed(){
-        self.networkError()
+        self.getItemInfo()
     }
     
     func postComment(toUserId:Int?,itemId:Int,content:String){
@@ -227,8 +232,6 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
             Alamofire.request(.POST, url, parameters: ["content": content,"toId": toUserId!]).responseJSON{response in
                 self.waiting.stopAnimating()
                 if(response.result.error != nil){
-                    print(response.result.error)
-                    self.networkError()
                 }else{
                     self.addComment.text = ""
                     self.getItemInfo()
@@ -239,7 +242,6 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
             Alamofire.request(.POST, url, parameters: ["content": content]).responseJSON{response in
                 self.waiting.stopAnimating()
                 if(response.result.error != nil){
-                    self.networkError()
                 }else{
                     self.addComment.text = ""
                     self.getItemInfo()

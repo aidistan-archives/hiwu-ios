@@ -31,6 +31,10 @@ class EditNameVC: UIViewController {
         self.view.addGestureRecognizer(gest)
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     func endEditing(){
         self.nameInput.endEditing(true)
     }
@@ -39,11 +43,9 @@ class EditNameVC: UIViewController {
         let url = ApiManager.putNickname1 + String(self.userId) + ApiManager.putNickname2 + globalHiwuUser.hiwuToken
         
         Alamofire.request(.PUT, url, parameters: ["nickname":self.nameInput.text!,"id":self.userId]).responseJSON{response in
-            print(response.request)
-            if(response.result.error == nil){
+            let result = JSON(response.result.value!)
+            if(result["error"].string == ""){
                 self.navigationController?.popViewControllerAnimated(true)
-                let result = JSON(response.result.value!)
-                print(result["error"])
             }
         }
     }

@@ -113,11 +113,11 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
             case 1:
                 self.toEditName()
             default:
-                print("call edit description")
+                self.toEditDescription()
             }
+//        case 1:
+//            print("call account")
         case 1:
-            print("call account")
-        case 2:
             print("call feed back")
         default:
             self.navigationController?.popToRootViewControllerAnimated(true)
@@ -221,6 +221,19 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
         editName.name = self.userInfo!["nickname"].string!
         editName.userId = self.userInfo!["id"].int!
     self.navigationController?.pushViewController(editName, animated: true)
+    }
+    
+    func toEditDescription(){
+        let editDescription = self.storyboard?.instantiateViewControllerWithIdentifier("EditDescriptionVC") as! EditDescriptionVC
+        editDescription.userDescription = self.userInfo!["description"].string!
+        editDescription.userId = self.userInfo!["id"].int!
+        self.navigationController?.pushViewController(editDescription, animated: true)
+    }
+    
+    func toEditFeedback(){
+        let editFeedback = self.storyboard?.instantiateViewControllerWithIdentifier("FeedbackVC") as! FeedbackVC
+        editFeedback.userId = self.userInfo!["id"].int!
+        self.navigationController?.pushViewController(editFeedback, animated: true)
     }
 
 }

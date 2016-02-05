@@ -7,18 +7,47 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class EditDescriptionVC: UIViewController {
+    
+    var userId = 0
+    var userDescription = ""
 
+    @IBOutlet weak var descriptionInput: UITextField!
+    @IBAction func cancel(sender: UIButton) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    @IBAction func ok(sender: UIButton) {
+        self.putDescription()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.descriptionInput.text = self.userDescription
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
+    func putDescription(){
+        let url = ApiManager.putNickname1 + String(self.userId) + ApiManager.putNickname2 + globalHiwuUser.hiwuToken
+        Alamofire.request(.PUT, url, parameters: ["description":self.descriptionInput.text!,"id":self.userId]).responseJSON{response in
+            let result = JSON(response.result.value!)
+            if(result["error"].string == nil){
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+            
+        }
     }
 
 
