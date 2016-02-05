@@ -203,8 +203,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         let toAdd = self.storyboard?.instantiateViewControllerWithIdentifier("AddItemVC") as! AddItemVC
         toAdd.galleryId = self.gallery!["id"].int!
         toAdd.image = info[UIImagePickerControllerEditedImage] as? UIImage
-        let originImage = info[UIImagePickerControllerOriginalImage] as? UIImage
-        UIImageWriteToSavedPhotosAlbum(originImage!, nil, nil, nil)
+        
         picker.dismissViewControllerAnimated(true, completion: nil)
         self.navigationController?.pushViewController(toAdd, animated: true)
     
@@ -221,7 +220,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         camera.delegate = self
         camera.sourceType = UIImagePickerControllerSourceType.Camera
         camera.showsCameraControls = true
-        camera.allowsEditing = true
         self.presentViewController(camera, animated: true, completion: nil)
     }
     

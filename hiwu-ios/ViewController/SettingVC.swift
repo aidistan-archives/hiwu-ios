@@ -187,8 +187,6 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
         let tmpImage = info[UIImagePickerControllerEditedImage] as? UIImage
-        let originImage = info[UIImagePickerControllerOriginalImage] as? UIImage
-        UIImageWriteToSavedPhotosAlbum(originImage!, nil, nil, nil)
         let jpgUrl = NSHomeDirectory().stringByAppendingString("/tmp/").stringByAppendingString("tmp.jpg")
         UIImageJPEGRepresentation(tmpImage!, 0.7)?.writeToFile(jpgUrl, atomically: false)
         self.updateAvatar(jpgUrl)

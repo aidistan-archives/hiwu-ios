@@ -94,6 +94,8 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                 let itemDescription = cell?.viewWithTag(2) as! UILabel
                 itemDescription.text = self.item!["description"].string
                 let likeButton = cell?.viewWithTag(3) as! UIButton
+                likeButton.imageView?.image = UIImage(named: "iconfont-liked")
+                likeButton.addTarget(self, action: "deleteLike", forControlEvents: UIControlEvents.TouchUpInside)
                 if(self.item!["liked"].boolValue){
                     likeButton.setImage(UIImage(named: "iconfont-liked"), forState: UIControlState.Normal)
                     likeButton.addTarget(self, action: "deleteLike", forControlEvents: UIControlEvents.TouchUpInside)
@@ -196,8 +198,12 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
         cells = 2 + self.item!["comments"].count
         self.waiting.stopAnimating()
         self.itemDetailList.reloadData()
+//        if(isCommment == true){
+//        self.itemDetailList.scrollToRowAtIndexPath(NSIndexPath(forRow: self.cells - 1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+//        }else{
+//             self.itemDetailList.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+//        }
     }
-    
     func networkError(){
         self.waiting.stopAnimating()
         let alert = UIAlertController(title: "请求失败", message: "请检查你的网络", preferredStyle: UIAlertControllerStyle.Alert)

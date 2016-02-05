@@ -10,13 +10,11 @@ import UIKit
 import Kingfisher
 
 var globalHiwuUser = UserModel()
-let wxAPPID = "wxe0b3b148c7065252"
-let wbAPPKEY = "1946198488"
-let kRedirectURI = "http://wwww.sina.com"
+var wxAPPID = "wxe0b3b148c7065252"
 
 @UIApplicationMain
 
-class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate,WeiboSDKDelegate{
+class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate {
 
     var window: UIWindow?
 
@@ -27,8 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate,WeiboSDKDele
         WXApi.registerApp(wxAPPID)
         if WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() {
             print("已经安装微信")
+//            let req = SendAuthReq()
+//            req.scope = "snsapi_userinfo"
+//            req.state = "123"
+//            WXApi.sendReq(req)
         }
-        WeiboSDK.registerApp(wbAPPKEY)
         
         // Override point for customization after application launch.
 //        NSThread.sleepForTimeInterval(3)
@@ -59,31 +60,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate,WeiboSDKDele
     }
     
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
-        if(globalHiwuUser.loginState == 2){
-            return WeiboSDK.handleOpenURL(url, delegate: self)
-        }
-        return WXApi.handleOpenURL(url, delegate: self)
-    }
-    
-    func application(app: UIApplication, openURL url: NSURL, sourceApplication: String?,annotation: AnyObject) -> Bool {
-        if(globalHiwuUser.loginState == 2){
-            return WeiboSDK.handleOpenURL(url, delegate: self)
-        }
-        return WXApi.handleOpenURL(url, delegate: self)
-    }
-    
-    func didReceiveWeiboRequest(request: WBBaseRequest!) {
         
-    }
-    
-    func didReceiveWeiboResponse(response: WBBaseResponse!) {
-        if(response.isKindOfClass(WBAuthorizeResponse)){
-            let resp = response as! WBAuthorizeResponse
-            print(resp.statusCode)
-            print(resp.userInfo)
-        }else if(response.isKindOfClass(WBSendMessageToWeiboResponse)){
-            
-        }
+        print(url)
+        return WXApi.handleOpenURL(url, delegate: self)
+        
     }
     
     func onReq(req: BaseReq!) {
@@ -112,7 +92,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate,WeiboSDKDele
     
         }
     }
-
+    func application(app: UIApplication, openURL url: NSURL, sourceApplication: String?,annotation: AnyObject) -> Bool {
+        return WXApi.handleOpenURL(url, delegate: self)
+    }
 
 }
 

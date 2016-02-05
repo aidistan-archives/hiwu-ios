@@ -1091,24 +1091,14 @@
                             </textField>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKd-vl-lb3">
                                 <rect key="frame" x="213" y="483" width="60" height="30"/>
-                                <state key="normal" title="微信登陆">
-                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
+                                <state key="normal" title="微信登陆"/>
                                 <connections>
                                     <action selector="weixin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dQh-D5-hIQ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SFz-jX-Awz">
-                                <rect key="frame" x="220" y="450" width="60" height="30"/>
-                                <state key="normal" title="微博登录"/>
-                                <connections>
-                                    <action selector="weiboLoginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BSo-T0-Wyn"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="SFz-jX-Awz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="200" id="2Eh-M4-sAH"/>
                             <constraint firstItem="4ts-IF-Fu7" firstAttribute="trailing" secondItem="HIz-lo-kHh" secondAttribute="trailing" id="3TL-VX-f1O"/>
                             <constraint firstItem="Qdh-tX-VKY" firstAttribute="centerX" secondItem="HIz-lo-kHh" secondAttribute="centerX" id="419-dh-znR"/>
                             <constraint firstItem="Qdh-tX-VKY" firstAttribute="top" secondItem="4ts-IF-Fu7" secondAttribute="bottom" constant="43" id="AAS-5t-Cux"/>
@@ -1126,7 +1116,6 @@
                             <constraint firstItem="4ts-IF-Fu7" firstAttribute="leading" secondItem="HIz-lo-kHh" secondAttribute="leading" id="dG7-u7-37W"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="uKd-vl-lb3" secondAttribute="bottom" constant="87" id="fMQ-YG-JkI"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JeN-em-OPZ" secondAttribute="bottom" constant="190" id="hdC-Kx-j8H"/>
-                            <constraint firstItem="SFz-jX-Awz" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="406" id="qxZ-PF-LmH"/>
                             <constraint firstItem="HIz-lo-kHh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="rXK-qi-0si"/>
                             <constraint firstItem="4ts-IF-Fu7" firstAttribute="leading" secondItem="HIz-lo-kHh" secondAttribute="leading" id="tBt-PY-iVl"/>
                             <constraint firstItem="4ts-IF-Fu7" firstAttribute="centerX" secondItem="HIz-lo-kHh" secondAttribute="centerX" id="tDE-QA-vfh"/>
