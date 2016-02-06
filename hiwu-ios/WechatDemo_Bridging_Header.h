@@ -15,5 +15,6 @@
 #import "BRPlaceholderTextView.h"
 #import "MBProgressHUD.h"
 #import "WeiboSDK.h"
+#import "LCActionSheet.h"
 
 #endif /* WechatDemo_Bridging_Header_h */

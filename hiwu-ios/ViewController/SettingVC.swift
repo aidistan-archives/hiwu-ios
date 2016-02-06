@@ -149,20 +149,16 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
         
     }
     
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
-    
     func setImage(){
-        let alert = UIAlertController(title: "选择照片来源", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
-        alert.addAction(UIAlertAction(title: "从相机", style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction!) in
-            self.callCamera()
-        }))
-        alert.addAction(UIAlertAction(title: "从相册", style: UIAlertActionStyle.Default, handler: {(action: UIAlertAction!) in
-            self.callPhotoLibrary()
-        }))
-        alert.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+        let newAlert = LCActionSheet(title: "选择照片来源", buttonTitles: ["拍摄","从相册"], redButtonIndex: -1, clicked: { button in
+            if(button == 0){
+                self.callCamera()
+            }else if(button == 1){
+                self.callPhotoLibrary()
+            }
+            
+        })
+        newAlert.show()
     }
     
     

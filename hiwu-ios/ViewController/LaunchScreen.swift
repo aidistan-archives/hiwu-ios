@@ -30,9 +30,7 @@ class LaunchScreen: UIViewController,GetTodayInfoReadyProtocol{
         })
     }
     
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
+
     
     
     func getTodayReady() {

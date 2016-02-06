@@ -25,6 +25,8 @@
 		A552327B1C0472F300A0AA2A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A552327A1C0472F300A0AA2A /* libsqlite3.tbd */; };
 		A552327E1C0475AE00A0AA2A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A552327D1C0475AE00A0AA2A /* libc++.tbd */; };
 		A55C94381C5DA9FD004367B0 /* EditNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55C94371C5DA9FD004367B0 /* EditNameVC.swift */; };
+		A5799ED21C659DCE009660D1 /* LCActionSheet.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A5799ECF1C659DCE009660D1 /* LCActionSheet.bundle */; };
+		A5799ED31C659DCE009660D1 /* LCActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = A5799ED11C659DCE009660D1 /* LCActionSheet.m */; };
 		A59354C31BD5C4FD0044E7B3 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59354C21BD5C4FD0044E7B3 /* LaunchScreen.swift */; };
 		A593550B1BD669080044E7B3 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593550A1BD669080044E7B3 /* LoginVC.swift */; };
 		A593550D1BD66EA90044E7B3 /* TodayGalleryCT.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593550C1BD66EA90044E7B3 /* TodayGalleryCT.swift */; };
@@ -251,6 +253,9 @@
 		A552327C1C04731E00A0AA2A /* WechatDemo_Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WechatDemo_Bridging_Header.h; sourceTree = "<group>"; };
 		A552327D1C0475AE00A0AA2A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		A55C94371C5DA9FD004367B0 /* EditNameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditNameVC.swift; path = ViewController/EditNameVC.swift; sourceTree = "<group>"; };
+		A5799ECF1C659DCE009660D1 /* LCActionSheet.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LCActionSheet.bundle; sourceTree = "<group>"; };
+		A5799ED01C659DCE009660D1 /* LCActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCActionSheet.h; sourceTree = "<group>"; };
+		A5799ED11C659DCE009660D1 /* LCActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCActionSheet.m; sourceTree = "<group>"; };
 		A59354C21BD5C4FD0044E7B3 /* LaunchScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LaunchScreen.swift; path = ViewController/LaunchScreen.swift; sourceTree = "<group>"; };
 		A593550A1BD669080044E7B3 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginVC.swift; path = ViewController/LoginVC.swift; sourceTree = "<group>"; };
 		A593550C1BD66EA90044E7B3 /* TodayGalleryCT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TodayGalleryCT.swift; path = LayoutTools/TodayGalleryCT.swift; sourceTree = "<group>"; };
@@ -358,6 +363,17 @@
 			);
 			name = weixin;
 			sourceTree = "<group>";
+		};
+		A5799ECE1C659DCE009660D1 /* LCActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				A5799ECF1C659DCE009660D1 /* LCActionSheet.bundle */,
+				A5799ED01C659DCE009660D1 /* LCActionSheet.h */,
+				A5799ED11C659DCE009660D1 /* LCActionSheet.m */,
+			);
+			name = LCActionSheet;
+			path = Libs/LCActionSheet;
+			sourceTree = SOURCE_ROOT;
 		};
 		A59354CE1BD5C5320044E7B3 /* SupportingFiles */ = {
 			isa = PBXGroup;
@@ -468,6 +484,7 @@
 		A5CEE6221BD0DB3C00AAF122 /* hiwu-ios */ = {
 			isa = PBXGroup;
 			children = (
+				A5799ECE1C659DCE009660D1 /* LCActionSheet */,
 				A5BEE4B11C64CFF000F5B610 /* weibo */,
 				A50620311C157B5000195DCF /* navigationTool */,
 				A55232701C04716800A0AA2A /* weixin */,
@@ -738,6 +755,7 @@
 			files = (
 				A5CEE62B1BD0DB3C00AAF122 /* Assets.xcassets in Resources */,
 				A5CEE6291BD0DB3C00AAF122 /* Main.storyboard in Resources */,
+				A5799ED21C659DCE009660D1 /* LCActionSheet.bundle in Resources */,
 				A500312D1C6590F700F8BDCD /* WeiboSDK.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -786,6 +804,7 @@
 				A59354C31BD5C4FD0044E7B3 /* LaunchScreen.swift in Sources */,
 				A5BFFD5C1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift in Sources */,
 				A5BEE4731C638A0400F5B610 /* EditDescriptionVC.swift in Sources */,
+				A5799ED31C659DCE009660D1 /* LCActionSheet.m in Sources */,
 				A5B33DE91C4B7DE700565972 /* AllTodaysVC.swift in Sources */,
 				A50620411C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				A5EB70AD1BE38AD20075D559 /* GalleryDetailVC.swift in Sources */,

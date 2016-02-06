@@ -31,7 +31,5 @@ class GuidePage: UIViewController,UITableViewDataSource,UITableViewDelegate {
     }
 
 
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
+
 }

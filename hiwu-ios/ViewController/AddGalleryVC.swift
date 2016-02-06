@@ -91,9 +91,5 @@ class AddGalleryVC: UIViewController,UITextFieldDelegate,UITextViewDelegate {
     func back(){
         self.navigationController?.popViewControllerAnimated(true)
     }
-    
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
 
 }

@@ -109,8 +109,6 @@ class AllTodaysVC: UITableViewController {
         tableView.cellForRowAtIndexPath(indexPath)?.selected = false
     }
     
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
+
 
 }

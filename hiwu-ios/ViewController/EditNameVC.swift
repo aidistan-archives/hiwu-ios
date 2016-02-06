@@ -31,9 +31,7 @@ class EditNameVC: UIViewController {
         self.view.addGestureRecognizer(gest)
     }
     
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
+
     
     func endEditing(){
         self.nameInput.endEditing(true)
