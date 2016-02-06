@@ -23,6 +23,7 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         selfGalleryDisplay.delegate = self
         selfGalleryDisplay.dataSource = self
         self.getSelfMuseum()
+//        print(globalHiwuUser.hiwuToken)
     }
     
     func back(){
@@ -97,6 +98,13 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        let alert = SCLAlertView()
+        alert.addButton("删除", actionBlock: { () in
+            self.deleteGallery(globalHiwuUser.selfMuseum!["galleries"][indexPath.row-1]["id"].int!)
+            
+        })
+        alert.showWarning(self, title: "删除长廊", subTitle: "删除长廊后，会同时删除里面所有的物品。确定删除吗？", closeButtonTitle: "取消", duration: 0)
+        
         
     }
     
@@ -142,8 +150,8 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 self.itemSum = 0
                 for(var i=0 ;i < globalHiwuUser.selfMuseum!["galleries"].count;i++ ){
                     self.itemSum += globalHiwuUser.selfMuseum!["galleries"][i]["items"].count
-                    self.selfGalleryDisplay.reloadData()
                 }
+                self.selfGalleryDisplay.reloadData()
             }else{
                 self.networkError()
             }
@@ -157,6 +165,19 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
+    func deleteGallery(galleryId:Int){
+        let deleteUrl = ApiManager.deleteGallery1 + String(galleryId) + ApiManager.deleteGallery2 + globalHiwuUser.hiwuToken
+        Alamofire.request(.DELETE, NSURL(string: deleteUrl)!).responseJSON{response in
+            if(response.result.value != nil){
+                let value = JSON(response.result.value!)
+                if(value["error"] == nil){
+                    print("delete success")
+                    self.getSelfMuseum()
+                }
+            }
+        }
+        
+    }
 
 
 }

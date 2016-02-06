@@ -16,5 +16,6 @@
 #import "MBProgressHUD.h"
 #import "WeiboSDK.h"
 #import "LCActionSheet.h"
+#import "SCLAlertView.h"
 
 #endif /* WechatDemo_Bridging_Header_h */

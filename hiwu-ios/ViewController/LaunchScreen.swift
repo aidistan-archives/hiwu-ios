@@ -49,6 +49,9 @@ class LaunchScreen: UIViewController,GetTodayInfoReadyProtocol{
     func getTodayFailed() {
         
     }
+    override func prefersStatusBarHidden() -> Bool {
+        return  true
+    }
     
 
     override func didReceiveMemoryWarning() {

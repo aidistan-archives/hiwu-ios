@@ -58,6 +58,13 @@
 		A5CEE68F1BD0DC4500AAF122 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5CEE66C1BD0DC1600AAF122 /* Kingfisher.framework */; };
 		A5CEE6901BD0DC4500AAF122 /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5CEE66C1BD0DC1600AAF122 /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A5EB70AD1BE38AD20075D559 /* GalleryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB70AC1BE38AD20075D559 /* GalleryDetailVC.swift */; };
+		A5EF35621C66267C00F61BB0 /* SCLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5EF35541C66267C00F61BB0 /* SCLAlertView.m */; };
+		A5EF35631C66267C00F61BB0 /* SCLAlertViewResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = A5EF35561C66267C00F61BB0 /* SCLAlertViewResponder.m */; };
+		A5EF35641C66267C00F61BB0 /* SCLAlertViewStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A5EF35581C66267C00F61BB0 /* SCLAlertViewStyleKit.m */; };
+		A5EF35651C66267C00F61BB0 /* SCLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A5EF355A1C66267C00F61BB0 /* SCLButton.m */; };
+		A5EF35661C66267C00F61BB0 /* SCLTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5EF355D1C66267C00F61BB0 /* SCLTextView.m */; };
+		A5EF35671C66267C00F61BB0 /* SCLTimerDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = A5EF355F1C66267C00F61BB0 /* SCLTimerDisplay.m */; };
+		A5EF35681C66267C00F61BB0 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = A5EF35611C66267C00F61BB0 /* UIImage+ImageEffects.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -291,6 +298,21 @@
 		A5CEE6631BD0DC1600AAF122 /* Kingfisher.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Kingfisher.xcodeproj; path = Libs/Kingfisher/Kingfisher.xcodeproj; sourceTree = "<group>"; };
 		A5CEE6751BD0DC2000AAF122 /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = "Libs/SwiftyJSON-master 3/SwiftyJSON.xcodeproj"; sourceTree = "<group>"; };
 		A5EB70AC1BE38AD20075D559 /* GalleryDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GalleryDetailVC.swift; path = ViewController/GalleryDetailVC.swift; sourceTree = "<group>"; };
+		A5EF35531C66267C00F61BB0 /* SCLAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLAlertView.h; sourceTree = "<group>"; };
+		A5EF35541C66267C00F61BB0 /* SCLAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLAlertView.m; sourceTree = "<group>"; };
+		A5EF35551C66267C00F61BB0 /* SCLAlertViewResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLAlertViewResponder.h; sourceTree = "<group>"; };
+		A5EF35561C66267C00F61BB0 /* SCLAlertViewResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewResponder.m; sourceTree = "<group>"; };
+		A5EF35571C66267C00F61BB0 /* SCLAlertViewStyleKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLAlertViewStyleKit.h; sourceTree = "<group>"; };
+		A5EF35581C66267C00F61BB0 /* SCLAlertViewStyleKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewStyleKit.m; sourceTree = "<group>"; };
+		A5EF35591C66267C00F61BB0 /* SCLButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLButton.h; sourceTree = "<group>"; };
+		A5EF355A1C66267C00F61BB0 /* SCLButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLButton.m; sourceTree = "<group>"; };
+		A5EF355B1C66267C00F61BB0 /* SCLMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLMacros.h; sourceTree = "<group>"; };
+		A5EF355C1C66267C00F61BB0 /* SCLTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLTextView.h; sourceTree = "<group>"; };
+		A5EF355D1C66267C00F61BB0 /* SCLTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLTextView.m; sourceTree = "<group>"; };
+		A5EF355E1C66267C00F61BB0 /* SCLTimerDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLTimerDisplay.h; sourceTree = "<group>"; };
+		A5EF355F1C66267C00F61BB0 /* SCLTimerDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLTimerDisplay.m; sourceTree = "<group>"; };
+		A5EF35601C66267C00F61BB0 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		A5EF35611C66267C00F61BB0 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -484,6 +506,7 @@
 		A5CEE6221BD0DB3C00AAF122 /* hiwu-ios */ = {
 			isa = PBXGroup;
 			children = (
+				A5EF35521C66267C00F61BB0 /* SCLAlertView */,
 				A5799ECE1C659DCE009660D1 /* LCActionSheet */,
 				A5BEE4B11C64CFF000F5B610 /* weibo */,
 				A50620311C157B5000195DCF /* navigationTool */,
@@ -520,6 +543,29 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		A5EF35521C66267C00F61BB0 /* SCLAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				A5EF35531C66267C00F61BB0 /* SCLAlertView.h */,
+				A5EF35541C66267C00F61BB0 /* SCLAlertView.m */,
+				A5EF35551C66267C00F61BB0 /* SCLAlertViewResponder.h */,
+				A5EF35561C66267C00F61BB0 /* SCLAlertViewResponder.m */,
+				A5EF35571C66267C00F61BB0 /* SCLAlertViewStyleKit.h */,
+				A5EF35581C66267C00F61BB0 /* SCLAlertViewStyleKit.m */,
+				A5EF35591C66267C00F61BB0 /* SCLButton.h */,
+				A5EF355A1C66267C00F61BB0 /* SCLButton.m */,
+				A5EF355B1C66267C00F61BB0 /* SCLMacros.h */,
+				A5EF355C1C66267C00F61BB0 /* SCLTextView.h */,
+				A5EF355D1C66267C00F61BB0 /* SCLTextView.m */,
+				A5EF355E1C66267C00F61BB0 /* SCLTimerDisplay.h */,
+				A5EF355F1C66267C00F61BB0 /* SCLTimerDisplay.m */,
+				A5EF35601C66267C00F61BB0 /* UIImage+ImageEffects.h */,
+				A5EF35611C66267C00F61BB0 /* UIImage+ImageEffects.m */,
+			);
+			name = SCLAlertView;
+			path = Libs/SCLAlertView;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -795,20 +841,27 @@
 				A5BEE4811C638A2400F5B610 /* FeedbackVC.swift in Sources */,
 				A5BEE4861C63964900F5B610 /* BRPlaceholderTextView.m in Sources */,
 				A534BE951C0EC9FF00770171 /* GuidePage.swift in Sources */,
+				A5EF35621C66267C00F61BB0 /* SCLAlertView.m in Sources */,
 				A593554B1BD7D1370044E7B3 /* SelfGalleryCT.swift in Sources */,
+				A5EF35681C66267C00F61BB0 /* UIImage+ImageEffects.m in Sources */,
 				A5BEE4891C63B00C00F5B610 /* MBProgressHUD.m in Sources */,
 				A50620551C15C58A00195DCF /* PutLikeReadyProtocol.swift in Sources */,
 				A534BE971C0F23CD00770171 /* AddGalleryVC.swift in Sources */,
 				A5BFFD581BE8E7C800D5A866 /* LoginProtocol.swift in Sources */,
 				A5CEE6241BD0DB3C00AAF122 /* AppDelegate.swift in Sources */,
 				A59354C31BD5C4FD0044E7B3 /* LaunchScreen.swift in Sources */,
+				A5EF35631C66267C00F61BB0 /* SCLAlertViewResponder.m in Sources */,
+				A5EF35641C66267C00F61BB0 /* SCLAlertViewStyleKit.m in Sources */,
 				A5BFFD5C1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift in Sources */,
 				A5BEE4731C638A0400F5B610 /* EditDescriptionVC.swift in Sources */,
 				A5799ED31C659DCE009660D1 /* LCActionSheet.m in Sources */,
+				A5EF35651C66267C00F61BB0 /* SCLButton.m in Sources */,
+				A5EF35671C66267C00F61BB0 /* SCLTimerDisplay.m in Sources */,
 				A5B33DE91C4B7DE700565972 /* AllTodaysVC.swift in Sources */,
 				A50620411C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				A5EB70AD1BE38AD20075D559 /* GalleryDetailVC.swift in Sources */,
 				A59355251BD7854B0044E7B3 /* UserModel.swift in Sources */,
+				A5EF35661C66267C00F61BB0 /* SCLTextView.m in Sources */,
 				A55C94381C5DA9FD004367B0 /* EditNameVC.swift in Sources */,
 				A5BFFD5A1BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift in Sources */,
 				A593550B1BD669080044E7B3 /* LoginVC.swift in Sources */,

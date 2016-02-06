@@ -8,17 +8,18 @@
 
 import UIKit
 
-class AddGalleryVC: UIViewController,UITextFieldDelegate,UITextViewDelegate {
+class AddGalleryVC: UIViewController,UITextFieldDelegate {
 
     @IBOutlet weak var galleryName: UITextField!
-    @IBOutlet weak var galleryDespcription: UITextView!
+    @IBOutlet weak var galleryDespcription: BRPlaceholderTextView!
+    
     let contactor = ContactWithServer()
     override func viewDidLoad() {
         super.viewDidLoad()
         let gest = UITapGestureRecognizer(target: self, action: "endTheEditingOfTextView")
         gest.cancelsTouchesInView = false
         self.view.addGestureRecognizer(gest)
-        self.galleryDespcription.delegate = self
+        self.galleryDespcription.placeholder = "在这里添加长廊描述"
         self.galleryName.delegate = self
         let gestureBack = UIScreenEdgePanGestureRecognizer(target: self, action: "back")
         gestureBack.edges = UIRectEdge.Left
@@ -35,34 +36,34 @@ class AddGalleryVC: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func textViewDidBeginEditing(textView: UITextView){
-        let location = textView.frame
-        let size = self.view.frame
-        let offset = size.height - location.maxY - 300
-        if(offset<0){
-            
-            var newFrame = self.view.frame
-            newFrame.origin.y = offset
-            UIView.animateWithDuration(0.5, animations: {() in
-                self.view.frame = newFrame
-            })
-            
-        }
-        if(textView.text == "在这里添加物品描述"){
-            textView.text = ""
-        }
-        
-    }
+//    func textViewDidBeginEditing(textView: UITextView){
+//        let location = textView.frame
+//        let size = self.view.frame
+//        let offset = size.height - location.maxY - 300
+//        if(offset<0){
+//            
+//            var newFrame = self.view.frame
+//            newFrame.origin.y = offset
+//            UIView.animateWithDuration(0.5, animations: {() in
+//                self.view.frame = newFrame
+//            })
+//            
+//        }
+//        if(textView.text == "在这里添加长廊描述"){
+//            textView.text = ""
+//        }
+//        
+//    }
     
-    func textViewDidEndEditing(textView: UITextView){
-        if(textView.text == ""){
-            textView.text = "在这里添加物品描述"
-        }
-        textView.resignFirstResponder()
-        UIView.animateWithDuration(0.2, animations: {void in
-            self.view.frame.origin.y = 0
-        })
-    }
+//    func textViewDidEndEditing(textView: UITextView){
+//        if(textView.text == ""){
+//            textView.text = "在这里添加物品描述"
+//        }
+//        textView.resignFirstResponder()
+//        UIView.animateWithDuration(0.2, animations: {void in
+//            self.view.frame.origin.y = 0
+//        })
+//    }
     
     func textFieldDidBeginEditing(textField: UITextField){
         let location = textField.frame

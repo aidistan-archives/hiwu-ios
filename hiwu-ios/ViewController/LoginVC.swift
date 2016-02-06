@@ -85,10 +85,13 @@ class LoginVC: UIViewController,LoginProtocol {
                         let userInfo = JSON(response.result.value!)
                         if(userInfo["error"] == nil){
                             globalHiwuUser.hiwuToken = userInfo["id"].string!
-                            self.defaults.setValue((userInfo["id"]).string!, forKey: "token")
+                            self.defaults.setValue((userInfo["id"]).string!,
+                                forKey: "token")
                             self.defaults.setDouble(NSDate(timeIntervalSinceNow: (userInfo["ttl"]).double!).timeIntervalSince1970, forKey: "deadline")
                             self.defaults.setDouble(NSDate(timeIntervalSinceNow: (userInfo["ttl"]).double!/2).timeIntervalSince1970, forKey: "freshline")
                             self.defaults.setInteger((userInfo["userId"]).int!, forKey: "userId")
+                            
+                            print(globalHiwuUser.userId)
                             self.defaults.synchronize()
 
                             self.getSelfMuseum()

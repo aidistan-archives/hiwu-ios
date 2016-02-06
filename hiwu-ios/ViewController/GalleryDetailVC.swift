@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 import SwiftyJSON
 import Kingfisher
 import AVFoundation
@@ -142,8 +143,12 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        contactor.superGalleryDetailVC = self
-        contactor.deleteItem(self.gallery!["items"][indexPath.row-1]["id"].int!,complete: nil)
+        let alert = SCLAlertView()
+        alert.addButton("删除", actionBlock: { () in
+            self.deleteItem(self.gallery!["items"][indexPath.row-1]["id"].int!)
+            
+        })
+        alert.showWarning(self, title: "删除物品", subTitle: "确定删除该物品吗？", closeButtonTitle: "取消", duration: 0)
     }
     
     func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
@@ -229,4 +234,18 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         camera.allowsEditing = true
         self.presentViewController(camera, animated: true, completion: nil)
     }
+    
+    func deleteItem(itemId:Int){
+        let deleteUrl = ApiManager.deleteItem1 + String(itemId) + ApiManager.deleteItem2 + globalHiwuUser.hiwuToken
+        Alamofire.request(.DELETE, NSURL(string: deleteUrl)!).responseJSON{response in
+            if(response.result.value != nil){
+                let value = JSON(response.result.value!)
+                if(value["error"] == nil){
+                    print("delete success")
+                }
+            }
+        }
+        
+    }
+
 }

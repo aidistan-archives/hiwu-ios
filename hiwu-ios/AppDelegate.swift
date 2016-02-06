@@ -29,9 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate,WeiboSDKDele
             print("已经安装微信")
         }
         WeiboSDK.registerApp(wbAPPKEY)
-        
-        // Override point for customization after application launch.
-//        NSThread.sleepForTimeInterval(3)
         //设置这句设置停留时间
         return true
     }
