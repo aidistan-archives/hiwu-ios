@@ -12,7 +12,7 @@ import Kingfisher
 var globalHiwuUser = UserModel()
 let wxAPPID = "wxe0b3b148c7065252"
 let wbAPPKEY = "1946198488"
-let kRedirectURI = "http://"
+let kRedirectURI = "https://api.weibo.com/oauth2/default.html"
 
 @UIApplicationMain
 
@@ -79,8 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate,WeiboSDKDele
     func didReceiveWeiboResponse(response: WBBaseResponse!) {
         if(response.isKindOfClass(WBAuthorizeResponse)){
             let resp = response as! WBAuthorizeResponse
-            print(resp.statusCode)
-            print(resp.userInfo)
+            print(resp.accessToken)
         }else if(response.isKindOfClass(WBSendMessageToWeiboResponse)){
             
         }
@@ -103,6 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate,WeiboSDKDele
             let authResp = resp as! SendAuthResp
             if resp.errCode == 0{//认证成功
                 globalHiwuUser.wxcode = authResp.code
+                print(authResp.code)
                 NSNotificationCenter.defaultCenter().postNotificationName("weixinLoginOK", object: self)
                 
             }else{
