@@ -49,6 +49,7 @@
 		A5BFFD5A1BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD591BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift */; };
 		A5BFFD5C1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD5B1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift */; };
 		A5BFFD5E1BE8EA9600D5A866 /* GetItemInfoReadyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD5D1BE8EA9600D5A866 /* GetItemInfoReadyProtocol.swift */; };
+		A5C5D9191C666CEC00164093 /* launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5C5D9181C666CEC00164093 /* launch.storyboard */; };
 		A5CEE6241BD0DB3C00AAF122 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CEE6231BD0DB3C00AAF122 /* AppDelegate.swift */; };
 		A5CEE6261BD0DB3C00AAF122 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CEE6251BD0DB3C00AAF122 /* ViewController.swift */; };
 		A5CEE6291BD0DB3C00AAF122 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CEE6271BD0DB3C00AAF122 /* Main.storyboard */; };
@@ -289,6 +290,7 @@
 		A5BFFD591BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetTodayInfoReadyProtocol.swift; path = LayoutTools/GetTodayInfoReadyProtocol.swift; sourceTree = "<group>"; };
 		A5BFFD5B1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetSelfMuseumReadyProtocol.swift; sourceTree = "<group>"; };
 		A5BFFD5D1BE8EA9600D5A866 /* GetItemInfoReadyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetItemInfoReadyProtocol.swift; sourceTree = "<group>"; };
+		A5C5D9181C666CEC00164093 /* launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = launch.storyboard; sourceTree = "<group>"; };
 		A5CEE6201BD0DB3C00AAF122 /* hiwu-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hiwu-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CEE6231BD0DB3C00AAF122 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CEE6251BD0DB3C00AAF122 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -429,6 +431,7 @@
 				A55C94371C5DA9FD004367B0 /* EditNameVC.swift */,
 				A5BEE4721C638A0400F5B610 /* EditDescriptionVC.swift */,
 				A5BEE4801C638A2400F5B610 /* FeedbackVC.swift */,
+				A5C5D9181C666CEC00164093 /* launch.storyboard */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -820,6 +823,7 @@
 				A5CEE62B1BD0DB3C00AAF122 /* Assets.xcassets in Resources */,
 				A5CEE6291BD0DB3C00AAF122 /* Main.storyboard in Resources */,
 				A5799ED21C659DCE009660D1 /* LCActionSheet.bundle in Resources */,
+				A5C5D9191C666CEC00164093 /* launch.storyboard in Resources */,
 				A500312D1C6590F700F8BDCD /* WeiboSDK.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

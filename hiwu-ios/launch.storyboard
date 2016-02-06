@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WJa-FQ-M2q">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="T7x-Ze-09b">
+            <objects>
+                <viewController id="WJa-FQ-M2q" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B1Y-bP-T9A"/>
+                        <viewControllerLayoutGuide type="bottom" id="WmR-SG-wPG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="19h-ej-2dy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="头像" highlightedImage="add" translatesAutoresizingMaskIntoConstraints="NO" id="Pw5-sB-jYd">
+                                <rect key="frame" x="169" y="91" width="262" height="418"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Pw5-sB-jYd" firstAttribute="leading" secondItem="19h-ej-2dy" secondAttribute="leadingMargin" constant="149" id="A6V-7i-muN"/>
+                            <constraint firstItem="Pw5-sB-jYd" firstAttribute="top" secondItem="B1Y-bP-T9A" secondAttribute="bottom" constant="71" id="DOK-NI-A7d"/>
+                            <constraint firstItem="Pw5-sB-jYd" firstAttribute="centerX" secondItem="19h-ej-2dy" secondAttribute="centerX" id="SmF-Na-18Q"/>
+                            <constraint firstItem="Pw5-sB-jYd" firstAttribute="centerY" secondItem="19h-ej-2dy" secondAttribute="centerY" id="ZEj-Kj-jwL"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PVn-QE-uRH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="38" y="131"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="add" width="112" height="112"/>
+        <image name="头像" width="200" height="200"/>
+    </resources>
+</document>

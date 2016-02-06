@@ -94,7 +94,7 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             let museumInfo = cell.viewWithTag(3) as! UILabel
             let description = cell.viewWithTag(10) as! UILabel
             let selfMuseum = globalHiwuUser.selfMuseum
-            userAvatar.kf_setImageWithURL(NSURL(string: selfMuseum!["avatar"].string!)!)
+            userAvatar.kf_setImageWithURL(NSURL(string: selfMuseum!["avatar"].string!)!, placeholderImage: UIImage(named: "头像"))
             userAvatar.layer.cornerRadius = userAvatar.frame.height/2
             userAvatar.clipsToBounds = true
             userNickname.text = selfMuseum!["nickname"].string!

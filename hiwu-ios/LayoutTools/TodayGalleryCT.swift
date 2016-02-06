@@ -48,7 +48,7 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
         let galleryImage = cell.viewWithTag(1) as! UIImageView
         galleryImage.layer.cornerRadius = (cell.frame.height - 17)/2
         galleryImage.clipsToBounds = true
-        galleryImage.kf_setImageWithURL(NSURL(string: globalHiwuUser.todayMuseum![self.location]["gallery"]["hiwuUser"]["avatar"].string! + "@!200x200")!)
+        galleryImage.kf_setImageWithURL(NSURL(string: globalHiwuUser.todayMuseum![self.location]["gallery"]["hiwuUser"]["avatar"].string! + "@!200x200")!, placeholderImage: UIImage(named: "头像"))
         let galleryNameLabel = cell.viewWithTag(2) as! UILabel
         let nickName = globalHiwuUser.todayMuseum![self.location]["gallery"]["hiwuUser"]["nickname"].string!
         galleryNameLabel.text = nickName + " ⎡" + globalHiwuUser.todayMuseum![self.location]["gallery"]["name"].string! + " ⎦"

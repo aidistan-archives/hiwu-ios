@@ -72,11 +72,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hiwu-ios/AppDelegate.swift"
-            timestampString = "476370495.840243"
+            timestampString = "476472171.777134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "application(_:handleOpenURL:)"
             landmarkType = "5">
          </BreakpointContent>

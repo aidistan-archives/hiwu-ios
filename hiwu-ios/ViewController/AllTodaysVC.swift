@@ -90,7 +90,7 @@ class AllTodaysVC: UITableViewController {
         let tmpGallery = today![index]["gallery"]
         let cell = tableView.dequeueReusableCellWithIdentifier("TodayCell")
         let avatar = cell?.viewWithTag(1) as! UIImageView
-        avatar.kf_setImageWithURL(NSURL(string: tmpGallery["hiwuUser"]["avatar"].string! + "@!200x200")!)
+        avatar.kf_setImageWithURL(NSURL(string: tmpGallery["hiwuUser"]["avatar"].string! + "@!200x200")!, placeholderImage: UIImage(named: "头像"))
         let name = cell?.viewWithTag(2) as! UILabel
         name.text = tmpGallery["hiwuUser"]["nickname"].string! + " ⎡" + tmpGallery["name"].string! + " ⎦"
         let num = cell?.viewWithTag(3) as! UILabel

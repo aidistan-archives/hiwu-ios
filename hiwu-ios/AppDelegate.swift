@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate,WeiboSDKDele
         if WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() {
             print("已经安装微信")
         }
+        sleep(3)
         WeiboSDK.registerApp(wbAPPKEY)
         //设置这句设置停留时间
         return true

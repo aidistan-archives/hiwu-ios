@@ -56,7 +56,7 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
             case 0:
                 cell = tableView.dequeueReusableCellWithIdentifier("Avatar")
                 let userAvatar = cell?.viewWithTag(1) as! UIImageView
-                userAvatar.kf_setImageWithURL(NSURL(string: self.userInfo!["avatar"].string!)!, placeholderImage: UIImage(named: "iconfont-like"))    
+                userAvatar.kf_setImageWithURL(NSURL(string: self.userInfo!["avatar"].string!)!, placeholderImage: UIImage(named: "头像"))
                 userAvatar.layer.cornerRadius = userAvatar.frame.height/2
                 userAvatar.clipsToBounds = true
             case 1:
