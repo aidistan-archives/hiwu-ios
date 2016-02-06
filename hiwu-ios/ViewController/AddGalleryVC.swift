@@ -7,15 +7,23 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class AddGalleryVC: UIViewController,UITextFieldDelegate {
 
     @IBOutlet weak var galleryName: UITextField!
     @IBOutlet weak var galleryDespcription: BRPlaceholderTextView!
     
+    @IBAction func cancel(sender: UIButton) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
     let contactor = ContactWithServer()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.galleryName.layer.borderColor = UIColor(red: 204, green: 204, blue: 204, alpha: 1).CGColor
+        self.galleryName.layer.borderWidth = 10
         let gest = UITapGestureRecognizer(target: self, action: "endTheEditingOfTextView")
         gest.cancelsTouchesInView = false
         self.view.addGestureRecognizer(gest)
@@ -27,43 +35,18 @@ class AddGalleryVC: UIViewController,UITextFieldDelegate {
     }
 
     @IBAction func addOk(sender: UIButton) {
-        self.contactor.postGallery(self.galleryName.text!, despcription: self.galleryDespcription.text!, isPublic: true, userId: globalHiwuUser.userId)
+        self.postGallery(self.galleryName.text!, despcription: self.galleryDespcription.text!, isPublic: true, userId: globalHiwuUser.userId)
+        
     }
+    
     @IBAction func back(sender: UIButton) {
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-//    func textViewDidBeginEditing(textView: UITextView){
-//        let location = textView.frame
-//        let size = self.view.frame
-//        let offset = size.height - location.maxY - 300
-//        if(offset<0){
-//            
-//            var newFrame = self.view.frame
-//            newFrame.origin.y = offset
-//            UIView.animateWithDuration(0.5, animations: {() in
-//                self.view.frame = newFrame
-//            })
-//            
-//        }
-//        if(textView.text == "在这里添加长廊描述"){
-//            textView.text = ""
-//        }
-//        
-//    }
-    
-//    func textViewDidEndEditing(textView: UITextView){
-//        if(textView.text == ""){
-//            textView.text = "在这里添加物品描述"
-//        }
-//        textView.resignFirstResponder()
-//        UIView.animateWithDuration(0.2, animations: {void in
-//            self.view.frame.origin.y = 0
-//        })
-//    }
     
     func textFieldDidBeginEditing(textField: UITextField){
         let location = textField.frame
@@ -91,6 +74,23 @@ class AddGalleryVC: UIViewController,UITextFieldDelegate {
     
     func back(){
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func postGallery(name:String!,despcription:String!,isPublic:Bool!,userId:Int!){
+        let url = ApiManager.postGallery1 + String(userId) + ApiManager.postGallery2 + globalHiwuUser.hiwuToken
+        Alamofire.request(.POST, url, parameters: ["name":name + "博物馆","description":despcription,"public":isPublic]).responseJSON{response in
+            if(response.result.value != nil)
+            {
+                let value = JSON(response.result.value!)
+                if(value["error"] == nil){
+                    self.navigationController?.popViewControllerAnimated(true)
+                }
+
+                
+                
+            }
+        }
+        
     }
 
 }

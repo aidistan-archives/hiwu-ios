@@ -17,5 +17,6 @@
 #import "WeiboSDK.h"
 #import "LCActionSheet.h"
 #import "SCLAlertView.h"
+#import "UIScrollView+EmptyDataSet.h"
 
 #endif /* WechatDemo_Bridging_Header_h */

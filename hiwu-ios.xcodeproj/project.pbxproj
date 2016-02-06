@@ -65,6 +65,8 @@
 		A5EF35661C66267C00F61BB0 /* SCLTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5EF355D1C66267C00F61BB0 /* SCLTextView.m */; };
 		A5EF35671C66267C00F61BB0 /* SCLTimerDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = A5EF355F1C66267C00F61BB0 /* SCLTimerDisplay.m */; };
 		A5EF35681C66267C00F61BB0 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = A5EF35611C66267C00F61BB0 /* UIImage+ImageEffects.m */; };
+		A5EF35761C664EF800F61BB0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5EF35751C664EF800F61BB0 /* QuartzCore.framework */; };
+		A5EF357A1C6652AD00F61BB0 /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = A5EF35791C6652AD00F61BB0 /* UIScrollView+EmptyDataSet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -313,6 +315,9 @@
 		A5EF355F1C66267C00F61BB0 /* SCLTimerDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLTimerDisplay.m; sourceTree = "<group>"; };
 		A5EF35601C66267C00F61BB0 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		A5EF35611C66267C00F61BB0 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		A5EF35751C664EF800F61BB0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A5EF35781C6652AD00F61BB0 /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
+		A5EF35791C6652AD00F61BB0 /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,6 +325,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5EF35761C664EF800F61BB0 /* QuartzCore.framework in Frameworks */,
 				A5BEE48B1C63B1FB00F5B610 /* CoreGraphics.framework in Frameworks */,
 				A500312C1C6590F700F8BDCD /* libWeiboSDK.a in Frameworks */,
 				A552327E1C0475AE00A0AA2A /* libc++.tbd in Frameworks */,
@@ -479,6 +485,7 @@
 		A5CEE6171BD0DB3C00AAF122 = {
 			isa = PBXGroup;
 			children = (
+				A5EF35751C664EF800F61BB0 /* QuartzCore.framework */,
 				A5BEE48A1C63B1FB00F5B610 /* CoreGraphics.framework */,
 				A552327D1C0475AE00A0AA2A /* libc++.tbd */,
 				A552327A1C0472F300A0AA2A /* libsqlite3.tbd */,
@@ -506,6 +513,7 @@
 		A5CEE6221BD0DB3C00AAF122 /* hiwu-ios */ = {
 			isa = PBXGroup;
 			children = (
+				A5EF35771C6652AD00F61BB0 /* UIScrollView+EmptyDataSet */,
 				A5EF35521C66267C00F61BB0 /* SCLAlertView */,
 				A5799ECE1C659DCE009660D1 /* LCActionSheet */,
 				A5BEE4B11C64CFF000F5B610 /* weibo */,
@@ -565,6 +573,16 @@
 			);
 			name = SCLAlertView;
 			path = Libs/SCLAlertView;
+			sourceTree = SOURCE_ROOT;
+		};
+		A5EF35771C6652AD00F61BB0 /* UIScrollView+EmptyDataSet */ = {
+			isa = PBXGroup;
+			children = (
+				A5EF35781C6652AD00F61BB0 /* UIScrollView+EmptyDataSet.h */,
+				A5EF35791C6652AD00F61BB0 /* UIScrollView+EmptyDataSet.m */,
+			);
+			name = "UIScrollView+EmptyDataSet";
+			path = "Libs/UIScrollView+EmptyDataSet";
 			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
@@ -833,6 +851,7 @@
 				A593553F1BD7B1440044E7B3 /* SelfMuseumVC.swift in Sources */,
 				A593552D1BD7983F0044E7B3 /* ApiManager.swift in Sources */,
 				A51908A11C105F740018039A /* Ready.swift in Sources */,
+				A5EF357A1C6652AD00F61BB0 /* UIScrollView+EmptyDataSet.m in Sources */,
 				A51908AF1C106E4C0018039A /* idFinder.swift in Sources */,
 				A5CEE6261BD0DB3C00AAF122 /* ViewController.swift in Sources */,
 				A593550D1BD66EA90044E7B3 /* TodayGalleryCT.swift in Sources */,

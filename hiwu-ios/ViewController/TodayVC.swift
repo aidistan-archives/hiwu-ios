@@ -22,6 +22,9 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        let bg = UIImage(named: "bg")
+        bg?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 0, 0, 0), resizingMode: UIImageResizingMode.Tile)
+        self.view.backgroundColor = UIColor(patternImage: bg!)
         todayGalleryDisplay.dataSource = self
         todayGalleryDisplay.delegate = self
         todayGalleryDisplay.estimatedRowHeight = 100

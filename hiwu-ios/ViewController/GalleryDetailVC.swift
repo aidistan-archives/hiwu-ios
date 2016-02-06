@@ -12,7 +12,7 @@ import SwiftyJSON
 import Kingfisher
 import AVFoundation
 
-class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,GetItemInfoReadyProtocol,GetSelfMuseumReadyProtocol,GetTodayInfoReadyProtocol{
+class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,GetItemInfoReadyProtocol,GetSelfMuseumReadyProtocol,GetTodayInfoReadyProtocol,DZNEmptyDataSetDelegate,DZNEmptyDataSetSource{
     
     var isMine = false
     var gallery:JSON?

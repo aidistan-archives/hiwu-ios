@@ -13,9 +13,30 @@ import Alamofire
 
 class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     let defaults = NSUserDefaults.standardUserDefaults()
-    @IBOutlet weak var selfGalleryDisplay: UITableView!
     var tableCellLocation = 0
     var itemSum = 0
+    let bg = UIImage(named: "bg")
+    
+    
+    
+    @IBOutlet weak var selfGalleryDisplay: UITableView!
+    @IBAction func toSettingButton(sender: UIButton) {
+        let setting = self.storyboard?.instantiateViewControllerWithIdentifier("SettingVC") as! SettingVC
+        setting.userId = globalHiwuUser.userId
+        let url = ApiManager.getSelfUserInfo1 + String(setting.userId) + ApiManager.getSelfUserInfo2 + globalHiwuUser.hiwuToken
+        Alamofire.request(.GET, url).responseJSON{response in
+            if(response.result.error == nil){
+                if(response.result.value != nil){
+                    setting.userInfo = JSON(response.result.value!)
+                    self.navigationController?.pushViewController(setting, animated: true)
+                }
+            }else{
+                let alert = UIAlertController(title: "网络错误", message: String(response.result.error), preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
+            }
+        }
+
+    }
     
     
     override func viewDidLoad() {
@@ -23,6 +44,8 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         selfGalleryDisplay.delegate = self
         selfGalleryDisplay.dataSource = self
         self.getSelfMuseum()
+        bg?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 0, 0, 0), resizingMode: UIImageResizingMode.Tile)
+        selfGalleryDisplay.backgroundColor = UIColor(patternImage: self.bg!)
 //        print(globalHiwuUser.hiwuToken)
     }
     
@@ -41,7 +64,7 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
         if(indexPath.row == 0){
-            return 100
+            return 170
         }else{
             let num = globalHiwuUser.selfMuseum!["galleries"][indexPath.row-1]["items"].count
             if(num>=7){
@@ -65,6 +88,7 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.tableCellLocation = indexPath.row - 1
         if(indexPath.row == 0){
             let cell = tableView.dequeueReusableCellWithIdentifier("SelfTitle")! as UITableViewCell
+            cell.backgroundColor = UIColor(patternImage: self.bg!)
             let userAvatar = cell.viewWithTag(1) as! UIImageView
             let userNickname = cell.viewWithTag(2) as! UILabel
             let museumInfo = cell.viewWithTag(3) as! UILabel
@@ -77,8 +101,6 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             museumInfo.text = "  " + String(selfMuseum!["galleries"].count) + "  长廊 | " + String(self.itemSum) + " 物品  "
             museumInfo.layer.cornerRadius = museumInfo.frame.height/2
             museumInfo.clipsToBounds = true
-            let setting = cell.viewWithTag(5) as! UIButton
-            setting.addTarget(self, action: "toSetting", forControlEvents: UIControlEvents.TouchUpInside)
             if(selfMuseum!["description"].string != nil){
                 description.text = selfMuseum!["description"].string!
             }
@@ -87,6 +109,15 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier("SelfGalleryCell")! as UITableViewCell
             let collection = (cell.viewWithTag(4)) as! SelfGalleryCT
+            let width = tableView.frame.width
+            let layout = UICollectionViewFlowLayout()
+            layout.itemSize = CGSizeMake((width - 20)/3-1, (width - 20)/3-1)
+            layout.minimumLineSpacing = 1
+            layout.minimumInteritemSpacing = 1
+            layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+            layout.headerReferenceSize = CGSizeMake(width, width/6)
+            layout.footerReferenceSize = CGSizeMake(0, 0)
+            collection.collectionViewLayout = layout
             collection.location =  indexPath.row - 1
             collection.superVC = self
             collection.delegate = collection
@@ -118,28 +149,6 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
         return "删除"
-    }
-
-
-    
-    func toSetting(){
-        print("to setting")
-        let setting = self.storyboard?.instantiateViewControllerWithIdentifier("SettingVC") as! SettingVC
-        setting.userId = globalHiwuUser.userId
-        let url = ApiManager.getSelfUserInfo1 + String(setting.userId) + ApiManager.getSelfUserInfo2 + globalHiwuUser.hiwuToken
-        Alamofire.request(.GET, url).responseJSON{response in
-            if(response.result.error == nil){
-                if(response.result.value != nil){
-                    setting.userInfo = JSON(response.result.value!)
-                    self.navigationController?.pushViewController(setting, animated: true)
-                }
-            }else{
-                let alert = UIAlertController(title: "网络错误", message: String(response.result.error), preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
-            }
-        }
-        
-        
     }
     
     func getSelfMuseum(){
