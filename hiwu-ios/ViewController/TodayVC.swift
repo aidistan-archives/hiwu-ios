@@ -48,7 +48,7 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
         print("enter to selfmuseum")
         let nowDate = NSDate(timeIntervalSinceNow: 0)
         let defaults = NSUserDefaults.standardUserDefaults()
-        let deadline = defaults.doubleForKey("deadline")
+        var deadline = defaults.doubleForKey("deadline")
         let freshline = defaults.doubleForKey("freshline")
         if((deadline == 0)||(freshline == 0||nowDate.timeIntervalSince1970 > deadline)){
             let login = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as! LoginVC
@@ -110,9 +110,9 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
             let collection = cell.viewWithTag(1) as! TodayGalleryCT
             let width = tableView.frame.width
             let layout = UICollectionViewFlowLayout()
-            layout.itemSize = CGSizeMake((width - 20)/3-1, (width - 20)/3-1)
-            layout.minimumLineSpacing = 1
-            layout.minimumInteritemSpacing = 1
+            layout.itemSize = CGSizeMake((width - 16)/3, (width - 16)/3)
+            layout.minimumLineSpacing = 0
+            layout.minimumInteritemSpacing = 0
             layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
             layout.headerReferenceSize = CGSizeMake(width, width/6)
             layout.footerReferenceSize = CGSizeMake(0, 0)

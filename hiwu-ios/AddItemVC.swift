@@ -12,9 +12,10 @@ import Kingfisher
 import SwiftyJSON
 import Alamofire
 
-class AddItemVC: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextViewDelegate,UITextFieldDelegate,ReadyProtocol{
+class AddItemVC: UIViewController,UITextViewDelegate,UITextFieldDelegate{
     var image:UIImage?
     var galleryId = 0
+    
     @IBOutlet weak var itemImage: UIImageView!
     
     @IBAction func timeSelect(sender: UIButton) {
@@ -26,20 +27,6 @@ class AddItemVC: UIViewController,UIImagePickerControllerDelegate,UINavigationCo
     @IBOutlet weak var time: UITextField!
 
     @IBOutlet weak var city: UITextField!
-    @IBOutlet weak var loading: UIActivityIndicatorView!
-    
-    func takePicture(sender: UITapGestureRecognizer) {
-        let newAlert = LCActionSheet(title: "选择照片来源", buttonTitles: ["拍摄","从相册"], redButtonIndex: -1, clicked: { button in
-            if(button == 0){
-                self.callCamera()
-            }else if(button == 1){
-                self.callPhotoLibrary()
-            }
-            
-        })
-        newAlert.show()
-        
-    }
     
     @IBOutlet weak var museumName: UIButton!
     @IBOutlet weak var itemName: UITextField!
@@ -52,12 +39,9 @@ class AddItemVC: UIViewController,UIImagePickerControllerDelegate,UINavigationCo
             alert.addAction(UIAlertAction(title: "知道了", style: UIAlertActionStyle.Cancel, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }else{
-        let contactor = ContactWithServer()
-            contactor.ready = self
         let jpgUrl = NSHomeDirectory().stringByAppendingString("/tmp/").stringByAppendingString("tmp.jpg")
             UIImageJPEGRepresentation(itemImage.image!, 0.9)?.writeToFile(jpgUrl, atomically: false)
-            contactor.postItem(self.galleryId, itemName: itemName.text!, itemDescription: itemDescription.text, year: Int(self.time.text!)!, city: self.city.text!, dataUrl: NSURL(fileURLWithPath: jpgUrl), isPublic: !isPublic.on)
-            self.loading.startAnimating()
+            self.postItem(self.galleryId, itemName: itemName.text!, itemDescription: itemDescription.text, year: Int(self.time.text!)!, city: self.city.text!, dataUrl: NSURL(fileURLWithPath: jpgUrl), isPublic: !isPublic.on)
             
         }
     }
@@ -67,8 +51,6 @@ class AddItemVC: UIViewController,UIImagePickerControllerDelegate,UINavigationCo
         if(self.image != nil){
             self.itemImage.image = self.image
         }
-        let gesture = UITapGestureRecognizer(target: self, action: "takePicture:")
-        itemImage.addGestureRecognizer(gesture)
         self.itemDescription.delegate = self
         self.itemName.delegate = self
         let gest = UITapGestureRecognizer(target: self, action: "endTheEditingOfTextView")
@@ -83,36 +65,6 @@ class AddItemVC: UIViewController,UIImagePickerControllerDelegate,UINavigationCo
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int{
         return 1
-    }
-    
-    
-    func callCamera(){
-        AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: nil)
-        let camera = UIImagePickerController()
-        camera.delegate = self
-        camera.sourceType = UIImagePickerControllerSourceType.Camera
-        camera.showsCameraControls = true
-        camera.allowsEditing = true
-        self.presentViewController(camera, animated: true, completion: nil)
-    
-    }
-    
-    func callPhotoLibrary(){
-        let camera = UIImagePickerController()
-        camera.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        camera.delegate = self
-        camera.allowsEditing = true
-        self.presentViewController(camera, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
-        self.itemImage.image = info[UIImagePickerControllerEditedImage] as? UIImage
-        picker.dismissViewControllerAnimated(true, completion: nil)
-        
-    }
-    func imagePickerControllerDidCancel(picker: UIImagePickerController){
-        picker.dismissViewControllerAnimated(true, completion: nil)
-        
     }
     
     func textViewDidBeginEditing(textView: UITextView){
@@ -178,15 +130,54 @@ class AddItemVC: UIViewController,UIImagePickerControllerDelegate,UINavigationCo
         self.navigationController?.popViewControllerAnimated(true)
     }
     
-
-    
-    func Ready() {
+    func postItem(galleryId:Int,itemName:String,itemDescription:String,year:Int,city:String,dataUrl:NSURL,isPublic:Bool){
         
-        self.navigationController?.popViewControllerAnimated(true)
+        let postItemUrl = ApiManager.postItem1 + String(galleryId) + ApiManager.postItem2 + globalHiwuUser.hiwuToken
+        let hud = JGProgressHUD(style:JGProgressHUDStyle.Dark)
+        hud.showInView(self.view, animated: true)
+        hud.textLabel.text = "上传中"
+        Alamofire.request(.POST, postItemUrl, parameters: [
+            "name": itemName,
+            "description": itemDescription,
+            "date_y": year,
+            "date_m": 0,
+            "date_d": 0,
+            "city": city,
+            "public": isPublic
+            ]).responseJSON{response in
+                if(response.result.value != nil){
+                    self.postPhotoToItem(JSON(response.result.value!)["id"].int!, dataUrl: dataUrl,hud: hud)
+                }
+        }
+        
     }
-
-    func Failed() {
-        
+    
+    func postPhotoToItem(itemId:Int,dataUrl:NSURL,hud:JGProgressHUD){
+        let postPhotoUrl = ApiManager.postItemPhoto1 + String(itemId) + ApiManager.postItemPhoto2 + globalHiwuUser.hiwuToken
+        Alamofire.upload(.POST, postPhotoUrl,multipartFormData: { multipartFormData in
+            multipartFormData.appendBodyPart(fileURL: dataUrl, name: "data")
+            }, encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .Success(let upload, _, _):
+                    upload.responseJSON { response in
+                        if(response.result.value != nil){
+                            let value = JSON(response.result.value!)
+                            if(value["error"] == nil){
+                                self.navigationController?.popViewControllerAnimated(true)
+                            }else{
+                                hud.dismiss()
+                                let alert1 = SCLAlertView()
+                                alert1.showError(self, title: "错误", subTitle: "", closeButtonTitle: "知道了", duration: 0)
+                            }
+                            
+                        }else{
+                            
+                        }
+                    }
+                case .Failure(let encodingError):
+                    print(encodingError)
+                }
+        })
     }
 
     

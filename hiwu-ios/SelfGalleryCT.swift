@@ -62,7 +62,6 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
         
     }
     
-    
     func getGalleryDetail(sender:AnyObject){
         let galleryDetail = self.superVC?.storyboard?.instantiateViewControllerWithIdentifier("GalleryDetailVC") as! GalleryDetailVC
         galleryDetail.isMine = true

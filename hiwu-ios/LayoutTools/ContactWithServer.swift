@@ -88,6 +88,7 @@ class ContactWithServer{
                     print("selfMuseumReady local")
                     self.loginSuccess?.didGetSelfMuseum()
                 }else{
+                    
                 }
             }
         }
@@ -179,7 +180,7 @@ class ContactWithServer{
                     print(encodingError)
                 }
         })
-        }
+    }
     func deleteItem(itemId:Int,complete:()?){
         let deleteUrl = ApiManager.deleteItem1 + String(itemId) + ApiManager.deleteItem2 + globalHiwuUser.hiwuToken
         Alamofire.request(.DELETE, NSURL(string: deleteUrl)!).responseJSON{response in

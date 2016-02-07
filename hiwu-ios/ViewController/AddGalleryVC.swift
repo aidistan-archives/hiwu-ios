@@ -85,8 +85,6 @@ class AddGalleryVC: UIViewController,UITextFieldDelegate {
                 if(value["error"] == nil){
                     self.navigationController?.popViewControllerAnimated(true)
                 }
-
-                
                 
             }
         }

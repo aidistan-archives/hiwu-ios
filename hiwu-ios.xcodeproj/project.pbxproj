@@ -49,7 +49,19 @@
 		A5BFFD5A1BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD591BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift */; };
 		A5BFFD5C1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD5B1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift */; };
 		A5BFFD5E1BE8EA9600D5A866 /* GetItemInfoReadyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD5D1BE8EA9600D5A866 /* GetItemInfoReadyProtocol.swift */; };
-		A5C5D9191C666CEC00164093 /* launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5C5D9181C666CEC00164093 /* launch.storyboard */; };
+		A5C5D92A1C66753900164093 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5C5D9291C66753900164093 /* Launch Screen.storyboard */; };
+		A5C5D9471C6715EA00164093 /* JGProgressHUD Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A5C5D92F1C6715EA00164093 /* JGProgressHUD Resources.bundle */; };
+		A5C5D9481C6715EA00164093 /* JGProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5D9321C6715EA00164093 /* JGProgressHUD.m */; };
+		A5C5D9491C6715EA00164093 /* JGProgressHUDAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5D9341C6715EA00164093 /* JGProgressHUDAnimation.m */; };
+		A5C5D94A1C6715EA00164093 /* JGProgressHUDErrorIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5D9361C6715EA00164093 /* JGProgressHUDErrorIndicatorView.m */; };
+		A5C5D94B1C6715EA00164093 /* JGProgressHUDFadeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5D9381C6715EA00164093 /* JGProgressHUDFadeAnimation.m */; };
+		A5C5D94C1C6715EA00164093 /* JGProgressHUDFadeZoomAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5D93A1C6715EA00164093 /* JGProgressHUDFadeZoomAnimation.m */; };
+		A5C5D94D1C6715EA00164093 /* JGProgressHUDImageIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5D93C1C6715EA00164093 /* JGProgressHUDImageIndicatorView.m */; };
+		A5C5D94E1C6715EA00164093 /* JGProgressHUDIndeterminateIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5D93E1C6715EA00164093 /* JGProgressHUDIndeterminateIndicatorView.m */; };
+		A5C5D94F1C6715EA00164093 /* JGProgressHUDIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5D9401C6715EA00164093 /* JGProgressHUDIndicatorView.m */; };
+		A5C5D9501C6715EA00164093 /* JGProgressHUDPieIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5D9421C6715EA00164093 /* JGProgressHUDPieIndicatorView.m */; };
+		A5C5D9511C6715EA00164093 /* JGProgressHUDRingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5D9441C6715EA00164093 /* JGProgressHUDRingIndicatorView.m */; };
+		A5C5D9521C6715EA00164093 /* JGProgressHUDSuccessIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5D9461C6715EA00164093 /* JGProgressHUDSuccessIndicatorView.m */; };
 		A5CEE6241BD0DB3C00AAF122 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CEE6231BD0DB3C00AAF122 /* AppDelegate.swift */; };
 		A5CEE6261BD0DB3C00AAF122 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CEE6251BD0DB3C00AAF122 /* ViewController.swift */; };
 		A5CEE6291BD0DB3C00AAF122 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CEE6271BD0DB3C00AAF122 /* Main.storyboard */; };
@@ -290,7 +302,31 @@
 		A5BFFD591BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetTodayInfoReadyProtocol.swift; path = LayoutTools/GetTodayInfoReadyProtocol.swift; sourceTree = "<group>"; };
 		A5BFFD5B1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetSelfMuseumReadyProtocol.swift; sourceTree = "<group>"; };
 		A5BFFD5D1BE8EA9600D5A866 /* GetItemInfoReadyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetItemInfoReadyProtocol.swift; sourceTree = "<group>"; };
-		A5C5D9181C666CEC00164093 /* launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = launch.storyboard; sourceTree = "<group>"; };
+		A5C5D9291C66753900164093 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		A5C5D92F1C6715EA00164093 /* JGProgressHUD Resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "JGProgressHUD Resources.bundle"; sourceTree = "<group>"; };
+		A5C5D9301C6715EA00164093 /* JGProgressHUD-Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JGProgressHUD-Defines.h"; sourceTree = "<group>"; };
+		A5C5D9311C6715EA00164093 /* JGProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUD.h; sourceTree = "<group>"; };
+		A5C5D9321C6715EA00164093 /* JGProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUD.m; sourceTree = "<group>"; };
+		A5C5D9331C6715EA00164093 /* JGProgressHUDAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDAnimation.h; sourceTree = "<group>"; };
+		A5C5D9341C6715EA00164093 /* JGProgressHUDAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDAnimation.m; sourceTree = "<group>"; };
+		A5C5D9351C6715EA00164093 /* JGProgressHUDErrorIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDErrorIndicatorView.h; sourceTree = "<group>"; };
+		A5C5D9361C6715EA00164093 /* JGProgressHUDErrorIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDErrorIndicatorView.m; sourceTree = "<group>"; };
+		A5C5D9371C6715EA00164093 /* JGProgressHUDFadeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDFadeAnimation.h; sourceTree = "<group>"; };
+		A5C5D9381C6715EA00164093 /* JGProgressHUDFadeAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDFadeAnimation.m; sourceTree = "<group>"; };
+		A5C5D9391C6715EA00164093 /* JGProgressHUDFadeZoomAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDFadeZoomAnimation.h; sourceTree = "<group>"; };
+		A5C5D93A1C6715EA00164093 /* JGProgressHUDFadeZoomAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDFadeZoomAnimation.m; sourceTree = "<group>"; };
+		A5C5D93B1C6715EA00164093 /* JGProgressHUDImageIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDImageIndicatorView.h; sourceTree = "<group>"; };
+		A5C5D93C1C6715EA00164093 /* JGProgressHUDImageIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDImageIndicatorView.m; sourceTree = "<group>"; };
+		A5C5D93D1C6715EA00164093 /* JGProgressHUDIndeterminateIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDIndeterminateIndicatorView.h; sourceTree = "<group>"; };
+		A5C5D93E1C6715EA00164093 /* JGProgressHUDIndeterminateIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDIndeterminateIndicatorView.m; sourceTree = "<group>"; };
+		A5C5D93F1C6715EA00164093 /* JGProgressHUDIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDIndicatorView.h; sourceTree = "<group>"; };
+		A5C5D9401C6715EA00164093 /* JGProgressHUDIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDIndicatorView.m; sourceTree = "<group>"; };
+		A5C5D9411C6715EA00164093 /* JGProgressHUDPieIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDPieIndicatorView.h; sourceTree = "<group>"; };
+		A5C5D9421C6715EA00164093 /* JGProgressHUDPieIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDPieIndicatorView.m; sourceTree = "<group>"; };
+		A5C5D9431C6715EA00164093 /* JGProgressHUDRingIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDRingIndicatorView.h; sourceTree = "<group>"; };
+		A5C5D9441C6715EA00164093 /* JGProgressHUDRingIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDRingIndicatorView.m; sourceTree = "<group>"; };
+		A5C5D9451C6715EA00164093 /* JGProgressHUDSuccessIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDSuccessIndicatorView.h; sourceTree = "<group>"; };
+		A5C5D9461C6715EA00164093 /* JGProgressHUDSuccessIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDSuccessIndicatorView.m; sourceTree = "<group>"; };
 		A5CEE6201BD0DB3C00AAF122 /* hiwu-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hiwu-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CEE6231BD0DB3C00AAF122 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CEE6251BD0DB3C00AAF122 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -431,7 +467,7 @@
 				A55C94371C5DA9FD004367B0 /* EditNameVC.swift */,
 				A5BEE4721C638A0400F5B610 /* EditDescriptionVC.swift */,
 				A5BEE4801C638A2400F5B610 /* FeedbackVC.swift */,
-				A5C5D9181C666CEC00164093 /* launch.storyboard */,
+				A5C5D9291C66753900164093 /* Launch Screen.storyboard */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -443,6 +479,7 @@
 				A5BEE4881C63B00C00F5B610 /* MBProgressHUD.m */,
 				A5BEE4841C63964900F5B610 /* BRPlaceholderTextView.h */,
 				A5BEE4851C63964900F5B610 /* BRPlaceholderTextView.m */,
+				A5C5D92E1C6715EA00164093 /* JGProgressHUD */,
 				A593554E1BD7E9F20044E7B3 /* Protocol */,
 				A593550C1BD66EA90044E7B3 /* TodayGalleryCT.swift */,
 				A593554A1BD7D1370044E7B3 /* SelfGalleryCT.swift */,
@@ -484,6 +521,38 @@
 			);
 			name = weibo;
 			sourceTree = "<group>";
+		};
+		A5C5D92E1C6715EA00164093 /* JGProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				A5C5D92F1C6715EA00164093 /* JGProgressHUD Resources.bundle */,
+				A5C5D9301C6715EA00164093 /* JGProgressHUD-Defines.h */,
+				A5C5D9311C6715EA00164093 /* JGProgressHUD.h */,
+				A5C5D9321C6715EA00164093 /* JGProgressHUD.m */,
+				A5C5D9331C6715EA00164093 /* JGProgressHUDAnimation.h */,
+				A5C5D9341C6715EA00164093 /* JGProgressHUDAnimation.m */,
+				A5C5D9351C6715EA00164093 /* JGProgressHUDErrorIndicatorView.h */,
+				A5C5D9361C6715EA00164093 /* JGProgressHUDErrorIndicatorView.m */,
+				A5C5D9371C6715EA00164093 /* JGProgressHUDFadeAnimation.h */,
+				A5C5D9381C6715EA00164093 /* JGProgressHUDFadeAnimation.m */,
+				A5C5D9391C6715EA00164093 /* JGProgressHUDFadeZoomAnimation.h */,
+				A5C5D93A1C6715EA00164093 /* JGProgressHUDFadeZoomAnimation.m */,
+				A5C5D93B1C6715EA00164093 /* JGProgressHUDImageIndicatorView.h */,
+				A5C5D93C1C6715EA00164093 /* JGProgressHUDImageIndicatorView.m */,
+				A5C5D93D1C6715EA00164093 /* JGProgressHUDIndeterminateIndicatorView.h */,
+				A5C5D93E1C6715EA00164093 /* JGProgressHUDIndeterminateIndicatorView.m */,
+				A5C5D93F1C6715EA00164093 /* JGProgressHUDIndicatorView.h */,
+				A5C5D9401C6715EA00164093 /* JGProgressHUDIndicatorView.m */,
+				A5C5D9411C6715EA00164093 /* JGProgressHUDPieIndicatorView.h */,
+				A5C5D9421C6715EA00164093 /* JGProgressHUDPieIndicatorView.m */,
+				A5C5D9431C6715EA00164093 /* JGProgressHUDRingIndicatorView.h */,
+				A5C5D9441C6715EA00164093 /* JGProgressHUDRingIndicatorView.m */,
+				A5C5D9451C6715EA00164093 /* JGProgressHUDSuccessIndicatorView.h */,
+				A5C5D9461C6715EA00164093 /* JGProgressHUDSuccessIndicatorView.m */,
+			);
+			name = JGProgressHUD;
+			path = Libs/JGProgressHUD;
+			sourceTree = SOURCE_ROOT;
 		};
 		A5CEE6171BD0DB3C00AAF122 = {
 			isa = PBXGroup;
@@ -822,8 +891,9 @@
 			files = (
 				A5CEE62B1BD0DB3C00AAF122 /* Assets.xcassets in Resources */,
 				A5CEE6291BD0DB3C00AAF122 /* Main.storyboard in Resources */,
+				A5C5D9471C6715EA00164093 /* JGProgressHUD Resources.bundle in Resources */,
 				A5799ED21C659DCE009660D1 /* LCActionSheet.bundle in Resources */,
-				A5C5D9191C666CEC00164093 /* launch.storyboard in Resources */,
+				A5C5D92A1C66753900164093 /* Launch Screen.storyboard in Resources */,
 				A500312D1C6590F700F8BDCD /* WeiboSDK.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -856,18 +926,23 @@
 				A593552D1BD7983F0044E7B3 /* ApiManager.swift in Sources */,
 				A51908A11C105F740018039A /* Ready.swift in Sources */,
 				A5EF357A1C6652AD00F61BB0 /* UIScrollView+EmptyDataSet.m in Sources */,
+				A5C5D94A1C6715EA00164093 /* JGProgressHUDErrorIndicatorView.m in Sources */,
 				A51908AF1C106E4C0018039A /* idFinder.swift in Sources */,
 				A5CEE6261BD0DB3C00AAF122 /* ViewController.swift in Sources */,
+				A5C5D94C1C6715EA00164093 /* JGProgressHUDFadeZoomAnimation.m in Sources */,
 				A593550D1BD66EA90044E7B3 /* TodayGalleryCT.swift in Sources */,
 				A5BFFD141BE4D2A100D5A866 /* ItemDetailVC.swift in Sources */,
 				A5BFFD571BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift in Sources */,
+				A5C5D9521C6715EA00164093 /* JGProgressHUDSuccessIndicatorView.m in Sources */,
 				A5BEE4811C638A2400F5B610 /* FeedbackVC.swift in Sources */,
 				A5BEE4861C63964900F5B610 /* BRPlaceholderTextView.m in Sources */,
 				A534BE951C0EC9FF00770171 /* GuidePage.swift in Sources */,
 				A5EF35621C66267C00F61BB0 /* SCLAlertView.m in Sources */,
+				A5C5D94F1C6715EA00164093 /* JGProgressHUDIndicatorView.m in Sources */,
 				A593554B1BD7D1370044E7B3 /* SelfGalleryCT.swift in Sources */,
 				A5EF35681C66267C00F61BB0 /* UIImage+ImageEffects.m in Sources */,
 				A5BEE4891C63B00C00F5B610 /* MBProgressHUD.m in Sources */,
+				A5C5D9511C6715EA00164093 /* JGProgressHUDRingIndicatorView.m in Sources */,
 				A50620551C15C58A00195DCF /* PutLikeReadyProtocol.swift in Sources */,
 				A534BE971C0F23CD00770171 /* AddGalleryVC.swift in Sources */,
 				A5BFFD581BE8E7C800D5A866 /* LoginProtocol.swift in Sources */,
@@ -876,6 +951,8 @@
 				A5EF35631C66267C00F61BB0 /* SCLAlertViewResponder.m in Sources */,
 				A5EF35641C66267C00F61BB0 /* SCLAlertViewStyleKit.m in Sources */,
 				A5BFFD5C1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift in Sources */,
+				A5C5D9491C6715EA00164093 /* JGProgressHUDAnimation.m in Sources */,
+				A5C5D9481C6715EA00164093 /* JGProgressHUD.m in Sources */,
 				A5BEE4731C638A0400F5B610 /* EditDescriptionVC.swift in Sources */,
 				A5799ED31C659DCE009660D1 /* LCActionSheet.m in Sources */,
 				A5EF35651C66267C00F61BB0 /* SCLButton.m in Sources */,
@@ -883,10 +960,14 @@
 				A5B33DE91C4B7DE700565972 /* AllTodaysVC.swift in Sources */,
 				A50620411C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				A5EB70AD1BE38AD20075D559 /* GalleryDetailVC.swift in Sources */,
+				A5C5D94D1C6715EA00164093 /* JGProgressHUDImageIndicatorView.m in Sources */,
 				A59355251BD7854B0044E7B3 /* UserModel.swift in Sources */,
+				A5C5D94B1C6715EA00164093 /* JGProgressHUDFadeAnimation.m in Sources */,
 				A5EF35661C66267C00F61BB0 /* SCLTextView.m in Sources */,
 				A55C94381C5DA9FD004367B0 /* EditNameVC.swift in Sources */,
 				A5BFFD5A1BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift in Sources */,
+				A5C5D9501C6715EA00164093 /* JGProgressHUDPieIndicatorView.m in Sources */,
+				A5C5D94E1C6715EA00164093 /* JGProgressHUDIndeterminateIndicatorView.m in Sources */,
 				A593550B1BD669080044E7B3 /* LoginVC.swift in Sources */,
 				A5132BBE1BDBB5EA00B4C3DB /* AddItemVC.swift in Sources */,
 				A5B33DCA1C4A432B00565972 /* SettingVC.swift in Sources */,
@@ -1053,6 +1134,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "hiwu-ios/WechatDemo_Bridging_Header.h";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "hiwu-ios/WechatDemo_Bridging_Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1076,6 +1158,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "hiwu-ios/WechatDemo_Bridging_Header.h";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "hiwu-ios/WechatDemo_Bridging_Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

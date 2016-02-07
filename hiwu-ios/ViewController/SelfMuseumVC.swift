@@ -111,9 +111,9 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             let collection = (cell.viewWithTag(4)) as! SelfGalleryCT
             let width = tableView.frame.width
             let layout = UICollectionViewFlowLayout()
-            layout.itemSize = CGSizeMake((width - 20)/3-1, (width - 20)/3-1)
-            layout.minimumLineSpacing = 1
-            layout.minimumInteritemSpacing = 1
+            layout.itemSize = CGSizeMake((width - 16)/3, (width - 16)/3)
+            layout.minimumLineSpacing = 0
+            layout.minimumInteritemSpacing = 0
             layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
             layout.headerReferenceSize = CGSizeMake(width, width/6)
             layout.footerReferenceSize = CGSizeMake(0, 0)
@@ -135,6 +135,7 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             
         })
         alert.showWarning(self, title: "删除长廊", subTitle: "删除长廊后，会同时删除里面所有的物品。确定删除吗？", closeButtonTitle: "取消", duration: 0)
+        tableView.editing = false
         
         
     }

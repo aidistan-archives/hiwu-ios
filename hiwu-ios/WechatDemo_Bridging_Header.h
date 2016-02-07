@@ -18,5 +18,6 @@
 #import "LCActionSheet.h"
 #import "SCLAlertView.h"
 #import "UIScrollView+EmptyDataSet.h"
+#import "JGProgressHUD.h"
 
 #endif /* WechatDemo_Bridging_Header_h */

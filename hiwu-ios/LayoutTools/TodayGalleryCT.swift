@@ -31,7 +31,6 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
         //取collectionview的可重复使用cell
         let items = globalHiwuUser.todayMuseum![self.location]["gallery"]["items"]
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("TodayItemCell", forIndexPath: indexPath)
-        print(collectionViewLayout.layoutAttributesForItemAtIndexPath(indexPath))
         //取imageview
         let images:UIImageView = cell.viewWithTag(6) as! UIImageView
         //“photos”里面不只一个图片,这里作为博物馆展示，只展示第一张

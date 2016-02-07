@@ -59,9 +59,9 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.contactor.todayInfoReady = self
-        self.contactor.selfMuseumReady = self
-        self.refresh()
+//        self.contactor.todayInfoReady = self
+//        self.contactor.selfMuseumReady = self
+//        self.refresh()
         print("will appear")
 
     }
@@ -81,17 +81,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return self.gallery!["items"].count+1
     }
-    
-//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        if(indexPath.row == 0){
-//            return 94
-//        
-//        }else{
-//        return 140
-//        }
-//    }
-    
-
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         if(indexPath.row == 0){
@@ -149,6 +138,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
             
         })
         alert.showWarning(self, title: "删除物品", subTitle: "确定删除该物品吗？", closeButtonTitle: "取消", duration: 0)
+        tableView.editing = false
     }
     
     func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
@@ -205,8 +195,10 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         let toAdd = self.storyboard?.instantiateViewControllerWithIdentifier("AddItemVC") as! AddItemVC
         toAdd.galleryId = self.gallery!["id"].int!
         toAdd.image = info[UIImagePickerControllerEditedImage] as? UIImage
-        let originImage = info[UIImagePickerControllerOriginalImage] as? UIImage
-        UIImageWriteToSavedPhotosAlbum(originImage!, nil, nil, nil)
+        if(picker.sourceType == UIImagePickerControllerSourceType.Camera){
+            let originImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+            UIImageWriteToSavedPhotosAlbum(originImage!, nil, nil, nil)
+        }
         picker.dismissViewControllerAnimated(true, completion: nil)
         self.navigationController?.pushViewController(toAdd, animated: true)
     
