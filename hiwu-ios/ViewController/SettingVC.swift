@@ -14,6 +14,9 @@ import AVFoundation
 
 
 class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+    @IBAction func cancel(sender: UIButton) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     
     var userId = globalHiwuUser.userId
     var userInfo:JSON?

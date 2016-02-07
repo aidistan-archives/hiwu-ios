@@ -22,11 +22,10 @@ class FeedbackVC: UIViewController {
     var userId = 0
     var userNickname = "物境未觉"
 
-    @IBOutlet weak var feedbackInput: BRPlaceholderTextView!
+    @IBOutlet weak var feedbackInput:UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.feedbackInput.text! = ""
-        self.feedbackInput.placeholder = "在这里输入您的意见"
     }
 
     override func didReceiveMemoryWarning() {

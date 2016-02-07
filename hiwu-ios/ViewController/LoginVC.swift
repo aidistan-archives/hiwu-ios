@@ -15,6 +15,9 @@ class LoginVC: UIViewController,LoginProtocol {
     var superVC:UIViewController?
     let tmpContactor = ContactWithServer()
     let defaults = NSUserDefaults.standardUserDefaults()
+    @IBAction func cancel(sender: UIButton) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var registerButton: UIButton!

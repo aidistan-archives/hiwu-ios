@@ -11,7 +11,7 @@ import SwiftyJSON
 import Kingfisher
 import Alamofire
 
-class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,GetItemInfoReadyProtocol,PutLikeReadyProtocol{
+class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,GetItemInfoReadyProtocol{
     
     @IBOutlet weak var waiting: UIActivityIndicatorView!
     @IBOutlet weak var addComment: UITextView!
@@ -47,7 +47,6 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
         self.getItemInfo()
         self.waiting.startAnimating()
         self.contactor.itemInfoReady = self
-        self.contactor.putLikeReady = self
         self.navigationController?.fd_prefersNavigationBarHidden = true
         self.addComment.delegate = self
         self.itemDetailList.estimatedRowHeight = 60
@@ -168,20 +167,36 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
 
     
     func putLike(){
-        contactor.putLike(globalHiwuUser.userId, itemId: self.itemId!)
+        let url = ApiManager.putLike1 + String(globalHiwuUser.userId) + ApiManager.putLike2 + String(self.itemId!) + ApiManager.putLike3 + globalHiwuUser.hiwuToken
+        Alamofire.request(.PUT,url).responseJSON{response in
+            print(response.result.value)
+            if(response.result.value != nil){
+                self.getItemInfo()
+            }else{
+                print(response.result.error)
+            }
+        }
     }
     
     func deleteLike(){
-        contactor.deleteLike(globalHiwuUser.userId, itemId: self.itemId!, beReady: self.getItemInfo(), beFailed:nil)
+        let url = ApiManager.putLike1 + String(globalHiwuUser.userId) + ApiManager.putLike2 + String(self.itemId!) + ApiManager.putLike3 + globalHiwuUser.hiwuToken
+        Alamofire.request(.DELETE,url).responseJSON{response in
+            if(response.result.value != nil){
+                self.getItemInfo()
+            }else{
+                
+            }
+        }
     }
     
+    
+    
     func getItemInfo(){
-        self.waiting.startAnimating()
         if(isMine!){
-            contactor.getSelfItemInfo(self.itemId!)
+            self.getSelfItemInfo(self.itemId!)
             
         }else{
-            contactor.getPublicItemInfo(self.itemId!)
+            self.getPublicItemInfo(self.itemId!)
         }
     }
     
@@ -190,10 +205,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     }
     
     func getItemInfoReady() {
-        self.item = globalHiwuUser.item
-        cells = 2 + self.item!["comments"].count
-        self.waiting.stopAnimating()
-        self.itemDetailList.reloadData()
+        
     }
     
     func networkError(){
@@ -202,19 +214,6 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
         let action = UIAlertAction(title: "知道了", style: UIAlertActionStyle.Default, handler: nil)
         alert.addAction(action)
         self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    func putLikeReady(){
-        self.getItemInfo()
-    }
-    func putLikeFailed(){
-        self.getItemInfo()
-    }
-    func deleteLikeReady(){
-        self.getItemInfo()
-    }
-    func deleteLikeFailed(){
-        self.getItemInfo()
     }
     
     func postComment(toUserId:Int?,itemId:Int,content:String){
@@ -251,6 +250,39 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
             self.tipToAddComment.text = "回复给" + self.item!["comments"][indexPath.row - 2]["hiwuUser"]["nickname"].string! + " :"
             self.toAddComment()
             self.itemDetailList.deselectRowAtIndexPath(indexPath, animated: true)
+        }
+        
+    }
+    
+    func getSelfItemInfo(itemId: Int){
+        let url = ApiManager.getSelfItem1 + String(itemId) + ApiManager.getSelfItem2 + globalHiwuUser.hiwuToken
+        Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
+            if(response.result.value != nil){
+                self.item = JSON(response.result.value!)
+                self.cells = 2 + self.item!["comments"].count
+                self.waiting.stopAnimating()
+                self.itemDetailList.reloadData()
+                
+            }else{
+                
+            }
+        }
+        
+    }
+    
+    func getPublicItemInfo(itemId: Int){
+        let url = ApiManager.getPublicItem1 + String(itemId) + ApiManager.getPublicItem2 + globalHiwuUser.hiwuToken
+        print(url)
+        Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
+            if(response.result.value != nil){
+                self.item = JSON(response.result.value!)
+                self.cells = 2 + self.item!["comments"].count
+                self.waiting.stopAnimating()
+                self.itemDetailList.reloadData()
+                
+            }else{
+                
+            }
         }
         
     }
