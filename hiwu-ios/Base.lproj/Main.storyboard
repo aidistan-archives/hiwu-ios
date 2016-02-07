@@ -263,8 +263,8 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="童真博物馆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hkm-Uj-Gk7">
-                                                                <rect key="frame" x="249" y="15" width="85" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="童真博物馆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hkm-Uj-Gk7">
+                                                                <rect key="frame" x="257.5" y="15" width="85" height="20.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="21" id="Nbg-ve-aDt"/>
                                                                     <constraint firstAttribute="width" constant="42" id="rqF-Lb-YGY"/>
@@ -279,8 +279,8 @@
                                                                     </mask>
                                                                 </variation>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVX-Di-dmF">
-                                                                <rect key="frame" x="530" y="14" width="20.5" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVX-Di-dmF">
+                                                                <rect key="frame" x="546.5" y="14" width="20.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -1443,8 +1443,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="149.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="索尼游戏机" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oj-NL-nZK">
-                                                    <rect key="frame" x="8" y="4" width="85" height="61.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" text="索尼游戏机" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oj-NL-nZK">
+                                                    <rect key="frame" x="8" y="4" width="85" height="60.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -2137,12 +2137,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Syn-vJ-jyL">
-                                <rect key="frame" x="35" y="236" width="274" height="139"/>
-                                <connections>
-                                    <segue destination="ht0-yM-h7w" kind="embed" id="2PM-an-UlR"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -2157,7 +2151,7 @@
                                     <color key="titleColor" red="0.98431372549999996" green="0.81176470590000005" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="cancel:" destination="DNW-iV-E1n" eventType="touchUpInside" id="fhU-2G-EJ9"/>
+                                    <action selector="cancel:" destination="DNW-iV-E1n" eventType="touchUpInside" id="AFD-AQ-7DJ"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -2176,7 +2170,7 @@
                                     <color key="titleColor" red="0.98431372549999996" green="0.81176470590000005" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="ok:" destination="DNW-iV-E1n" eventType="touchUpInside" id="3F5-UP-n4t"/>
+                                    <action selector="ok:" destination="DNW-iV-E1n" eventType="touchUpInside" id="SwN-O6-lLF"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -2199,7 +2193,7 @@
                         <viewControllerLayoutGuide type="bottom" id="QT9-aP-krP"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Qjy-el-SjN">
-                        <rect key="frame" x="0.0" y="0.0" width="274" height="139"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

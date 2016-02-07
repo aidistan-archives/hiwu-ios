@@ -42,6 +42,7 @@ class ApiManager{
     static let putAvatar2 = "/avatar?access_token="
     static let putNickname1 = "http://palace.server.hiwu.ren/api/HiwuUsers/"
     static let putNickname2 = "?access_token="
+    static let postFeedbck = "http://palace.server.hiwu.ren/api/Hiwu/jianliao?channel=feedback"
     static let wxLogin1 = "http://palace.server.hiwu.ren/api/HiwuUsers/weixinLogin?appid="
     static let wxLogin2 = "&code="
 

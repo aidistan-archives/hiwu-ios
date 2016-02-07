@@ -118,7 +118,7 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
 //        case 1:
 //            print("call account")
         case 1:
-            print("call feed back")
+            self.toEditFeedback()
         default:
             self.navigationController?.popToRootViewControllerAnimated(true)
             let defaults = NSUserDefaults.standardUserDefaults()
@@ -233,6 +233,7 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
     func toEditFeedback(){
         let editFeedback = self.storyboard?.instantiateViewControllerWithIdentifier("FeedbackVC") as! FeedbackVC
         editFeedback.userId = self.userInfo!["id"].int!
+        editFeedback.userNickname  = self.userInfo!["nickname"].string!
         self.navigationController?.pushViewController(editFeedback, animated: true)
     }
 
