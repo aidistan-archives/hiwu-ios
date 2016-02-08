@@ -13,6 +13,9 @@ import Alamofire
 
 class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,GetItemInfoReadyProtocol{
     
+    @IBAction func backButton(sender: UIButton) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     @IBOutlet weak var waiting: UIActivityIndicatorView!
     @IBOutlet weak var addComment: UITextView!
     @IBOutlet weak var itemDetailList: UITableView!
@@ -26,9 +29,6 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     var liked = false
     @IBOutlet weak var tipToAddComment: UILabel!
 
-    @IBAction func back(sender: UIButton) {
-        self.navigationController?.popViewControllerAnimated(true)
-    }
     @IBAction func ensureComment(sender: UIButton) {
         if(self.addComment.text == ""){
             let alert = UIAlertController(title: "请求失败", message: "内容为空", preferredStyle: UIAlertControllerStyle.Alert)

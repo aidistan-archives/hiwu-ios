@@ -16,7 +16,8 @@ let kRedirectURI = "https://api.weibo.com/oauth2/default.html"
 
 @UIApplicationMain
 
-class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate,WeiboSDKDelegate{
+class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate{
+//    ,WeiboSDKDelegate
 
     var window: UIWindow?
 
@@ -28,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate,WeiboSDKDele
         if WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() {
             print("已经安装微信")
         }
-        WeiboSDK.registerApp(wbAPPKEY)
+//        WeiboSDK.registerApp(wbAPPKEY)
         //设置这句设置停留时间
         return true
     }
@@ -57,29 +58,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate,WeiboSDKDele
     
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
         if(globalHiwuUser.loginState == 2){
-            return WeiboSDK.handleOpenURL(url, delegate: self)
+//            return WeiboSDK.handleOpenURL(url, delegate: self)
+            return true
         }
         return WXApi.handleOpenURL(url, delegate: self)
     }
     
     func application(app: UIApplication, openURL url: NSURL, sourceApplication: String?,annotation: AnyObject) -> Bool {
         if(globalHiwuUser.loginState == 2){
-            return WeiboSDK.handleOpenURL(url, delegate: self)
+//            return WeiboSDK.handleOpenURL(url, delegate: self)
+            return true
         }
         return WXApi.handleOpenURL(url, delegate: self)
-    }
-    
-    func didReceiveWeiboRequest(request: WBBaseRequest!) {
-        
-    }
-    
-    func didReceiveWeiboResponse(response: WBBaseResponse!) {
-        if(response.isKindOfClass(WBAuthorizeResponse)){
-            let resp = response as! WBAuthorizeResponse
-            print(resp.accessToken)
-        }else if(response.isKindOfClass(WBSendMessageToWeiboResponse)){
-            
-        }
     }
     
     func onReq(req: BaseReq!) {

@@ -15,12 +15,12 @@ class ContactWithServer{
     var superGalleryDetailVC:GalleryDetailVC?
     var loginSuccess:LoginProtocol?
     var userInfoReady:GetUserInfoReadyProtocol?
-    var selfMuseumReady:GetSelfMuseumReadyProtocol?
     var todayInfoReady:GetTodayInfoReadyProtocol?
     var itemInfoReady:GetItemInfoReadyProtocol?
     var ready:ReadyProtocol?
     var putLikeReady:PutLikeReadyProtocol?
     let defaults = NSUserDefaults.standardUserDefaults()
+    let notification = NSNotificationCenter.defaultCenter()
     
     func getNewTokenWithDefaults(){
         let username = self.defaults.stringForKey("userName")
@@ -47,7 +47,6 @@ class ContactWithServer{
                         self.defaults.setDouble(NSDate(timeIntervalSinceNow: (userInfo["ttl"]).double!/2).timeIntervalSince1970, forKey: "freshline")
                         self.defaults.setInteger((userInfo["userId"]).int!, forKey: "userId")
                         self.defaults.synchronize()
-                        self.getSelfMuseum(nil)
                     }
                 }else{
                     print("error")
@@ -71,7 +70,7 @@ class ContactWithServer{
         
     }
     
-    func getSelfMuseum(complete:()?){
+    func getSelfMuseum(){
         let url = ApiManager.getAllSelfGallery1_2 + String(globalHiwuUser.userId) + ApiManager.getAllSelfGallery2_2 + globalHiwuUser.hiwuToken
         Alamofire.request(.GET, url).responseJSON{response in
             if(response.result.value != nil){
@@ -79,16 +78,13 @@ class ContactWithServer{
                 let tmpData:NSData = NSKeyedArchiver.archivedDataWithRootObject(response.result.value!)
                 self.defaults.setObject(tmpData, forKey: "selfMuseum")
                 self.defaults.synchronize()
-                self.selfMuseumReady?.getSelfMuseunReady()
-                self.loginSuccess?.didGetSelfMuseum()
+                self.notification.postNotificationName("getSelfMuseumReady", object: nil)
             }else{
                 if(self.defaults.valueForKey("selfMuseum") != nil){
                     globalHiwuUser.selfMuseum = JSON(NSKeyedUnarchiver.unarchiveObjectWithData(self.defaults.objectForKey("selfMuseum") as! NSData)!)
-                    self.selfMuseumReady?.getSelfMuseunReady()
-                    print("selfMuseumReady local")
-                    self.loginSuccess?.didGetSelfMuseum()
+                     self.notification.postNotificationName("getSelfMuseumReady", object: nil)
                 }else{
-                    
+                    self.notification.postNotificationName("getSelfMuseumFailed", object: nil)
                 }
             }
         }
@@ -96,22 +92,20 @@ class ContactWithServer{
     
     func getTodayInfo(){
         let url = ApiManager.getTodayPublicView
-        print("get today info")
         Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
             if(response.result.error == nil){
                 globalHiwuUser.todayMuseum = JSON(response.result.value!)
                 let tmpData:NSData = NSKeyedArchiver.archivedDataWithRootObject(response.result.value!)
                 self.defaults.setObject(tmpData, forKey: "todayMuseum")
                 self.defaults.synchronize()
-                self.todayInfoReady?.getTodayReady()
+                self.notification.postNotificationName("getTodayInfoReady", object: nil)
             }else{
-
                 if(self.defaults.valueForKey("todayMuseum") != nil){
                     globalHiwuUser.todayMuseum = JSON(NSKeyedUnarchiver.unarchiveObjectWithData(self.defaults.objectForKey("todayMuseum") as! NSData)!)
-                    self.todayInfoReady?.getTodayReady()
+                    self.notification.postNotificationName("getTodayInfoReady", object: nil)
                     
                 }else{
-                    self.todayInfoReady?.getTodayFailed()
+                    self.notification.postNotificationName("getTodayInfoFailed", object: nil)
                 }
             }
         
@@ -185,7 +179,6 @@ class ContactWithServer{
         let deleteUrl = ApiManager.deleteItem1 + String(itemId) + ApiManager.deleteItem2 + globalHiwuUser.hiwuToken
         Alamofire.request(.DELETE, NSURL(string: deleteUrl)!).responseJSON{response in
             if(response.result.value != nil){
-                self.getSelfMuseum(complete)
             }
         }
         

@@ -47,13 +47,13 @@
                             <constraint firstItem="7oZ-BD-rGQ" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="152" id="8cO-BY-q7G"/>
                             <constraint firstAttribute="centerX" secondItem="GJd-Yh-RWb" secondAttribute="centerX" id="Q3B-4B-g5h"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7oZ-BD-rGQ" secondAttribute="trailing" constant="168" id="Q57-gF-HpX"/>
-                            <constraint firstItem="7oZ-BD-rGQ" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="216" id="Q5h-8S-eht"/>
                             <constraint firstItem="obG-Y5-kRd" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="20" symbolic="YES" id="SfN-ll-jLj"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="7oZ-BD-rGQ" secondAttribute="bottom" constant="236" id="XYj-Nf-b8A"/>
                             <constraint firstAttribute="bottom" secondItem="obG-Y5-kRd" secondAttribute="bottom" constant="20" id="Y44-ml-fuU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7oZ-BD-rGQ" secondAttribute="trailing" constant="168" id="aD2-gC-VAD"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="7oZ-BD-rGQ" secondAttribute="bottom" constant="236" id="kWS-JS-Inn"/>
                             <constraint firstItem="GJd-Yh-RWb" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="bottom" multiplier="1/3" constant="1" id="moa-c2-u7t"/>
                             <constraint firstItem="GJd-Yh-RWb" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="20" symbolic="YES" id="x7j-FC-K8j"/>
+                            <constraint firstItem="7oZ-BD-rGQ" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="216" id="zJo-QD-Kcc"/>
                         </constraints>
                     </view>
                 </viewController>

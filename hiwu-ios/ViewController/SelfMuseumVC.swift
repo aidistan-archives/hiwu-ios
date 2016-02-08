@@ -13,6 +13,8 @@ import Alamofire
 
 class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     let defaults = NSUserDefaults.standardUserDefaults()
+    let contactor = ContactWithServer()
+    let notification = NSNotificationCenter.defaultCenter()
     var tableCellLocation = 0
     var itemSum = 0
     let bg = UIImage(named: "bg")
@@ -43,19 +45,22 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         super.viewDidLoad()
         selfGalleryDisplay.delegate = self
         selfGalleryDisplay.dataSource = self
-        self.getSelfMuseum()
         bg?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 0, 0, 0), resizingMode: UIImageResizingMode.Tile)
         selfGalleryDisplay.backgroundColor = UIColor(patternImage: self.bg!)
-//        print(globalHiwuUser.hiwuToken)
     }
     
     func back(){
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.notification.removeObserver(self)
+    }
+    
 
     override func viewWillAppear(animated: Bool) {
-        self.getSelfMuseum()
-        self.selfGalleryDisplay.reloadData()
+        self.notification.addObserver(self, selector: "getSelfMuseumOk", name: "getSelfMuseumReady", object: nil)
+        self.notification.addObserver(self, selector: "getSelfMuseumFailed", name: "getSelfMuseumFailed", object: nil)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
@@ -152,21 +157,6 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         return "删除"
     }
     
-    func getSelfMuseum(){
-        let url = ApiManager.getAllSelfGallery1_2 + String(globalHiwuUser.userId) + ApiManager.getAllSelfGallery2_2 + globalHiwuUser.hiwuToken
-        Alamofire.request(.GET, url).responseJSON{response in
-            if(response.result.value != nil){
-                globalHiwuUser.selfMuseum = JSON(response.result.value!)
-                self.itemSum = 0
-                for(var i=0 ;i < globalHiwuUser.selfMuseum!["galleries"].count;i++ ){
-                    self.itemSum += globalHiwuUser.selfMuseum!["galleries"][i]["items"].count
-                }
-                self.selfGalleryDisplay.reloadData()
-            }else{
-                self.networkError()
-            }
-        }
-    }
     
     func networkError(){
         let alert = UIAlertController(title: "请求失败", message: "请检查你的网络", preferredStyle: UIAlertControllerStyle.Alert)
@@ -182,10 +172,22 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 let value = JSON(response.result.value!)
                 if(value["error"] == nil){
                     print("delete success")
-                    self.getSelfMuseum()
+                    self.refresh()
                 }
             }
         }
+        
+    }
+    
+    func refresh(){
+        contactor.getSelfMuseum()
+    }
+    
+    func getSelfMuseumOk(){
+        self.selfGalleryDisplay.reloadData()
+    }
+    
+    func getSelfMuseumFailed(){
         
     }
 

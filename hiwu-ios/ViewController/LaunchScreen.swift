@@ -10,13 +10,14 @@ import UIKit
 
 class LaunchScreen: UIViewController,GetTodayInfoReadyProtocol{
     
-    var contactor:ContactWithServer?
+    var contactor = ContactWithServer()
+    let notification = NSNotificationCenter.defaultCenter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.contactor = ContactWithServer()
-        self.contactor!.todayInfoReady = self
-        self.contactor?.getUserInfoFirst()
-        self.contactor?.getTodayInfo()
+        self.contactor.getUserInfoFirst()
+        self.contactor.getTodayInfo()
+        
         let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
         dispatch_async(queue, {
             sleep(5)
@@ -29,9 +30,6 @@ class LaunchScreen: UIViewController,GetTodayInfoReadyProtocol{
             }
         })
     }
-    
-
-    
     
     func getTodayReady() {
         if(globalHiwuUser.todayMuseum != nil){
@@ -57,6 +55,15 @@ class LaunchScreen: UIViewController,GetTodayInfoReadyProtocol{
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.notification.removeObserver(self)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.notification.addObserver(self, selector: "getTodayReady", name: "getTodayInfoReady", object: nil)
+        self.notification.addObserver(self, selector: "getTodayFailed", name: "getTodayInfoFailed", object: nil)
     }
     
 

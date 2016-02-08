@@ -12,12 +12,13 @@ import SwiftyJSON
 import Kingfisher
 import AVFoundation
 
-class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,GetItemInfoReadyProtocol,GetSelfMuseumReadyProtocol,GetTodayInfoReadyProtocol,DZNEmptyDataSetDelegate,DZNEmptyDataSetSource{
+class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,GetItemInfoReadyProtocol,DZNEmptyDataSetDelegate,DZNEmptyDataSetSource{
     
     var isMine = false
     var gallery:JSON?
     let defaults = NSUserDefaults.standardUserDefaults()
     let contactor = ContactWithServer()
+    let notification = NSNotificationCenter.defaultCenter()
     var location = -1
     var scrollLocation = CGPoint(x: 0, y: 0)
     
@@ -59,23 +60,22 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     }
     
     override func viewWillAppear(animated: Bool) {
-//        self.contactor.todayInfoReady = self
-//        self.contactor.selfMuseumReady = self
-//        self.refresh()
         print("will appear")
+        self.notification.addObserver(self, selector: "getSelfMuseumReady", name: "getSelfMuseumReady", object: nil)
+        self.notification.addObserver(self, selector: "getTodayReady", name: "getTodayInfoReady", object: nil)
 
     }
     override func viewWillDisappear(animated: Bool) {
         self.scrollLocation = self.galleryDetails.contentOffset
+        self.notification.removeObserver(self)
     }
     
     func refresh(){
         if(self.isMine == true){
-            self.contactor.getSelfMuseum(nil)
+            self.contactor.getSelfMuseum()
         }else{
             self.contactor.getTodayInfo()
         }
-        self.galleryDetails.reloadData()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
@@ -166,9 +166,11 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     }
     
     func getItemInfoFailed() {
+        
     }
     
-    func getSelfMuseunReady() {
+    func getSelfMuseumReady() {
+        self.notification.removeObserver(self, name: "getSelfMuseumReady", object: nil)
         let ga = idFinder.findFromGallery(self.gallery!["id"].int!, gallery: globalHiwuUser.selfMuseum!["galleries"])
         if(ga != nil){
             self.gallery = ga
@@ -176,7 +178,8 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         self.galleryDetails.reloadData()
     }
     
-    func getSelfMuseunFailed() {
+    func getSelfMuseumFailed() {
+        
         
     }
     func getTodayFailed() {

@@ -8,9 +8,10 @@
 
 import UIKit
 
-class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,LoginProtocol,GetUserInfoReadyProtocol,GetSelfMuseumReadyProtocol {
+class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,LoginProtocol,GetUserInfoReadyProtocol{
     
     var contactor = ContactWithServer()
+    let notification = NSNotificationCenter.defaultCenter()
     var isLoading = false
     
     @IBOutlet weak var refreshing: UIActivityIndicatorView!
@@ -20,6 +21,7 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
         let next = self.storyboard?.instantiateViewControllerWithIdentifier("AllTodaysVC") as! AllTodaysVC
         self.navigationController?.pushViewController(next, animated: true)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let bg = UIImage(named: "bg")
@@ -30,14 +32,21 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
         todayGalleryDisplay.estimatedRowHeight = 100
         todayGalleryDisplay.rowHeight = UITableViewAutomaticDimension
         todayGalleryDisplay.reloadData()
-        self.contactor.selfMuseumReady = self
         self.contactor.userInfoReady = self
         self.contactor.loginSuccess = self
     }
+    
     @IBOutlet weak var selfmuseum: UIButton!
     override  func viewWillAppear(animated: Bool) {
+        self.notification.addObserver(self, selector: "getSelfMuseumReady", name: "getSelfMuseumReady", object: nil)
+        self.notification.addObserver(self, selector: "getSelfMuseumFailed", name: "getSelfMuseumFailed", object: nil)
         self.selfmuseum.enabled = true
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.notification.removeObserver(self)
+    }
+    
     
     func back(){
         self.navigationController?.popViewControllerAnimated(true)
@@ -48,7 +57,7 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
         print("enter to selfmuseum")
         let nowDate = NSDate(timeIntervalSinceNow: 0)
         let defaults = NSUserDefaults.standardUserDefaults()
-        var deadline = defaults.doubleForKey("deadline")
+        let deadline = defaults.doubleForKey("deadline")
         let freshline = defaults.doubleForKey("freshline")
         if((deadline == 0)||(freshline == 0||nowDate.timeIntervalSince1970 > deadline)){
             let login = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as! LoginVC
@@ -56,13 +65,13 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
             self.navigationController?.pushViewController(login, animated: true)
             
         }else if(nowDate.timeIntervalSince1970 > freshline){
-                debugPrint("not fresh")
-                self.navigationController!.performSegueWithIdentifier("ToSelfMuseumSegue", sender: self)
-                self.contactor.getNewTokenWithDefaults()
-                print("i'm here")
+            let selfMuseum = self.storyboard?.instantiateViewControllerWithIdentifier("SelfMuseum") as! SelfMuseumVC
+            
+            self.navigationController?.pushViewController(selfMuseum, animated: true)
+            
+//                self.contactor.getNewTokenWithDefaults()
             }else{
             self.contactor.getUserInfoFirst()
-            print("fresh")
             }
         
     }
@@ -158,26 +167,24 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
         
     }
     
-    func getSelfMuseumFailed(){
-    }
-    
     func getUserInfoReady(){
-        
-        self.contactor.getSelfMuseum(nil)
+        self.contactor.getSelfMuseum()
     }
     func getUserInfoFailed(){
         print("get user info failed")
         }
     
-    func getSelfMuseunReady() {
+    func getSelfMuseumReady() {
         print("get self museum ready in today")
+        self.notification.removeObserver(self, name: "getSelfMuseumReady", object: nil)
         let selfMuseum = self.storyboard?.instantiateViewControllerWithIdentifier("SelfMuseum") as! SelfMuseumVC
         
         self.navigationController?.pushViewController(selfMuseum, animated: true)
     }
     
-    func getSelfMuseunFailed() {
+    func getSelfMuseumFailed() {
         print("get self museum failed")
+        self.notification.removeObserver(self, name: "getSelfMuseumFailed", object: nil)
     }
     
 
