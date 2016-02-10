@@ -25,8 +25,15 @@ class AllTodaysVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let backButton = self.navigationItem.leftBarButtonItem?.customView as! UIButton
+        backButton.addTarget(self, action: "back", forControlEvents: UIControlEvents.TouchUpInside)
         getTodayInfo()
     }
+    
+    func back(){
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
     
     func getDate(){
         for(var i=0;i<self.today!.count;i++){

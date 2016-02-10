@@ -61,10 +61,13 @@ class ContactWithServer{
     func getUserInfoFirst(){
         globalHiwuUser.userId = self.defaults.integerForKey("userId")
         let tmpToken = self.defaults.valueForKey("token") as? String
-        let tmpUserName = self.defaults.valueForKey("userName") as? String
-        if(tmpToken != nil && tmpUserName != nil){
+//        let tmpUserName = self.defaults.valueForKey("userName") as? String
+        print(tmpToken)
+//        if(tmpToken != nil && tmpUserName != nil){
+//        调节bug，去掉了username的必要条件
+        if(tmpToken != nil){
             globalHiwuUser.hiwuToken = tmpToken!
-            globalHiwuUser.userName = tmpUserName!
+//            globalHiwuUser.userName = tmpUserName!
             self.userInfoReady?.getUserInfoReady()
         }
         

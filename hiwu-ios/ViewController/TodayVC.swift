@@ -37,6 +37,7 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     }
     
     @IBOutlet weak var selfmuseum: UIButton!
+    
     override  func viewWillAppear(animated: Bool) {
         self.notification.addObserver(self, selector: "getSelfMuseumReady", name: "getSelfMuseumReady", object: nil)
         self.notification.addObserver(self, selector: "getSelfMuseumFailed", name: "getSelfMuseumFailed", object: nil)
@@ -168,7 +169,9 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     }
     
     func getUserInfoReady(){
+        print("ok")
         self.contactor.getSelfMuseum()
+        
     }
     func getUserInfoFailed(){
         print("get user info failed")

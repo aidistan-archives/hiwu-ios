@@ -41,7 +41,7 @@ class AddItemVC: UIViewController,UITextViewDelegate,UITextFieldDelegate{
         }else{
         let jpgUrl = NSHomeDirectory().stringByAppendingString("/tmp/").stringByAppendingString("tmp.jpg")
             UIImageJPEGRepresentation(itemImage.image!, 0.9)?.writeToFile(jpgUrl, atomically: false)
-            self.postItem(self.galleryId, itemName: itemName.text!, itemDescription: itemDescription.text, year: Int(self.time.text!)!, city: self.city.text!, dataUrl: NSURL(fileURLWithPath: jpgUrl), isPublic: !isPublic.on)
+            self.postItem(self.galleryId, itemName: itemName.text!, itemDescription: itemDescription.text, year: Int(self.time.text!)!, city: self.city.text!, dataUrl: NSURL(fileURLWithPath: jpgUrl), isPublic: isPublic.on)
             
         }
     }

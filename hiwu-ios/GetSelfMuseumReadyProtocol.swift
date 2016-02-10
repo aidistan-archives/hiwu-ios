@@ -8,6 +8,6 @@
 
 import Foundation
 public protocol GetSelfMuseumReadyProtocol{
-    func getSelfMuseunReady()
-    func getSelfMuseunFailed()
+    func getSelfMuseumReady()
+    func getSelfMuseumFailed()
 }

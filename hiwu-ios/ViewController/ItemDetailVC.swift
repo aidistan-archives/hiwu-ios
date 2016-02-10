@@ -13,6 +13,7 @@ import Alamofire
 
 class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,GetItemInfoReadyProtocol{
     
+    
     @IBAction func backButton(sender: UIButton) {
         self.navigationController?.popViewControllerAnimated(true)
     }

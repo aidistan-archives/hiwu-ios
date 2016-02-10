@@ -37,6 +37,15 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         newAlert.show()
     }
     
+    @IBAction func backButton(sender: UIButton) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    @IBAction func shareButton(sender: UIButton) {
+        
+        
+    }
+    
+    
     @IBOutlet weak var addItemButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +69,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     }
     
     override func viewWillAppear(animated: Bool) {
-        print("will appear")
         self.notification.addObserver(self, selector: "getSelfMuseumReady", name: "getSelfMuseumReady", object: nil)
         self.notification.addObserver(self, selector: "getTodayReady", name: "getTodayInfoReady", object: nil)
 

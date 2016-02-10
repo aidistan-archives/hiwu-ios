@@ -19,6 +19,9 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var itemSum = 0
     let bg = UIImage(named: "bg")
     
+    @IBAction func backButton(sender: UIButton) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     
     
     @IBOutlet weak var selfGalleryDisplay: UITableView!
