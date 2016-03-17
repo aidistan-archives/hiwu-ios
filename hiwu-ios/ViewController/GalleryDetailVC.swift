@@ -12,7 +12,7 @@ import SwiftyJSON
 import Kingfisher
 import AVFoundation
 
-class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,GetItemInfoReadyProtocol,DZNEmptyDataSetDelegate,DZNEmptyDataSetSource{
+class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,ServerContactorDelegates,DZNEmptyDataSetDelegate,DZNEmptyDataSetSource{
     
     var isMine = false
     var gallery:JSON?
@@ -155,7 +155,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     
     func getItemDetail(sender:UITapGestureRecognizer){
         let contactor = ContactWithServer()
-        contactor.itemInfoReady = self
+        contactor.delegate = self
         let itemIdLabel = sender.view?.viewWithTag(2) as! UILabel
         let itemId = Int(itemIdLabel.text!)
         if(isMine){

@@ -45,5 +45,9 @@ class ApiManager{
     static let postFeedbck = "http://palace.server.hiwu.ren/api/Hiwu/jianliao?channel=feedback"
     static let wxLogin1 = "http://palace.server.hiwu.ren/api/HiwuUsers/weixinLogin?appid="
     static let wxLogin2 = "&code="
+    static let getNotification1 = "http://palace.server.hiwu.ren/api/HiwuUsers/"
+    static let getNotification2 = "/notifications?filter=%7B%22include%22%3A%5B%22fromUser%22%2C%22item%22%2C%22comment%22%5D%7D&access_token="
+    static let deleteNotification1 = "http://palace.server.hiwu.ren/api/HiwuUsers/"
+    static let deleteNotification2 = "/notifications?access_token="
 
 }

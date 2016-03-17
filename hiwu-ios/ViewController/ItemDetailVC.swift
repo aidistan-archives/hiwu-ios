@@ -11,7 +11,7 @@ import SwiftyJSON
 import Kingfisher
 import Alamofire
 
-class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,GetItemInfoReadyProtocol{
+class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,ServerContactorDelegates{
     
     
     @IBAction func backButton(sender: UIButton) {
@@ -45,9 +45,10 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     @IBOutlet weak var ensureCommentButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(self.itemId)
         self.getItemInfo()
         self.waiting.startAnimating()
-        self.contactor.itemInfoReady = self
+        self.contactor.delegate = self
         self.navigationController?.fd_prefersNavigationBarHidden = true
         self.addComment.delegate = self
         self.itemDetailList.estimatedRowHeight = 60
@@ -241,8 +242,6 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                 }
             }
         }
-        
-        
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

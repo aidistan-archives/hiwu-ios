@@ -14,7 +14,6 @@ import Alamofire
 class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     let defaults = NSUserDefaults.standardUserDefaults()
     let contactor = ContactWithServer()
-    let notification = NSNotificationCenter.defaultCenter()
     var tableCellLocation = 0
     var itemSum = 0
     let bg = UIImage(named: "bg")
@@ -57,13 +56,11 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        self.notification.removeObserver(self)
+       
     }
     
 
     override func viewWillAppear(animated: Bool) {
-        self.notification.addObserver(self, selector: "getSelfMuseumOk", name: "getSelfMuseumReady", object: nil)
-        self.notification.addObserver(self, selector: "getSelfMuseumFailed", name: "getSelfMuseumFailed", object: nil)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
@@ -106,13 +103,13 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             userAvatar.layer.cornerRadius = userAvatar.frame.height/2
             userAvatar.clipsToBounds = true
             userNickname.text = selfMuseum!["nickname"].string!
-            museumInfo.text = "  " + String(selfMuseum!["galleries"].count) + "  长廊 | " + String(self.itemSum) + " 物品  "
+            museumInfo.text = "  " + String(selfMuseum!["galleries"].count) + "  馆 | " + String(self.itemSum) + " 物件  "
             museumInfo.layer.cornerRadius = museumInfo.frame.height/2
             museumInfo.clipsToBounds = true
             if(selfMuseum!["description"].string != nil){
                 description.text = selfMuseum!["description"].string!
             }
-            
+            cell.backgroundColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.8)
             return cell
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier("SelfGalleryCell")! as UITableViewCell

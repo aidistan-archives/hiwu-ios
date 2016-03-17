@@ -10,9 +10,7 @@
 		A500312C1C6590F700F8BDCD /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A50031291C6590F700F8BDCD /* libWeiboSDK.a */; };
 		A500312D1C6590F700F8BDCD /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A500312A1C6590F700F8BDCD /* WeiboSDK.bundle */; };
 		A50620411C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = A50620401C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.m */; };
-		A50620551C15C58A00195DCF /* PutLikeReadyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50620541C15C58A00195DCF /* PutLikeReadyProtocol.swift */; };
 		A5132BBE1BDBB5EA00B4C3DB /* AddItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5132BBD1BDBB5EA00B4C3DB /* AddItemVC.swift */; };
-		A51908A11C105F740018039A /* Ready.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51908A01C105F740018039A /* Ready.swift */; };
 		A51908AF1C106E4C0018039A /* idFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51908AE1C106E4C0018039A /* idFinder.swift */; };
 		A534BE951C0EC9FF00770171 /* GuidePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534BE941C0EC9FF00770171 /* GuidePage.swift */; };
 		A534BE971C0F23CD00770171 /* AddGalleryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534BE961C0F23CD00770171 /* AddGalleryVC.swift */; };
@@ -25,8 +23,30 @@
 		A552327B1C0472F300A0AA2A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A552327A1C0472F300A0AA2A /* libsqlite3.tbd */; };
 		A552327E1C0475AE00A0AA2A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A552327D1C0475AE00A0AA2A /* libc++.tbd */; };
 		A55C94381C5DA9FD004367B0 /* EditNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55C94371C5DA9FD004367B0 /* EditNameVC.swift */; };
+		A56311B21C96B3640002FF5E /* JGActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = A56311B11C96B3640002FF5E /* JGActionSheet.m */; };
+		A56311BE1C9831070002FF5E /* JMCollectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A56311BD1C9831070002FF5E /* JMCollectionItem.m */; };
+		A56311D21C9ADEAA0002FF5E /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56311D11C9ADEAA0002FF5E /* NotificationVC.swift */; };
 		A5799ED21C659DCE009660D1 /* LCActionSheet.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A5799ECF1C659DCE009660D1 /* LCActionSheet.bundle */; };
 		A5799ED31C659DCE009660D1 /* LCActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = A5799ED11C659DCE009660D1 /* LCActionSheet.m */; };
+		A58270B91C880B8400F13713 /* ServerContactorDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58270B81C880B8400F13713 /* ServerContactorDelegates.swift */; };
+		A58270ED1C885E9000F13713 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = A58270CA1C885E9000F13713 /* .gitkeep */; };
+		A58270EE1C885E9000F13713 /* JMActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = A58270CC1C885E9000F13713 /* JMActionSheet.m */; };
+		A58270EF1C885E9000F13713 /* JMActionSheetCollectionImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A58270CE1C885E9000F13713 /* JMActionSheetCollectionImageCell.m */; };
+		A58270F01C885E9000F13713 /* JMActionSheetCollectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A58270D01C885E9000F13713 /* JMActionSheetCollectionItem.m */; };
+		A58270F11C885E9000F13713 /* JMActionSheetCollectionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A58270D21C885E9000F13713 /* JMActionSheetCollectionItemCell.m */; };
+		A58270F21C885E9000F13713 /* JMActionSheetCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A58270D41C885E9000F13713 /* JMActionSheetCollectionViewController.m */; };
+		A58270F31C885E9000F13713 /* JMActionSheetDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = A58270D61C885E9000F13713 /* JMActionSheetDescription.m */; };
+		A58270F41C885E9000F13713 /* JMActionSheetImageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A58270D81C885E9000F13713 /* JMActionSheetImageItem.m */; };
+		A58270F51C885E9000F13713 /* JMActionSheetImagesItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A58270DA1C885E9000F13713 /* JMActionSheetImagesItem.m */; };
+		A58270F61C885E9000F13713 /* JMActionSheetItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A58270DC1C885E9000F13713 /* JMActionSheetItem.m */; };
+		A58270F71C885E9000F13713 /* JMActionSheetItemControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A58270DE1C885E9000F13713 /* JMActionSheetItemControl.m */; };
+		A58270F81C885E9000F13713 /* JMActionSheetPickerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A58270E01C885E9000F13713 /* JMActionSheetPickerItem.m */; };
+		A58270F91C885E9000F13713 /* JMActionSheetViewController+CollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A58270E21C885E9000F13713 /* JMActionSheetViewController+CollectionView.m */; };
+		A58270FA1C885E9000F13713 /* JMActionSheetViewController+PickerViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A58270E41C885E9000F13713 /* JMActionSheetViewController+PickerViewItem.m */; };
+		A58270FB1C885E9000F13713 /* JMActionSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A58270E61C885E9000F13713 /* JMActionSheetViewController.m */; };
+		A58270FC1C885E9000F13713 /* JMImagesActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = A58270E81C885E9000F13713 /* JMImagesActionSheet.m */; };
+		A58270FD1C885E9000F13713 /* JMPickerActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = A58270EA1C885E9000F13713 /* JMPickerActionSheet.m */; };
+		A58270FE1C885E9000F13713 /* UIView+JMActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = A58270EC1C885E9000F13713 /* UIView+JMActionSheet.m */; };
 		A59354C31BD5C4FD0044E7B3 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59354C21BD5C4FD0044E7B3 /* LaunchScreen.swift */; };
 		A593550B1BD669080044E7B3 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593550A1BD669080044E7B3 /* LoginVC.swift */; };
 		A593550D1BD66EA90044E7B3 /* TodayGalleryCT.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593550C1BD66EA90044E7B3 /* TodayGalleryCT.swift */; };
@@ -44,11 +64,7 @@
 		A5BEE4891C63B00C00F5B610 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BEE4881C63B00C00F5B610 /* MBProgressHUD.m */; };
 		A5BEE48B1C63B1FB00F5B610 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5BEE48A1C63B1FB00F5B610 /* CoreGraphics.framework */; };
 		A5BFFD141BE4D2A100D5A866 /* ItemDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD131BE4D2A100D5A866 /* ItemDetailVC.swift */; };
-		A5BFFD571BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD551BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift */; };
 		A5BFFD581BE8E7C800D5A866 /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD561BE8E7C800D5A866 /* LoginProtocol.swift */; };
-		A5BFFD5A1BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD591BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift */; };
-		A5BFFD5C1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD5B1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift */; };
-		A5BFFD5E1BE8EA9600D5A866 /* GetItemInfoReadyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD5D1BE8EA9600D5A866 /* GetItemInfoReadyProtocol.swift */; };
 		A5C5D92A1C66753900164093 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5C5D9291C66753900164093 /* Launch Screen.storyboard */; };
 		A5C5D9471C6715EA00164093 /* JGProgressHUD Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A5C5D92F1C6715EA00164093 /* JGProgressHUD Resources.bundle */; };
 		A5C5D9481C6715EA00164093 /* JGProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5D9321C6715EA00164093 /* JGProgressHUD.m */; };
@@ -63,7 +79,6 @@
 		A5C5D9511C6715EA00164093 /* JGProgressHUDRingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5D9441C6715EA00164093 /* JGProgressHUDRingIndicatorView.m */; };
 		A5C5D9521C6715EA00164093 /* JGProgressHUDSuccessIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5D9461C6715EA00164093 /* JGProgressHUDSuccessIndicatorView.m */; };
 		A5CEE6241BD0DB3C00AAF122 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CEE6231BD0DB3C00AAF122 /* AppDelegate.swift */; };
-		A5CEE6261BD0DB3C00AAF122 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CEE6251BD0DB3C00AAF122 /* ViewController.swift */; };
 		A5CEE6291BD0DB3C00AAF122 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CEE6271BD0DB3C00AAF122 /* Main.storyboard */; };
 		A5CEE62B1BD0DB3C00AAF122 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CEE62A1BD0DB3C00AAF122 /* Assets.xcassets */; };
 		A5CEE6871BD0DC3000AAF122 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5CEE67E1BD0DC2000AAF122 /* SwiftyJSON.framework */; };
@@ -257,9 +272,7 @@
 		A500312B1C6590F700F8BDCD /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeiboSDK.h; path = Libs/libWeiboSDK_X64/WeiboSDK.h; sourceTree = SOURCE_ROOT; };
 		A506203F1C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+FDFullscreenPopGesture.h"; path = "Libs/FDFullscreenPopGesture-master/FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h"; sourceTree = SOURCE_ROOT; };
 		A50620401C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+FDFullscreenPopGesture.m"; path = "Libs/FDFullscreenPopGesture-master/FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.m"; sourceTree = SOURCE_ROOT; };
-		A50620541C15C58A00195DCF /* PutLikeReadyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PutLikeReadyProtocol.swift; sourceTree = "<group>"; };
 		A5132BBD1BDBB5EA00B4C3DB /* AddItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemVC.swift; sourceTree = "<group>"; };
-		A51908A01C105F740018039A /* Ready.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ready.swift; sourceTree = "<group>"; };
 		A51908AE1C106E4C0018039A /* idFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = idFinder.swift; sourceTree = "<group>"; };
 		A534BE941C0EC9FF00770171 /* GuidePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GuidePage.swift; path = ViewController/GuidePage.swift; sourceTree = "<group>"; };
 		A534BE961C0F23CD00770171 /* AddGalleryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddGalleryVC.swift; path = ViewController/AddGalleryVC.swift; sourceTree = "<group>"; };
@@ -275,9 +288,50 @@
 		A552327C1C04731E00A0AA2A /* WechatDemo_Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WechatDemo_Bridging_Header.h; sourceTree = "<group>"; };
 		A552327D1C0475AE00A0AA2A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		A55C94371C5DA9FD004367B0 /* EditNameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditNameVC.swift; path = ViewController/EditNameVC.swift; sourceTree = "<group>"; };
+		A56311B01C96B3640002FF5E /* JGActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGActionSheet.h; sourceTree = "<group>"; };
+		A56311B11C96B3640002FF5E /* JGActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGActionSheet.m; sourceTree = "<group>"; };
+		A56311BC1C9831070002FF5E /* JMCollectionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCollectionItem.h; sourceTree = "<group>"; };
+		A56311BD1C9831070002FF5E /* JMCollectionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCollectionItem.m; sourceTree = "<group>"; };
+		A56311D11C9ADEAA0002FF5E /* NotificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationVC.swift; path = ViewController/NotificationVC.swift; sourceTree = "<group>"; };
 		A5799ECF1C659DCE009660D1 /* LCActionSheet.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LCActionSheet.bundle; sourceTree = "<group>"; };
 		A5799ED01C659DCE009660D1 /* LCActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCActionSheet.h; sourceTree = "<group>"; };
 		A5799ED11C659DCE009660D1 /* LCActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCActionSheet.m; sourceTree = "<group>"; };
+		A58270B81C880B8400F13713 /* ServerContactorDelegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerContactorDelegates.swift; sourceTree = "<group>"; };
+		A58270CA1C885E9000F13713 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		A58270CB1C885E9000F13713 /* JMActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMActionSheet.h; sourceTree = "<group>"; };
+		A58270CC1C885E9000F13713 /* JMActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMActionSheet.m; sourceTree = "<group>"; };
+		A58270CD1C885E9000F13713 /* JMActionSheetCollectionImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMActionSheetCollectionImageCell.h; sourceTree = "<group>"; };
+		A58270CE1C885E9000F13713 /* JMActionSheetCollectionImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMActionSheetCollectionImageCell.m; sourceTree = "<group>"; };
+		A58270CF1C885E9000F13713 /* JMActionSheetCollectionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMActionSheetCollectionItem.h; sourceTree = "<group>"; };
+		A58270D01C885E9000F13713 /* JMActionSheetCollectionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMActionSheetCollectionItem.m; sourceTree = "<group>"; };
+		A58270D11C885E9000F13713 /* JMActionSheetCollectionItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMActionSheetCollectionItemCell.h; sourceTree = "<group>"; };
+		A58270D21C885E9000F13713 /* JMActionSheetCollectionItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMActionSheetCollectionItemCell.m; sourceTree = "<group>"; };
+		A58270D31C885E9000F13713 /* JMActionSheetCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMActionSheetCollectionViewController.h; sourceTree = "<group>"; };
+		A58270D41C885E9000F13713 /* JMActionSheetCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMActionSheetCollectionViewController.m; sourceTree = "<group>"; };
+		A58270D51C885E9000F13713 /* JMActionSheetDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMActionSheetDescription.h; sourceTree = "<group>"; };
+		A58270D61C885E9000F13713 /* JMActionSheetDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMActionSheetDescription.m; sourceTree = "<group>"; };
+		A58270D71C885E9000F13713 /* JMActionSheetImageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMActionSheetImageItem.h; sourceTree = "<group>"; };
+		A58270D81C885E9000F13713 /* JMActionSheetImageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMActionSheetImageItem.m; sourceTree = "<group>"; };
+		A58270D91C885E9000F13713 /* JMActionSheetImagesItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMActionSheetImagesItem.h; sourceTree = "<group>"; };
+		A58270DA1C885E9000F13713 /* JMActionSheetImagesItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMActionSheetImagesItem.m; sourceTree = "<group>"; };
+		A58270DB1C885E9000F13713 /* JMActionSheetItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMActionSheetItem.h; sourceTree = "<group>"; };
+		A58270DC1C885E9000F13713 /* JMActionSheetItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMActionSheetItem.m; sourceTree = "<group>"; };
+		A58270DD1C885E9000F13713 /* JMActionSheetItemControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMActionSheetItemControl.h; sourceTree = "<group>"; };
+		A58270DE1C885E9000F13713 /* JMActionSheetItemControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMActionSheetItemControl.m; sourceTree = "<group>"; };
+		A58270DF1C885E9000F13713 /* JMActionSheetPickerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMActionSheetPickerItem.h; sourceTree = "<group>"; };
+		A58270E01C885E9000F13713 /* JMActionSheetPickerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMActionSheetPickerItem.m; sourceTree = "<group>"; };
+		A58270E11C885E9000F13713 /* JMActionSheetViewController+CollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JMActionSheetViewController+CollectionView.h"; sourceTree = "<group>"; };
+		A58270E21C885E9000F13713 /* JMActionSheetViewController+CollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JMActionSheetViewController+CollectionView.m"; sourceTree = "<group>"; };
+		A58270E31C885E9000F13713 /* JMActionSheetViewController+PickerViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JMActionSheetViewController+PickerViewItem.h"; sourceTree = "<group>"; };
+		A58270E41C885E9000F13713 /* JMActionSheetViewController+PickerViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JMActionSheetViewController+PickerViewItem.m"; sourceTree = "<group>"; };
+		A58270E51C885E9000F13713 /* JMActionSheetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMActionSheetViewController.h; sourceTree = "<group>"; };
+		A58270E61C885E9000F13713 /* JMActionSheetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMActionSheetViewController.m; sourceTree = "<group>"; };
+		A58270E71C885E9000F13713 /* JMImagesActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMImagesActionSheet.h; sourceTree = "<group>"; };
+		A58270E81C885E9000F13713 /* JMImagesActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMImagesActionSheet.m; sourceTree = "<group>"; };
+		A58270E91C885E9000F13713 /* JMPickerActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPickerActionSheet.h; sourceTree = "<group>"; };
+		A58270EA1C885E9000F13713 /* JMPickerActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMPickerActionSheet.m; sourceTree = "<group>"; };
+		A58270EB1C885E9000F13713 /* UIView+JMActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JMActionSheet.h"; sourceTree = "<group>"; };
+		A58270EC1C885E9000F13713 /* UIView+JMActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JMActionSheet.m"; sourceTree = "<group>"; };
 		A59354C21BD5C4FD0044E7B3 /* LaunchScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LaunchScreen.swift; path = ViewController/LaunchScreen.swift; sourceTree = "<group>"; };
 		A593550A1BD669080044E7B3 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginVC.swift; path = ViewController/LoginVC.swift; sourceTree = "<group>"; };
 		A593550C1BD66EA90044E7B3 /* TodayGalleryCT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TodayGalleryCT.swift; path = LayoutTools/TodayGalleryCT.swift; sourceTree = "<group>"; };
@@ -297,11 +351,7 @@
 		A5BEE4881C63B00C00F5B610 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Libs/MBProgressHUD/MBProgressHUD.m; sourceTree = SOURCE_ROOT; };
 		A5BEE48A1C63B1FB00F5B610 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		A5BFFD131BE4D2A100D5A866 /* ItemDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemDetailVC.swift; path = ViewController/ItemDetailVC.swift; sourceTree = "<group>"; };
-		A5BFFD551BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetUserInfoReadyProtocol.swift; path = LayoutTools/GetUserInfoReadyProtocol.swift; sourceTree = "<group>"; };
 		A5BFFD561BE8E7C800D5A866 /* LoginProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginProtocol.swift; path = LayoutTools/LoginProtocol.swift; sourceTree = "<group>"; };
-		A5BFFD591BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetTodayInfoReadyProtocol.swift; path = LayoutTools/GetTodayInfoReadyProtocol.swift; sourceTree = "<group>"; };
-		A5BFFD5B1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetSelfMuseumReadyProtocol.swift; sourceTree = "<group>"; };
-		A5BFFD5D1BE8EA9600D5A866 /* GetItemInfoReadyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetItemInfoReadyProtocol.swift; sourceTree = "<group>"; };
 		A5C5D9291C66753900164093 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		A5C5D92F1C6715EA00164093 /* JGProgressHUD Resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "JGProgressHUD Resources.bundle"; sourceTree = "<group>"; };
 		A5C5D9301C6715EA00164093 /* JGProgressHUD-Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JGProgressHUD-Defines.h"; sourceTree = "<group>"; };
@@ -329,7 +379,6 @@
 		A5C5D9461C6715EA00164093 /* JGProgressHUDSuccessIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDSuccessIndicatorView.m; sourceTree = "<group>"; };
 		A5CEE6201BD0DB3C00AAF122 /* hiwu-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hiwu-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CEE6231BD0DB3C00AAF122 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A5CEE6251BD0DB3C00AAF122 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A5CEE6281BD0DB3C00AAF122 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A5CEE62A1BD0DB3C00AAF122 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5CEE62F1BD0DB3C00AAF122 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -430,6 +479,16 @@
 			name = weixin;
 			sourceTree = "<group>";
 		};
+		A56311AF1C96B3640002FF5E /* JGActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				A56311B01C96B3640002FF5E /* JGActionSheet.h */,
+				A56311B11C96B3640002FF5E /* JGActionSheet.m */,
+			);
+			name = JGActionSheet;
+			path = Libs/JGActionSheet;
+			sourceTree = SOURCE_ROOT;
+		};
 		A5799ECE1C659DCE009660D1 /* LCActionSheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -439,6 +498,49 @@
 			);
 			name = LCActionSheet;
 			path = Libs/LCActionSheet;
+			sourceTree = SOURCE_ROOT;
+		};
+		A58270C91C885E9000F13713 /* JMActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				A58270CA1C885E9000F13713 /* .gitkeep */,
+				A58270CB1C885E9000F13713 /* JMActionSheet.h */,
+				A58270CC1C885E9000F13713 /* JMActionSheet.m */,
+				A58270CD1C885E9000F13713 /* JMActionSheetCollectionImageCell.h */,
+				A58270CE1C885E9000F13713 /* JMActionSheetCollectionImageCell.m */,
+				A58270CF1C885E9000F13713 /* JMActionSheetCollectionItem.h */,
+				A58270D01C885E9000F13713 /* JMActionSheetCollectionItem.m */,
+				A58270D11C885E9000F13713 /* JMActionSheetCollectionItemCell.h */,
+				A58270D21C885E9000F13713 /* JMActionSheetCollectionItemCell.m */,
+				A58270D31C885E9000F13713 /* JMActionSheetCollectionViewController.h */,
+				A58270D41C885E9000F13713 /* JMActionSheetCollectionViewController.m */,
+				A58270D51C885E9000F13713 /* JMActionSheetDescription.h */,
+				A58270D61C885E9000F13713 /* JMActionSheetDescription.m */,
+				A58270D71C885E9000F13713 /* JMActionSheetImageItem.h */,
+				A58270D81C885E9000F13713 /* JMActionSheetImageItem.m */,
+				A58270D91C885E9000F13713 /* JMActionSheetImagesItem.h */,
+				A58270DA1C885E9000F13713 /* JMActionSheetImagesItem.m */,
+				A58270DB1C885E9000F13713 /* JMActionSheetItem.h */,
+				A58270DC1C885E9000F13713 /* JMActionSheetItem.m */,
+				A58270DD1C885E9000F13713 /* JMActionSheetItemControl.h */,
+				A58270DE1C885E9000F13713 /* JMActionSheetItemControl.m */,
+				A58270DF1C885E9000F13713 /* JMActionSheetPickerItem.h */,
+				A58270E01C885E9000F13713 /* JMActionSheetPickerItem.m */,
+				A58270E11C885E9000F13713 /* JMActionSheetViewController+CollectionView.h */,
+				A58270E21C885E9000F13713 /* JMActionSheetViewController+CollectionView.m */,
+				A58270E31C885E9000F13713 /* JMActionSheetViewController+PickerViewItem.h */,
+				A58270E41C885E9000F13713 /* JMActionSheetViewController+PickerViewItem.m */,
+				A58270E51C885E9000F13713 /* JMActionSheetViewController.h */,
+				A58270E61C885E9000F13713 /* JMActionSheetViewController.m */,
+				A58270E71C885E9000F13713 /* JMImagesActionSheet.h */,
+				A58270E81C885E9000F13713 /* JMImagesActionSheet.m */,
+				A58270E91C885E9000F13713 /* JMPickerActionSheet.h */,
+				A58270EA1C885E9000F13713 /* JMPickerActionSheet.m */,
+				A58270EB1C885E9000F13713 /* UIView+JMActionSheet.h */,
+				A58270EC1C885E9000F13713 /* UIView+JMActionSheet.m */,
+			);
+			name = JMActionSheet;
+			path = Libs/JMActionSheet;
 			sourceTree = SOURCE_ROOT;
 		};
 		A59354CE1BD5C5320044E7B3 /* SupportingFiles */ = {
@@ -468,6 +570,7 @@
 				A5BEE4721C638A0400F5B610 /* EditDescriptionVC.swift */,
 				A5BEE4801C638A2400F5B610 /* FeedbackVC.swift */,
 				A5C5D9291C66753900164093 /* Launch Screen.storyboard */,
+				A56311D11C9ADEAA0002FF5E /* NotificationVC.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -475,6 +578,9 @@
 		A593550F1BD66EC00044E7B3 /* LayoutTools */ = {
 			isa = PBXGroup;
 			children = (
+				A56311BC1C9831070002FF5E /* JMCollectionItem.h */,
+				A56311BD1C9831070002FF5E /* JMCollectionItem.m */,
+				A56311AF1C96B3640002FF5E /* JGActionSheet */,
 				A5BEE4871C63B00C00F5B610 /* MBProgressHUD.h */,
 				A5BEE4881C63B00C00F5B610 /* MBProgressHUD.m */,
 				A5BEE4841C63964900F5B610 /* BRPlaceholderTextView.h */,
@@ -501,13 +607,8 @@
 		A593554E1BD7E9F20044E7B3 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				A5BFFD551BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift */,
 				A5BFFD561BE8E7C800D5A866 /* LoginProtocol.swift */,
-				A5BFFD591BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift */,
-				A5BFFD5B1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift */,
-				A5BFFD5D1BE8EA9600D5A866 /* GetItemInfoReadyProtocol.swift */,
-				A51908A01C105F740018039A /* Ready.swift */,
-				A50620541C15C58A00195DCF /* PutLikeReadyProtocol.swift */,
+				A58270B81C880B8400F13713 /* ServerContactorDelegates.swift */,
 			);
 			name = Protocol;
 			sourceTree = "<group>";
@@ -585,6 +686,7 @@
 		A5CEE6221BD0DB3C00AAF122 /* hiwu-ios */ = {
 			isa = PBXGroup;
 			children = (
+				A58270C91C885E9000F13713 /* JMActionSheet */,
 				A5EF35771C6652AD00F61BB0 /* UIScrollView+EmptyDataSet */,
 				A5EF35521C66267C00F61BB0 /* SCLAlertView */,
 				A5799ECE1C659DCE009660D1 /* LCActionSheet */,
@@ -594,7 +696,6 @@
 				A59355231BD785330044E7B3 /* Models */,
 				A593550F1BD66EC00044E7B3 /* LayoutTools */,
 				A593550E1BD66EB00044E7B3 /* ViewControllers */,
-				A5CEE6251BD0DB3C00AAF122 /* ViewController.swift */,
 				A5CEE6271BD0DB3C00AAF122 /* Main.storyboard */,
 				A59354CE1BD5C5320044E7B3 /* SupportingFiles */,
 				A5CEE62F1BD0DB3C00AAF122 /* Info.plist */,
@@ -895,6 +996,7 @@
 				A5799ED21C659DCE009660D1 /* LCActionSheet.bundle in Resources */,
 				A5C5D92A1C66753900164093 /* Launch Screen.storyboard in Resources */,
 				A500312D1C6590F700F8BDCD /* WeiboSDK.bundle in Resources */,
+				A58270ED1C885E9000F13713 /* .gitkeep in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -919,40 +1021,50 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A58270EE1C885E9000F13713 /* JMActionSheet.m in Sources */,
 				A59355111BD672480044E7B3 /* TodayVC.swift in Sources */,
-				A5BFFD5E1BE8EA9600D5A866 /* GetItemInfoReadyProtocol.swift in Sources */,
+				A58270F51C885E9000F13713 /* JMActionSheetImagesItem.m in Sources */,
 				A59355181BD782100044E7B3 /* ContactWithServer.swift in Sources */,
+				A58270FE1C885E9000F13713 /* UIView+JMActionSheet.m in Sources */,
 				A593553F1BD7B1440044E7B3 /* SelfMuseumVC.swift in Sources */,
 				A593552D1BD7983F0044E7B3 /* ApiManager.swift in Sources */,
-				A51908A11C105F740018039A /* Ready.swift in Sources */,
 				A5EF357A1C6652AD00F61BB0 /* UIScrollView+EmptyDataSet.m in Sources */,
+				A56311BE1C9831070002FF5E /* JMCollectionItem.m in Sources */,
 				A5C5D94A1C6715EA00164093 /* JGProgressHUDErrorIndicatorView.m in Sources */,
 				A51908AF1C106E4C0018039A /* idFinder.swift in Sources */,
-				A5CEE6261BD0DB3C00AAF122 /* ViewController.swift in Sources */,
+				A58270F41C885E9000F13713 /* JMActionSheetImageItem.m in Sources */,
 				A5C5D94C1C6715EA00164093 /* JGProgressHUDFadeZoomAnimation.m in Sources */,
 				A593550D1BD66EA90044E7B3 /* TodayGalleryCT.swift in Sources */,
+				A58270F81C885E9000F13713 /* JMActionSheetPickerItem.m in Sources */,
 				A5BFFD141BE4D2A100D5A866 /* ItemDetailVC.swift in Sources */,
-				A5BFFD571BE8E7C800D5A866 /* GetUserInfoReadyProtocol.swift in Sources */,
 				A5C5D9521C6715EA00164093 /* JGProgressHUDSuccessIndicatorView.m in Sources */,
 				A5BEE4811C638A2400F5B610 /* FeedbackVC.swift in Sources */,
+				A58270F01C885E9000F13713 /* JMActionSheetCollectionItem.m in Sources */,
+				A56311B21C96B3640002FF5E /* JGActionSheet.m in Sources */,
 				A5BEE4861C63964900F5B610 /* BRPlaceholderTextView.m in Sources */,
+				A58270EF1C885E9000F13713 /* JMActionSheetCollectionImageCell.m in Sources */,
 				A534BE951C0EC9FF00770171 /* GuidePage.swift in Sources */,
+				A58270FD1C885E9000F13713 /* JMPickerActionSheet.m in Sources */,
 				A5EF35621C66267C00F61BB0 /* SCLAlertView.m in Sources */,
 				A5C5D94F1C6715EA00164093 /* JGProgressHUDIndicatorView.m in Sources */,
+				A58270F71C885E9000F13713 /* JMActionSheetItemControl.m in Sources */,
 				A593554B1BD7D1370044E7B3 /* SelfGalleryCT.swift in Sources */,
 				A5EF35681C66267C00F61BB0 /* UIImage+ImageEffects.m in Sources */,
+				A58270FA1C885E9000F13713 /* JMActionSheetViewController+PickerViewItem.m in Sources */,
 				A5BEE4891C63B00C00F5B610 /* MBProgressHUD.m in Sources */,
 				A5C5D9511C6715EA00164093 /* JGProgressHUDRingIndicatorView.m in Sources */,
-				A50620551C15C58A00195DCF /* PutLikeReadyProtocol.swift in Sources */,
+				A58270F11C885E9000F13713 /* JMActionSheetCollectionItemCell.m in Sources */,
 				A534BE971C0F23CD00770171 /* AddGalleryVC.swift in Sources */,
 				A5BFFD581BE8E7C800D5A866 /* LoginProtocol.swift in Sources */,
 				A5CEE6241BD0DB3C00AAF122 /* AppDelegate.swift in Sources */,
 				A59354C31BD5C4FD0044E7B3 /* LaunchScreen.swift in Sources */,
+				A58270F31C885E9000F13713 /* JMActionSheetDescription.m in Sources */,
 				A5EF35631C66267C00F61BB0 /* SCLAlertViewResponder.m in Sources */,
+				A58270F61C885E9000F13713 /* JMActionSheetItem.m in Sources */,
 				A5EF35641C66267C00F61BB0 /* SCLAlertViewStyleKit.m in Sources */,
-				A5BFFD5C1BE8E96500D5A866 /* GetSelfMuseumReadyProtocol.swift in Sources */,
 				A5C5D9491C6715EA00164093 /* JGProgressHUDAnimation.m in Sources */,
 				A5C5D9481C6715EA00164093 /* JGProgressHUD.m in Sources */,
+				A56311D21C9ADEAA0002FF5E /* NotificationVC.swift in Sources */,
 				A5BEE4731C638A0400F5B610 /* EditDescriptionVC.swift in Sources */,
 				A5799ED31C659DCE009660D1 /* LCActionSheet.m in Sources */,
 				A5EF35651C66267C00F61BB0 /* SCLButton.m in Sources */,
@@ -960,17 +1072,21 @@
 				A5B33DE91C4B7DE700565972 /* AllTodaysVC.swift in Sources */,
 				A50620411C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				A5EB70AD1BE38AD20075D559 /* GalleryDetailVC.swift in Sources */,
+				A58270F21C885E9000F13713 /* JMActionSheetCollectionViewController.m in Sources */,
 				A5C5D94D1C6715EA00164093 /* JGProgressHUDImageIndicatorView.m in Sources */,
 				A59355251BD7854B0044E7B3 /* UserModel.swift in Sources */,
+				A58270FB1C885E9000F13713 /* JMActionSheetViewController.m in Sources */,
 				A5C5D94B1C6715EA00164093 /* JGProgressHUDFadeAnimation.m in Sources */,
 				A5EF35661C66267C00F61BB0 /* SCLTextView.m in Sources */,
 				A55C94381C5DA9FD004367B0 /* EditNameVC.swift in Sources */,
-				A5BFFD5A1BE8E8CB00D5A866 /* GetTodayInfoReadyProtocol.swift in Sources */,
 				A5C5D9501C6715EA00164093 /* JGProgressHUDPieIndicatorView.m in Sources */,
+				A58270B91C880B8400F13713 /* ServerContactorDelegates.swift in Sources */,
 				A5C5D94E1C6715EA00164093 /* JGProgressHUDIndeterminateIndicatorView.m in Sources */,
 				A593550B1BD669080044E7B3 /* LoginVC.swift in Sources */,
+				A58270FC1C885E9000F13713 /* JMImagesActionSheet.m in Sources */,
 				A5132BBE1BDBB5EA00B4C3DB /* AddItemVC.swift in Sources */,
 				A5B33DCA1C4A432B00565972 /* SettingVC.swift in Sources */,
+				A58270F91C885E9000F13713 /* JMActionSheetViewController+CollectionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

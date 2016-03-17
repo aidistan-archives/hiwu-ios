@@ -5,7 +5,6 @@
 //  Created by 阮良 on 15/10/21.
 //  Copyright © 2015年 Shanghai Hiwu Information Technology Co., Ltd. All rights reserved.
 //
-//  和服务器交互，交互得到的信息进行缓存
 
 import UIKit
 import Alamofire
@@ -13,62 +12,46 @@ import SwiftyJSON
 
 class ContactWithServer{
     var superGalleryDetailVC:GalleryDetailVC?
-    var loginSuccess:LoginProtocol?
-    var userInfoReady:GetUserInfoReadyProtocol?
-    var todayInfoReady:GetTodayInfoReadyProtocol?
-    var itemInfoReady:GetItemInfoReadyProtocol?
-    var ready:ReadyProtocol?
-    var putLikeReady:PutLikeReadyProtocol?
+    var delegate:ServerContactorDelegates?
     let defaults = NSUserDefaults.standardUserDefaults()
-    let notification = NSNotificationCenter.defaultCenter()
     
-    func getNewTokenWithDefaults(){
-        let username = self.defaults.stringForKey("userName")
-        if(username != nil){
-            self.getTokenWithPassword(username!, password: "")
-        }else{
-            print("nil username")
-        }
-    }
     
-    func getTokenWithPassword(username:String,password:String){
-        Alamofire.request(.POST, ApiManager.simpleLogin + "username=" + username).responseJSON{response in
-            if(response.result.isSuccess)
-            {
-                if(response.result.error == nil){
-                    let userInfo = JSON(response.result.value!)
-                    if(userInfo != nil){
-                        globalHiwuUser.hiwuToken = (userInfo["id"]).string!
-                        globalHiwuUser.userId = (userInfo["userId"]).int!
-                        globalHiwuUser.userName = username
-                        self.defaults.setValue((userInfo["id"]).string!, forKey: "token")
-                        self.defaults.setValue(username, forKey: "userName")
-                        self.defaults.setDouble(NSDate(timeIntervalSinceNow: (userInfo["ttl"]).double!).timeIntervalSince1970, forKey: "deadline")
-                        self.defaults.setDouble(NSDate(timeIntervalSinceNow: (userInfo["ttl"]).double!/2).timeIntervalSince1970, forKey: "freshline")
-                        self.defaults.setInteger((userInfo["userId"]).int!, forKey: "userId")
-                        self.defaults.synchronize()
-                    }
-                }else{
-                    print("error")
-                
-                }
-            }else{
-                print("network error")
-            }
-            }
-        }
+//    func getTokenWithPassword(username:String,password:String){
+//        Alamofire.request(.POST, ApiManager.simpleLogin + "username=" + username).responseJSON{response in
+//            if(response.result.isSuccess)
+//            {
+//                if(response.result.error == nil){
+//                    let userInfo = JSON(response.result.value!)
+//                    if(userInfo != nil){
+//                        globalHiwuUser.hiwuToken = (userInfo["id"]).string!
+//                        globalHiwuUser.userId = (userInfo["userId"]).int!
+//                        globalHiwuUser.userName = username
+//                        self.defaults.setValue((userInfo["id"]).string!, forKey: "token")
+//                        self.defaults.setValue(username, forKey: "userName")
+//                        self.defaults.setDouble(NSDate(timeIntervalSinceNow: (userInfo["ttl"]).double!).timeIntervalSince1970, forKey: "deadline")
+//                        self.defaults.setDouble(NSDate(timeIntervalSinceNow: (userInfo["ttl"]).double!/2).timeIntervalSince1970, forKey: "freshline")
+//                        self.defaults.setInteger((userInfo["userId"]).int!, forKey: "userId")
+//                        self.defaults.synchronize()
+//                    }
+//                }else{
+//                    print("error")
+//                
+//                }
+//            }else{
+//                print("network error")
+//            }
+//            }
+//        }
     
     func getUserInfoFirst(){
         globalHiwuUser.userId = self.defaults.integerForKey("userId")
         let tmpToken = self.defaults.valueForKey("token") as? String
-//        let tmpUserName = self.defaults.valueForKey("userName") as? String
         print(tmpToken)
-//        if(tmpToken != nil && tmpUserName != nil){
-//        调节bug，去掉了username的必要条件
         if(tmpToken != nil){
             globalHiwuUser.hiwuToken = tmpToken!
-//            globalHiwuUser.userName = tmpUserName!
-            self.userInfoReady?.getUserInfoReady()
+            self.delegate?.getUserInfoFirstReady!()
+        }else{
+            self.delegate?.getUserInfoFirstFailed!()
         }
         
     }
@@ -76,18 +59,19 @@ class ContactWithServer{
     func getSelfMuseum(){
         let url = ApiManager.getAllSelfGallery1_2 + String(globalHiwuUser.userId) + ApiManager.getAllSelfGallery2_2 + globalHiwuUser.hiwuToken
         Alamofire.request(.GET, url).responseJSON{response in
-            if(response.result.value != nil){
+            if(response.result.value != nil && response.result.error == nil){
                 globalHiwuUser.selfMuseum = JSON(response.result.value!)
                 let tmpData:NSData = NSKeyedArchiver.archivedDataWithRootObject(response.result.value!)
                 self.defaults.setObject(tmpData, forKey: "selfMuseum")
                 self.defaults.synchronize()
-                self.notification.postNotificationName("getSelfMuseumReady", object: nil)
+                self.delegate?.getSelfMuseumReady!()
             }else{
                 if(self.defaults.valueForKey("selfMuseum") != nil){
                     globalHiwuUser.selfMuseum = JSON(NSKeyedUnarchiver.unarchiveObjectWithData(self.defaults.objectForKey("selfMuseum") as! NSData)!)
-                     self.notification.postNotificationName("getSelfMuseumReady", object: nil)
+                    print(self.delegate?.getSelfMuseumReady!())
+                     self.delegate?.getSelfMuseumReady!()
                 }else{
-                    self.notification.postNotificationName("getSelfMuseumFailed", object: nil)
+                    self.delegate?.getSelfMuseumFailed!()
                 }
             }
         }
@@ -101,14 +85,14 @@ class ContactWithServer{
                 let tmpData:NSData = NSKeyedArchiver.archivedDataWithRootObject(response.result.value!)
                 self.defaults.setObject(tmpData, forKey: "todayMuseum")
                 self.defaults.synchronize()
-                self.notification.postNotificationName("getTodayInfoReady", object: nil)
+                self.delegate?.getTodayInfoReady!()
             }else{
                 if(self.defaults.valueForKey("todayMuseum") != nil){
                     globalHiwuUser.todayMuseum = JSON(NSKeyedUnarchiver.unarchiveObjectWithData(self.defaults.objectForKey("todayMuseum") as! NSData)!)
-                    self.notification.postNotificationName("getTodayInfoReady", object: nil)
+                    self.delegate?.getTodayInfoReady!()
                     
                 }else{
-                    self.notification.postNotificationName("getTodayInfoFailed", object: nil)
+                    self.delegate?.getTodayInfoFailed!()
                 }
             }
         
@@ -121,9 +105,9 @@ class ContactWithServer{
         Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
             if(response.result.value != nil){
                 globalHiwuUser.item = JSON(response.result.value!)
-                self.itemInfoReady?.getItemInfoReady()
+                self.delegate?.getSelfItemInfoReady!()
             }else{
-                self.itemInfoReady?.getItemInfoFailed()
+                self.delegate?.getSelfItemInfoFailed!()
             }
         }
         
@@ -135,9 +119,9 @@ class ContactWithServer{
         Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
             if(response.result.value != nil){
                 globalHiwuUser.item = JSON(response.result.value!)
-                self.itemInfoReady?.getItemInfoReady()
+                self.delegate?.getPublicItemInfoReady!()
             }else{
-                 self.itemInfoReady?.getItemInfoFailed()
+                self.delegate?.getPublicItemInfoFailed!()
             }
         }
         
@@ -170,7 +154,7 @@ class ContactWithServer{
                 case .Success(let upload, _, _):
                     upload.responseJSON { response in
                         if(response.result.value != nil){
-                            self.ready?.Ready()
+                            self.delegate?.postItemReady!()
                         }
                     }
                 case .Failure(let encodingError):
@@ -182,6 +166,9 @@ class ContactWithServer{
         let deleteUrl = ApiManager.deleteItem1 + String(itemId) + ApiManager.deleteItem2 + globalHiwuUser.hiwuToken
         Alamofire.request(.DELETE, NSURL(string: deleteUrl)!).responseJSON{response in
             if(response.result.value != nil){
+                self.delegate?.deleteItemReady!()
+            }else{
+                self.delegate?.deleteItemFailed!()
             }
         }
         
@@ -192,20 +179,22 @@ class ContactWithServer{
         Alamofire.request(.POST, url, parameters: ["name":name,"description":despcription,"public":isPublic]).responseJSON{response in
             if(response.result.value != nil)
             {
-                self.ready?.Ready()
+                self.delegate?.postGalleryReady!()
                 
+            }else{
+                self.delegate?.postGalleryFailed!()
             }
         }
         
     }
     
-    func getGalleryItems(id:Int,complete:(gallery:JSON?)->()?){
+    func getGalleryItems(id:Int){
         let url = ApiManager.getGalleryItems1 + String(id) + ApiManager.getGalleryItems2 + globalHiwuUser.hiwuToken
         Alamofire.request(.GET, url).responseJSON{response in
             if(response.result.value != nil){
-                complete(gallery: JSON(response.result.value!))
+                self.delegate?.getGalleryItemsReady!()
             }else{
-                complete(gallery: nil)
+                self.delegate?.getGalleryItemsFailed!()
             }
         }
     }
@@ -215,10 +204,10 @@ class ContactWithServer{
         print("put like")
         Alamofire.request(.PUT,url).responseJSON{response in
             if(response.result.value != nil && response.result.error == nil){
-                self.putLikeReady?.putLikeReady()
+                self.delegate?.putLikeReady!()
             }else{
                 print(response.result.error)
-                self.putLikeReady?.putLikeFailed()
+                self.delegate?.putLikeFailed!()
             }
         }
     }
@@ -227,21 +216,21 @@ class ContactWithServer{
         let url = ApiManager.putLike1 + String(userId) + ApiManager.putLike2 + String(itemId) + ApiManager.putLike3 + globalHiwuUser.hiwuToken
         Alamofire.request(.DELETE,url).responseJSON{response in
             if(response.result.value != nil){
-                beReady
+                self.delegate?.deleteLikeReady!()
             }else{
-                beFailed
+                self.delegate?.deleteLikeFailed!()
             }
         }
     }
     
-    func postComment(toUserId:Int,itemId:Int,content:String){
+    func postComment(toUserId:Int,itemId:Int,content:String,ready:()){
         let url = ApiManager.postComment1 + String(itemId) + ApiManager.postComment2 + globalHiwuUser.hiwuToken
         Alamofire.request(.POST, url, parameters: ["content": content,
             "toId": toUserId]).responseJSON{response in
                 if(response.result.value != nil){
-                    
+                    self.delegate?.postCommentReady!()
                 }else{
-                   
+                    self.delegate?.postCommentFailed!()
                 }
         }
         
@@ -251,9 +240,33 @@ class ContactWithServer{
         let url = ApiManager.deleteComment1 + String(commentId) + ApiManager.deleteComment2 + globalHiwuUser.hiwuToken
         Alamofire.request(.DELETE, url).responseJSON{response in
             if(response.result.value != nil){
-                beReady
+                self.delegate?.deleteCommentReady!()
             }else{
-                beFailed
+                self.delegate?.deleteCommentFailed!()
+            }
+        }
+    }
+    
+    func weixinLogin(){
+        globalHiwuUser.loginState = 0
+        if(globalHiwuUser.wxcode != ""){
+            let url = ApiManager.wxLogin1 + wxAPPID + ApiManager.wxLogin2 + globalHiwuUser.wxcode
+            Alamofire.request(.POST, url).responseJSON{response in
+                if(response.result.error == nil){
+                    if(response.result.value != nil){
+                        let userInfo = JSON(response.result.value!)
+                        if(userInfo["error"] == nil){
+                            globalHiwuUser.hiwuToken = userInfo["id"].string!
+                            self.defaults.setValue((userInfo["id"]).string!,
+                                forKey: "token")
+                            self.defaults.setDouble(NSDate(timeIntervalSinceNow: (userInfo["ttl"]).double!).timeIntervalSince1970, forKey: "deadline")
+                            self.defaults.setDouble(NSDate(timeIntervalSinceNow: (userInfo["ttl"]).double!/2).timeIntervalSince1970, forKey: "freshline")
+                            self.defaults.setInteger((userInfo["userId"]).int!, forKey: "userId")
+                            self.defaults.synchronize()
+                            self.delegate?.weixinLoginReady!()
+                        }
+                    }
+                }
             }
         }
     }

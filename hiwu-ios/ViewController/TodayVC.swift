@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
-class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,LoginProtocol,GetUserInfoReadyProtocol{
+class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,ServerContactorDelegates{
     
     var contactor = ContactWithServer()
-    let notification = NSNotificationCenter.defaultCenter()
     var isLoading = false
+    let defaults = NSUserDefaults.standardUserDefaults()
+    let notification = NSNotificationCenter.defaultCenter()
     
     @IBOutlet weak var refreshing: UIActivityIndicatorView!
     @IBOutlet weak var todayGalleryDisplay: UITableView!
@@ -21,9 +24,13 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
         let next = self.storyboard?.instantiateViewControllerWithIdentifier("AllTodaysVC") as! AllTodaysVC
         self.navigationController?.pushViewController(next, animated: true)
     }
+    @IBOutlet weak var selfmuseum: UIButton!
     
+    override func viewWillAppear(animated: Bool) {
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+//        print(globalHiwuUser.todayMuseum)
         let bg = UIImage(named: "bg")
         bg?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 0, 0, 0), resizingMode: UIImageResizingMode.Tile)
         self.view.backgroundColor = UIColor(patternImage: bg!)
@@ -32,45 +39,63 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
         todayGalleryDisplay.estimatedRowHeight = 100
         todayGalleryDisplay.rowHeight = UITableViewAutomaticDimension
         todayGalleryDisplay.reloadData()
-        self.contactor.userInfoReady = self
-        self.contactor.loginSuccess = self
+        self.notification.addObserver(self, selector: "weixinValidationSuccess", name: "weixinValidationOK", object: nil)
+        self.contactor.delegate = self
     }
     
-    @IBOutlet weak var selfmuseum: UIButton!
-    
-    override  func viewWillAppear(animated: Bool) {
-        self.notification.addObserver(self, selector: "getSelfMuseumReady", name: "getSelfMuseumReady", object: nil)
-        self.notification.addObserver(self, selector: "getSelfMuseumFailed", name: "getSelfMuseumFailed", object: nil)
-        self.selfmuseum.enabled = true
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        self.notification.removeObserver(self)
-    }
-    
+
     
     func back(){
         self.navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func enterToSelfMuseum(sender: UIButton) {
-        sender.enabled = false
         print("enter to selfmuseum")
         let nowDate = NSDate(timeIntervalSinceNow: 0)
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let deadline = defaults.doubleForKey("deadline")
-        let freshline = defaults.doubleForKey("freshline")
+        let deadline = self.defaults.doubleForKey("deadline")
+        let freshline = self.defaults.doubleForKey("freshline")
         if((deadline == 0)||(freshline == 0||nowDate.timeIntervalSince1970 > deadline)){
-            let login = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as! LoginVC
-            login.superVC = self
-            self.navigationController?.pushViewController(login, animated: true)
-            
+//            无缓存用户信息
+//            let login = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as! LoginVC
+//            login.superVC = self
+//            self.navigationController?.pushViewController(login, animated: true)
+            let desc = JMActionSheetDescription()
+            let collectionItem = JMActionSheetCollectionItem()
+            let item1 = JMCollectionItem()
+            item1.actionName = "微信登录"
+            item1.actionImage = UIImage(named: "logwechat")
+            item1.actionImageContentMode = UIViewContentMode.ScaleAspectFit
+            let item2 = JMCollectionItem()
+            item2.actionName = "微博登录"
+            item2.actionImage = UIImage(named: "logsina")
+            item2.actionImageContentMode = UIViewContentMode.ScaleAspectFit
+            if(WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi()){
+                collectionItem.elements = [item1,item2]
+            }else{
+                collectionItem.elements = [item2]
+            }
+            collectionItem.collectionActionBlock = {id in
+                let actionName = id.actionName
+                switch(actionName){
+                case "微信登录":
+                    self.weixin()
+                default:
+                    self.weibo()
+                }
+                
+            }
+            let cancel = JMActionSheetItem()
+            cancel.title = "取消"
+            desc.cancelItem = cancel
+            cancel.backgroundColor = UIColor.grayColor()
+            print(desc)
+            desc.items = [collectionItem]
+            JMActionSheet.showActionSheetDescription(desc, inViewController: self)
         }else if(nowDate.timeIntervalSince1970 > freshline){
+//            not fresh
             let selfMuseum = self.storyboard?.instantiateViewControllerWithIdentifier("SelfMuseum") as! SelfMuseumVC
-            
             self.navigationController?.pushViewController(selfMuseum, animated: true)
             
-//                self.contactor.getNewTokenWithDefaults()
             }else{
             self.contactor.getUserInfoFirst()
             }
@@ -84,6 +109,8 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        print("museum num = ")
+        print(globalHiwuUser.todayMuseum!.count)
         if(globalHiwuUser.todayMuseum!.count <= 6){
             return globalHiwuUser.todayMuseum!.count + 1
         }else{
@@ -116,6 +143,7 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
             return cell
             
         }else{
+            print(indexPath.row)
             let cell = tableView.dequeueReusableCellWithIdentifier("TodayGalleryCell")! as UITableViewCell
             let collection = cell.viewWithTag(1) as! TodayGalleryCT
             let width = tableView.frame.width
@@ -138,7 +166,6 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        print("sender")
         if(((-scrollView.contentOffset.y > 100))&&(self.isLoading == false)){
             self.isLoading = true
             self.refreshing.startAnimating()
@@ -158,7 +185,6 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
 
     
     func skipToNextAfterSuccess(){
-        
     
     }
     
@@ -168,18 +194,16 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
         
     }
     
-    func getUserInfoReady(){
-        print("ok")
+    func getUserInfoFirstReady(){
         self.contactor.getSelfMuseum()
         
     }
-    func getUserInfoFailed(){
+    func getUserInfoFirstFailed(){
         print("get user info failed")
         }
     
     func getSelfMuseumReady() {
         print("get self museum ready in today")
-        self.notification.removeObserver(self, name: "getSelfMuseumReady", object: nil)
         let selfMuseum = self.storyboard?.instantiateViewControllerWithIdentifier("SelfMuseum") as! SelfMuseumVC
         
         self.navigationController?.pushViewController(selfMuseum, animated: true)
@@ -187,9 +211,39 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     
     func getSelfMuseumFailed() {
         print("get self museum failed")
-        self.notification.removeObserver(self, name: "getSelfMuseumFailed", object: nil)
     }
     
+    func weixin() {
+        //微信的的登录状态码设为1，微博为2，默认为0
+        globalHiwuUser.loginState = 1
+        let req = SendAuthReq()
+        req.scope = "snsapi_userinfo";
+        req.state = "123"
+        WXApi.sendReq(req);
+        
+    }
+    
+    func weibo() {
+        //        globalHiwuUser.loginState = 2
+        //        let req = WBAuthorizeRequest()
+        //        req.scope = "all"
+        //        req.redirectURI = kRedirectURI
+        //        print(WeiboSDK.sendRequest(req))
+    }
+    
+    func weixinValidationSuccess(){
+        globalHiwuUser.loginState = 0
+        contactor.weixinLogin()
+        
+    }
+    
+    func weiboSuccess(){
+        globalHiwuUser.loginState = 0
+    }
+    
+    func weixinLoginReady() {
+        self.contactor.getSelfMuseum()
+    }
 
 
 }

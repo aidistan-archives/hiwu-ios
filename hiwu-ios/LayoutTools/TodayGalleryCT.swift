@@ -11,12 +11,12 @@ import SwiftyJSON
 import Kingfisher
 
 
-class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionViewDelegate,GetItemInfoReadyProtocol{
+class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionViewDelegate,ServerContactorDelegates{
     var superVC:UIViewController?
     var location = 0
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        
+        print(globalHiwuUser.todayMuseum![self.location]["gallery"]["items"])
         let nums = globalHiwuUser.todayMuseum![self.location]["gallery"]["items"].count as Int
         if(nums <= 9){
             return nums
@@ -25,19 +25,27 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
         }
     }
     
-    
-    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
         //取collectionview的可重复使用cell
         let items = globalHiwuUser.todayMuseum![self.location]["gallery"]["items"]
+//        print(items)
+        if(location == 3 && indexPath.row >= 7){
+//            print(indexPath.row)
+            print(items[indexPath.row])
+        }
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("TodayItemCell", forIndexPath: indexPath)
         //取imageview
         let images:UIImageView = cell.viewWithTag(6) as! UIImageView
         //“photos”里面不只一个图片,这里作为博物馆展示，只展示第一张
-        let urlString = (items)[indexPath.row]["photos"][0]["url"].string!
-        //设置imgaeview图片
+        let urlString = (items)[indexPath.row]["photos"][0]["url"].string
         
-        images.kf_setImageWithURL(NSURL(string: urlString + "@!200x200")!)
+        //设置imgaeview图片
+        if(urlString != nil){
+            images.kf_setImageWithURL(NSURL(string: urlString! + "@!200x200")!)
+        }else{
+            images.image = UIImage(named: "bg")
+        }
+        
         return cell
     }
     

@@ -90,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate{
             if resp.errCode == 0{//认证成功
                 globalHiwuUser.wxcode = authResp.code
                 print(authResp.code)
-                NSNotificationCenter.defaultCenter().postNotificationName("weixinLoginOK", object: self)
+                NSNotificationCenter.defaultCenter().postNotificationName("weixinValidationOK", object: self)
                 
             }else{
                 NSLog("认证失败，错误码：%d, 错误描述：%@", resp.errCode, resp.errStr)

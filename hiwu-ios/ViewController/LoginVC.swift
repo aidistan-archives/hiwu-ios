@@ -25,7 +25,7 @@ class LoginVC: UIViewController{
     @IBOutlet weak var registerButton: UIButton!
     @IBAction func loginButton(sender: UIButton) {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "skipToNextAfterSuccess", name: "LoginSuccess", object: nil)
-        self.tmpContactor.getTokenWithPassword(usernameText.text!, password: passwordText.text!)
+//        self.tmpContactor.getTokenWithPassword(usernameText.text!, password: passwordText.text!)
        
     }
     @IBOutlet weak var wxLoginButton: UIButton!
@@ -74,9 +74,9 @@ class LoginVC: UIViewController{
         if WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() {
             self.wxLoginButton.hidden = false
         }
-        if WeiboSDK.isWeiboAppInstalled(){
-            
-        }
+//        if WeiboSDK.isWeiboAppInstalled(){
+//            
+//        }
         registerButton.layer.cornerRadius = registerButton.frame.height/2
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "weixinSuccess", name: "weixinLoginOK", object: nil)
         

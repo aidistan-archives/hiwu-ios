@@ -8,30 +8,19 @@
 
 import UIKit
 
-class LaunchScreen: UIViewController,GetTodayInfoReadyProtocol{
+class LaunchScreen: UIViewController,ServerContactorDelegates{
     
     var contactor = ContactWithServer()
     let notification = NSNotificationCenter.defaultCenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.contactor.delegate = self
         self.contactor.getUserInfoFirst()
         self.contactor.getTodayInfo()
-        
-        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-        dispatch_async(queue, {
-            sleep(5)
-            if(globalHiwuUser.todayMuseum == nil){
-            let alert = UIAlertController(title: "无法获取初始化信息", message: "请检查你的网络", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "知道了", style: UIAlertActionStyle.Default, handler: nil))
-                dispatch_async(dispatch_get_main_queue(), {
-                  self.presentViewController(alert, animated: true, completion: nil)
-                })
-            }
-        })
     }
     
-    func getTodayReady() {
+    func getTodayInfoReady() {
         if(globalHiwuUser.todayMuseum != nil){
             let main = self.storyboard?.instantiateViewControllerWithIdentifier("MainNavigation") as! UINavigationController
             main.navigationBar.barTintColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.8)
@@ -44,11 +33,21 @@ class LaunchScreen: UIViewController,GetTodayInfoReadyProtocol{
         }
     }
     
-    func getTodayFailed() {
+    func getTodayInfoFailed() {
+        let alert = SCLAlertView()
+        alert.showWarning(self, title: "初始化失败", subTitle: "请检查你的网络", closeButtonTitle: "确定", duration: 0)
         
     }
     override func prefersStatusBarHidden() -> Bool {
         return  true
+    }
+    
+    func getUserInfoFirstReady() {
+        
+    }
+    
+    func getUserInfoFailed() {
+        
     }
     
 
@@ -62,8 +61,7 @@ class LaunchScreen: UIViewController,GetTodayInfoReadyProtocol{
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.notification.addObserver(self, selector: "getTodayReady", name: "getTodayInfoReady", object: nil)
-        self.notification.addObserver(self, selector: "getTodayFailed", name: "getTodayInfoFailed", object: nil)
+   
     }
     
 

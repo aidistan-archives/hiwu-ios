@@ -19,5 +19,8 @@
 #import "SCLAlertView.h"
 #import "UIScrollView+EmptyDataSet.h"
 #import "JGProgressHUD.h"
+#import "JMActionSheet.h"
+#import "JGActionSheet.h"
+#import "JMCollectionItem.h"
 
 #endif /* WechatDemo_Bridging_Header_h */
