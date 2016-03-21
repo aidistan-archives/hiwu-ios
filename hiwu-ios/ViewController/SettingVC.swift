@@ -44,7 +44,7 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
         // #warning Incomplete implementation, return the number of rows
         switch section {
         case 0:
-            return 3
+            return 2
         default:
             return 1
         }
@@ -62,7 +62,8 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
                 userAvatar.kf_setImageWithURL(NSURL(string: self.userInfo!["avatar"].string!)!, placeholderImage: UIImage(named: "头像"))
                 userAvatar.layer.cornerRadius = userAvatar.frame.height/2
                 userAvatar.clipsToBounds = true
-            case 1:
+                
+            default:
                 cell = tableView.dequeueReusableCellWithIdentifier("Name")
                 let name = cell?.viewWithTag(1) as! UILabel
                 if(self.userInfo!["nickname"].string! != ""){
@@ -70,15 +71,13 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
                 }else{
                     name.text = "未命名"
                 }
-                
-            default:
-                cell = tableView.dequeueReusableCellWithIdentifier("Description")
-                let description = cell?.viewWithTag(1) as! UILabel
-                if(self.userInfo!["description"].string! != ""){
-                    description.text = self.userInfo!["description"].string!
-                }else{
-                    description.text = "未添加描述"
-                }
+//                cell = tableView.dequeueReusableCellWithIdentifier("Description")
+//                let description = cell?.viewWithTag(1) as! UILabel
+//                if(self.userInfo!["description"].string! != ""){
+//                    description.text = self.userInfo!["description"].string!
+//                }else{
+//                    description.text = "未添加描述"
+//                }
             }
 //        case 1:
 //            cell = tableView.dequeueReusableCellWithIdentifier("Account")

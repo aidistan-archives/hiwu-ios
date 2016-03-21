@@ -43,19 +43,19 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     }
     
     @IBOutlet weak var ensureCommentButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print(self.itemId)
         self.getItemInfo()
         self.waiting.startAnimating()
         self.contactor.delegate = self
-        self.navigationController?.fd_prefersNavigationBarHidden = true
         self.addComment.delegate = self
         self.itemDetailList.estimatedRowHeight = 60
         self.itemDetailList.rowHeight = UITableViewAutomaticDimension
         itemDetailList.dataSource = self
         itemDetailList.delegate = self
-        itemDetailList.reloadData()
         let gest = UITapGestureRecognizer(target: self, action: "endTheEditingOfTextView")
         gest.cancelsTouchesInView = false
         self.view.addGestureRecognizer(gest)
@@ -76,7 +76,10 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                 if(self.item!["photos"][0]["url"].string! == ""){
                     itemImage.image = UIImage(named: "add")
                 }else{
-                    itemImage.kf_setImageWithURL(NSURL(string: self.item!["photos"][0]["url"].string!)!)
+//                    itemImage.kf_setImageWithURL(NSURL(string: self.item!["photos"][0]["url"].string!)!)
+                    itemImage.kf_setImageWithURL(NSURL(string: self.item!["photos"][0]["url"].string!)!, placeholderImage: nil, optionsInfo: nil, completionHandler: { (_) in
+                        self.waiting.stopAnimating()
+                    })
                 }
                 let itemTime = cell?.viewWithTag(2) as! UILabel
                 itemTime.text = String(self.item!["date_y"].int!)
@@ -195,7 +198,8 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     
     func getItemInfo(){
         if(isMine!){
-            self.getSelfItemInfo(self.itemId!)
+//            self.getSelfItemInfo(self.itemId!)
+            self.getPublicItemInfo(self.itemId!)
             
         }else{
             self.getPublicItemInfo(self.itemId!)
@@ -254,13 +258,30 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
         
     }
     
-    func getSelfItemInfo(itemId: Int){
-        let url = ApiManager.getSelfItem1 + String(itemId) + ApiManager.getSelfItem2 + globalHiwuUser.hiwuToken
+//    func getSelfItemInfo(itemId: Int){
+//        let url = ApiManager.getSelfItem1 + String(itemId) + ApiManager.getSelfItem2 + globalHiwuUser.hiwuToken
+//        Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
+//            if(response.result.value != nil){
+//                self.item = JSON(response.result.value!)
+//                self.cells = 2 + self.item!["comments"].count
+//                self.waiting.stopAnimating()
+//                self.itemDetailList.reloadData()
+//                
+//            }else{
+//                
+//            }
+//        }
+//        
+//    }
+    
+    func getPublicItemInfo(itemId: Int){
+        let url = ApiManager.getPublicItem1 + String(itemId) + ApiManager.getPublicItem2 + globalHiwuUser.hiwuToken
+        print(url)
         Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
             if(response.result.value != nil){
                 self.item = JSON(response.result.value!)
                 self.cells = 2 + self.item!["comments"].count
-                self.waiting.stopAnimating()
+//                self.waiting.stopAnimating()
                 self.itemDetailList.reloadData()
                 
             }else{
@@ -270,21 +291,8 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
         
     }
     
-    func getPublicItemInfo(itemId: Int){
-        let url = ApiManager.getPublicItem1 + String(itemId) + ApiManager.getPublicItem2 + globalHiwuUser.hiwuToken
-        print(url)
-        Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
-            if(response.result.value != nil){
-                self.item = JSON(response.result.value!)
-                self.cells = 2 + self.item!["comments"].count
-                self.waiting.stopAnimating()
-                self.itemDetailList.reloadData()
-                
-            }else{
-                
-            }
-        }
-        
+    override func viewWillAppear(animated: Bool) {
+        itemDetailList.reloadData()
     }
 
     

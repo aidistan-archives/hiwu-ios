@@ -11,7 +11,6 @@ import UIKit
 class LaunchScreen: UIViewController,ServerContactorDelegates{
     
     var contactor = ContactWithServer()
-    let notification = NSNotificationCenter.defaultCenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +24,7 @@ class LaunchScreen: UIViewController,ServerContactorDelegates{
             let main = self.storyboard?.instantiateViewControllerWithIdentifier("MainNavigation") as! UINavigationController
             main.navigationBar.barTintColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.8)
             main.navigationBar.bounds = CGRect(x: 0, y: 0, width: 600, height: 48)
+//            main.fd_interactivePopDisabled = true
             self.presentViewController(main, animated: true, completion: {
             })
                   }
@@ -57,7 +57,6 @@ class LaunchScreen: UIViewController,ServerContactorDelegates{
     }
     
     override func viewWillDisappear(animated: Bool) {
-        self.notification.removeObserver(self)
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -45,6 +45,7 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(globalHiwuUser.selfMuseum)
         selfGalleryDisplay.delegate = self
         selfGalleryDisplay.dataSource = self
         bg?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 0, 0, 0), resizingMode: UIImageResizingMode.Tile)
@@ -109,6 +110,8 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             if(selfMuseum!["description"].string != nil){
                 description.text = selfMuseum!["description"].string!
             }
+            let message = cell.viewWithTag(4) as! UIButton
+            message.addTarget(self, action: "toNotification", forControlEvents: UIControlEvents.TouchUpInside)
             cell.backgroundColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.8)
             return cell
         }else{
@@ -189,6 +192,11 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     func getSelfMuseumFailed(){
         
+    }
+    
+    func toNotification(){
+        let notification = self.storyboard?.instantiateViewControllerWithIdentifier("NotificationVC") as! NotificationVC
+        self.navigationController?.pushViewController(notification, animated: true)
     }
 
 

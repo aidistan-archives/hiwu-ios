@@ -16,7 +16,6 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
     var location = 0
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        print(globalHiwuUser.todayMuseum![self.location]["gallery"]["items"])
         let nums = globalHiwuUser.todayMuseum![self.location]["gallery"]["items"].count as Int
         if(nums <= 9){
             return nums
@@ -31,7 +30,6 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
 //        print(items)
         if(location == 3 && indexPath.row >= 7){
 //            print(indexPath.row)
-            print(items[indexPath.row])
         }
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("TodayItemCell", forIndexPath: indexPath)
         //取imageview

@@ -30,7 +30,6 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print(globalHiwuUser.todayMuseum)
         let bg = UIImage(named: "bg")
         bg?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 0, 0, 0), resizingMode: UIImageResizingMode.Tile)
         self.view.backgroundColor = UIColor(patternImage: bg!)
@@ -40,6 +39,7 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
         todayGalleryDisplay.rowHeight = UITableViewAutomaticDimension
         todayGalleryDisplay.reloadData()
         self.notification.addObserver(self, selector: "weixinValidationSuccess", name: "weixinValidationOK", object: nil)
+        self.notification.addObserver(self, selector: "weiboValidationSuccess", name: "weiboValidationOK", object: nil)
         self.contactor.delegate = self
     }
     
@@ -86,9 +86,8 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
             }
             let cancel = JMActionSheetItem()
             cancel.title = "取消"
+            cancel.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
             desc.cancelItem = cancel
-            cancel.backgroundColor = UIColor.grayColor()
-            print(desc)
             desc.items = [collectionItem]
             JMActionSheet.showActionSheetDescription(desc, inViewController: self)
         }else if(nowDate.timeIntervalSince1970 > freshline){
@@ -109,8 +108,6 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        print("museum num = ")
-        print(globalHiwuUser.todayMuseum!.count)
         if(globalHiwuUser.todayMuseum!.count <= 6){
             return globalHiwuUser.todayMuseum!.count + 1
         }else{
@@ -121,7 +118,7 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
         if(indexPath.row == 0){
             return 130
         }else{
-            let num = globalHiwuUser.todayMuseum![indexPath.row]["gallery"]["items"].count
+            let num = globalHiwuUser.todayMuseum![indexPath.row-1]["gallery"]["items"].count
             if(num>=7){
                 return ((tableView.frame.width * 7/6) + 20)
             }else if(num>=4 && num<=6){
@@ -143,7 +140,6 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
             return cell
             
         }else{
-            print(indexPath.row)
             let cell = tableView.dequeueReusableCellWithIdentifier("TodayGalleryCell")! as UITableViewCell
             let collection = cell.viewWithTag(1) as! TodayGalleryCT
             let width = tableView.frame.width
@@ -155,7 +151,7 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
             layout.headerReferenceSize = CGSizeMake(width, width/6)
             layout.footerReferenceSize = CGSizeMake(0, 0)
             collection.collectionViewLayout = layout
-            collection.location = indexPath.row
+            collection.location = indexPath.row - 1
             collection.superVC = self
             collection.delegate = collection
             collection.dataSource = collection
@@ -224,24 +220,29 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     }
     
     func weibo() {
-        //        globalHiwuUser.loginState = 2
-        //        let req = WBAuthorizeRequest()
-        //        req.scope = "all"
-        //        req.redirectURI = kRedirectURI
-        //        print(WeiboSDK.sendRequest(req))
+        globalHiwuUser.loginState = 2
+        let req = WBAuthorizeRequest()
+        req.scope = "all"
+        req.redirectURI = kRedirectURI
     }
     
     func weixinValidationSuccess(){
-        globalHiwuUser.loginState = 0
         contactor.weixinLogin()
         
     }
     
-    func weiboSuccess(){
-        globalHiwuUser.loginState = 0
+    func weiboValidationSuccess(){
+        contactor.weiboLogin({() in
+            self.weiboLoginReady()
+        })
+        
     }
     
     func weixinLoginReady() {
+        self.contactor.getSelfMuseum()
+    }
+    
+    func weiboLoginReady() {
         self.contactor.getSelfMuseum()
     }
 

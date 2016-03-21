@@ -6,6 +6,8 @@
 //  Copyright © 2016年 Shanghai Hiwu Information Technology Co., Ltd. All rights reserved.
 //
 
+import SwiftyJSON
+
 @objc public protocol ServerContactorDelegates{
     optional func getUserInfoReady()
     optional func getUserInfoFailed()
@@ -39,6 +41,8 @@
     optional func getSelfMuseumFailed()
     optional func weixinLoginReady()
     optional func weixinLoginFailed()
+    optional func getNotificationReady()
+    optional func getNotificationFailed()
 //    optional func Ready()
 //    optional func Failed()
 }

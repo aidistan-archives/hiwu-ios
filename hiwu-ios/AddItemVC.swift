@@ -15,6 +15,7 @@ import Alamofire
 class AddItemVC: UIViewController,UITextViewDelegate,UITextFieldDelegate{
     var image:UIImage?
     var galleryId = 0
+    var superGallery:GalleryDetailVC?
     
     @IBOutlet weak var itemImage: UIImageView!
     
@@ -179,7 +180,4 @@ class AddItemVC: UIViewController,UITextViewDelegate,UITextFieldDelegate{
                 }
         })
     }
-
-    
-    
 }

@@ -114,6 +114,7 @@ class AllTodaysVC: UITableViewController {
         galleryDetail.isMine = false
         self.navigationController?.pushViewController(galleryDetail, animated: true)
         tableView.cellForRowAtIndexPath(indexPath)?.selected = false
+        print(indexPath.row)
     }
     
 

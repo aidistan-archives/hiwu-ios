@@ -9,10 +9,10 @@
 #import "JMActionSheetCollectionItemCell.h"
 #import "JMActionSheetCollectionItem.h"
 
-static const CGFloat JMActionSheetCollectionPadding = 0.0f;
-static const CGFloat JMActionSheetCollectionTopSpacing = 0.0f;
-static const CGFloat JMActionSheetCollectionImageHeight = 60.0f;
-static const CGFloat JMActionSheetCollectionLabelHeight = 21.0f;
+static const CGFloat JMActionSheetCollectionPadding = 7.5f;
+static const CGFloat JMActionSheetCollectionTopSpacing = 2.0f;
+static const CGFloat JMActionSheetCollectionImageHeight = 70.0f;
+static const CGFloat JMActionSheetCollectionLabelHeight = 25.0f;
 
 @interface JMActionSheetCollectionItemCell ()
 

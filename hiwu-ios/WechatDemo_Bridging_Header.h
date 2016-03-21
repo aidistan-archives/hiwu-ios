@@ -14,7 +14,6 @@
 #import "UINavigationController+FDFullscreenPopGesture.h"
 #import "BRPlaceholderTextView.h"
 #import "MBProgressHUD.h"
-#import "WeiboSDK.h"
 #import "LCActionSheet.h"
 #import "SCLAlertView.h"
 #import "UIScrollView+EmptyDataSet.h"
@@ -22,5 +21,6 @@
 #import "JMActionSheet.h"
 #import "JGActionSheet.h"
 #import "JMCollectionItem.h"
+#import "WeiboSDK.H"
 
 #endif /* WechatDemo_Bridging_Header_h */

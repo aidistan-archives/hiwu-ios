@@ -49,6 +49,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     @IBOutlet weak var addItemButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.contactor.delegate = self
         self.navigationController?.navigationBarHidden = false
         self.galleryDetails.delegate = self
         self.galleryDetails.dataSource = self
@@ -69,8 +70,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.notification.addObserver(self, selector: "getSelfMuseumReady", name: "getSelfMuseumReady", object: nil)
-        self.notification.addObserver(self, selector: "getTodayReady", name: "getTodayInfoReady", object: nil)
+        self.galleryDetails.reloadData()
 
     }
     override func viewWillDisappear(animated: Bool) {
@@ -159,32 +159,21 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         let itemIdLabel = sender.view?.viewWithTag(2) as! UILabel
         let itemId = Int(itemIdLabel.text!)
         if(isMine){
-            contactor.getSelfItemInfo(itemId!)
+//            contactor.getSelfItemInfo(itemId!)
+            contactor.getPublicItemInfo(itemId!)
         }else{
             contactor.getPublicItemInfo(itemId!)
         }
     }
     
-    func getItemInfoReady() {
+    func getPublicItemInfoReady() {
         let itemDetail = self.storyboard?.instantiateViewControllerWithIdentifier("ItemDetailVC") as! ItemDetailVC
-        itemDetail.item = globalHiwuUser.item
+//        itemDetail.item = globalHiwuUser.item
         itemDetail.isMine = self.isMine
         itemDetail.itemId = globalHiwuUser.item!["id"].int!
         self.navigationController?.pushViewController(itemDetail, animated: true)
     }
     
-    func getItemInfoFailed() {
-        
-    }
-    
-    func getSelfMuseumReady() {
-        self.notification.removeObserver(self, name: "getSelfMuseumReady", object: nil)
-        let ga = idFinder.findFromGallery(self.gallery!["id"].int!, gallery: globalHiwuUser.selfMuseum!["galleries"])
-        if(ga != nil){
-            self.gallery = ga
-        }
-        self.galleryDetails.reloadData()
-    }
     
     func getSelfMuseumFailed() {
         
@@ -210,6 +199,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
             let originImage = info[UIImagePickerControllerOriginalImage] as? UIImage
             UIImageWriteToSavedPhotosAlbum(originImage!, nil, nil, nil)
         }
+        toAdd.superGallery = self
         picker.dismissViewControllerAnimated(true, completion: nil)
         self.navigationController?.pushViewController(toAdd, animated: true)
     

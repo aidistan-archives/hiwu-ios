@@ -100,18 +100,18 @@ class ContactWithServer{
         
     }
     
-    func getSelfItemInfo(itemId: Int){
-        let url = ApiManager.getSelfItem1 + String(itemId) + ApiManager.getSelfItem2 + globalHiwuUser.hiwuToken
-        Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
-            if(response.result.value != nil){
-                globalHiwuUser.item = JSON(response.result.value!)
-                self.delegate?.getSelfItemInfoReady!()
-            }else{
-                self.delegate?.getSelfItemInfoFailed!()
-            }
-        }
-        
-    }
+//    func getSelfItemInfo(itemId: Int){
+//        let url = ApiManager.getSelfItem1 + String(itemId) + ApiManager.getSelfItem2 + globalHiwuUser.hiwuToken
+//        Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
+//            if(response.result.value != nil){
+//                globalHiwuUser.item = JSON(response.result.value!)
+//                self.delegate?.getSelfItemInfoReady!()
+//            }else{
+//                self.delegate?.getSelfItemInfoFailed!()
+//            }
+//        }
+//        
+//    }
     
     func getPublicItemInfo(itemId: Int){
         let url = ApiManager.getPublicItem1 + String(itemId) + ApiManager.getPublicItem2 + globalHiwuUser.hiwuToken
@@ -268,6 +268,40 @@ class ContactWithServer{
                     }
                 }
             }
+        }
+    }
+    
+    func weiboLogin(complete:()->()){
+        globalHiwuUser.loginState = 0
+        let url = ApiManager.wbLogin1 + wbAPPKEY + ApiManager.wbLogin2 + globalHiwuUser.wbcode
+        Alamofire.request(.POST, url).responseJSON{response in
+            if(response.result.value != nil && response.result.error == nil){
+                let value = JSON(response.result.value!)
+                print(value)
+                print(response.result.error)
+//                globalHiwuUser.userId = value["id"]
+//                globalHiwuUser.hiwuToken = value
+            }
+        }
+    }
+    
+    func getNotification(userId:Int,complete:(note:JSON)->()){
+        let url = ApiManager.getNotification1 + String(userId) + ApiManager.getNotification2 + globalHiwuUser.hiwuToken
+        Alamofire.request(.GET, url).responseJSON{response in
+            if(response.result.value != nil && response.result.error == nil){
+                complete(note: JSON(response.result.value!))
+            }
+        
+        }
+    }
+    
+    func deleteNotification(userId:Int,complete:(()->())?){
+        let url = ApiManager.deleteNotification1 + String(userId) + ApiManager.deleteNotification2 + globalHiwuUser.hiwuToken
+        Alamofire.request(.DELETE, url).responseJSON{response in
+            if(response.result.isSuccess){
+                complete!()
+            }
+            
         }
     }
 

@@ -40,7 +40,6 @@ class SelfGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVie
         return cell
     }
     
-    
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView{
         let cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "SelfGalleryTitle", forIndexPath: indexPath)
         let galleryNameLabel = cell.viewWithTag(1) as! UILabel

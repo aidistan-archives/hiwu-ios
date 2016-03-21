@@ -19,15 +19,15 @@
 #import "JMActionSheetCollectionImageCell.h"
 
 static const CGFloat JMActionSheetPadding               = 1.0f;
-static const CGFloat JMActionSheetInterlineSpacing      = 1.0f;
+static const CGFloat JMActionSheetInterlineSpacing      = 0.0f;
 static const CGFloat JMActionSheetRoundedCornerRadius   = 0.0f;
 
-static const CGFloat JMActionSheetButtonHeight          = 60.0f;
+static const CGFloat JMActionSheetButtonHeight          = 50.0f;
 static const CGFloat JMActionSheetImageViewHeight       = 150.0f;
 static const CGFloat JMActionSheetPickerViewHeight      = 216.0f;
 
-static const CGFloat JMActionSheetCollectionViewHeight  = 130.0f;
-static const CGFloat JMActionSheetCollectionViewWidth   = 60.0f;
+static const CGFloat JMActionSheetCollectionViewHeight  = 120.0f;
+static const CGFloat JMActionSheetCollectionViewWidth   = 80.0f;
 
 #pragma mark - UIView+RoundCorners
 
