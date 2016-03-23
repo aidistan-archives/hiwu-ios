@@ -18,13 +18,17 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var itemSum = 0
     let bg = UIImage(named: "bg")
     
-    @IBAction func backButton(sender: UIButton) {
+    
+    @IBAction func backButtonClicked(sender: UIButton) {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    @IBAction func shareButtonClicked(sender: UIButton) {
+        self.toSetting()
+    }
     
     @IBOutlet weak var selfGalleryDisplay: UITableView!
-    @IBAction func toSettingButton(sender: UIButton) {
+    func toSetting() {
         let setting = self.storyboard?.instantiateViewControllerWithIdentifier("SettingVC") as! SettingVC
         setting.userId = globalHiwuUser.userId
         let url = ApiManager.getSelfUserInfo1 + String(setting.userId) + ApiManager.getSelfUserInfo2 + globalHiwuUser.hiwuToken

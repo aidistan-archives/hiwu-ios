@@ -52,11 +52,11 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
         self.waiting.startAnimating()
         self.contactor.delegate = self
         self.addComment.delegate = self
+        self.itemDetailList.dataSource = self
+        self.itemDetailList.delegate = self
         self.itemDetailList.estimatedRowHeight = 60
         self.itemDetailList.rowHeight = UITableViewAutomaticDimension
-        itemDetailList.dataSource = self
-        itemDetailList.delegate = self
-        let gest = UITapGestureRecognizer(target: self, action: "endTheEditingOfTextView")
+        let gest = UITapGestureRecognizer(target: self, action: #selector(ItemDetailVC.endTheEditingOfTextView))
         gest.cancelsTouchesInView = false
         self.view.addGestureRecognizer(gest)
         print("item info")
@@ -73,13 +73,14 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
             case 0:
                 let cell = tableView.dequeueReusableCellWithIdentifier("ItemImage")
                 let itemImage = cell?.viewWithTag(1) as! UIImageView
-                if(self.item!["photos"][0]["url"].string! == ""){
-                    itemImage.image = UIImage(named: "add")
+                if(self.item!["photos"][0]["url"] == nil){
+                    itemImage.image = UIImage(named: "bg")
+                     self.waiting.stopAnimating()
                 }else{
 //                    itemImage.kf_setImageWithURL(NSURL(string: self.item!["photos"][0]["url"].string!)!)
                     itemImage.kf_setImageWithURL(NSURL(string: self.item!["photos"][0]["url"].string!)!, placeholderImage: nil, optionsInfo: nil, completionHandler: { (_) in
-                        self.waiting.stopAnimating()
-                    })
+                            self.waiting.stopAnimating()
+                        })
                 }
                 let itemTime = cell?.viewWithTag(2) as! UILabel
                 itemTime.text = String(self.item!["date_y"].int!)
@@ -282,6 +283,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                 self.item = JSON(response.result.value!)
                 self.cells = 2 + self.item!["comments"].count
 //                self.waiting.stopAnimating()
+
                 self.itemDetailList.reloadData()
                 
             }else{

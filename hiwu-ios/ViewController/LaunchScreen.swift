@@ -46,7 +46,7 @@ class LaunchScreen: UIViewController,ServerContactorDelegates{
         
     }
     
-    func getUserInfoFailed() {
+    func getUserInfoFirstFailed() {
         
     }
     

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Sf6-Jt-osR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Sf6-Jt-osR">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -182,7 +182,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Z2-ky-Ggy">
-                                                    <rect key="frame" x="394" y="83" width="12" height="30"/>
+                                                    <rect key="frame" x="536" y="83" width="36" height="30"/>
                                                     <state key="normal" image="message"/>
                                                 </button>
                                             </subviews>
@@ -197,7 +197,7 @@
                                                 <constraint firstItem="UuI-vd-05r" firstAttribute="bottom" secondItem="cF1-T9-6cq" secondAttribute="bottom" id="U49-hX-Jet"/>
                                                 <constraint firstItem="WDt-48-hbs" firstAttribute="leading" secondItem="cF1-T9-6cq" secondAttribute="trailing" constant="21" id="aZc-f0-gmD"/>
                                                 <constraint firstItem="UuI-vd-05r" firstAttribute="leading" secondItem="WDt-48-hbs" secondAttribute="leading" id="ahX-UH-nIY"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="7Z2-ky-Ggy" secondAttribute="trailing" constant="186" id="ctm-Qo-Ck8"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="7Z2-ky-Ggy" secondAttribute="trailing" constant="20" id="ctm-Qo-Ck8"/>
                                                 <constraint firstItem="UuI-vd-05r" firstAttribute="top" secondItem="cF1-T9-6cq" secondAttribute="bottom" constant="14" id="do8-Df-Cc1"/>
                                                 <constraint firstItem="WDt-48-hbs" firstAttribute="top" secondItem="jMG-xy-T1a" secondAttribute="topMargin" constant="22" id="iJt-j4-3QP"/>
                                                 <constraint firstItem="UuI-vd-05r" firstAttribute="leading" secondItem="cF1-T9-6cq" secondAttribute="leading" id="uqZ-yd-MdU"/>
@@ -330,12 +330,12 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9St-qv-W3X">
-                                <rect key="frame" x="20" y="500" width="60" height="60"/>
+                                <rect key="frame" x="270" y="500" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="2oC-jt-NBc"/>
                                     <constraint firstAttribute="width" constant="60" id="VKk-ej-nGf"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="add"/>
+                                <state key="normal" image="addmuseum "/>
                                 <connections>
                                     <action selector="addGallery:" destination="cfU-wy-JLm" eventType="touchUpInside" id="N3q-T1-l6R"/>
                                 </connections>
@@ -350,41 +350,43 @@
                             <constraint firstItem="R3o-TH-z11" firstAttribute="top" secondItem="hPo-Ic-qPh" secondAttribute="bottom" id="dEA-ZM-BrO"/>
                             <constraint firstItem="hPo-Ic-qPh" firstAttribute="leading" secondItem="cYH-3z-jlV" secondAttribute="leadingMargin" constant="-20" id="jVI-Tu-4Oc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hPo-Ic-qPh" secondAttribute="trailing" constant="-20" id="qpb-JN-hSj"/>
+                            <constraint firstItem="9St-qv-W3X" firstAttribute="centerX" secondItem="hPo-Ic-qPh" secondAttribute="centerX" id="uJ3-Bx-na6"/>
                             <constraint firstItem="hPo-Ic-qPh" firstAttribute="top" secondItem="BQo-Yp-VSg" secondAttribute="bottom" id="wY6-h0-iha"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="Peb-ha-C4m"/>
+                                <exclude reference="Q7r-08-sPV"/>
                                 <exclude reference="qpb-JN-hSj"/>
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="yn5-K5-g5y">
+                    <navigationItem key="navigationItem" id="xJD-G9-XQJ">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="gm6-Kq-9uR">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vPf-sb-PRa">
-                                <rect key="frame" x="20" y="10" width="24" height="24"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="ruF-yf-T0k">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fg5-JE-V5k">
+                                <rect key="frame" x="20" y="10" width="78" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="back"/>
                                 <connections>
-                                    <action selector="backButton:" destination="cfU-wy-JLm" eventType="touchUpInside" id="PaG-c3-1ZY"/>
+                                    <action selector="backButtonClicked:" destination="cfU-wy-JLm" eventType="touchUpInside" id="7bI-4n-TB6"/>
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <textField key="titleView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="我的博物馆" textAlignment="center" minimumFontSize="17" id="oXa-16-4U5">
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="我的博物馆" textAlignment="center" minimumFontSize="17" id="zCd-mp-zqg">
                             <rect key="frame" x="180" y="7" width="240" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="textColor" red="0.98431372549999996" green="0.81176470590000005" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="HLV-S0-Uzh">
-                            <button key="customView" opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4j4-Dd-6dR">
-                                <rect key="frame" x="556" y="10" width="24" height="24"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Mtm-Mf-ZAt">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="IBQ-DL-LEc">
+                                <rect key="frame" x="514" y="11" width="66" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="set"/>
+                                <state key="normal" image="more"/>
                                 <connections>
-                                    <action selector="toSettingButton:" destination="cfU-wy-JLm" eventType="touchUpInside" id="1tY-GP-fZn"/>
+                                    <action selector="shareButtonClicked:" destination="cfU-wy-JLm" eventType="touchUpInside" id="NGb-Yo-gAY"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -622,7 +624,6 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d79-tg-7xn">
                                                     <rect key="frame" x="260" y="8" width="80" height="80"/>
-                                                    <color key="backgroundColor" red="0.80392156862745101" green="0.792156862745098" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="d79-tg-7xn" secondAttribute="height" multiplier="1:1" id="eXU-cZ-Qix"/>
                                                         <constraint firstAttribute="width" constant="80" id="nec-3S-Hfr"/>
@@ -2435,15 +2436,16 @@
     <resources>
         <image name="LP" width="640" height="1136"/>
         <image name="add" width="112" height="112"/>
+        <image name="addmuseum " width="96" height="96"/>
         <image name="back" width="24" height="24"/>
         <image name="close" width="64" height="64"/>
         <image name="comment" width="20" height="20"/>
         <image name="history" width="12" height="12"/>
         <image name="hiwu" width="64" height="64"/>
         <image name="iconfont-comment" width="64" height="64"/>
-        <image name="message" width="12" height="12"/>
+        <image name="message" width="36" height="36"/>
+        <image name="more" width="12" height="12"/>
         <image name="nothing" width="200" height="160"/>
-        <image name="set" width="64" height="64"/>
         <image name="share" width="12" height="12"/>
         <image name="title" width="211" height="40"/>
         <image name="舌苔" width="358" height="588"/>

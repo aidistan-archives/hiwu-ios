@@ -93,11 +93,14 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         if(indexPath.row == 0){
             let cell = tableView.dequeueReusableCellWithIdentifier("GalleryTitle")! as UITableViewCell
+            print(self.gallery!["hiwuUser"])
             let ownerAvatar = cell.viewWithTag(1) as! UIImageView
-            if(self.gallery!["hiwuUser"]["avatar"].string! != ""){
-            ownerAvatar.kf_setImageWithURL(NSURL(string: self.gallery!["hiwuUser"]["avatar"].string!)!)
+            if(self.gallery!["hiwuUser"]["avatar"].string != ""){
+            ownerAvatar.kf_setImageWithURL(NSURL(string: self.gallery!["hiwuUser"]["avatar"].string!)!, placeholderImage: UIImage(named: "头像"))
                 ownerAvatar.layer.cornerRadius = ownerAvatar.frame.size.width/2
                 ownerAvatar.clipsToBounds = true
+            }else{
+                ownerAvatar.image = UIImage(named: "头像")
             }
             let galleryName = cell.viewWithTag(2) as! UILabel
             galleryName.text = self.gallery!["hiwuUser"]["nickname"].string! + " ⎡" + self.gallery!["name"].string! + " ⎦"
@@ -110,7 +113,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
             let itemId = cell.viewWithTag(2) as! UILabel
             itemId.text = String(gallery!["items"][indexPath.row-1]["id"])
             let itemPic = cell.viewWithTag(10) as! UIImageView
-            if(self.gallery!["items"][indexPath.row-1]["photos"][0]["url"].string != nil){
+            if(self.gallery!["items"][indexPath.row-1]["photos"][0]["url"] != nil){
                 itemPic.kf_setImageWithURL(NSURL(string: self.gallery!["items"][indexPath.row-1]["photos"][0]["url"].string! + "@!200x200")!)}else{
                 itemPic.image = UIImage(named: "add")
             }
