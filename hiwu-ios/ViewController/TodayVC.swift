@@ -225,7 +225,6 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
         req.scope = "all"
         req.redirectURI = kRedirectURI
         WeiboSDK.sendRequest(req)
-//        WeiboSDK.logOutWithToken(<#T##token: String!##String!#>, delegate: <#T##WBHttpRequestDelegate!#>, withTag: <#T##String!#>)
     }
     
     func weixinValidationSuccess(){

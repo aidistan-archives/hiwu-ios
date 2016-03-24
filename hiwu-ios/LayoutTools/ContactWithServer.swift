@@ -257,6 +257,7 @@ class ContactWithServer{
                         let userInfo = JSON(response.result.value!)
                         if(userInfo["error"] == nil){
                             globalHiwuUser.hiwuToken = userInfo["id"].string!
+                            globalHiwuUser.userId = userInfo["userId"].int!
                             self.defaults.setValue((userInfo["id"]).string!,
                                 forKey: "token")
                             self.defaults.setDouble(NSDate(timeIntervalSinceNow: (userInfo["ttl"]).double!).timeIntervalSince1970, forKey: "deadline")
@@ -273,16 +274,28 @@ class ContactWithServer{
     
     func weiboLogin(complete:()->()){
         globalHiwuUser.loginState = 0
-        let url = ApiManager.wbLogin1 + wbAPPKEY + ApiManager.wbLogin2 + globalHiwuUser.wbcode
-        Alamofire.request(.POST, url).responseJSON{response in
-            if(response.result.value != nil && response.result.error == nil){
-                let value = JSON(response.result.value!)
-                print(value)
-                print(response.result.error)
-//                globalHiwuUser.userId = value["id"]
-//                globalHiwuUser.hiwuToken = value
+        if(globalHiwuUser.wbcode != ""){
+             let url = ApiManager.wbLogin1 + wbAPPKEY + ApiManager.wbLogin2 + "skipped"
+            Alamofire.request(.POST, url, parameters: ["uid":globalHiwuUser.wbuid , "access_token": globalHiwuUser.wbcode]).responseJSON{response in
+                if(response.result.error == nil){
+                    if(response.result.value != nil){
+                        let userInfo = JSON(response.result.value!)
+                        if(userInfo["id"] != nil){
+                            globalHiwuUser.userId = userInfo["userId"].int!
+                            globalHiwuUser.hiwuToken = userInfo["id"].string!
+                            self.defaults.setValue((userInfo["id"]).string!,
+                                forKey: "token")
+                            self.defaults.setDouble(NSDate(timeIntervalSinceNow: (userInfo["ttl"]).double!).timeIntervalSince1970, forKey: "deadline")
+                            self.defaults.setDouble(NSDate(timeIntervalSinceNow: (userInfo["ttl"]).double!/2).timeIntervalSince1970, forKey: "freshline")
+                            self.defaults.setInteger((userInfo["userId"]).int!, forKey: "userId")
+                            self.defaults.synchronize()
+                            complete()
+                        }
+                    }
+                }
             }
         }
+        
     }
     
     func getNotification(userId:Int,complete:(note:JSON)->()){

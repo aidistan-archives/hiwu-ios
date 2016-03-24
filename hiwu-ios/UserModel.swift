@@ -19,6 +19,7 @@ class UserModel: AnyObject{
     var loginState = 0
     var wxcode = ""
     var wbcode = ""
+    var wbuid = ""
     init(){
         
     }

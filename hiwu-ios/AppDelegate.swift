@@ -109,9 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate,WeiboSDKDele
             let resp = response as! WBAuthorizeResponse
             if(resp.statusCode == WeiboSDKResponseStatusCode.Success){
                 globalHiwuUser.wbcode = resp.accessToken
-                print(resp.accessToken)
-                print(resp.refreshToken)
-                print(resp.userID)
+                globalHiwuUser.wbuid = resp.userID
                 NSNotificationCenter.defaultCenter().postNotificationName("weiboValidationOK", object: self)
             }
         }else if(response.isKindOfClass(WBShareMessageToContactResponse)){

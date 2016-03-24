@@ -21,6 +21,9 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     let notification = NSNotificationCenter.defaultCenter()
     var location = -1
     var scrollLocation = CGPoint(x: 0, y: 0)
+    var tmpImage = UIImage()
+    var weixinScene = 0
+    var weiboScene = 1
     
     @IBOutlet weak var galleryDetails: UITableView!
     
@@ -41,7 +44,8 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         self.navigationController?.popViewControllerAnimated(true)
     }
     @IBAction func shareButton(sender: UIButton) {
-        
+//        self.weixinShare()
+        self.weiboShare()
         
     }
     
@@ -96,7 +100,10 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
             print(self.gallery!["hiwuUser"])
             let ownerAvatar = cell.viewWithTag(1) as! UIImageView
             if(self.gallery!["hiwuUser"]["avatar"].string != ""){
-            ownerAvatar.kf_setImageWithURL(NSURL(string: self.gallery!["hiwuUser"]["avatar"].string!)!, placeholderImage: UIImage(named: "头像"))
+                ownerAvatar.kf_setImageWithURL(NSURL(string: self.gallery!["hiwuUser"]["avatar"].string!)!, placeholderImage: UIImage(named: "头像"), optionsInfo: nil, completionHandler: {(_) in
+                    self.tmpImage = ownerAvatar.image!
+                    
+                })
                 ownerAvatar.layer.cornerRadius = ownerAvatar.frame.size.width/2
                 ownerAvatar.clipsToBounds = true
             }else{
@@ -128,7 +135,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
             itemCity.text = gallery!["items"][indexPath.row-1]["city"].string
             let itemOwner = cell.viewWithTag(60) as! UILabel
             itemOwner.text = self.gallery!["hiwuUser"]["nickname"].string!
-            let gesture = UITapGestureRecognizer(target: self, action: "getItemDetail:")
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(GalleryDetailVC.getItemDetail(_:)))
             cell.addGestureRecognizer(gesture)
             return cell
         }
@@ -241,6 +248,77 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
                 }
             }
         }
+        
+    }
+    
+    func weixinShare(){
+        let message = WXMediaMessage()
+        var nickname = ""
+        var name = "物境未觉博物馆"
+        var description = ""
+        if(self.gallery!["hiwuUser"]["nickname"].string != nil){
+            nickname = self.gallery!["hiwuUser"]["nickname"].string!
+        }
+        if(self.gallery!["name"].string != nil ){
+            name = self.gallery!["name"].string!
+        }
+        if(self.gallery!["description"].string != nil){
+            description = self.gallery!["description"].string!
+        }
+        message.title = nickname + " ⎡"  + name + " ⎦"
+        message.description = description
+        message.setThumbImage(tmpImage)
+        let webPageObject = WXWebpageObject()
+        webPageObject.webpageUrl = "http://palace.server.hiwu.ren/galleries/" + String(self.gallery!["id"].int!)
+        print(webPageObject.webpageUrl)
+        message.mediaObject = webPageObject
+        let req = SendMessageToWXReq()
+        req.bText = false
+        req.message = message
+        if(weixinScene == 0){
+            req.scene = Int32(WXSceneSession.rawValue)
+        }else if(weixinScene == 1){
+            req.scene = Int32(WXSceneTimeline.rawValue)
+        }
+        WXApi.sendReq(req)
+        
+    }
+    
+    func weiboShare(){
+        var nickname = ""
+        var name = "物境未觉博物馆"
+        var description = ""
+        if(self.gallery!["hiwuUser"]["nickname"].string != nil){
+            nickname = self.gallery!["hiwuUser"]["nickname"].string!
+        }
+        if(self.gallery!["name"].string != nil ){
+            name = self.gallery!["name"].string!
+        }
+        if(self.gallery!["description"].string != nil){
+            description = self.gallery!["description"].string!
+        }
+        let message = WBMessageObject()
+        let authreq = WBAuthorizeRequest()
+        authreq.scope = "all"
+        authreq.redirectURI = kRedirectURI
+        let webpage = WBWebpageObject()
+        webpage.webpageUrl = "http://palace.server.hiwu.ren/galleries/" + String(self.gallery!["id"].int!)
+        message.text = "物境未觉 " + nickname + " ⎡"  + name + " ⎦"
+        webpage.title = nickname + " ⎡"  + name + " ⎦"
+        webpage.description = description
+        webpage.thumbnailData = UIImageJPEGRepresentation(tmpImage, 0.5)
+        webpage.objectID = webpage.webpageUrl
+        message.mediaObject = webpage
+        if(weiboScene == 0){
+            let req = WBShareMessageToContactRequest()
+            req.message = message
+            WeiboSDK.sendRequest(req)
+        }else if(weiboScene == 1){
+            let req = WBSendMessageToWeiboRequest()
+            req.message = message
+            WeiboSDK.sendRequest(req)
+        }
+        
         
     }
 
