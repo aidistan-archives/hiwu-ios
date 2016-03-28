@@ -56,7 +56,7 @@ class ContactWithServer{
         
     }
     
-    func getSelfMuseum(){
+    func getSelfMuseum(complete:(result:Int)->()){
         let url = ApiManager.getAllSelfGallery1_2 + String(globalHiwuUser.userId) + ApiManager.getAllSelfGallery2_2 + globalHiwuUser.hiwuToken
         Alamofire.request(.GET, url).responseJSON{response in
             if(response.result.value != nil && response.result.error == nil){
@@ -65,13 +65,16 @@ class ContactWithServer{
                 self.defaults.setObject(tmpData, forKey: "selfMuseum")
                 self.defaults.synchronize()
                 self.delegate?.getSelfMuseumReady!()
+                complete(result: 0)
             }else{
                 if(self.defaults.valueForKey("selfMuseum") != nil){
                     globalHiwuUser.selfMuseum = JSON(NSKeyedUnarchiver.unarchiveObjectWithData(self.defaults.objectForKey("selfMuseum") as! NSData)!)
                     print(self.delegate?.getSelfMuseumReady!())
                      self.delegate?.getSelfMuseumReady!()
+                    complete(result: 0)
                 }else{
                     self.delegate?.getSelfMuseumFailed!()
+                    complete(result: -1)
                 }
             }
         }

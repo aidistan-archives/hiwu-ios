@@ -14,7 +14,7 @@ class ApiManager{
     static let getSelfUserInfo2 = "?access_token="
     static let getTodayPublicView = "http://palace.server.hiwu.ren/api/SelectedGalleries/publicView"
     static let getAllSelfGallery1_2 = "http://palace.server.hiwu.ren/api/HiwuUsers/"
-    static let getAllSelfGallery2_2 = "?filter=%7B%22include%22%3A%7B%22galleries%22%3A%5B%22hiwuUser%22%2C%7B%22items%22%3A%22photos%22%7D%5D%7D%7D&access_token="
+    static let getAllSelfGallery2_2 = "?filter=%7B%22include%22%3A%5B%7B%22galleries%22%3A%5B%22hiwuUser%22%2C%7B%22items%22%3A%22photos%22%7D%5D%7D%2C%22notifications%22%5D%7D&access_token="
     static let getSelfItem1 = "http://palace.server.hiwu.ren/api/Items/"
     static let getSelfItem2 = "?filter=%7B%22include%22%3A%5B%22photos%22%2C%22likers%22%2C%22hiwuUser%22%2C%7B%22comments%22%3A%22hiwuUser%22%7D%5D%7D&access_token="
     static let getPublicItem1 = "http://palace.server.hiwu.ren/api/Items/"
@@ -42,7 +42,7 @@ class ApiManager{
     static let putAvatar2 = "/avatar?access_token="
     static let putNickname1 = "http://palace.server.hiwu.ren/api/HiwuUsers/"
     static let putNickname2 = "?access_token="
-    static let postFeedbck = "http://palace.server.hiwu.ren/api/Hiwu/jianliao?channel=feedback"
+    static let postFeedback = "http://palace.server.hiwu.ren/api/Hiwu/jianliao?channel=feedback"
     static let wxLogin1 = "http://palace.server.hiwu.ren/api/HiwuUsers/weixinLogin?appid="
     static let wxLogin2 = "&code="
     

@@ -117,6 +117,10 @@ class AllTodaysVC: UITableViewController {
         print(indexPath.row)
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return  true
+    }
+    
 
 
 }

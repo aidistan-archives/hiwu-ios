@@ -296,6 +296,10 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     override func viewWillAppear(animated: Bool) {
         itemDetailList.reloadData()
     }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return  true
+    }
 
     
     

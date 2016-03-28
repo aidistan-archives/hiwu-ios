@@ -38,8 +38,8 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
         todayGalleryDisplay.estimatedRowHeight = 100
         todayGalleryDisplay.rowHeight = UITableViewAutomaticDimension
         todayGalleryDisplay.reloadData()
-        self.notification.addObserver(self, selector: "weixinValidationSuccess", name: "weixinValidationOK", object: nil)
-        self.notification.addObserver(self, selector: "weiboValidationSuccess", name: "weiboValidationOK", object: nil)
+        self.notification.addObserver(self, selector: #selector(TodayVC.weixinValidationSuccess), name: "weixinValidationOK", object: nil)
+        self.notification.addObserver(self, selector: #selector(TodayVC.weiboValidationSuccess), name: "weiboValidationOK", object: nil)
         self.contactor.delegate = self
     }
     
@@ -96,7 +96,7 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
             self.navigationController?.pushViewController(selfMuseum, animated: true)
             
             }else{
-            self.contactor.getUserInfoFirst()
+                self.contactor.getUserInfoFirst()
             }
         
     }
@@ -191,9 +191,10 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     }
     
     func getUserInfoFirstReady(){
-        self.contactor.getSelfMuseum()
+        self.loginReady()
         
     }
+    
     func getUserInfoFirstFailed(){
         print("get user info failed")
         }
@@ -234,17 +235,23 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     
     func weiboValidationSuccess(){
         contactor.weiboLogin({() in
-            self.weiboLoginReady()
+            self.loginReady()
         })
         
     }
     
     func weixinLoginReady() {
-        self.contactor.getSelfMuseum()
+        self.loginReady()
     }
     
-    func weiboLoginReady() {
-        self.contactor.getSelfMuseum()
+    func loginReady(){
+        let selfMuseum = self.storyboard?.instantiateViewControllerWithIdentifier("SelfMuseum") as! SelfMuseumVC
+        
+        self.navigationController?.pushViewController(selfMuseum, animated: true)
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return  true
     }
 
 

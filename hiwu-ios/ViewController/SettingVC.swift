@@ -49,6 +49,8 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
             return 1
         }
     }
+    
+    
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -237,6 +239,10 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
         editFeedback.userId = self.userInfo!["id"].int!
         editFeedback.userNickname  = self.userInfo!["nickname"].string!
         self.navigationController?.pushViewController(editFeedback, animated: true)
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return  true
     }
 
 }

@@ -11,9 +11,9 @@ import Alamofire
 import SwiftyJSON
 
 class AddGalleryVC: UIViewController,UITextFieldDelegate {
-
-    @IBOutlet weak var galleryName: UITextField!
+    
     @IBOutlet weak var galleryDespcription: BRPlaceholderTextView!
+    @IBOutlet weak var galleryName: UITextField!
     
     @IBAction func cancel(sender: UIButton) {
         self.navigationController?.popViewControllerAnimated(true)
@@ -23,13 +23,13 @@ class AddGalleryVC: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.galleryName.layer.borderColor = UIColor(red: 204, green: 204, blue: 204, alpha: 1).CGColor
-        self.galleryName.layer.borderWidth = 10
-        let gest = UITapGestureRecognizer(target: self, action: "endTheEditingOfTextView")
+        self.galleryName.layer.borderWidth = 1
+        let gest = UITapGestureRecognizer(target: self, action: #selector(AddGalleryVC.endTheEditingOfTextView))
         gest.cancelsTouchesInView = false
         self.view.addGestureRecognizer(gest)
         self.galleryDespcription.placeholder = "在这里添加长廊描述"
         self.galleryName.delegate = self
-        let gestureBack = UIScreenEdgePanGestureRecognizer(target: self, action: "back")
+        let gestureBack = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(AddGalleryVC.back as (AddGalleryVC) -> () -> ()))
         gestureBack.edges = UIRectEdge.Left
         self.view.addGestureRecognizer(gestureBack)
     }
@@ -89,6 +89,10 @@ class AddGalleryVC: UIViewController,UITextFieldDelegate {
             }
         }
         
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return  true
     }
 
 }

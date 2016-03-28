@@ -19,13 +19,14 @@ class FeedbackVC: UIViewController {
         self.feedbackInput.endEditing(true)
         self.postFeedback()
     }
+    @IBOutlet weak var feedbackInput: BRPlaceholderTextView!
     var userId = 0
     var userNickname = "物境未觉"
-
-    @IBOutlet weak var feedbackInput:UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.feedbackInput.text! = ""
+        self.feedbackInput.placeholder = "在这里输入您的意见"
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,7 +36,7 @@ class FeedbackVC: UIViewController {
 
     
     func postFeedback(){
-        let url = ApiManager.postFeedbck
+        let url = ApiManager.postFeedback
         
         Alamofire.request(.POST, url, parameters: ["description":self.feedbackInput.text!,"title":self.userNickname + "(" + String(self.userId) + ")" + "从iOS客户端发来反馈" ]).responseJSON{response in
             let result = JSON(response.result.value!)
@@ -49,6 +50,10 @@ class FeedbackVC: UIViewController {
                 print("no")
             }
         }
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return  true
     }
     
 

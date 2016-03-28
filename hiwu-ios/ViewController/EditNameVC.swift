@@ -27,7 +27,7 @@ class EditNameVC: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        let gest = UITapGestureRecognizer(target: self, action: "endEditing")
+        let gest = UITapGestureRecognizer(target: self, action: #selector(EditNameVC.endEditing))
         self.view.addGestureRecognizer(gest)
     }
     
@@ -46,6 +46,10 @@ class EditNameVC: UIViewController {
                 self.navigationController?.popViewControllerAnimated(true)
             }
         }
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return  true
     }
     
 

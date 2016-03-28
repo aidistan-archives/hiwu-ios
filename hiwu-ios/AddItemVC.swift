@@ -16,6 +16,7 @@ class AddItemVC: UIViewController,UITextViewDelegate,UITextFieldDelegate{
     var image:UIImage?
     var galleryId = 0
     var superGallery:GalleryDetailVC?
+    let hud = JGProgressHUD(style:JGProgressHUDStyle.Dark)
     
     @IBOutlet weak var itemImage: UIImageView!
     
@@ -134,7 +135,6 @@ class AddItemVC: UIViewController,UITextViewDelegate,UITextFieldDelegate{
     func postItem(galleryId:Int,itemName:String,itemDescription:String,year:Int,city:String,dataUrl:NSURL,isPublic:Bool){
         
         let postItemUrl = ApiManager.postItem1 + String(galleryId) + ApiManager.postItem2 + globalHiwuUser.hiwuToken
-        let hud = JGProgressHUD(style:JGProgressHUDStyle.Dark)
         hud.showInView(self.view, animated: true)
         hud.textLabel.text = "上传中"
         Alamofire.request(.POST, postItemUrl, parameters: [
@@ -147,13 +147,13 @@ class AddItemVC: UIViewController,UITextViewDelegate,UITextFieldDelegate{
             "public": isPublic
             ]).responseJSON{response in
                 if(response.result.value != nil){
-                    self.postPhotoToItem(JSON(response.result.value!)["id"].int!, dataUrl: dataUrl,hud: hud)
+                    self.postPhotoToItem(JSON(response.result.value!)["id"].int!, dataUrl: dataUrl)
                 }
         }
         
     }
     
-    func postPhotoToItem(itemId:Int,dataUrl:NSURL,hud:JGProgressHUD){
+    func postPhotoToItem(itemId:Int,dataUrl:NSURL){
         let postPhotoUrl = ApiManager.postItemPhoto1 + String(itemId) + ApiManager.postItemPhoto2 + globalHiwuUser.hiwuToken
         Alamofire.upload(.POST, postPhotoUrl,multipartFormData: { multipartFormData in
             multipartFormData.appendBodyPart(fileURL: dataUrl, name: "data")
@@ -166,7 +166,7 @@ class AddItemVC: UIViewController,UITextViewDelegate,UITextFieldDelegate{
                             if(value["error"] == nil){
                                 self.navigationController?.popViewControllerAnimated(true)
                             }else{
-                                hud.dismiss()
+                                self.hud.dismiss()
                                 let alert1 = SCLAlertView()
                                 alert1.showError(self, title: "错误", subTitle: "", closeButtonTitle: "知道了", duration: 0)
                             }
@@ -179,5 +179,9 @@ class AddItemVC: UIViewController,UITextViewDelegate,UITextFieldDelegate{
                     print(encodingError)
                 }
         })
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return  true
     }
 }

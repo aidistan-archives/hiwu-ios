@@ -109,6 +109,10 @@ class NotificationVC: UITableViewController {
         self.tableView.reloadData()
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return  true
+    }
+    
     
     
 }

@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate,WeiboSDKDele
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        application.setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         let cache = KingfisherManager.sharedManager.cache
         cache.maxDiskCacheSize = 500 * 1024 * 1024
         cache.maxCachePeriodInSecond = 3600*24*60
@@ -80,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate,WeiboSDKDele
             if resp.errCode == WXSuccess.rawValue{//分享成功
                 NSLog("分享成功")
             }else{//分享失败
-                NSLog("分享失败，错误码：%d, 错误描述：%@", resp.errCode, resp.errStr)
+                print(resp.errCode)
             }
         }else if resp.isKindOfClass(SendAuthResp){
             let authResp = resp as! SendAuthResp

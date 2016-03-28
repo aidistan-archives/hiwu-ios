@@ -17,6 +17,7 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var tableCellLocation = 0
     var itemSum = 0
     let bg = UIImage(named: "bg")
+    var cells = 1
     
     
     @IBAction func backButtonClicked(sender: UIButton) {
@@ -49,9 +50,6 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(globalHiwuUser.selfMuseum)
-        selfGalleryDisplay.delegate = self
-        selfGalleryDisplay.dataSource = self
         bg?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 0, 0, 0), resizingMode: UIImageResizingMode.Tile)
         selfGalleryDisplay.backgroundColor = UIColor(patternImage: self.bg!)
     }
@@ -66,10 +64,12 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
 
     override func viewWillAppear(animated: Bool) {
+        print("will appear")
+        self.refresh()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return globalHiwuUser.selfMuseum!["galleries"].count + 1
+        return cells
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
@@ -115,7 +115,7 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 description.text = selfMuseum!["description"].string!
             }
             let message = cell.viewWithTag(4) as! UIButton
-            message.addTarget(self, action: "toNotification", forControlEvents: UIControlEvents.TouchUpInside)
+            message.addTarget(self, action: #selector(SelfMuseumVC.toNotification), forControlEvents: UIControlEvents.TouchUpInside)
             cell.backgroundColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.8)
             return cell
         }else{
@@ -187,7 +187,14 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     
     func refresh(){
-        contactor.getSelfMuseum()
+        contactor.getSelfMuseum({result in
+            if(result == 0){
+                self.selfGalleryDisplay.delegate = self
+                self.selfGalleryDisplay.dataSource = self
+                self.cells = globalHiwuUser.selfMuseum!["galleries"].count + 1
+                self.selfGalleryDisplay.reloadData()
+            }
+        })
     }
     
     func getSelfMuseumOk(){
@@ -201,6 +208,10 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     func toNotification(){
         let notification = self.storyboard?.instantiateViewControllerWithIdentifier("NotificationVC") as! NotificationVC
         self.navigationController?.pushViewController(notification, animated: true)
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return  true
     }
 
 

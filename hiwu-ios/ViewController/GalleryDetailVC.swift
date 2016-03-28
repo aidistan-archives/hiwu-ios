@@ -45,7 +45,75 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     }
     @IBAction func shareButton(sender: UIButton) {
 //        self.weixinShare()
-        self.weiboShare()
+        let desc = JMActionSheetDescription()
+        let collectionItem = JMActionSheetCollectionItem()
+        let item1 = JMCollectionItem()
+        item1.actionName = "新浪微博"
+        item1.actionImage = UIImage(named: "sina")
+        item1.actionImageContentMode = UIViewContentMode.ScaleAspectFit
+        let item2 = JMCollectionItem()
+        item2.actionName = "微信好友"
+        item2.actionImage = UIImage(named: "wechat")
+        item2.actionImageContentMode = UIViewContentMode.ScaleAspectFit
+        let item3 = JMCollectionItem()
+        item3.actionName = "微信朋友圈"
+        item3.actionImage = UIImage(named: "moment")
+        item3.actionImageContentMode = UIViewContentMode.ScaleAspectFit
+        let item4 = JMCollectionItem()
+        item4.actionName = "复制链接"
+        item4.actionImage = UIImage(named: "edit")
+        item4.actionImageContentMode = UIViewContentMode.ScaleAspectFit
+        let item5 = JMCollectionItem()
+        item5.actionName = "编辑"
+        item5.actionImage = UIImage(named: "edit")
+        item5.actionImageContentMode = UIViewContentMode.ScaleAspectFit
+        let item6 = JMCollectionItem()
+        item6.actionName = "删除"
+        item6.actionImage = UIImage(named: "delete")
+        item6.actionImageContentMode = UIViewContentMode.ScaleAspectFit
+        if(WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() && WeiboSDK.isWeiboAppInstalled()){
+            collectionItem.elements = [item1,item2,item3,item4,item5,item6]
+        }else if(WeiboSDK.isWeiboAppInstalled()){
+            collectionItem.elements = [item1,item4,item5,item6]
+        }else if(WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi()){
+            collectionItem.elements = [item2,item3,item4,item5,item6]
+        }else{
+            collectionItem.elements = [item4,item5,item6]
+        }
+        collectionItem.collectionActionBlock = {id in
+            let actionName = id.actionName
+            switch(actionName){
+            case "新浪微博":
+                self.weiboShare()
+            case "微信好友":
+                self.weixinScene = 0
+                self.weixinShare()
+            case "微信朋友圈":
+                self.weixinScene = 1
+                self.weixinShare()
+            case "复制链接":
+                let pasteboard = UIPasteboard.generalPasteboard()
+                pasteboard.string = "http://palace.server.hiwu.ren/galleries/" + String(self.gallery!["id"].int!)
+                let hud = JGProgressHUD(style: JGProgressHUDStyle.Dark)
+                hud.textLabel.text = "复制成功"
+                hud.position = JGProgressHUDPosition.BottomCenter
+                hud.showInView(self.view)
+                hud.dismissAfterDelay(0.3)
+            case "编辑":
+                self.weixinScene = 1
+                self.weixinShare()
+            default:
+                self.weixinShare()
+            }
+            
+        }
+        let cancel = JMActionSheetItem()
+        cancel.title = "取消"
+        cancel.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        desc.cancelItem = cancel
+        desc.items = [collectionItem]
+        JMActionSheet.showActionSheetDescription(desc, inViewController: self)
+
         
     }
     
@@ -84,9 +152,9 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     
     func refresh(){
         if(self.isMine == true){
-            self.contactor.getSelfMuseum()
+//            self.contactor.getSelfMuseum()
         }else{
-            self.contactor.getTodayInfo()
+//            self.contactor.getTodayInfo()
         }
     }
     
@@ -311,6 +379,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         message.mediaObject = webpage
         if(weiboScene == 0){
             let req = WBShareMessageToContactRequest()
+            req.shouldOpenWeiboAppInstallPageIfNotInstalled = false
             req.message = message
             WeiboSDK.sendRequest(req)
         }else if(weiboScene == 1){
@@ -318,8 +387,10 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
             req.message = message
             WeiboSDK.sendRequest(req)
         }
-        
-        
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return  true
     }
 
 }
