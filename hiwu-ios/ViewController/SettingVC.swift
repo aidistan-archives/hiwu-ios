@@ -129,6 +129,7 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
             defaults.setDouble(0, forKey: "deadline")
             
         }
+        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class idFinder{
     static func findFromGallery(id:Int,gallery:JSON) -> JSON?{
-        for(var i = 0;i<gallery.count;i++){
+        for(var i = 0;i<gallery.count;i += 1){
             if(gallery[i]["id"].int! == id){
                 return gallery[i]
             }

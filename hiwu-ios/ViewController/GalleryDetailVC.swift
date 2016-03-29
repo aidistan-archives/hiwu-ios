@@ -21,7 +21,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     let notification = NSNotificationCenter.defaultCenter()
     var location = -1
     var scrollLocation = CGPoint(x: 0, y: 0)
-    var tmpImage = UIImage()
+    var tmpImage = UIImage(named: "头像")
     var weixinScene = 0
     var weiboScene = 1
     
@@ -29,15 +29,24 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     
     @IBAction func toAddItem(sender: UIButton)
     {
-        let newAlert = LCActionSheet(title: "选择照片来源", buttonTitles: ["拍摄","从相册"], redButtonIndex: -1, clicked: { button in
-            if(button == 0){
-                self.callCamera()
-            }else if(button == 1){
-                self.callPhotoLibrary()
-            }
-            
-        })
-        newAlert.show()
+        let desc = JMActionSheetDescription()
+        let itemCallCamera = JMActionSheetItem()
+        itemCallCamera.title = "拍摄"
+        itemCallCamera.action = {
+            self.callCamera()
+        }
+        let itemCallPhotoLibrary = JMActionSheetItem()
+        itemCallPhotoLibrary.title = "从相册"
+        itemCallPhotoLibrary.action = {
+            self.callPhotoLibrary()
+        }
+        let cancelButton = JMActionSheetItem()
+        cancelButton.textColor = UIColor.redColor()
+        cancelButton.title = "取消"
+        desc.cancelItem = cancelButton
+        desc.items = [itemCallPhotoLibrary,itemCallCamera]
+        desc.title = "请选择照片来源"
+        JMActionSheet.showActionSheetDescription(desc, inViewController: self)
     }
     
     @IBAction func backButton(sender: UIButton) {
@@ -169,7 +178,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
             let ownerAvatar = cell.viewWithTag(1) as! UIImageView
             if(self.gallery!["hiwuUser"]["avatar"].string != ""){
                 ownerAvatar.kf_setImageWithURL(NSURL(string: self.gallery!["hiwuUser"]["avatar"].string!)!, placeholderImage: UIImage(named: "头像"), optionsInfo: nil, completionHandler: {(_) in
-                    self.tmpImage = ownerAvatar.image!
+                    self.tmpImage = self.resizeImage(ownerAvatar.image!, height: 200)
                     
                 })
                 ownerAvatar.layer.cornerRadius = ownerAvatar.frame.size.width/2
@@ -237,7 +246,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         let itemIdLabel = sender.view?.viewWithTag(2) as! UILabel
         let itemId = Int(itemIdLabel.text!)
         if(isMine){
-//            contactor.getSelfItemInfo(itemId!)
             contactor.getPublicItemInfo(itemId!)
         }else{
             contactor.getPublicItemInfo(itemId!)
@@ -348,7 +356,13 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         }else if(weixinScene == 1){
             req.scene = Int32(WXSceneTimeline.rawValue)
         }
-        WXApi.sendReq(req)
+        print(req)
+        print(req.message.title)
+        print(req.scene)
+        print(req.message.mediaObject)
+        print(tmpImage)
+        print(req.message.description)
+        print(WXApi.sendReq(req))
         
     }
     
@@ -374,7 +388,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         message.text = "物境未觉 " + nickname + " ⎡"  + name + " ⎦"
         webpage.title = nickname + " ⎡"  + name + " ⎦"
         webpage.description = description
-        webpage.thumbnailData = UIImageJPEGRepresentation(tmpImage, 0.5)
+        webpage.thumbnailData = UIImageJPEGRepresentation(tmpImage!, 0.5)
         webpage.objectID = webpage.webpageUrl
         message.mediaObject = webpage
         if(weiboScene == 0){
@@ -391,6 +405,14 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     
     override func prefersStatusBarHidden() -> Bool {
         return  true
+    }
+    
+    func resizeImage(img:UIImage,height:CGFloat)->UIImage{
+        let scale = 200/img.size.height
+        UIGraphicsBeginImageContext(CGSizeMake(img.size.width * scale, img.size.height * scale))
+        img.drawInRect(CGRect(x: 0, y: 0, width: img.size.width * scale, height: img.size.height * scale))
+        let scaledImg = UIGraphicsGetImageFromCurrentImageContext()
+        return scaledImg
     }
 
 }

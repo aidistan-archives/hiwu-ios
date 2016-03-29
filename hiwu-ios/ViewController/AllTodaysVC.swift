@@ -99,7 +99,11 @@ class AllTodaysVC: UITableViewController {
         let avatar = cell?.viewWithTag(1) as! UIImageView
         avatar.kf_setImageWithURL(NSURL(string: tmpGallery["hiwuUser"]["avatar"].string! + "@!200x200")!, placeholderImage: UIImage(named: "头像"))
         let name = cell?.viewWithTag(2) as! UILabel
-        name.text = tmpGallery["hiwuUser"]["nickname"].string! + " ⎡" + tmpGallery["name"].string! + " ⎦"
+        var nickname = tmpGallery["hiwuUser"]["nickname"].string!
+        if(nickname == ""){
+            nickname = "佚名"
+        }
+        name.text = nickname + " ⎡" + tmpGallery["name"].string! + " ⎦"
         let num = cell?.viewWithTag(3) as! UILabel
         num.text = String(tmpGallery["items"].count) + " 件"
         return cell!

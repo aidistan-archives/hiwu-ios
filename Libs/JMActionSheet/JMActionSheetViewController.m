@@ -18,8 +18,8 @@
 #import "JMActionSheetCollectionItemCell.h"
 #import "JMActionSheetCollectionImageCell.h"
 
-static const CGFloat JMActionSheetPadding               = 1.0f;
-static const CGFloat JMActionSheetInterlineSpacing      = 0.0f;
+static const CGFloat JMActionSheetPadding               = 3.0f;
+static const CGFloat JMActionSheetInterlineSpacing      = 0.5f;
 static const CGFloat JMActionSheetRoundedCornerRadius   = 0.0f;
 
 static const CGFloat JMActionSheetButtonHeight          = 50.0f;

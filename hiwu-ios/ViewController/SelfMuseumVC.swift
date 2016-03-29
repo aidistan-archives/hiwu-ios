@@ -24,6 +24,8 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    @IBOutlet weak var addGalleryTip: UILabel!
+    
     @IBAction func shareButtonClicked(sender: UIButton) {
         self.toSetting()
     }
@@ -50,8 +52,12 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(addGalleryTip.font)
+        print(addGalleryTip.font)
+        self.selfGalleryDisplay.delegate = self
         bg?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 0, 0, 0), resizingMode: UIImageResizingMode.Tile)
         selfGalleryDisplay.backgroundColor = UIColor(patternImage: self.bg!)
+        
     }
     
     func back(){
@@ -74,18 +80,21 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
         if(indexPath.row == 0){
-            return 170
+            return 107
         }else{
-            let num = globalHiwuUser.selfMuseum!["galleries"][indexPath.row-1]["items"].count
-            if(num>=7){
-                return 410
-            }else if(num>=4){
-                return 300
-            }else if(num>=1){
-                return 200
-            }else{
-                return 100
-            }
+            
+            return 90
+//            let num = globalHiwuUser.selfMuseum!["galleries"][indexPath.row-1]["items"].count
+//            if(num>=7){
+//                return 410
+//            }else if(num>=4){
+//                return 300
+//            }else if(num>=1){
+//                return 200
+//            }else{
+//                return 100
+//            }
+            
         }
     }
     
@@ -98,7 +107,7 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.tableCellLocation = indexPath.row - 1
         if(indexPath.row == 0){
             let cell = tableView.dequeueReusableCellWithIdentifier("SelfTitle")! as UITableViewCell
-            cell.backgroundColor = UIColor(patternImage: self.bg!)
+//            cell.backgroundColor = UIColor(patternImage: self.bg!)
             let userAvatar = cell.viewWithTag(1) as! UIImageView
             let userNickname = cell.viewWithTag(2) as! UILabel
             let museumInfo = cell.viewWithTag(3) as! UILabel
@@ -108,7 +117,7 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             userAvatar.layer.cornerRadius = userAvatar.frame.height/2
             userAvatar.clipsToBounds = true
             userNickname.text = selfMuseum!["nickname"].string!
-            museumInfo.text = "  " + String(selfMuseum!["galleries"].count) + "  馆 | " + String(self.itemSum) + " 物件  "
+            museumInfo.text = String(selfMuseum!["galleries"].count) + " 馆  |  " + String(self.itemSum) + " 物件"
             museumInfo.layer.cornerRadius = museumInfo.frame.height/2
             museumInfo.clipsToBounds = true
             if(selfMuseum!["description"].string != nil){
@@ -119,22 +128,26 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             cell.backgroundColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.8)
             return cell
         }else{
-            let cell = tableView.dequeueReusableCellWithIdentifier("SelfGalleryCell")! as UITableViewCell
-            let collection = (cell.viewWithTag(4)) as! SelfGalleryCT
-            let width = tableView.frame.width
-            let layout = UICollectionViewFlowLayout()
-            layout.itemSize = CGSizeMake((width - 16)/3, (width - 16)/3)
-            layout.minimumLineSpacing = 0
-            layout.minimumInteritemSpacing = 0
-            layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-            layout.headerReferenceSize = CGSizeMake(width, width/6)
-            layout.footerReferenceSize = CGSizeMake(0, 0)
-            collection.collectionViewLayout = layout
-            collection.location =  indexPath.row - 1
-            collection.superVC = self
-            collection.delegate = collection
-            collection.dataSource = collection
-            collection.reloadData()
+//            let cell = tableView.dequeueReusableCellWithIdentifier("SelfGalleryCell")! as UITableViewCell
+//            let collection = (cell.viewWithTag(4)) as! SelfGalleryCT
+//            let width = tableView.frame.width
+//            let layout = UICollectionViewFlowLayout()
+//            layout.itemSize = CGSizeMake((width - 16)/3, (width - 16)/3)
+//            layout.minimumLineSpacing = 0
+//            layout.minimumInteritemSpacing = 0
+//            layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+//            layout.headerReferenceSize = CGSizeMake(width, width/6)
+//            layout.footerReferenceSize = CGSizeMake(0, 0)
+//            collection.collectionViewLayout = layout
+//            collection.location =  indexPath.row - 1
+//            collection.superVC = self
+//            collection.delegate = collection
+//            collection.dataSource = collection
+//            collection.reloadData()
+            let cell = tableView.dequeueReusableCellWithIdentifier("galleryTitle")! as UITableViewCell
+            cell.backgroundColor = UIColor(patternImage: self.bg!)
+            let galleryNameLabel = cell.viewWithTag(1) as! UILabel
+            galleryNameLabel.text =  " ⎡" + (globalHiwuUser.selfMuseum!)["galleries"][indexPath.row - 1]["name"].string! + " ⎦"
             return cell
             
         }
@@ -189,7 +202,6 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     func refresh(){
         contactor.getSelfMuseum({result in
             if(result == 0){
-                self.selfGalleryDisplay.delegate = self
                 self.selfGalleryDisplay.dataSource = self
                 self.cells = globalHiwuUser.selfMuseum!["galleries"].count + 1
                 self.selfGalleryDisplay.reloadData()
@@ -210,9 +222,18 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.navigationController?.pushViewController(notification, animated: true)
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print(indexPath.row)
+        if(indexPath.row >= 1){
+            let galleryDetail = self.storyboard?.instantiateViewControllerWithIdentifier("GalleryDetailVC") as! GalleryDetailVC
+            galleryDetail.isMine = true
+            galleryDetail.gallery = globalHiwuUser.selfMuseum!["galleries"][indexPath.row - 1]
+            self.showViewController(galleryDetail, sender: self)
+        }
+    }
+    
     override func prefersStatusBarHidden() -> Bool {
         return  true
     }
-
 
 }

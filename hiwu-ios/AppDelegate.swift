@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate,WeiboSDKDele
         if WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() {
             print("已经安装微信")
         }
+        print(WXApi.debugDescription())
         WeiboSDK.registerApp(wbAPPKEY)
         WeiboSDK.enableDebugMode(true)
         return true
