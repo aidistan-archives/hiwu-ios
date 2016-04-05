@@ -205,17 +205,6 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
         print("get user info failed")
         }
     
-    func getSelfMuseumReady() {
-        print("get self museum ready in today")
-        let selfMuseum = self.storyboard?.instantiateViewControllerWithIdentifier("SelfMuseum") as! SelfMuseumVC
-        
-        self.navigationController?.pushViewController(selfMuseum, animated: true)
-    }
-    
-    func getSelfMuseumFailed() {
-        print("get self museum failed")
-    }
-    
     func weixin() {
         //微信的的登录状态码设为1，微博为2，默认为0
         globalHiwuUser.loginState = 1

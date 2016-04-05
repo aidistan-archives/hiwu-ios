@@ -13,8 +13,11 @@ class ApiManager{
     static let getSelfUserInfo1 = "http://palace.server.hiwu.ren/api/HiwuUsers/"
     static let getSelfUserInfo2 = "?access_token="
     static let getTodayPublicView = "http://palace.server.hiwu.ren/api/SelectedGalleries/publicView"
-    static let getAllSelfGallery1_2 = "http://palace.server.hiwu.ren/api/HiwuUsers/"
-    static let getAllSelfGallery2_2 = "?filter=%7B%22include%22%3A%5B%7B%22galleries%22%3A%5B%22hiwuUser%22%2C%7B%22items%22%3A%22photos%22%7D%5D%7D%2C%22notifications%22%5D%7D&access_token="
+    
+    //{"include":["galleries","notifications"]}
+    static let getSelfMuseum1 = "http://palace.server.hiwu.ren/api/HiwuUsers/"
+    static let getSelfMuseum2 = "?filter=%7B%22include%22%3A%5B%7B%22galleries%22%3A%22items%22%7D%2C%22notifications%22%5D%7D&access_token="
+    
     static let getSelfItem1 = "http://palace.server.hiwu.ren/api/Items/"
     static let getSelfItem2 = "?filter=%7B%22include%22%3A%5B%22photos%22%2C%22likers%22%2C%22hiwuUser%22%2C%7B%22comments%22%3A%22hiwuUser%22%7D%5D%7D&access_token="
     static let getPublicItem1 = "http://palace.server.hiwu.ren/api/Items/"
@@ -48,11 +51,18 @@ class ApiManager{
     
     static let wbLogin1 = "http://palace.server.hiwu.ren/api/HiwuUsers/weiboLogin?appid="
     static let wbLogin2 = "&code="
+    
     //{"include":["fromUser",{"item":"photos"},"comment"]}
     static let getNotification1 = "http://palace.server.hiwu.ren/api/HiwuUsers/"
     static let getNotification2 = "/notifications?filter=%7B%22include%22%3A%5B%22fromUser%22%2C%7B%22item%22%3A%22photos%22%7D%2C%22comment%22%5D%7D&access_token="
     static let deleteNotification1 = "http://palace.server.hiwu.ren/api/HiwuUsers/"
     static let deleteNotification2 = "/notifications?access_token="
+    
+    //{"include":["hiwuUser",{"items":"photos"}]}
+    static let getSelfGallery1 = "http://palace.server.hiwu.ren/api/Galleries/"
+    static let getSelfGallery2 = "?filter=%7B%22include%22%3A%5B%22hiwuUser%22%2C%7B%22items%22%3A%22photos%22%7D%5D%7D&access_token="
+    static let getPublicGallery1 = "http://palace.server.hiwu.ren/api/Galleries/"
+    static let getPublicGallery2 = "/publicView"
     
 
 }

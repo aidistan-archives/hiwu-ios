@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A50620411C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = A50620401C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.m */; };
 		A5132BBE1BDBB5EA00B4C3DB /* AddItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5132BBD1BDBB5EA00B4C3DB /* AddItemVC.swift */; };
-		A51908AF1C106E4C0018039A /* idFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51908AE1C106E4C0018039A /* idFinder.swift */; };
 		A534BE951C0EC9FF00770171 /* GuidePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534BE941C0EC9FF00770171 /* GuidePage.swift */; };
 		A534BE971C0F23CD00770171 /* AddGalleryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534BE961C0F23CD00770171 /* AddGalleryVC.swift */; };
 		A552326A1C0467AB00A0AA2A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A552325D1C04679D00A0AA2A /* Alamofire.framework */; };
@@ -61,6 +60,7 @@
 		A593552D1BD7983F0044E7B3 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593552C1BD7983F0044E7B3 /* ApiManager.swift */; };
 		A593553F1BD7B1440044E7B3 /* SelfMuseumVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593553E1BD7B1440044E7B3 /* SelfMuseumVC.swift */; };
 		A593554B1BD7D1370044E7B3 /* SelfGalleryCT.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593554A1BD7D1370044E7B3 /* SelfGalleryCT.swift */; };
+		A5A78F431CAD2081000B06FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5A78F421CAD2081000B06FA /* Assets.xcassets */; };
 		A5B33DCA1C4A432B00565972 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B33DC91C4A432B00565972 /* SettingVC.swift */; };
 		A5B33DE91C4B7DE700565972 /* AllTodaysVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B33DE81C4B7DE700565972 /* AllTodaysVC.swift */; };
 		A5BEE4731C638A0400F5B610 /* EditDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BEE4721C638A0400F5B610 /* EditDescriptionVC.swift */; };
@@ -84,7 +84,6 @@
 		A5C5D9521C6715EA00164093 /* JGProgressHUDSuccessIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5D9461C6715EA00164093 /* JGProgressHUDSuccessIndicatorView.m */; };
 		A5CEE6241BD0DB3C00AAF122 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CEE6231BD0DB3C00AAF122 /* AppDelegate.swift */; };
 		A5CEE6291BD0DB3C00AAF122 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CEE6271BD0DB3C00AAF122 /* Main.storyboard */; };
-		A5CEE62B1BD0DB3C00AAF122 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CEE62A1BD0DB3C00AAF122 /* Assets.xcassets */; };
 		A5CEE6871BD0DC3000AAF122 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5CEE67E1BD0DC2000AAF122 /* SwiftyJSON.framework */; };
 		A5CEE6881BD0DC3000AAF122 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5CEE67E1BD0DC2000AAF122 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A5CEE68F1BD0DC4500AAF122 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5CEE66C1BD0DC1600AAF122 /* Kingfisher.framework */; };
@@ -273,7 +272,6 @@
 		A506203F1C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+FDFullscreenPopGesture.h"; path = "Libs/FDFullscreenPopGesture-master/FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h"; sourceTree = SOURCE_ROOT; };
 		A50620401C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+FDFullscreenPopGesture.m"; path = "Libs/FDFullscreenPopGesture-master/FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.m"; sourceTree = SOURCE_ROOT; };
 		A5132BBD1BDBB5EA00B4C3DB /* AddItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemVC.swift; sourceTree = "<group>"; };
-		A51908AE1C106E4C0018039A /* idFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = idFinder.swift; sourceTree = "<group>"; };
 		A534BE941C0EC9FF00770171 /* GuidePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GuidePage.swift; path = ViewController/GuidePage.swift; sourceTree = "<group>"; };
 		A534BE961C0F23CD00770171 /* AddGalleryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddGalleryVC.swift; path = ViewController/AddGalleryVC.swift; sourceTree = "<group>"; };
 		A55232521C04679C00A0AA2A /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Libs/Alamofire-3.1.3/Alamofire.xcodeproj"; sourceTree = "<group>"; };
@@ -357,6 +355,7 @@
 		A593552C1BD7983F0044E7B3 /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		A593553E1BD7B1440044E7B3 /* SelfMuseumVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelfMuseumVC.swift; path = ViewController/SelfMuseumVC.swift; sourceTree = "<group>"; };
 		A593554A1BD7D1370044E7B3 /* SelfGalleryCT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfGalleryCT.swift; sourceTree = "<group>"; };
+		A5A78F421CAD2081000B06FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5B33DC91C4A432B00565972 /* SettingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingVC.swift; path = ViewController/SettingVC.swift; sourceTree = "<group>"; };
 		A5B33DE81C4B7DE700565972 /* AllTodaysVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AllTodaysVC.swift; path = ViewController/AllTodaysVC.swift; sourceTree = "<group>"; };
 		A5BEE4721C638A0400F5B610 /* EditDescriptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditDescriptionVC.swift; path = ViewController/EditDescriptionVC.swift; sourceTree = "<group>"; };
@@ -396,7 +395,6 @@
 		A5CEE6201BD0DB3C00AAF122 /* hiwu-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hiwu-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CEE6231BD0DB3C00AAF122 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CEE6281BD0DB3C00AAF122 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A5CEE62A1BD0DB3C00AAF122 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5CEE62F1BD0DB3C00AAF122 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5CEE6341BD0DB3C00AAF122 /* hiwu-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "hiwu-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CEE63F1BD0DB3C00AAF122 /* hiwu-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "hiwu-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -586,8 +584,8 @@
 		A59354CE1BD5C5320044E7B3 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				A5A78F421CAD2081000B06FA /* Assets.xcassets */,
 				A5CEE6231BD0DB3C00AAF122 /* AppDelegate.swift */,
-				A5CEE62A1BD0DB3C00AAF122 /* Assets.xcassets */,
 			);
 			name = SupportingFiles;
 			sourceTree = "<group>";
@@ -630,7 +628,6 @@
 				A593550C1BD66EA90044E7B3 /* TodayGalleryCT.swift */,
 				A593554A1BD7D1370044E7B3 /* SelfGalleryCT.swift */,
 				A59355171BD782100044E7B3 /* ContactWithServer.swift */,
-				A51908AE1C106E4C0018039A /* idFinder.swift */,
 			);
 			name = LayoutTools;
 			sourceTree = "<group>";
@@ -1023,11 +1020,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5CEE62B1BD0DB3C00AAF122 /* Assets.xcassets in Resources */,
 				A5CEE6291BD0DB3C00AAF122 /* Main.storyboard in Resources */,
 				A5C5D9471C6715EA00164093 /* JGProgressHUD Resources.bundle in Resources */,
 				A5799ED21C659DCE009660D1 /* LCActionSheet.bundle in Resources */,
 				A56312121C9FC0580002FF5E /* WeiboSDK.bundle in Resources */,
+				A5A78F431CAD2081000B06FA /* Assets.xcassets in Resources */,
 				A5C5D92A1C66753900164093 /* Launch Screen.storyboard in Resources */,
 				A58270ED1C885E9000F13713 /* .gitkeep in Resources */,
 			);
@@ -1064,7 +1061,6 @@
 				A5EF357A1C6652AD00F61BB0 /* UIScrollView+EmptyDataSet.m in Sources */,
 				A56311BE1C9831070002FF5E /* JMCollectionItem.m in Sources */,
 				A5C5D94A1C6715EA00164093 /* JGProgressHUDErrorIndicatorView.m in Sources */,
-				A51908AF1C106E4C0018039A /* idFinder.swift in Sources */,
 				A58270F41C885E9000F13713 /* JMActionSheetImageItem.m in Sources */,
 				A5C5D94C1C6715EA00164093 /* JGProgressHUDFadeZoomAnimation.m in Sources */,
 				A593550D1BD66EA90044E7B3 /* TodayGalleryCT.swift in Sources */,

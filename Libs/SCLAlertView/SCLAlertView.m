@@ -747,7 +747,7 @@ SCLTimerDisplay *buttonTimer;
             break;
             
         case Warning:
-            viewColor = UIColorFromHEX(0xFFD110);
+            viewColor = UIColorFromHEX(0xFBCF7F);
             iconImage = SCLAlertViewStyleKit.imageOfWarning;
             break;
             

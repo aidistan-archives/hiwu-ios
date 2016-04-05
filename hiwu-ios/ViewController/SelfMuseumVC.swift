@@ -26,10 +26,6 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var addGalleryTip: UILabel!
     
-    @IBAction func shareButtonClicked(sender: UIButton) {
-        self.toSetting()
-    }
-    
     @IBOutlet weak var selfGalleryDisplay: UITableView!
     func toSetting() {
         let setting = self.storyboard?.instantiateViewControllerWithIdentifier("SettingVC") as! SettingVC
@@ -52,8 +48,6 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(addGalleryTip.font)
-        print(addGalleryTip.font)
         self.selfGalleryDisplay.delegate = self
         bg?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 0, 0, 0), resizingMode: UIImageResizingMode.Tile)
         selfGalleryDisplay.backgroundColor = UIColor(patternImage: self.bg!)
@@ -65,7 +59,7 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     
     override func viewWillDisappear(animated: Bool) {
-       
+       self.itemSum = 0
     }
     
 
@@ -204,7 +198,8 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             if(result == 0){
                 self.selfGalleryDisplay.dataSource = self
                 self.cells = globalHiwuUser.selfMuseum!["galleries"].count + 1
-                self.selfGalleryDisplay.reloadData()
+                print(globalHiwuUser.selfMuseum)
+                self.getItemSum()
             }
         })
     }
@@ -227,9 +222,18 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         if(indexPath.row >= 1){
             let galleryDetail = self.storyboard?.instantiateViewControllerWithIdentifier("GalleryDetailVC") as! GalleryDetailVC
             galleryDetail.isMine = true
-            galleryDetail.gallery = globalHiwuUser.selfMuseum!["galleries"][indexPath.row - 1]
-            self.showViewController(galleryDetail, sender: self)
+            galleryDetail.galleryId = globalHiwuUser.selfMuseum!["galleries"][indexPath.row - 1]["id"].int!
+            self.navigationController?.pushViewController(galleryDetail, animated: true)
+        }else{
+            self.toSetting()
         }
+    }
+    
+    func getItemSum(){
+        for i in 0...globalHiwuUser.selfMuseum!["galleries"].count-1 {
+            self.itemSum += globalHiwuUser.selfMuseum!["galleries"][i]["items"].count
+        }
+        self.selfGalleryDisplay.reloadData()
     }
     
     override func prefersStatusBarHidden() -> Bool {

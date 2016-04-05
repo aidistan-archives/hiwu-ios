@@ -16,10 +16,10 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     
     var isMine = false
     var gallery:JSON?
+    var galleryId = 0
     let defaults = NSUserDefaults.standardUserDefaults()
     let contactor = ContactWithServer()
     let notification = NSNotificationCenter.defaultCenter()
-    var location = -1
     var scrollLocation = CGPoint(x: 0, y: 0)
     var tmpImage = UIImage(named: "头像")
     var weixinScene = 0
@@ -52,6 +52,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     @IBAction func backButton(sender: UIButton) {
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
     @IBAction func shareButton(sender: UIButton) {
 //        self.weixinShare()
         let desc = JMActionSheetDescription()
@@ -130,13 +131,12 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     @IBOutlet weak var addItemButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.galleryDetails.hidden = true
         self.contactor.delegate = self
         self.navigationController?.navigationBarHidden = false
-        self.galleryDetails.delegate = self
-        self.galleryDetails.dataSource = self
         self.galleryDetails.estimatedRowHeight = 140
         self.galleryDetails.rowHeight = UITableViewAutomaticDimension
-        self.galleryDetails.reloadData()
+        
         if(isMine){
             self.addItemButton.hidden = false
             
@@ -151,9 +151,9 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.galleryDetails.reloadData()
-
+        self.refresh()
     }
+    
     override func viewWillDisappear(animated: Bool) {
         self.scrollLocation = self.galleryDetails.contentOffset
         self.notification.removeObserver(self)
@@ -161,9 +161,28 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     
     func refresh(){
         if(self.isMine == true){
-//            self.contactor.getSelfMuseum()
+            self.contactor.getSelfGallery(self.galleryId, complete:{selfGallery in
+                if(selfGallery != nil){
+                    self.gallery = selfGallery
+                    self.galleryDetails.delegate = self
+                    self.galleryDetails.dataSource = self
+                    self.galleryDetails.reloadData()
+                    self.galleryDetails.hidden = false
+                }
+                
+            })
         }else{
-//            self.contactor.getTodayInfo()
+            self.contactor.getPublicGallery(self.galleryId, complete: {publicGallery in
+                if(publicGallery != nil){
+                    self.gallery = publicGallery
+                    self.galleryDetails.delegate = self
+                    self.galleryDetails.dataSource = self
+                    self.galleryDetails.reloadData()
+                    self.galleryDetails.hidden = false
+                }
+                
+            })
+            
         }
     }
     
@@ -260,23 +279,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         self.navigationController?.pushViewController(itemDetail, animated: true)
     }
     
-    
-    func getSelfMuseumFailed() {
-        
-        
-    }
-    func getTodayFailed() {
-        
-    }
-    func getTodayReady() {
-        let ga = idFinder.findFromGallery(self.gallery!["id"].int!, gallery: globalHiwuUser.todayMuseum!["gallery"])
-        if(ga != nil){
-            self.gallery = ga
-        }
-        self.galleryDetails.reloadData()
-        self.galleryDetails.hidden = false
-    }
-    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
         let toAdd = self.storyboard?.instantiateViewControllerWithIdentifier("AddItemVC") as! AddItemVC
         toAdd.galleryId = self.gallery!["id"].int!
@@ -320,7 +322,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
             if(response.result.value != nil){
                 let value = JSON(response.result.value!)
                 if(value["error"] == nil){
-                    print("delete success")
+                    self.refresh()
                 }
             }
         }
@@ -356,14 +358,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         }else if(weixinScene == 1){
             req.scene = Int32(WXSceneTimeline.rawValue)
         }
-        print(req)
-        print(req.message.title)
-        print(req.scene)
-        print(req.message.mediaObject)
-        print(tmpImage)
-        print(req.message.description)
-        print(WXApi.sendReq(req))
-        
     }
     
     func weiboShare(){
@@ -406,6 +400,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     override func prefersStatusBarHidden() -> Bool {
         return  true
     }
+    
     
     func resizeImage(img:UIImage,height:CGFloat)->UIImage{
         let scale = 200/img.size.height

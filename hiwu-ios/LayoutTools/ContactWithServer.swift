@@ -57,7 +57,7 @@ class ContactWithServer{
     }
     
     func getSelfMuseum(complete:(result:Int)->()){
-        let url = ApiManager.getAllSelfGallery1_2 + String(globalHiwuUser.userId) + ApiManager.getAllSelfGallery2_2 + globalHiwuUser.hiwuToken
+        let url = ApiManager.getSelfMuseum1 + String(globalHiwuUser.userId) + ApiManager.getSelfMuseum2 + globalHiwuUser.hiwuToken
         Alamofire.request(.GET, url).responseJSON{response in
             if(response.result.value != nil && response.result.error == nil){
                 globalHiwuUser.selfMuseum = JSON(response.result.value!)
@@ -320,6 +320,40 @@ class ContactWithServer{
             
         }
     }
+    
+    func getSelfGallery(galleryId:Int,complete:((selfGallery:JSON?)->())?){
+        let url = ApiManager.getSelfGallery1 + String(galleryId) + ApiManager.getSelfGallery2 + globalHiwuUser.hiwuToken
+        Alamofire.request(.GET, url).responseJSON{response in
+            if(response.response?.statusCode == 200){
+                if(response.result.value != nil){
+                    print(response.result.value)
+                    complete!(selfGallery: JSON(response.result.value!))
+                    
+                }else{
+                    complete!(selfGallery: nil)
+                }
+            }else{
+                complete!(selfGallery: nil)
+            }
+        }
+    }
+    
+    func getPublicGallery(galleryId:Int,complete:((selfGallery:JSON?)->())?){
+        let url = ApiManager.getPublicGallery1 + String(galleryId) + ApiManager.getPublicGallery2
+        Alamofire.request(.GET, url).responseJSON{response in
+            if(response.response?.statusCode == 200){
+                if(response.result.value != nil){
+                    complete!(selfGallery: JSON(response.result.value!))
+                }else{
+                    complete!(selfGallery: nil)
+                }
+            }else{
+                complete!(selfGallery: nil)
+            }
+        }
+    }
+    
+    
 
     
 }

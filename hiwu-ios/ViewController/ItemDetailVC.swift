@@ -82,10 +82,6 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                             self.waiting.stopAnimating()
                         })
                 }
-                let itemTime = cell?.viewWithTag(2) as! UILabel
-                itemTime.text = String(self.item!["date_y"].int!)
-                let itemCity = cell?.viewWithTag(3) as! UILabel
-                itemCity.text = self.item!["city"].string
                 let itemOwner = cell?.viewWithTag(4) as! UIImageView
                 let userAvatar = self.item!["hiwuUser"]["avatar"].string!
                 itemOwner.kf_setImageWithURL(NSURL(string:userAvatar)!)
