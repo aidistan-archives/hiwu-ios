@@ -60,7 +60,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         let item1 = JMCollectionItem()
         item1.actionName = "新浪微博"
         item1.actionImage = UIImage(named: "sina")
-        item1.actionImageContentMode = UIViewContentMode.ScaleAspectFit
+        item1.actionImageContentMode = UIViewContentMode.Center
         let item2 = JMCollectionItem()
         item2.actionName = "微信好友"
         item2.actionImage = UIImage(named: "wechat")
@@ -82,13 +82,13 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         item6.actionImage = UIImage(named: "delete")
         item6.actionImageContentMode = UIViewContentMode.ScaleAspectFit
         if(WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() && WeiboSDK.isWeiboAppInstalled()){
-            collectionItem.elements = [item1,item2,item3,item4,item5,item6]
+            collectionItem.elements = [item1,item2,item3,item4]
         }else if(WeiboSDK.isWeiboAppInstalled()){
-            collectionItem.elements = [item1,item4,item5,item6]
+            collectionItem.elements = [item1,item4]
         }else if(WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi()){
-            collectionItem.elements = [item2,item3,item4,item5,item6]
+            collectionItem.elements = [item2,item3,item4]
         }else{
-            collectionItem.elements = [item4,item5,item6]
+            collectionItem.elements = [item4]
         }
         collectionItem.collectionActionBlock = {id in
             let actionName = id.actionName
@@ -123,8 +123,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         desc.cancelItem = cancel
         desc.items = [collectionItem]
         JMActionSheet.showActionSheetDescription(desc, inViewController: self)
-
-        
     }
     
     
@@ -206,7 +204,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
                 ownerAvatar.image = UIImage(named: "头像")
             }
             let galleryName = cell.viewWithTag(2) as! UILabel
-            galleryName.text = self.gallery!["hiwuUser"]["nickname"].string! + " ⎡" + self.gallery!["name"].string! + " ⎦"
+            galleryName.text = self.gallery!["hiwuUser"]["nickname"].string! + " ⎡" + self.gallery!["name"].string! + "⎦"
             let galleryDescription = cell.viewWithTag(3) as! UILabel
             galleryDescription.text = self.gallery!["description"].string
             return cell

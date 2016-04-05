@@ -392,7 +392,7 @@
 		A5C5D9441C6715EA00164093 /* JGProgressHUDRingIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDRingIndicatorView.m; sourceTree = "<group>"; };
 		A5C5D9451C6715EA00164093 /* JGProgressHUDSuccessIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDSuccessIndicatorView.h; sourceTree = "<group>"; };
 		A5C5D9461C6715EA00164093 /* JGProgressHUDSuccessIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDSuccessIndicatorView.m; sourceTree = "<group>"; };
-		A5CEE6201BD0DB3C00AAF122 /* hiwu-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hiwu-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5CEE6201BD0DB3C00AAF122 /* 物境未觉.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "物境未觉.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CEE6231BD0DB3C00AAF122 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CEE6281BD0DB3C00AAF122 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A5CEE62F1BD0DB3C00AAF122 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -706,7 +706,7 @@
 		A5CEE6211BD0DB3C00AAF122 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A5CEE6201BD0DB3C00AAF122 /* hiwu-ios.app */,
+				A5CEE6201BD0DB3C00AAF122 /* 物境未觉.app */,
 				A5CEE6341BD0DB3C00AAF122 /* hiwu-iosTests.xctest */,
 				A5CEE63F1BD0DB3C00AAF122 /* hiwu-iosUITests.xctest */,
 			);
@@ -810,7 +810,7 @@
 			);
 			name = "hiwu-ios";
 			productName = "hiwu-ios";
-			productReference = A5CEE6201BD0DB3C00AAF122 /* hiwu-ios.app */;
+			productReference = A5CEE6201BD0DB3C00AAF122 /* 物境未觉.app */;
 			productType = "com.apple.product-type.application";
 		};
 		A5CEE6331BD0DB3C00AAF122 /* hiwu-iosTests */ = {
@@ -1276,7 +1276,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "ren.hiwu.hiwu-ios";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "物境未觉";
 				SWIFT_OBJC_BRIDGING_HEADER = "hiwu-ios/WechatDemo_Bridging_Header.h";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "hiwu-ios/WechatDemo_Bridging_Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1302,7 +1302,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "ren.hiwu.hiwu-ios";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "物境未觉";
 				SWIFT_OBJC_BRIDGING_HEADER = "hiwu-ios/WechatDemo_Bridging_Header.h";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "hiwu-ios/WechatDemo_Bridging_Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
