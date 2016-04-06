@@ -18,6 +18,7 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    var superVC:SelfMuseumVC?
     var userId = globalHiwuUser.userId
     var userInfo:JSON?
     override func viewDidLoad() {
@@ -62,9 +63,7 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
                 cell = tableView.dequeueReusableCellWithIdentifier("Avatar")
                 let userAvatar = cell?.viewWithTag(1) as! UIImageView
                 userAvatar.kf_setImageWithURL(NSURL(string: self.userInfo!["avatar"].string!)!, placeholderImage: UIImage(named: "头像"))
-                
-                userAvatar.layer.cornerRadius = userAvatar.frame.height/2
-                
+                userAvatar.layer.cornerRadius = userAvatar.frame.width/2
                 userAvatar.clipsToBounds = true
                 
             default:
@@ -214,7 +213,7 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
                     upload.responseJSON { response in
                         if(response.result.value != nil){
                             self.getUserInfo()
-                            print(response.result.value)
+                            self.superVC?.needRefresh = true
                         }
                     }
                 case .Failure(let encodingError):
@@ -227,6 +226,7 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
         let editName = self.storyboard?.instantiateViewControllerWithIdentifier("EditNameVC") as! EditNameVC
         editName.name = self.userInfo!["nickname"].string!
         editName.userId = self.userInfo!["id"].int!
+        editName.superVC = self
     self.navigationController?.pushViewController(editName, animated: true)
     }
     

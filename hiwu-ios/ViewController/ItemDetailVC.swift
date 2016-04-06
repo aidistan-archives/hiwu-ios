@@ -22,8 +22,9 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     var isCommment = false
     var liked = false
     var weixinScene = 0
-    var weiboScene = 0
+    var weiboScene = 1
     var tmpImage = UIImage()
+    let hud = JGProgressHUD(style: JGProgressHUDStyle.Dark)
     
     @IBAction func more(sender: UIButton) {
         
@@ -32,7 +33,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
         let item1 = JMCollectionItem()
         item1.actionName = "新浪微博"
         item1.actionImage = UIImage(named: "sina")
-        item1.actionImageContentMode = UIViewContentMode.Center
+        item1.actionImageContentMode = UIViewContentMode.ScaleAspectFit
         let item2 = JMCollectionItem()
         item2.actionName = "微信好友"
         item2.actionImage = UIImage(named: "wechat")
@@ -45,14 +46,6 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
         item4.actionName = "复制链接"
         item4.actionImage = UIImage(named: "edit")
         item4.actionImageContentMode = UIViewContentMode.ScaleAspectFit
-        let item5 = JMCollectionItem()
-        item5.actionName = "编辑"
-        item5.actionImage = UIImage(named: "edit")
-        item5.actionImageContentMode = UIViewContentMode.ScaleAspectFit
-        let item6 = JMCollectionItem()
-        item6.actionName = "删除"
-        item6.actionImage = UIImage(named: "delete")
-        item6.actionImageContentMode = UIViewContentMode.ScaleAspectFit
         if(WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() && WeiboSDK.isWeiboAppInstalled()){
             collectionItem.elements = [item1,item2,item3,item4]
         }else if(WeiboSDK.isWeiboAppInstalled()){
@@ -99,31 +92,16 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     @IBAction func backButton(sender: UIButton) {
         self.navigationController?.popViewControllerAnimated(true)
     }
-    @IBOutlet weak var waiting: UIActivityIndicatorView!
     @IBOutlet weak var addComment: UITextView!
     @IBOutlet weak var itemDetailList: UITableView!
     @IBOutlet weak var tipToAddComment: UILabel!
-
-    @IBAction func ensureComment(sender: UIButton) {
-        if(self.addComment.text == ""){
-            let alert = UIAlertController(title: "请求失败", message: "内容为空", preferredStyle: UIAlertControllerStyle.Alert)
-            let action = UIAlertAction(title: "知道了", style: UIAlertActionStyle.Default, handler: nil)
-            alert.addAction(action)
-            self.presentViewController(alert, animated: true, completion: nil)
-        }else{
-            self.postComment(self.toUserId, itemId: self.itemId!, content: self.addComment.text)
-            self.waiting.startAnimating()
-        }
-    }
-    
-    @IBOutlet weak var ensureCommentButton: UIButton!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(self.itemId)
         self.getItemInfo()
-        self.waiting.startAnimating()
+        self.itemDetailList.hidden = true
+        self.hud.textLabel.text = "加载中"
+        self.hud.showInView(self.view)
         self.contactor.delegate = self
         self.addComment.delegate = self
         self.itemDetailList.dataSource = self
@@ -133,8 +111,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
         let gest = UITapGestureRecognizer(target: self, action: #selector(ItemDetailVC.endTheEditingOfTextView))
         gest.cancelsTouchesInView = false
         self.view.addGestureRecognizer(gest)
-        print("item info")
-        print(self.item)
+
     }
     
     
@@ -149,18 +126,18 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                 let itemImage = cell?.viewWithTag(1) as! UIImageView
                 if(self.item!["photos"][0]["url"] == nil){
                     itemImage.image = UIImage(named: "bg")
-                     self.waiting.stopAnimating()
+                     self.hud.dismiss()
                 }else{
 //                    itemImage.kf_setImageWithURL(NSURL(string: self.item!["photos"][0]["url"].string!)!)
                     itemImage.kf_setImageWithURL(NSURL(string: self.item!["photos"][0]["url"].string!)!, placeholderImage: nil, optionsInfo: nil, completionHandler: { (_) in
-                            self.waiting.stopAnimating()
+                            self.hud.dismiss()
                         })
                 }
                 let itemOwner = cell?.viewWithTag(4) as! UIImageView
                 let userAvatar = self.item!["hiwuUser"]["avatar"].string!
                 itemOwner.kf_setImageWithURL(NSURL(string:userAvatar)!)
                 itemOwner.kf_setImageWithURL(NSURL(string:userAvatar)!, placeholderImage: UIImage(named: "头像"), optionsInfo: nil, completionHandler: {(_) in
-                    self.tmpImage = self.resizeImage(itemOwner.image!, height: 200)
+                    self.tmpImage = tools.resizeImage(itemOwner.image!, height: 200)
                 })
                 itemOwner.layer.cornerRadius = itemOwner.frame.size.width/2
                 itemOwner.clipsToBounds = true
@@ -173,10 +150,10 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                 itemDescription.text = self.item!["description"].string
                 let likeButton = cell?.viewWithTag(3) as! UIButton
                 if(self.item!["liked"].boolValue){
-                    likeButton.setImage(UIImage(named: "iconfont-liked"), forState: UIControlState.Normal)
+                    likeButton.setImage(UIImage(named: "like"), forState: UIControlState.Normal)
                     likeButton.addTarget(self, action: #selector(ItemDetailVC.deleteLike), forControlEvents: UIControlEvents.TouchUpInside)
                 }else{
-                    likeButton.setImage(UIImage(named: "iconfont-like"), forState: UIControlState.Normal)
+                    likeButton.setImage(UIImage(named: "unlike"), forState: UIControlState.Normal)
                     likeButton.addTarget(self, action: #selector(ItemDetailVC.putLike), forControlEvents: UIControlEvents.TouchUpInside)
                 }
                 
@@ -209,7 +186,6 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
         self.addComment.becomeFirstResponder()
         UIView.animateWithDuration(1, animations: {void in
             self.addComment.alpha = 1
-            self.ensureCommentButton.alpha = 1
             self.tipToAddComment.alpha = 1
             self.itemDetailList.userInteractionEnabled = false
             self.itemDetailList.alpha = 0.4
@@ -225,6 +201,26 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
         textView.resignFirstResponder()
     }
     
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n"){
+//            print("换行")
+            if(self.addComment.text == ""){
+                let alert = UIAlertController(title: "请求失败", message: "内容为空", preferredStyle: UIAlertControllerStyle.Alert)
+                let action = UIAlertAction(title: "知道了", style: UIAlertActionStyle.Default, handler: nil)
+                alert.addAction(action)
+                self.presentViewController(alert, animated: true, completion: nil)
+            }else{
+                self.endTheEditingOfTextView()
+                self.hud.textLabel.text = "提交中"
+                self.hud.showInView(self.view)
+                self.postComment(self.toUserId, itemId: self.itemId!, content: self.addComment.text)
+            }
+            return false
+        }
+        return true
+    }
+    
+    
     func endTheEditingOfTextView(){
         self.addComment.endEditing(true)
         UIView.animateWithDuration(0.6, animations: {void in
@@ -233,7 +229,6 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
             self.itemDetailList.alpha = 1
             self.itemDetailList.userInteractionEnabled = true
             self.addComment.alpha = 0
-            self.ensureCommentButton.alpha = 0
             self.view.backgroundColor = UIColor.whiteColor()
         })
 
@@ -248,7 +243,6 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     func putLike(){
         let url = ApiManager.putLike1 + String(globalHiwuUser.userId) + ApiManager.putLike2 + String(self.itemId!) + ApiManager.putLike3 + globalHiwuUser.hiwuToken
         Alamofire.request(.PUT,url).responseJSON{response in
-            print(response.result.value)
             if(response.result.value != nil){
                 self.getItemInfo()
             }else{
@@ -281,7 +275,8 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     }
     
     func getItemInfoFailed() {
-         self.waiting.stopAnimating()
+         self.hud.dismiss()
+        self.itemDetailList.hidden = false
     }
     
     func getItemInfoReady() {
@@ -289,7 +284,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     }
     
     func networkError(){
-        self.waiting.stopAnimating()
+        self.hud.dismiss()
         let alert = UIAlertController(title: "请求失败", message: "请检查你的网络", preferredStyle: UIAlertControllerStyle.Alert)
         let action = UIAlertAction(title: "知道了", style: UIAlertActionStyle.Default, handler: nil)
         alert.addAction(action)
@@ -301,7 +296,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
         self.tipToAddComment.text = "在这里添加评论"
         if(toUserId != nil){
             Alamofire.request(.POST, url, parameters: ["content": content,"toId": toUserId!]).responseJSON{response in
-                self.waiting.stopAnimating()
+                self.hud.dismiss()
                 if(response.result.error != nil){
                 }else{
                     self.addComment.text = ""
@@ -311,7 +306,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
             }
         }else{
             Alamofire.request(.POST, url, parameters: ["content": content]).responseJSON{response in
-                self.waiting.stopAnimating()
+                self.hud.dismiss()
                 if(response.result.error != nil){
                 }else{
                     self.addComment.text = ""
@@ -323,42 +318,49 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if(indexPath.row >= 2){
+        self.itemDetailList.deselectRowAtIndexPath(indexPath, animated: true)
+        if(indexPath.row >= 2 && self.item!["comments"][indexPath.row - 2]["userId"].int! != globalHiwuUser.userId){
             self.toUserId = self.item!["comments"][indexPath.row - 2]["userId"].int!
             self.tipToAddComment.text = "回复给" + self.item!["comments"][indexPath.row - 2]["hiwuUser"]["nickname"].string! + " :"
             self.toAddComment()
-            self.itemDetailList.deselectRowAtIndexPath(indexPath, animated: true)
+            
         }
         
     }
     
-//    func getSelfItemInfo(itemId: Int){
-//        let url = ApiManager.getSelfItem1 + String(itemId) + ApiManager.getSelfItem2 + globalHiwuUser.hiwuToken
-//        Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
-//            if(response.result.value != nil){
-//                self.item = JSON(response.result.value!)
-//                self.cells = 2 + self.item!["comments"].count
-//                self.waiting.stopAnimating()
-//                self.itemDetailList.reloadData()
-//                
-//            }else{
-//                
-//            }
-//        }
-//        
-//    }
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if(indexPath.row >= 2 && self.item!["comments"][indexPath.row - 2]["userId"].int! == globalHiwuUser.userId){
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        let alert = SCLAlertView()
+        alert.addButton("删除", actionBlock: { () in
+            self.contactor.deleteComment(self.item!["comments"][indexPath.row - 2]["id"].int!, beReady: {
+                    self.getItemInfo()
+                }(), beFailed: nil)
+            
+        })
+        alert.showWarning(self, title: "删除物品", subTitle: "确定删除该物品吗？", closeButtonTitle: "取消", duration: 0)
+        tableView.editing = false
+    }
+    
+    func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
+        return "删除"
+    }
+    
     
     func getPublicItemInfo(itemId: Int){
         let url = ApiManager.getPublicItem1 + String(itemId) + ApiManager.getPublicItem2 + globalHiwuUser.hiwuToken
-        print(url)
         Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
             if(response.result.value != nil){
                 self.item = JSON(response.result.value!)
                 self.cells = 2 + self.item!["comments"].count
-//                self.waiting.stopAnimating()
-
+                self.itemDetailList.hidden = false
                 self.itemDetailList.reloadData()
-                
             }else{
                 
             }
@@ -392,8 +394,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
         message.description = description
         message.setThumbImage(tmpImage)
         let webPageObject = WXWebpageObject()
-        webPageObject.webpageUrl = "http://palace.server.hiwu.ren/galleries/" + String(self.item!["id"].int!)
-        print(webPageObject.webpageUrl)
+        webPageObject.webpageUrl = "http://palace.server.hiwu.ren/items/" + String(self.item!["id"].int!)
         message.mediaObject = webPageObject
         let req = SendMessageToWXReq()
         req.bText = false
@@ -403,6 +404,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
         }else if(weixinScene == 1){
             req.scene = Int32(WXSceneTimeline.rawValue)
         }
+        WXApi.sendReq(req)
     }
     
     func weiboShare(){
@@ -442,13 +444,8 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
         }
     }
     
-    func resizeImage(img:UIImage,height:CGFloat)->UIImage{
-        let scale = 200/img.size.height
-        UIGraphicsBeginImageContext(CGSizeMake(img.size.width * scale, img.size.height * scale))
-        img.drawInRect(CGRect(x: 0, y: 0, width: img.size.width * scale, height: img.size.height * scale))
-        let scaledImg = UIGraphicsGetImageFromCurrentImageContext()
-        return scaledImg
-    }
+    
+    
 
     
     

@@ -61,6 +61,7 @@
 		A593553F1BD7B1440044E7B3 /* SelfMuseumVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593553E1BD7B1440044E7B3 /* SelfMuseumVC.swift */; };
 		A593554B1BD7D1370044E7B3 /* SelfGalleryCT.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593554A1BD7D1370044E7B3 /* SelfGalleryCT.swift */; };
 		A5A78F431CAD2081000B06FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5A78F421CAD2081000B06FA /* Assets.xcassets */; };
+		A5A78F571CB3E30D000B06FA /* tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A78F561CB3E30D000B06FA /* tools.swift */; };
 		A5B33DCA1C4A432B00565972 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B33DC91C4A432B00565972 /* SettingVC.swift */; };
 		A5B33DE91C4B7DE700565972 /* AllTodaysVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B33DE81C4B7DE700565972 /* AllTodaysVC.swift */; };
 		A5BEE4731C638A0400F5B610 /* EditDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BEE4721C638A0400F5B610 /* EditDescriptionVC.swift */; };
@@ -356,6 +357,7 @@
 		A593553E1BD7B1440044E7B3 /* SelfMuseumVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelfMuseumVC.swift; path = ViewController/SelfMuseumVC.swift; sourceTree = "<group>"; };
 		A593554A1BD7D1370044E7B3 /* SelfGalleryCT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfGalleryCT.swift; sourceTree = "<group>"; };
 		A5A78F421CAD2081000B06FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A5A78F561CB3E30D000B06FA /* tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tools.swift; sourceTree = "<group>"; };
 		A5B33DC91C4A432B00565972 /* SettingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingVC.swift; path = ViewController/SettingVC.swift; sourceTree = "<group>"; };
 		A5B33DE81C4B7DE700565972 /* AllTodaysVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AllTodaysVC.swift; path = ViewController/AllTodaysVC.swift; sourceTree = "<group>"; };
 		A5BEE4721C638A0400F5B610 /* EditDescriptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditDescriptionVC.swift; path = ViewController/EditDescriptionVC.swift; sourceTree = "<group>"; };
@@ -628,6 +630,7 @@
 				A593550C1BD66EA90044E7B3 /* TodayGalleryCT.swift */,
 				A593554A1BD7D1370044E7B3 /* SelfGalleryCT.swift */,
 				A59355171BD782100044E7B3 /* ContactWithServer.swift */,
+				A5A78F561CB3E30D000B06FA /* tools.swift */,
 			);
 			name = LayoutTools;
 			sourceTree = "<group>";
@@ -1102,6 +1105,7 @@
 				A50620411C157B7D00195DCF /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				A5EB70AD1BE38AD20075D559 /* GalleryDetailVC.swift in Sources */,
 				A58270F21C885E9000F13713 /* JMActionSheetCollectionViewController.m in Sources */,
+				A5A78F571CB3E30D000B06FA /* tools.swift in Sources */,
 				A5C5D94D1C6715EA00164093 /* JGProgressHUDImageIndicatorView.m in Sources */,
 				A59355251BD7854B0044E7B3 /* UserModel.swift in Sources */,
 				A58270FB1C885E9000F13713 /* JMActionSheetViewController.m in Sources */,

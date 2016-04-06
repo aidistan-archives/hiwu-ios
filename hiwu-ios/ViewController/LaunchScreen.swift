@@ -38,6 +38,7 @@ class LaunchScreen: UIViewController,ServerContactorDelegates{
         alert.showWarning(self, title: "初始化失败", subTitle: "请检查你的网络", closeButtonTitle: "确定", duration: 0)
         
     }
+    
     override func prefersStatusBarHidden() -> Bool {
         return  true
     }

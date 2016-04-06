@@ -18,13 +18,10 @@ class AddItemVC: UIViewController,UITextViewDelegate,UITextFieldDelegate{
     var superGallery:GalleryDetailVC?
     let hud = JGProgressHUD(style:JGProgressHUDStyle.Dark)
     
+    @IBAction func backButton(sender: UIButton) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     @IBOutlet weak var itemImage: UIImageView!
-    
-    @IBAction func timeSelect(sender: UIButton) {
-    }
-
-    @IBAction func locationSelect(sender: UIButton) {
-    }
 
     @IBOutlet weak var time: UITextField!
 
@@ -42,7 +39,12 @@ class AddItemVC: UIViewController,UITextViewDelegate,UITextFieldDelegate{
             self.presentViewController(alert, animated: true, completion: nil)
         }else{
         let jpgUrl = NSHomeDirectory().stringByAppendingString("/tmp/").stringByAppendingString("tmp.jpg")
-            UIImageJPEGRepresentation(itemImage.image!, 0.9)?.writeToFile(jpgUrl, atomically: false)
+            var tmpHeight = CGFloat(500)
+            if(itemImage.frame.size.height < 500){
+                tmpHeight = itemImage.frame.size.height
+            }
+            let tmpImage = tools.resizeImage(itemImage.image!, height: tmpHeight)
+            UIImageJPEGRepresentation(tmpImage, 0.9)?.writeToFile(jpgUrl, atomically: false)
             self.postItem(self.galleryId, itemName: itemName.text!, itemDescription: itemDescription.text, year: Int(self.time.text!)!, city: self.city.text!, dataUrl: NSURL(fileURLWithPath: jpgUrl), isPublic: isPublic.on)
             
         }
@@ -165,7 +167,11 @@ class AddItemVC: UIViewController,UITextViewDelegate,UITextFieldDelegate{
                             let value = JSON(response.result.value!)
                             if(value["error"] == nil){
                                 self.navigationController?.popViewControllerAnimated(true)
+                                self.superGallery?.superSelfVC?.needRefresh = true
+                                self.superGallery?.superSelfVC?.needRefresh = true
                             }else{
+                                let contactor = ContactWithServer()
+                                contactor.deleteItem(itemId, complete: nil)
                                 self.hud.dismiss()
                                 let alert1 = SCLAlertView()
                                 alert1.showError(self, title: "错误", subTitle: "", closeButtonTitle: "知道了", duration: 0)
@@ -184,4 +190,5 @@ class AddItemVC: UIViewController,UITextViewDelegate,UITextFieldDelegate{
     override func prefersStatusBarHidden() -> Bool {
         return  true
     }
+
 }

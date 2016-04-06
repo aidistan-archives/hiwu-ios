@@ -27,9 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate,WeiboSDKDele
         cache.maxCachePeriodInSecond = 3600*24*60
         WXApi.registerApp(wxAPPID)
         if WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() {
-            print("已经安装微信")
+//            print("已经安装微信")
         }
-        print(WXApi.debugDescription())
         WeiboSDK.registerApp(wbAPPKEY)
         WeiboSDK.enableDebugMode(true)
         return true
@@ -72,8 +71,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate,WeiboSDKDele
     }
     
     func onReq(req: BaseReq!) {
-        print("onReq")
-        print(req)
+//        print("onReq")
+//        print(req)
     }
     
     func onResp(resp: BaseResp!) {
@@ -82,13 +81,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate,WeiboSDKDele
             if resp.errCode == WXSuccess.rawValue{//分享成功
                 NSLog("分享成功")
             }else{//分享失败
-                print(resp.errCode)
+//                print(resp.errCode)
             }
         }else if resp.isKindOfClass(SendAuthResp){
             let authResp = resp as! SendAuthResp
             if resp.errCode == 0{//认证成功
                 globalHiwuUser.wxcode = authResp.code
-                print(authResp.code)
+//                print(authResp.code)
                 NSNotificationCenter.defaultCenter().postNotificationName("weixinValidationOK", object: self)
                 
             }else{
@@ -100,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate,WeiboSDKDele
     }
     
     func didReceiveWeiboRequest(request: WBBaseRequest!) {
-        print(request)
+//        print(request)
         
     }
     

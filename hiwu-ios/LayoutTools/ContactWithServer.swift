@@ -46,7 +46,6 @@ class ContactWithServer{
     func getUserInfoFirst(){
         globalHiwuUser.userId = self.defaults.integerForKey("userId")
         let tmpToken = self.defaults.valueForKey("token") as? String
-        print(tmpToken)
         if(tmpToken != nil){
             globalHiwuUser.hiwuToken = tmpToken!
             self.delegate?.getUserInfoFirstReady!()
@@ -69,7 +68,7 @@ class ContactWithServer{
             }else{
                 if(self.defaults.valueForKey("selfMuseum") != nil){
                     globalHiwuUser.selfMuseum = JSON(NSKeyedUnarchiver.unarchiveObjectWithData(self.defaults.objectForKey("selfMuseum") as! NSData)!)
-                    print(self.delegate?.getSelfMuseumReady!())
+//                    print(self.delegate?.getSelfMuseumReady!())
                      self.delegate?.getSelfMuseumReady!()
                     complete(result: 0)
                 }else{
@@ -118,7 +117,6 @@ class ContactWithServer{
     
     func getPublicItemInfo(itemId: Int){
         let url = ApiManager.getPublicItem1 + String(itemId) + ApiManager.getPublicItem2 + globalHiwuUser.hiwuToken
-        print(url)
         Alamofire.request(.GET, NSURL(string: url)!).responseJSON{response in
             if(response.result.value != nil){
                 globalHiwuUser.item = JSON(response.result.value!)
@@ -204,12 +202,11 @@ class ContactWithServer{
     
     func putLike(userId: Int,itemId: Int){
         let url = ApiManager.putLike1 + String(userId) + ApiManager.putLike2 + String(itemId) + ApiManager.putLike3 + globalHiwuUser.hiwuToken
-        print("put like")
         Alamofire.request(.PUT,url).responseJSON{response in
             if(response.result.value != nil && response.result.error == nil){
                 self.delegate?.putLikeReady!()
             }else{
-                print(response.result.error)
+//                print(response.result.error)
                 self.delegate?.putLikeFailed!()
             }
         }
@@ -243,9 +240,8 @@ class ContactWithServer{
         let url = ApiManager.deleteComment1 + String(commentId) + ApiManager.deleteComment2 + globalHiwuUser.hiwuToken
         Alamofire.request(.DELETE, url).responseJSON{response in
             if(response.result.value != nil){
-                self.delegate?.deleteCommentReady!()
+                beReady
             }else{
-                self.delegate?.deleteCommentFailed!()
             }
         }
     }
@@ -326,7 +322,7 @@ class ContactWithServer{
         Alamofire.request(.GET, url).responseJSON{response in
             if(response.response?.statusCode == 200){
                 if(response.result.value != nil){
-                    print(response.result.value)
+//                    print(response.result.value)
                     complete!(selfGallery: JSON(response.result.value!))
                     
                 }else{
@@ -353,10 +349,32 @@ class ContactWithServer{
         }
     }
     
+    func renewToken(){
+//        print("renew")
+        let url = ApiManager.renewToken1 + String(globalHiwuUser.userId) + ApiManager.renewToken2
+        Alamofire.request(.GET, url).responseJSON{response in
+            if(response.result.error == nil){
+                if(response.result.value != nil){
+                    let userInfo = JSON(response.result.value!)
+                    if(userInfo["id"] != nil){
+                        globalHiwuUser.userId = userInfo["userId"].int!
+                        globalHiwuUser.hiwuToken = userInfo["id"].string!
+                        self.defaults.setValue((userInfo["id"]).string!,
+                            forKey: "token")
+                        self.defaults.setDouble(NSDate(timeIntervalSinceNow: (userInfo["ttl"]).double!).timeIntervalSince1970, forKey: "deadline")
+                        self.defaults.setDouble(NSDate(timeIntervalSinceNow: (userInfo["ttl"]).double!/2).timeIntervalSince1970, forKey: "freshline")
+                        self.defaults.setInteger((userInfo["userId"]).int!, forKey: "userId")
+                        self.defaults.synchronize()
+                    }
+                }
+            }
+        }
+    }
+    
     
 
     
 }
 
-    
+
 

@@ -22,12 +22,14 @@ class AllTodaysVC: UITableViewController {
     
     let dates = NSMutableDictionary()
     let titles = NSMutableArray()
+//    let hud = JGProgressHUD(style: JGProgressHUDStyle.Dark)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let backButton = self.navigationItem.leftBarButtonItem?.customView as! UIButton
-        backButton.addTarget(self, action: "back", forControlEvents: UIControlEvents.TouchUpInside)
-        getTodayInfo()
+        backButton.addTarget(self, action: #selector(AllTodaysVC.back), forControlEvents: UIControlEvents.TouchUpInside)
+        self.today = globalHiwuUser.todayMuseum
+        self.getDate()
     }
     
     func back(){
@@ -36,7 +38,7 @@ class AllTodaysVC: UITableViewController {
     
     
     func getDate(){
-        for(var i=0;i<self.today!.count;i++){
+        for i in 0...self.today!.count - 1 {
             let tmpDate = String(self.today![i]["date_y"].int!) + String(self.today![i]["date_m"].int!)
             if(dates.valueForKey(tmpDate) == nil){
                 dates.setValue(NSMutableArray(array: [i]), forKey: tmpDate)
@@ -57,7 +59,7 @@ class AllTodaysVC: UITableViewController {
                 self.today = JSON(response.result.value!)
                 self.getDate()
             }else{
-                print(response.result.error)
+//                print(response.result.error)
             }
             
         }
@@ -114,11 +116,10 @@ class AllTodaysVC: UITableViewController {
         let index = (dates[tmpDate] as! NSMutableArray)[indexPath.row] as! Int
         let tmpGallery = today![index]["gallery"]
         let galleryDetail = self.storyboard?.instantiateViewControllerWithIdentifier("GalleryDetailVC") as! GalleryDetailVC
-        galleryDetail.gallery = tmpGallery
+        galleryDetail.galleryId = tmpGallery["id"].int!
         galleryDetail.isMine = false
         self.navigationController?.pushViewController(galleryDetail, animated: true)
         tableView.cellForRowAtIndexPath(indexPath)?.selected = false
-        print(indexPath.row)
     }
     
     override func prefersStatusBarHidden() -> Bool {

@@ -40,14 +40,14 @@ class FeedbackVC: UIViewController {
         
         Alamofire.request(.POST, url, parameters: ["description":self.feedbackInput.text!,"title":self.userNickname + "(" + String(self.userId) + ")" + "从iOS客户端发来反馈" ]).responseJSON{response in
             let result = JSON(response.result.value!)
-            print(result)
+//            print(result)
             if(result["errorInfo"] == nil){
                 let alert = SCLAlertView()
                 alert.addButton("好的", actionBlock: {() in
                     self.navigationController?.popViewControllerAnimated(true)})
                 alert.showInfo(self, title: "感谢您的反馈", subTitle: "您的帮助将是我们前进的动力！", closeButtonTitle: nil, duration: 0)
             }else{
-                print("no")
+//                print("no")
             }
         }
     }

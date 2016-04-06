@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A5CEE61F1BD0DB3C00AAF122"
-               BuildableName = "hiwu-ios.app"
+               BuildableName = "&#x7269;&#x5883;&#x672a;&#x89c9;.app"
                BlueprintName = "hiwu-ios"
                ReferencedContainer = "container:hiwu-ios.xcodeproj">
             </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A5CEE61F1BD0DB3C00AAF122"
-            BuildableName = "hiwu-ios.app"
+            BuildableName = "&#x7269;&#x5883;&#x672a;&#x89c9;.app"
             BlueprintName = "hiwu-ios"
             ReferencedContainer = "container:hiwu-ios.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A5CEE61F1BD0DB3C00AAF122"
-            BuildableName = "hiwu-ios.app"
+            BuildableName = "&#x7269;&#x5883;&#x672a;&#x89c9;.app"
             BlueprintName = "hiwu-ios"
             ReferencedContainer = "container:hiwu-ios.xcodeproj">
          </BuildableReference>
@@ -99,7 +99,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A5CEE61F1BD0DB3C00AAF122"
-            BuildableName = "hiwu-ios.app"
+            BuildableName = "&#x7269;&#x5883;&#x672a;&#x89c9;.app"
             BlueprintName = "hiwu-ios"
             ReferencedContainer = "container:hiwu-ios.xcodeproj">
          </BuildableReference>

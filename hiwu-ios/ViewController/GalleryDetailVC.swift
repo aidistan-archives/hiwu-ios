@@ -14,6 +14,8 @@ import AVFoundation
 
 class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,ServerContactorDelegates,DZNEmptyDataSetDelegate,DZNEmptyDataSetSource{
     
+    var superSelfVC:SelfMuseumVC?
+    var superTodayVC:TodayVC?
     var isMine = false
     var gallery:JSON?
     var galleryId = 0
@@ -24,6 +26,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     var tmpImage = UIImage(named: "头像")
     var weixinScene = 0
     var weiboScene = 1
+    let hud = JGProgressHUD(style: JGProgressHUDStyle.Dark)
     
     @IBOutlet weak var galleryDetails: UITableView!
     
@@ -60,7 +63,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         let item1 = JMCollectionItem()
         item1.actionName = "新浪微博"
         item1.actionImage = UIImage(named: "sina")
-        item1.actionImageContentMode = UIViewContentMode.Center
+        item1.actionImageContentMode = UIViewContentMode.ScaleAspectFit
         let item2 = JMCollectionItem()
         item2.actionName = "微信好友"
         item2.actionImage = UIImage(named: "wechat")
@@ -73,14 +76,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         item4.actionName = "复制链接"
         item4.actionImage = UIImage(named: "edit")
         item4.actionImageContentMode = UIViewContentMode.ScaleAspectFit
-        let item5 = JMCollectionItem()
-        item5.actionName = "编辑"
-        item5.actionImage = UIImage(named: "edit")
-        item5.actionImageContentMode = UIViewContentMode.ScaleAspectFit
-        let item6 = JMCollectionItem()
-        item6.actionName = "删除"
-        item6.actionImage = UIImage(named: "delete")
-        item6.actionImageContentMode = UIViewContentMode.ScaleAspectFit
         if(WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() && WeiboSDK.isWeiboAppInstalled()){
             collectionItem.elements = [item1,item2,item3,item4]
         }else if(WeiboSDK.isWeiboAppInstalled()){
@@ -104,11 +99,11 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
             case "复制链接":
                 let pasteboard = UIPasteboard.generalPasteboard()
                 pasteboard.string = "http://palace.server.hiwu.ren/galleries/" + String(self.gallery!["id"].int!)
-                let hud = JGProgressHUD(style: JGProgressHUDStyle.Dark)
-                hud.textLabel.text = "复制成功"
-                hud.position = JGProgressHUDPosition.BottomCenter
-                hud.showInView(self.view)
-                hud.dismissAfterDelay(0.3)
+
+                self.hud.textLabel.text = "复制成功"
+                self.hud.position = JGProgressHUDPosition.BottomCenter
+                self.hud.showInView(self.view)
+                self.hud.dismissAfterDelay(0.3)
             case "编辑":
                 self.weixinScene = 1
                 self.weixinShare()
@@ -129,12 +124,14 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     @IBOutlet weak var addItemButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.refresh()
+        self.hud.textLabel.text = "加载中"
+        self.hud.showInView(self.view)
         self.galleryDetails.hidden = true
         self.contactor.delegate = self
         self.navigationController?.navigationBarHidden = false
         self.galleryDetails.estimatedRowHeight = 140
         self.galleryDetails.rowHeight = UITableViewAutomaticDimension
-        
         if(isMine){
             self.addItemButton.hidden = false
             
@@ -145,11 +142,10 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     }
     
     override func viewDidAppear(animated: Bool) {
-        print("did appear")
+//        print("did appear")
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.refresh()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -166,6 +162,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
                     self.galleryDetails.dataSource = self
                     self.galleryDetails.reloadData()
                     self.galleryDetails.hidden = false
+                    self.hud.dismiss()
                 }
                 
             })
@@ -177,6 +174,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
                     self.galleryDetails.dataSource = self
                     self.galleryDetails.reloadData()
                     self.galleryDetails.hidden = false
+                    self.hud.dismiss()
                 }
                 
             })
@@ -191,11 +189,10 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         if(indexPath.row == 0){
             let cell = tableView.dequeueReusableCellWithIdentifier("GalleryTitle")! as UITableViewCell
-            print(self.gallery!["hiwuUser"])
             let ownerAvatar = cell.viewWithTag(1) as! UIImageView
             if(self.gallery!["hiwuUser"]["avatar"].string != ""){
                 ownerAvatar.kf_setImageWithURL(NSURL(string: self.gallery!["hiwuUser"]["avatar"].string!)!, placeholderImage: UIImage(named: "头像"), optionsInfo: nil, completionHandler: {(_) in
-                    self.tmpImage = self.resizeImage(ownerAvatar.image!, height: 200)
+                    self.tmpImage = tools.resizeImage(ownerAvatar.image!, height: 200)
                     
                 })
                 ownerAvatar.layer.cornerRadius = ownerAvatar.frame.size.width/2
@@ -280,12 +277,13 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
         let toAdd = self.storyboard?.instantiateViewControllerWithIdentifier("AddItemVC") as! AddItemVC
         toAdd.galleryId = self.gallery!["id"].int!
-        toAdd.image = info[UIImagePickerControllerEditedImage] as? UIImage
+        toAdd.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         if(picker.sourceType == UIImagePickerControllerSourceType.Camera){
             let originImage = info[UIImagePickerControllerOriginalImage] as? UIImage
             UIImageWriteToSavedPhotosAlbum(originImage!, nil, nil, nil)
         }
         toAdd.superGallery = self
+        
         picker.dismissViewControllerAnimated(true, completion: nil)
         self.navigationController?.pushViewController(toAdd, animated: true)
     
@@ -302,7 +300,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         camera.delegate = self
         camera.sourceType = UIImagePickerControllerSourceType.Camera
         camera.showsCameraControls = true
-        camera.allowsEditing = true
         self.presentViewController(camera, animated: true, completion: nil)
     }
     
@@ -310,7 +307,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         let camera = UIImagePickerController()
         camera.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         camera.delegate = self
-        camera.allowsEditing = true
         self.presentViewController(camera, animated: true, completion: nil)
     }
     
@@ -321,6 +317,8 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
                 let value = JSON(response.result.value!)
                 if(value["error"] == nil){
                     self.refresh()
+                    self.superSelfVC?.needRefresh = true
+                    self.superTodayVC?.needRefresh = true
                 }
             }
         }
@@ -346,7 +344,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         message.setThumbImage(tmpImage)
         let webPageObject = WXWebpageObject()
         webPageObject.webpageUrl = "http://palace.server.hiwu.ren/galleries/" + String(self.gallery!["id"].int!)
-        print(webPageObject.webpageUrl)
         message.mediaObject = webPageObject
         let req = SendMessageToWXReq()
         req.bText = false
@@ -356,6 +353,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         }else if(weixinScene == 1){
             req.scene = Int32(WXSceneTimeline.rawValue)
         }
+        WXApi.sendReq(req)
     }
     
     func weiboShare(){
@@ -400,12 +398,5 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     }
     
     
-    func resizeImage(img:UIImage,height:CGFloat)->UIImage{
-        let scale = 200/img.size.height
-        UIGraphicsBeginImageContext(CGSizeMake(img.size.width * scale, img.size.height * scale))
-        img.drawInRect(CGRect(x: 0, y: 0, width: img.size.width * scale, height: img.size.height * scale))
-        let scaledImg = UIGraphicsGetImageFromCurrentImageContext()
-        return scaledImg
-    }
 
 }

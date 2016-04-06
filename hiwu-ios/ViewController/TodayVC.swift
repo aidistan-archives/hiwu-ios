@@ -16,8 +16,9 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     var isLoading = false
     let defaults = NSUserDefaults.standardUserDefaults()
     let notification = NSNotificationCenter.defaultCenter()
+    let hud = JGProgressHUD(style: JGProgressHUDStyle.Dark)
+    var needRefresh = false
     
-    @IBOutlet weak var refreshing: UIActivityIndicatorView!
     @IBOutlet weak var todayGalleryDisplay: UITableView!
 
     @IBAction func getAllTodays(sender: UIButton) {
@@ -27,7 +28,15 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     @IBOutlet weak var selfmuseum: UIButton!
     
     override func viewWillAppear(animated: Bool) {
+        if(self.needRefresh){
+            self.refresh()
+        }
+        
     }
+    override func viewWillDisappear(animated: Bool) {
+        self.needRefresh = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let bg = UIImage(named: "bg")
@@ -50,15 +59,20 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     }
     
     @IBAction func enterToSelfMuseum(sender: UIButton) {
-        print("enter to selfmuseum")
         let nowDate = NSDate(timeIntervalSinceNow: 0)
         let deadline = self.defaults.doubleForKey("deadline")
         let freshline = self.defaults.doubleForKey("freshline")
-        if((deadline == 0)||(freshline == 0||nowDate.timeIntervalSince1970 > deadline)){
-//            无缓存用户信息
-//            let login = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as! LoginVC
-//            login.superVC = self
-//            self.navigationController?.pushViewController(login, animated: true)
+        if((deadline != 0) && freshline != 0 && nowDate.timeIntervalSince1970 <= freshline){
+            self.contactor.getUserInfoFirst()
+        }else if((deadline != 0) && freshline != 0 && nowDate.timeIntervalSince1970 > freshline && nowDate.timeIntervalSince1970 <= deadline){
+//            print("not fresh")
+//            not fresh
+            self.contactor.renewToken()
+            let selfMuseum = self.storyboard?.instantiateViewControllerWithIdentifier("SelfMuseum") as! SelfMuseumVC
+            self.navigationController?.pushViewController(selfMuseum, animated: true)
+            
+        }else{
+            //            无缓存用户信息
             let desc = JMActionSheetDescription()
             let collectionItem = JMActionSheetCollectionItem()
             let item1 = JMCollectionItem()
@@ -90,13 +104,6 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
             desc.cancelItem = cancel
             desc.items = [collectionItem]
             JMActionSheet.showActionSheetDescription(desc, inViewController: self)
-        }else if(nowDate.timeIntervalSince1970 > freshline){
-//            not fresh
-            let selfMuseum = self.storyboard?.instantiateViewControllerWithIdentifier("SelfMuseum") as! SelfMuseumVC
-            self.navigationController?.pushViewController(selfMuseum, animated: true)
-            
-            }else{
-                self.contactor.getUserInfoFirst()
             }
         
     }
@@ -170,18 +177,9 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     func scrollViewDidScroll(scrollView: UIScrollView) {
         if(((-scrollView.contentOffset.y > 100))&&(self.isLoading == false)){
             self.isLoading = true
-            self.refreshing.startAnimating()
-            let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-            dispatch_async(queue,{() in
-                sleep(2)
-                let mainQueue = dispatch_get_main_queue()
-                dispatch_async(mainQueue, {
-                    self.isLoading = false
-                    scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
-                    self.refreshing.stopAnimating()
-                
-                })
-            })
+            self.hud.textLabel.text = "正在刷新"
+            self.hud.showInView(self.view)
+            refresh()
         }
     }
 
@@ -202,7 +200,7 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     }
     
     func getUserInfoFirstFailed(){
-        print("get user info failed")
+//        print("get user info failed")
         }
     
     func weixin() {
@@ -247,6 +245,27 @@ class TodayVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScro
     
     override func prefersStatusBarHidden() -> Bool {
         return  true
+    }
+    
+    func refresh(){
+        self.contactor.getTodayInfo()
+    }
+    
+    func getTodayInfoReady() {
+        self.isLoading = false
+        self.hud.dismiss()
+        if(globalHiwuUser.todayMuseum != nil){
+            self.todayGalleryDisplay.reloadData()
+        }
+        else{
+
+        }
+    }
+    
+    func getTodayInfoFailed() {
+        self.isLoading = false
+        self.hud.dismiss()
+        
     }
 
 

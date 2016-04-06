@@ -24,7 +24,6 @@ class NotificationVC: UITableViewController {
     
     @IBAction func clearMessage(sender: UIButton) {
         self.contactor.deleteNotification(globalHiwuUser.userId, complete: {() in
-            print("get")
             self.getNotificationInfo()
         })
     }
@@ -41,7 +40,6 @@ class NotificationVC: UITableViewController {
 
             self.cellNum = (self.notifications?.count)!
             self.tableView.reloadData()
-            print(note)
         })
     }
     

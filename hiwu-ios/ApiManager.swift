@@ -63,6 +63,8 @@ class ApiManager{
     static let getSelfGallery2 = "?filter=%7B%22include%22%3A%5B%22hiwuUser%22%2C%7B%22items%22%3A%22photos%22%7D%5D%7D&access_token="
     static let getPublicGallery1 = "http://palace.server.hiwu.ren/api/Galleries/"
     static let getPublicGallery2 = "/publicView"
+    static let renewToken1 = "http://palace.server.hiwu.ren/api/HiwuUsers/"
+    static let renewToken2 = "/renew?access_token="
     
 
 }

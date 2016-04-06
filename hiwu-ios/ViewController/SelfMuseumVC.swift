@@ -12,12 +12,14 @@ import Kingfisher
 import Alamofire
 
 class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
+    
     let defaults = NSUserDefaults.standardUserDefaults()
     let contactor = ContactWithServer()
     var tableCellLocation = 0
     var itemSum = 0
     let bg = UIImage(named: "bg")
     var cells = 1
+    var needRefresh = false
     
     
     @IBAction func backButtonClicked(sender: UIButton) {
@@ -48,6 +50,7 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.refresh()
         self.selfGalleryDisplay.delegate = self
         bg?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 0, 0, 0), resizingMode: UIImageResizingMode.Tile)
         selfGalleryDisplay.backgroundColor = UIColor(patternImage: self.bg!)
@@ -60,12 +63,14 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     override func viewWillDisappear(animated: Bool) {
        self.itemSum = 0
+        self.needRefresh = false
     }
     
 
     override func viewWillAppear(animated: Bool) {
-        print("will appear")
-        self.refresh()
+        if(needRefresh){
+            self.refresh()
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
@@ -185,7 +190,6 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             if(response.result.value != nil){
                 let value = JSON(response.result.value!)
                 if(value["error"] == nil){
-                    print("delete success")
                     self.refresh()
                 }
             }
@@ -197,8 +201,8 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         contactor.getSelfMuseum({result in
             if(result == 0){
                 self.selfGalleryDisplay.dataSource = self
+                self.selfGalleryDisplay.delegate = self
                 self.cells = globalHiwuUser.selfMuseum!["galleries"].count + 1
-                print(globalHiwuUser.selfMuseum)
                 self.getItemSum()
             }
         })
@@ -218,10 +222,11 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print(indexPath.row)
+        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
         if(indexPath.row >= 1){
             let galleryDetail = self.storyboard?.instantiateViewControllerWithIdentifier("GalleryDetailVC") as! GalleryDetailVC
             galleryDetail.isMine = true
+            galleryDetail.superSelfVC = self
             galleryDetail.galleryId = globalHiwuUser.selfMuseum!["galleries"][indexPath.row - 1]["id"].int!
             self.navigationController?.pushViewController(galleryDetail, animated: true)
         }else{
@@ -230,8 +235,10 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     
     func getItemSum(){
-        for i in 0...globalHiwuUser.selfMuseum!["galleries"].count-1 {
-            self.itemSum += globalHiwuUser.selfMuseum!["galleries"][i]["items"].count
+        if(globalHiwuUser.selfMuseum!["galleries"].count != 0){
+            for i in 0...globalHiwuUser.selfMuseum!["galleries"].count - 1 {
+                self.itemSum += globalHiwuUser.selfMuseum!["galleries"][i]["items"].count
+            }
         }
         self.selfGalleryDisplay.reloadData()
     }
