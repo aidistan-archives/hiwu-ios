@@ -19,7 +19,6 @@
 #import "UIScrollView+EmptyDataSet.h"
 #import "JGProgressHUD.h"
 #import "JMActionSheet.h"
-#import "JGActionSheet.h"
 #import "JMCollectionItem.h"
 #import "WeiboSDK.H"
 

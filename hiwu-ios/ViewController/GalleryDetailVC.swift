@@ -12,7 +12,7 @@ import SwiftyJSON
 import Kingfisher
 import AVFoundation
 
-class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,ServerContactorDelegates,DZNEmptyDataSetDelegate,DZNEmptyDataSetSource{
+class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,ServerContactorDelegates,DZNEmptyDataSetDelegate,DZNEmptyDataSetSource,UIPopoverControllerDelegate{
     
     var superSelfVC:SelfMuseumVC?
     var superTodayVC:TodayVC?
@@ -27,29 +27,21 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     var weixinScene = 0
     var weiboScene = 1
     let hud = JGProgressHUD(style: JGProgressHUDStyle.Dark)
+    var popoverVC:UIPopoverController?
     
     @IBOutlet weak var galleryDetails: UITableView!
     
     @IBAction func toAddItem(sender: UIButton)
     {
-        let desc = JMActionSheetDescription()
-        let itemCallCamera = JMActionSheetItem()
-        itemCallCamera.title = "拍摄"
-        itemCallCamera.action = {
-            self.callCamera()
-        }
-        let itemCallPhotoLibrary = JMActionSheetItem()
-        itemCallPhotoLibrary.title = "从相册"
-        itemCallPhotoLibrary.action = {
-            self.callPhotoLibrary()
-        }
-        let cancelButton = JMActionSheetItem()
-        cancelButton.textColor = UIColor.redColor()
-        cancelButton.title = "取消"
-        desc.cancelItem = cancelButton
-        desc.items = [itemCallPhotoLibrary,itemCallCamera]
-        desc.title = "请选择照片来源"
-        JMActionSheet.showActionSheetDescription(desc, inViewController: self)
+        let newAlert = LCActionSheet(title: "选择照片来源", buttonTitles: ["拍摄","从相册"], redButtonIndex: -1, clicked: { button in
+            if(button == 0){
+                self.callCamera()
+            }else if(button == 1){
+                self.callPhotoLibrary()
+            }
+            
+        })
+        newAlert.show()
     }
     
     @IBAction func backButton(sender: UIButton) {
@@ -74,7 +66,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         item3.actionImageContentMode = UIViewContentMode.ScaleAspectFit
         let item4 = JMCollectionItem()
         item4.actionName = "复制链接"
-        item4.actionImage = UIImage(named: "edit")
+        item4.actionImage = UIImage(named: "iconfont-copy")
         item4.actionImageContentMode = UIViewContentMode.ScaleAspectFit
         if(WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() && WeiboSDK.isWeiboAppInstalled()){
             collectionItem.elements = [item1,item2,item3,item4]
@@ -190,10 +182,9 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         if(indexPath.row == 0){
             let cell = tableView.dequeueReusableCellWithIdentifier("GalleryTitle")! as UITableViewCell
             let ownerAvatar = cell.viewWithTag(1) as! UIImageView
-            if(self.gallery!["hiwuUser"]["avatar"].string != ""){
+            if(self.gallery!["hiwuUser"]["avatar"] != nil){
                 ownerAvatar.kf_setImageWithURL(NSURL(string: self.gallery!["hiwuUser"]["avatar"].string!)!, placeholderImage: UIImage(named: "头像"), optionsInfo: nil, completionHandler: {(_) in
                     self.tmpImage = tools.resizeImage(ownerAvatar.image!, height: 200)
-                    
                 })
                 ownerAvatar.layer.cornerRadius = ownerAvatar.frame.size.width/2
                 ownerAvatar.clipsToBounds = true
@@ -213,7 +204,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
             let itemPic = cell.viewWithTag(10) as! UIImageView
             if(self.gallery!["items"][indexPath.row-1]["photos"][0]["url"] != nil){
                 itemPic.kf_setImageWithURL(NSURL(string: self.gallery!["items"][indexPath.row-1]["photos"][0]["url"].string! + "@!200x200")!)}else{
-                itemPic.image = UIImage(named: "add")
+                itemPic.image = UIImage(named: "nothing")
             }
             
             let itemName = cell.viewWithTag(20) as! UILabel
@@ -291,7 +282,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController){
         picker.dismissViewControllerAnimated(true, completion: nil)
-        
     }
     
     func callCamera(){
@@ -301,12 +291,25 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         camera.sourceType = UIImagePickerControllerSourceType.Camera
         camera.showsCameraControls = true
         self.presentViewController(camera, animated: true, completion: nil)
+
+        
     }
     
     func callPhotoLibrary(){
         let camera = UIImagePickerController()
         camera.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         camera.delegate = self
+        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Phone){
+            self.presentViewController(camera, animated: true, completion: nil)
+        }else{
+            if(self.popoverVC != nil){
+                self.popoverVC?.dismissPopoverAnimated(true)
+                self.popoverVC = nil
+            }
+            let popover = UIPopoverController(contentViewController: camera)
+            self.popoverVC = popover
+            self.popoverVC!.presentPopoverFromRect(CGRectMake(-600,-600 , 1000, 1000), inView: self.view, permittedArrowDirections: UIPopoverArrowDirection.Up, animated: true)
+        }
         self.presentViewController(camera, animated: true, completion: nil)
     }
     

@@ -1483,7 +1483,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="467.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="kdf-Ta-Ttb">
+                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="nothing" translatesAutoresizingMaskIntoConstraints="NO" id="kdf-Ta-Ttb">
                                                     <rect key="frame" x="14" y="14" width="112" height="112"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -1518,7 +1518,7 @@
                                                         </mask>
                                                     </variation>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OxF-Ys-Qoz">
+                                                <imageView userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="头像" translatesAutoresizingMaskIntoConstraints="NO" id="OxF-Ys-Qoz">
                                                     <rect key="frame" x="523" y="64" width="62" height="62"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="OxF-Ys-Qoz" secondAttribute="height" multiplier="62:63" id="O8O-Ds-mlp"/>
@@ -2220,7 +2220,7 @@
                                 <rect key="frame" x="530" y="7" width="50" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="清空">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.98431372549999996" green="0.81176470590000005" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="clearMessage:" destination="LDd-9x-53F" eventType="touchUpInside" id="v4y-PQ-qUR"/>
@@ -2559,6 +2559,7 @@
         <image name="set" width="64" height="64"/>
         <image name="share" width="36" height="36"/>
         <image name="title" width="211" height="40"/>
+        <image name="头像" width="200" height="200"/>
         <image name="舌苔" width="358" height="588"/>
     </resources>
 </document>

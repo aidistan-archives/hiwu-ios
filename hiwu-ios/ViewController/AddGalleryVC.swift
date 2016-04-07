@@ -14,6 +14,7 @@ class AddGalleryVC: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var galleryDespcription: BRPlaceholderTextView!
     @IBOutlet weak var galleryName: UITextField!
+    var superSelfVC:SelfMuseumVC?
     
     @IBAction func cancel(sender: UIButton) {
         self.navigationController?.popViewControllerAnimated(true)
@@ -83,6 +84,7 @@ class AddGalleryVC: UIViewController,UITextFieldDelegate {
             {
                 let value = JSON(response.result.value!)
                 if(value["error"] == nil){
+                    self.superSelfVC?.needRefresh = true
                     self.navigationController?.popViewControllerAnimated(true)
                 }
                 

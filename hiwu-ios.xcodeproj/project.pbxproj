@@ -18,7 +18,6 @@
 		A552327B1C0472F300A0AA2A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A552327A1C0472F300A0AA2A /* libsqlite3.tbd */; };
 		A552327E1C0475AE00A0AA2A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A552327D1C0475AE00A0AA2A /* libc++.tbd */; };
 		A55C94381C5DA9FD004367B0 /* EditNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55C94371C5DA9FD004367B0 /* EditNameVC.swift */; };
-		A56311B21C96B3640002FF5E /* JGActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = A56311B11C96B3640002FF5E /* JGActionSheet.m */; };
 		A56311BE1C9831070002FF5E /* JMCollectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A56311BD1C9831070002FF5E /* JMCollectionItem.m */; };
 		A56311D21C9ADEAA0002FF5E /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56311D11C9ADEAA0002FF5E /* NotificationVC.swift */; };
 		A56312121C9FC0580002FF5E /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A563120E1C9FC0580002FF5E /* WeiboSDK.bundle */; };
@@ -70,7 +69,6 @@
 		A5BEE4891C63B00C00F5B610 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BEE4881C63B00C00F5B610 /* MBProgressHUD.m */; };
 		A5BFFD141BE4D2A100D5A866 /* ItemDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD131BE4D2A100D5A866 /* ItemDetailVC.swift */; };
 		A5BFFD581BE8E7C800D5A866 /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFFD561BE8E7C800D5A866 /* LoginProtocol.swift */; };
-		A5C5D92A1C66753900164093 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5C5D9291C66753900164093 /* Launch Screen.storyboard */; };
 		A5C5D9471C6715EA00164093 /* JGProgressHUD Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A5C5D92F1C6715EA00164093 /* JGProgressHUD Resources.bundle */; };
 		A5C5D9481C6715EA00164093 /* JGProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5D9321C6715EA00164093 /* JGProgressHUD.m */; };
 		A5C5D9491C6715EA00164093 /* JGProgressHUDAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5D9341C6715EA00164093 /* JGProgressHUDAnimation.m */; };
@@ -287,8 +285,6 @@
 		A552327C1C04731E00A0AA2A /* WechatDemo_Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WechatDemo_Bridging_Header.h; sourceTree = "<group>"; };
 		A552327D1C0475AE00A0AA2A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		A55C94371C5DA9FD004367B0 /* EditNameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditNameVC.swift; path = ViewController/EditNameVC.swift; sourceTree = "<group>"; };
-		A56311B01C96B3640002FF5E /* JGActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGActionSheet.h; sourceTree = "<group>"; };
-		A56311B11C96B3640002FF5E /* JGActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGActionSheet.m; sourceTree = "<group>"; };
 		A56311BC1C9831070002FF5E /* JMCollectionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCollectionItem.h; sourceTree = "<group>"; };
 		A56311BD1C9831070002FF5E /* JMCollectionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCollectionItem.m; sourceTree = "<group>"; };
 		A56311D11C9ADEAA0002FF5E /* NotificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationVC.swift; path = ViewController/NotificationVC.swift; sourceTree = "<group>"; };
@@ -369,7 +365,6 @@
 		A5BEE48A1C63B1FB00F5B610 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		A5BFFD131BE4D2A100D5A866 /* ItemDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemDetailVC.swift; path = ViewController/ItemDetailVC.swift; sourceTree = "<group>"; };
 		A5BFFD561BE8E7C800D5A866 /* LoginProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginProtocol.swift; path = LayoutTools/LoginProtocol.swift; sourceTree = "<group>"; };
-		A5C5D9291C66753900164093 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		A5C5D92F1C6715EA00164093 /* JGProgressHUD Resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "JGProgressHUD Resources.bundle"; sourceTree = "<group>"; };
 		A5C5D9301C6715EA00164093 /* JGProgressHUD-Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JGProgressHUD-Defines.h"; sourceTree = "<group>"; };
 		A5C5D9311C6715EA00164093 /* JGProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUD.h; sourceTree = "<group>"; };
@@ -498,16 +493,6 @@
 			name = weixin;
 			sourceTree = "<group>";
 		};
-		A56311AF1C96B3640002FF5E /* JGActionSheet */ = {
-			isa = PBXGroup;
-			children = (
-				A56311B01C96B3640002FF5E /* JGActionSheet.h */,
-				A56311B11C96B3640002FF5E /* JGActionSheet.m */,
-			);
-			name = JGActionSheet;
-			path = Libs/JGActionSheet;
-			sourceTree = SOURCE_ROOT;
-		};
 		A56312031C9FC0580002FF5E /* libWeiboSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -609,7 +594,6 @@
 				A55C94371C5DA9FD004367B0 /* EditNameVC.swift */,
 				A5BEE4721C638A0400F5B610 /* EditDescriptionVC.swift */,
 				A5BEE4801C638A2400F5B610 /* FeedbackVC.swift */,
-				A5C5D9291C66753900164093 /* Launch Screen.storyboard */,
 				A56311D11C9ADEAA0002FF5E /* NotificationVC.swift */,
 			);
 			name = ViewControllers;
@@ -620,7 +604,6 @@
 			children = (
 				A56311BC1C9831070002FF5E /* JMCollectionItem.h */,
 				A56311BD1C9831070002FF5E /* JMCollectionItem.m */,
-				A56311AF1C96B3640002FF5E /* JGActionSheet */,
 				A5BEE4871C63B00C00F5B610 /* MBProgressHUD.h */,
 				A5BEE4881C63B00C00F5B610 /* MBProgressHUD.m */,
 				A5BEE4841C63964900F5B610 /* BRPlaceholderTextView.h */,
@@ -1028,7 +1011,6 @@
 				A5799ED21C659DCE009660D1 /* LCActionSheet.bundle in Resources */,
 				A56312121C9FC0580002FF5E /* WeiboSDK.bundle in Resources */,
 				A5A78F431CAD2081000B06FA /* Assets.xcassets in Resources */,
-				A5C5D92A1C66753900164093 /* Launch Screen.storyboard in Resources */,
 				A58270ED1C885E9000F13713 /* .gitkeep in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1072,7 +1054,6 @@
 				A5C5D9521C6715EA00164093 /* JGProgressHUDSuccessIndicatorView.m in Sources */,
 				A5BEE4811C638A2400F5B610 /* FeedbackVC.swift in Sources */,
 				A58270F01C885E9000F13713 /* JMActionSheetCollectionItem.m in Sources */,
-				A56311B21C96B3640002FF5E /* JGActionSheet.m in Sources */,
 				A5BEE4861C63964900F5B610 /* BRPlaceholderTextView.m in Sources */,
 				A58270EF1C885E9000F13713 /* JMActionSheetCollectionImageCell.m in Sources */,
 				A534BE951C0EC9FF00770171 /* GuidePage.swift in Sources */,
@@ -1284,7 +1265,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "hiwu-ios/WechatDemo_Bridging_Header.h";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "hiwu-ios/WechatDemo_Bridging_Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1309,7 +1290,7 @@
 				PRODUCT_NAME = "物境未觉";
 				SWIFT_OBJC_BRIDGING_HEADER = "hiwu-ios/WechatDemo_Bridging_Header.h";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "hiwu-ios/WechatDemo_Bridging_Header.h";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

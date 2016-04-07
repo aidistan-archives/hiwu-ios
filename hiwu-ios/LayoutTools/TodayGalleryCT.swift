@@ -41,7 +41,7 @@ class TodayGalleryCT: UICollectionView,UICollectionViewDataSource,UICollectionVi
         if(urlString != nil){
             images.kf_setImageWithURL(NSURL(string: urlString! + "@!200x200")!)
         }else{
-            images.image = UIImage(named: "bg")
+            images.image = UIImage(named: "nothing")
         }
         
         return cell

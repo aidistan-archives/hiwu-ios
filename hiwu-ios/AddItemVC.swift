@@ -57,12 +57,12 @@ class AddItemVC: UIViewController,UITextViewDelegate,UITextFieldDelegate{
         }
         self.itemDescription.delegate = self
         self.itemName.delegate = self
-        let gest = UITapGestureRecognizer(target: self, action: "endTheEditingOfTextView")
+        let gest = UITapGestureRecognizer(target: self, action: #selector(AddItemVC.endTheEditingOfTextView))
         gest.cancelsTouchesInView = false
         self.view.addGestureRecognizer(gest)
         self.time.delegate = self
         self.city.delegate = self
-        let gestureBack = UIScreenEdgePanGestureRecognizer(target: self, action: "back")
+        let gestureBack = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(AddItemVC.back))
         gestureBack.edges = UIRectEdge.Left
         self.view.addGestureRecognizer(gestureBack)
     }
@@ -168,7 +168,7 @@ class AddItemVC: UIViewController,UITextViewDelegate,UITextFieldDelegate{
                             if(value["error"] == nil){
                                 self.navigationController?.popViewControllerAnimated(true)
                                 self.superGallery?.superSelfVC?.needRefresh = true
-                                self.superGallery?.superSelfVC?.needRefresh = true
+                                self.superGallery?.refresh()
                             }else{
                                 let contactor = ContactWithServer()
                                 contactor.deleteItem(itemId, complete: nil)

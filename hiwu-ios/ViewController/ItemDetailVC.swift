@@ -44,7 +44,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
         item3.actionImageContentMode = UIViewContentMode.ScaleAspectFit
         let item4 = JMCollectionItem()
         item4.actionName = "复制链接"
-        item4.actionImage = UIImage(named: "edit")
+        item4.actionImage = UIImage(named: "iconfont-copy")
         item4.actionImageContentMode = UIViewContentMode.ScaleAspectFit
         if(WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() && WeiboSDK.isWeiboAppInstalled()){
             collectionItem.elements = [item1,item2,item3,item4]
@@ -125,20 +125,23 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                 let cell = tableView.dequeueReusableCellWithIdentifier("ItemImage")
                 let itemImage = cell?.viewWithTag(1) as! UIImageView
                 if(self.item!["photos"][0]["url"] == nil){
-                    itemImage.image = UIImage(named: "bg")
+                    itemImage.image = UIImage(named: "nothing")
                      self.hud.dismiss()
                 }else{
 //                    itemImage.kf_setImageWithURL(NSURL(string: self.item!["photos"][0]["url"].string!)!)
-                    itemImage.kf_setImageWithURL(NSURL(string: self.item!["photos"][0]["url"].string!)!, placeholderImage: nil, optionsInfo: nil, completionHandler: { (_) in
+                    itemImage.kf_setImageWithURL(NSURL(string: self.item!["photos"][0]["url"].string!)!, placeholderImage: UIImage(named: "nothing"), optionsInfo: nil, completionHandler: { (_) in
                             self.hud.dismiss()
                         })
                 }
                 let itemOwner = cell?.viewWithTag(4) as! UIImageView
-                let userAvatar = self.item!["hiwuUser"]["avatar"].string!
-                itemOwner.kf_setImageWithURL(NSURL(string:userAvatar)!)
-                itemOwner.kf_setImageWithURL(NSURL(string:userAvatar)!, placeholderImage: UIImage(named: "头像"), optionsInfo: nil, completionHandler: {(_) in
-                    self.tmpImage = tools.resizeImage(itemOwner.image!, height: 200)
-                })
+                if(self.item!["hiwuUser"]["avatar"] == nil){
+                    itemOwner.image = UIImage(named: "头像")
+                }else{
+                    let userAvatar = self.item!["hiwuUser"]["avatar"].string!
+                    itemOwner.kf_setImageWithURL(NSURL(string:userAvatar)!, placeholderImage: UIImage(named: "头像"), optionsInfo: nil, completionHandler: {(_) in
+                        self.tmpImage = tools.resizeImage(itemOwner.image!, height: 200)
+                    })
+                }
                 itemOwner.layer.cornerRadius = itemOwner.frame.size.width/2
                 itemOwner.clipsToBounds = true
             return cell!
