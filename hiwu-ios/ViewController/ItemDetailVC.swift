@@ -128,8 +128,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                     itemImage.image = UIImage(named: "nothing")
                      self.hud.dismiss()
                 }else{
-//                    itemImage.kf_setImageWithURL(NSURL(string: self.item!["photos"][0]["url"].string!)!)
-                    itemImage.kf_setImageWithURL(NSURL(string: self.item!["photos"][0]["url"].string!)!, placeholderImage: UIImage(named: "nothing"), optionsInfo: nil, completionHandler: { (_) in
+                    itemImage.kf_setImageWithURL(NSURL(string: self.item!["photos"][0]["url"].string!)!, placeholderImage: nil, optionsInfo: nil, completionHandler: { (_) in
                             self.hud.dismiss()
                         })
                 }
@@ -138,7 +137,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                     itemOwner.image = UIImage(named: "头像")
                 }else{
                     let userAvatar = self.item!["hiwuUser"]["avatar"].string!
-                    itemOwner.kf_setImageWithURL(NSURL(string:userAvatar)!, placeholderImage: UIImage(named: "头像"), optionsInfo: nil, completionHandler: {(_) in
+                    itemOwner.kf_setImageWithURL(NSURL(string:userAvatar)!, placeholderImage: nil, optionsInfo: nil, completionHandler: {(_) in
                         self.tmpImage = tools.resizeImage(itemOwner.image!, height: 200)
                     })
                 }

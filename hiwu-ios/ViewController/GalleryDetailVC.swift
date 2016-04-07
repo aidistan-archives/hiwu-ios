@@ -183,7 +183,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
             let cell = tableView.dequeueReusableCellWithIdentifier("GalleryTitle")! as UITableViewCell
             let ownerAvatar = cell.viewWithTag(1) as! UIImageView
             if(self.gallery!["hiwuUser"]["avatar"] != nil){
-                ownerAvatar.kf_setImageWithURL(NSURL(string: self.gallery!["hiwuUser"]["avatar"].string!)!, placeholderImage: UIImage(named: "头像"), optionsInfo: nil, completionHandler: {(_) in
+                ownerAvatar.kf_setImageWithURL(NSURL(string: self.gallery!["hiwuUser"]["avatar"].string!)!, placeholderImage: nil, optionsInfo: nil, completionHandler: {(_) in
                     self.tmpImage = tools.resizeImage(ownerAvatar.image!, height: 200)
                 })
                 ownerAvatar.layer.cornerRadius = ownerAvatar.frame.size.width/2
