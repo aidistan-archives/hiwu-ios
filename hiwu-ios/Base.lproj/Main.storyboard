@@ -2070,7 +2070,7 @@
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" style="plain" id="WCc-uG-Uhf">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WeW-qF-SCI">
-                                <rect key="frame" x="20" y="7" width="30" height="30"/>
+                                <rect key="frame" x="20" y="4" width="32" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="16"/>
                                 <state key="normal" title="取消">
