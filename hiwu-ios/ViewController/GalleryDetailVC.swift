@@ -182,7 +182,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         if(indexPath.row == 0){
             let cell = tableView.dequeueReusableCellWithIdentifier("GalleryTitle")! as UITableViewCell
             let ownerAvatar = cell.viewWithTag(1) as! UIImageView
-            if(self.gallery!["hiwuUser"]["avatar"] != nil){
+            if(self.gallery!["hiwuUser"]["avatar"].string! != ""){
                 ownerAvatar.kf_setImageWithURL(NSURL(string: self.gallery!["hiwuUser"]["avatar"].string!)!, placeholderImage: nil, optionsInfo: nil, completionHandler: {(_) in
                     self.tmpImage = tools.resizeImage(ownerAvatar.image!, height: 200)
                 })
@@ -190,6 +190,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
                 ownerAvatar.clipsToBounds = true
             }else{
                 ownerAvatar.image = UIImage(named: "头像")
+                self.tmpImage = tools.resizeImage(ownerAvatar.image!, height: 200)
             }
             let galleryName = cell.viewWithTag(2) as! UILabel
             galleryName.text = self.gallery!["hiwuUser"]["nickname"].string! + " ⎡" + self.gallery!["name"].string! + "⎦"

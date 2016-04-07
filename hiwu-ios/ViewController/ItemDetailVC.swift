@@ -124,7 +124,7 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
             case 0:
                 let cell = tableView.dequeueReusableCellWithIdentifier("ItemImage")
                 let itemImage = cell?.viewWithTag(1) as! UIImageView
-                if(self.item!["photos"][0]["url"] == nil){
+                if(self.item!["photos"][0]["url"].string == nil){
                     itemImage.image = UIImage(named: "nothing")
                      self.hud.dismiss()
                 }else{
@@ -133,8 +133,10 @@ class ItemDetailVC: UIViewController,UITableViewDataSource,UITableViewDelegate,U
                         })
                 }
                 let itemOwner = cell?.viewWithTag(4) as! UIImageView
-                if(self.item!["hiwuUser"]["avatar"] == nil){
+                print(self.item!["hiwuUser"]["avatar"].string)
+                if(self.item!["hiwuUser"]["avatar"].string! == ""){
                     itemOwner.image = UIImage(named: "头像")
+                    self.tmpImage = tools.resizeImage(itemOwner.image!, height: 200)
                 }else{
                     let userAvatar = self.item!["hiwuUser"]["avatar"].string!
                     itemOwner.kf_setImageWithURL(NSURL(string:userAvatar)!, placeholderImage: nil, optionsInfo: nil, completionHandler: {(_) in
