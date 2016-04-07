@@ -104,6 +104,8 @@ class AllTodaysVC: UITableViewController {
         }else{
             avatar.kf_setImageWithURL(NSURL(string: tmpGallery["hiwuUser"]["avatar"].string! + "@!200x200")!, placeholderImage:nil)
         }
+        avatar.layer.cornerRadius = avatar.frame.size.width/2
+        avatar.clipsToBounds = true
         let name = cell?.viewWithTag(2) as! UILabel
         var nickname = tmpGallery["hiwuUser"]["nickname"].string!
         if(nickname == ""){

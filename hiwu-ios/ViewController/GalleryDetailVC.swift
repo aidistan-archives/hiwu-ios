@@ -186,12 +186,12 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
                 ownerAvatar.kf_setImageWithURL(NSURL(string: self.gallery!["hiwuUser"]["avatar"].string!)!, placeholderImage: nil, optionsInfo: nil, completionHandler: {(_) in
                     self.tmpImage = tools.resizeImage(ownerAvatar.image!, height: 200)
                 })
-                ownerAvatar.layer.cornerRadius = ownerAvatar.frame.size.width/2
-                ownerAvatar.clipsToBounds = true
             }else{
                 ownerAvatar.image = UIImage(named: "头像")
                 self.tmpImage = tools.resizeImage(ownerAvatar.image!, height: 200)
             }
+            ownerAvatar.layer.cornerRadius = ownerAvatar.frame.size.width/2
+            ownerAvatar.clipsToBounds = true
             let galleryName = cell.viewWithTag(2) as! UILabel
             galleryName.text = self.gallery!["hiwuUser"]["nickname"].string! + " ⎡" + self.gallery!["name"].string! + "⎦"
             let galleryDescription = cell.viewWithTag(3) as! UILabel
