@@ -302,6 +302,7 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
         camera.delegate = self
         if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Phone){
             self.presentViewController(camera, animated: true, completion: nil)
+//            self.showViewController(camera, sender: nil)
         }else{
             if(self.popoverVC != nil){
                 self.popoverVC?.dismissPopoverAnimated(true)
@@ -311,7 +312,6 @@ class GalleryDetailVC: UIViewController ,UITableViewDataSource,UITableViewDelega
             self.popoverVC = popover
             self.popoverVC!.presentPopoverFromRect(CGRectMake(-600,-600 , 1000, 1000), inView: self.view, permittedArrowDirections: UIPopoverArrowDirection.Up, animated: true)
         }
-        self.presentViewController(camera, animated: true, completion: nil)
     }
     
     func deleteItem(itemId:Int){

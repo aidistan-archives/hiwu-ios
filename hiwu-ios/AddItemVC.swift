@@ -38,6 +38,12 @@ class AddItemVC: UIViewController,UITextViewDelegate,UITextFieldDelegate{
             alert.addAction(UIAlertAction(title: "知道了", style: UIAlertActionStyle.Cancel, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }else{
+            var year = Int(self.time.text!)
+            if(year == nil){
+                year = 0
+            }
+            NSUserDefaults.standardUserDefaults().setInteger(year!, forKey: "defaultYear")
+            NSUserDefaults.standardUserDefaults().setValue(self.city.text, forKey: "defaultCity")
         let jpgUrl = NSHomeDirectory().stringByAppendingString("/tmp/").stringByAppendingString("tmp.jpg")
             var tmpHeight = CGFloat(500)
             if(itemImage.frame.size.height < 500){
@@ -45,13 +51,23 @@ class AddItemVC: UIViewController,UITextViewDelegate,UITextFieldDelegate{
             }
             let tmpImage = tools.resizeImage(itemImage.image!, height: tmpHeight)
             UIImageJPEGRepresentation(tmpImage, 0.9)?.writeToFile(jpgUrl, atomically: false)
-            self.postItem(self.galleryId, itemName: itemName.text!, itemDescription: itemDescription.text, year: Int(self.time.text!)!, city: self.city.text!, dataUrl: NSURL(fileURLWithPath: jpgUrl), isPublic: isPublic.on)
+            self.postItem(self.galleryId, itemName: itemName.text!, itemDescription: itemDescription.text, year: year!, city: self.city.text!, dataUrl: NSURL(fileURLWithPath: jpgUrl), isPublic: isPublic.on)
             
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let ttime = NSUserDefaults.standardUserDefaults().integerForKey("defaultYear")
+        print(ttime)
+        let tcity = NSUserDefaults.standardUserDefaults().stringForKey("defaultCity")
+        print(tcity)
+        if(ttime != 0){
+            self.time.text = String(ttime)
+        }
+        if(tcity != nil){
+            self.city.text = tcity
+        }
         if(self.image != nil){
             self.itemImage.image = self.image
         }
@@ -135,7 +151,6 @@ class AddItemVC: UIViewController,UITextViewDelegate,UITextFieldDelegate{
     }
     
     func postItem(galleryId:Int,itemName:String,itemDescription:String,year:Int,city:String,dataUrl:NSURL,isPublic:Bool){
-        
         let postItemUrl = ApiManager.postItem1 + String(galleryId) + ApiManager.postItem2 + globalHiwuUser.hiwuToken
         hud.showInView(self.view, animated: true)
         hud.textLabel.text = "上传中"

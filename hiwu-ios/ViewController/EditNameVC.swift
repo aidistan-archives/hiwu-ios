@@ -14,6 +14,7 @@ class EditNameVC: UIViewController {
     var name = ""
     var userId = 0
     var superVC:SettingVC?
+    
     @IBOutlet weak var nameInput: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +43,8 @@ class EditNameVC: UIViewController {
         let url = ApiManager.putNickname1 + String(self.userId) + ApiManager.putNickname2 + globalHiwuUser.hiwuToken
         
         Alamofire.request(.PUT, url, parameters: ["nickname":self.nameInput.text!,"id":self.userId]).responseJSON{response in
-            let result = JSON(response.result.value!)
-            if(result["error"].string == ""){
+            print(response.response?.statusCode)
+            if(response.response?.statusCode == 200){
                 self.navigationController?.popViewControllerAnimated(true)
                 self.superVC?.superVC?.needRefresh = true
             }

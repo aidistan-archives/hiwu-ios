@@ -184,6 +184,7 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
         let camera = UIImagePickerController()
         camera.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         camera.delegate = self
+        camera.allowsEditing = true
         if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Phone){
             self.presentViewController(camera, animated: true, completion: nil)
         }else{
@@ -193,9 +194,8 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
             }
             let popover = UIPopoverController(contentViewController: camera)
             self.popoverVC = popover
-            self.popoverVC!.presentPopoverFromRect(CGRectMake(-600,-600 , 1000, 1000), inView: self.view, permittedArrowDirections: UIPopoverArrowDirection.Up, animated: true)
+            self.popoverVC!.presentPopoverFromRect(CGRectMake(-600,-600, 1000, 1000), inView: self.view, permittedArrowDirections: UIPopoverArrowDirection.Up, animated: true)
         }
-        self.presentViewController(camera, animated: true, completion: nil)
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
@@ -204,8 +204,12 @@ class SettingVC: UITableViewController,UIImagePickerControllerDelegate,UINavigat
             let originImage = info[UIImagePickerControllerOriginalImage] as? UIImage
             UIImageWriteToSavedPhotosAlbum(originImage!, nil, nil, nil)
         }
+        var tmpImage1 = UIImage(named: "头像")
+        if(tmpImage != nil){
+            tmpImage1 = tools.resizeImage(tmpImage!, height: 200)
+        }
         let jpgUrl = NSHomeDirectory().stringByAppendingString("/tmp/").stringByAppendingString("tmp.jpg")
-        UIImageJPEGRepresentation(tmpImage!, 0.7)?.writeToFile(jpgUrl, atomically: false)
+        UIImageJPEGRepresentation(tmpImage1!, 0.7)?.writeToFile(jpgUrl, atomically: false)
         self.updateAvatar(jpgUrl)
         picker.dismissViewControllerAnimated(true, completion: nil)
         

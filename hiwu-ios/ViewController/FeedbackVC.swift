@@ -38,7 +38,7 @@ class FeedbackVC: UIViewController {
     func postFeedback(){
         let url = ApiManager.postFeedback
         
-        Alamofire.request(.POST, url, parameters: ["description":self.feedbackInput.text!,"title":self.userNickname + "(" + String(self.userId) + ")" + "从iOS客户端发来反馈" ]).responseJSON{response in
+        Alamofire.request(.POST, url, parameters: ["content":self.feedbackInput.text!,"subject":self.userNickname + "(" + String(self.userId) + ")" + "从iOS客户端发来反馈" ]).responseJSON{response in
             let result = JSON(response.result.value!)
 //            print(result)
             if(result["errorInfo"] == nil){

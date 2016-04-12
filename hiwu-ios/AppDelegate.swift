@@ -13,6 +13,8 @@ var globalHiwuUser = UserModel()
 let wxAPPID = "wxe0b3b148c7065252"
 let wbAPPKEY = "1946198488"
 let kRedirectURI = "http://hiwu.ren"
+//let ENVURL = "http://palace.server.hiwu.ren"
+let ENVURL = "http://hiwu.ren"
 
 @UIApplicationMain
 

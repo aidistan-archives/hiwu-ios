@@ -37,6 +37,7 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             if(response.result.error == nil){
                 if(response.result.value != nil){
                     setting.userInfo = JSON(response.result.value!)
+                    setting.superVC = self
                     self.navigationController?.pushViewController(setting, animated: true)
                 }
             }else{
@@ -99,6 +100,7 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     @IBAction func addGallery(sender: UIButton) {
         let addGallery = self.storyboard?.instantiateViewControllerWithIdentifier("AddGalleryVC") as! AddGalleryVC
+        addGallery.superSelfVC = self
         self.navigationController?.pushViewController(addGallery, animated: true)
     }
     
@@ -115,6 +117,8 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             userAvatar.kf_setImageWithURL(NSURL(string: selfMuseum!["avatar"].string!)!, placeholderImage: UIImage(named: "头像"))
             userAvatar.layer.cornerRadius = userAvatar.frame.height/2
             userAvatar.clipsToBounds = true
+            let gest = UITapGestureRecognizer(target: self, action: #selector(SelfMuseumVC.toSetting))
+            userAvatar.addGestureRecognizer(gest)
             userNickname.text = selfMuseum!["nickname"].string!
             museumInfo.text = String(selfMuseum!["galleries"].count) + " 馆  |  " + String(self.itemSum) + " 物件"
             museumInfo.layer.cornerRadius = museumInfo.frame.height/2
@@ -230,7 +234,7 @@ class SelfMuseumVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             galleryDetail.galleryId = globalHiwuUser.selfMuseum!["galleries"][indexPath.row - 1]["id"].int!
             self.navigationController?.pushViewController(galleryDetail, animated: true)
         }else{
-            self.toSetting()
+            
         }
     }
     
